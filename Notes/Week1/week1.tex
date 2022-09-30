@@ -8,8 +8,8 @@
 
 
 
-\chapter{???}
-\section{Understandig Groups as Shuffles}
+\chapter{Motivating Group Theory}
+\section{Groups as Shuffles}
 \begin{itemize}
     \item \marginnote{9/28:}Office hours will be pooled between the two sections.
     \begin{itemize}
@@ -116,6 +116,82 @@
     \end{enumerate}
     \item Proving examples is easier, but these aren't that hard.
     \item If you understand everything about $S_5$, you'll understand everything about this course.
+\end{itemize}
+
+
+
+\section{The Cube Group}
+\begin{itemize}
+    \item \marginnote{9/30:}Can't download \verb|.tex| file for homework?
+    \begin{itemize}
+        \item Calegari will check it.
+    \end{itemize}
+    \item Detail on the homework?
+    \begin{itemize}
+        \item Up to your level of confidence in what you think is clear to be true.
+        \item The problem is not about doing linear algebra; it's about finding some facts about linearly algebraic objects.
+        \item Concentrate on the new geometry of the situation.
+        \item Project confidence to the grader that you know what you're doing.
+    \end{itemize}
+    \item The symmetries of the cube.
+    \begin{itemize}
+        \item Rotational symmetries.
+        \item Rigid transformation.
+        \item Preserves lengths, angles, and lines.
+        \item A map from the cube to itself, i.e., $\phi:\text{cube}\to\text{cube}$.
+        \item No scaling allowed.
+        \item Reflectional symmetries are \emph{not} going to be allowed for today; we will insist that the orientation is also preserved for now.
+        \item We want the set of all rotations and compositions of rotations. (Are compositions of rotations also rotations? We'll answer later. Yes they are.)
+    \end{itemize}
+    \item Symmetries should be composable: If you compose two symmetries, you should get a third one.
+    \begin{itemize}
+        \item In other words, we want the symmetries to form a group.
+    \end{itemize}
+    \item We want to fix the center of the cube at the origin. Thus, a symmetry can be a linear map $M:\R^3\to\R^3$.
+    \begin{itemize}
+        \item We want it to preserve angles, i.e., orthogonality. Thus, we should assert $MM^\intercal=I$.
+        \item We also want it to preserve orientation. Then we should have $\det(M)=1$.
+    \end{itemize}
+    \item \textbf{Cu}: The cube group.
+    \item Does the permutation of faces determine $M$?
+    \begin{itemize}
+        \item Yes.
+        \item Furthermore, if we know where $e_1,e_2$ go, then the fact that orientation and orthogonality are preserved implies that we know where $e_3$ goes. Thus, $M$ is determined by two (adjacent) faces.
+    \end{itemize}
+    \item An upper bound on $|\text{Cu}|$.
+    \begin{itemize}
+        \item Send $e_1$ to one of 6 faces and send $e_2$ to one of the 5 remaining faces (so $|\text{Cu}|\leq 6\cdot 5=30$).
+        \item Send $e_1$ to one of 6 faces and send $e_2$ to one of the four remaining \emph{adjacent} faces (so $|\text{Cu}|\leq 6\cdot 4=24$).
+        \item And, in fact, $|\text{Cu}|=24$.
+    \end{itemize}
+    \item Moreover, since the rotations of the cube are determined by permutations of the faces, we can map $\text{Cu}\hookrightarrow S_6$. Additionally, composing any permutations of the faces is the same as composing any permutations of $S_6$, i.e., $\phi$ is an \textbf{injective homomorphism} to a \textbf{subgroup} of $S_6$.
+    \item We can also think about permuting the vertices.
+    \begin{itemize}
+        \item 3 vertices (chosen correctly) form a basis of $\R^3$.
+        \item Thus, since there are 8 vertices, we have another map from $\text{Cu}\hookrightarrow S_8$.
+        \item Since we can map the first vertex to any of eight and the second to only one of three adjacent vertices, the order is $8\cdot 3=24$\footnote{We have gotten the order a different way. Deep connection to prime factorization? Edges would be $2\cdot 12$!}.
+    \end{itemize}
+    \item We now have both Cu and $S_4$ with order 24. Are they isomorphic?
+    \begin{itemize}
+        \item One characteristic of a cube that numbers four are its four diagonals. This induces a function from $\text{Cu}\to S_4$. We now just need to prove it's bijective.
+        \item Let $v_1,v_2,v_3,v_4$ be the vertexes of one face. Then $-v_1,\dots,-v_4$ are the vertexes of the opposite face, and the line from each $v_i$ to $-v_i$ is a diagonal of the cube. To prove that the function is bijective, we will show that different elements of Cu map to different elements of $S_4$.
+        \item Let $A$ and $B$ be actions on the cube group such that
+        \begin{align*}
+            Bv_1 &= \pm Av_1\\
+            Bv_2 &= \pm Av_2\\
+            Bv_3 &= \pm Av_3\\
+            Bv_4 &= \pm Av_4
+        \end{align*}
+        \item Taking $C=A^{-1}B$ means that
+        \begin{align*}
+            Cv_1 &= \pm v_1\\
+            Cv_2 &= \pm v_2\\
+            Cv_3 &= \pm v_3\\
+            Cv_4 &= \pm v_4
+        \end{align*}
+        \item If $Cv_1=v_1$, it implies that $Cv_i=v_i$ for $i=2,3,4$.
+        \item Thus, $A$ and $B$ are distinct?
+    \end{itemize}
 \end{itemize}
 
 
