@@ -1,7 +1,14 @@
 \usepackage[margin=1in]{geometry}
 \usepackage{fancyhdr}
 \usepackage{marginnote}
-\usepackage{subfiles}
+\usepackage{enumitem}
+\usepackage{scrextend}
+\usepackage[bottom]{footmisc}
+\usepackage{siunitx}
+\usepackage{tikz}
+\usepackage{amsmath,amssymb}
+\usepackage{bm}
+\usepackage[hidelinks]{hyperref}
 
 \fancypagestyle{main}{
     \fancyhf{}
@@ -15,3 +22,16 @@
 }
 
 \reversemarginpar
+
+\setitemize[3]{label={\scriptsize$\blacksquare$}}
+\setitemize[4]{label={\tikz[scale=0.06,baseline={(0,-0.14)}]{
+    \draw [line width=0.3pt] (0,1) -- (1.2,0) -- (0,-1) -- (3.5,0) -- cycle;
+    \fill (1.2,0) -- (0,-1) -- (3.5,0);
+}}}
+
+\deffootnotemark{\textsuperscript{\textup{[}\thefootnotemark\textup{]}}}
+\deffootnote[1.8em]{0em}{0em}{\textsuperscript{\thefootnote}}
+
+\newcommand{\N}{\mathbb{N}}
+
+\usepackage{subfiles}

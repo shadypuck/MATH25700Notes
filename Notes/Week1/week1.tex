@@ -9,9 +9,113 @@
 
 
 \chapter{???}
-\section{???}
+\section{Understandig Groups as Shuffles}
 \begin{itemize}
-    \item \marginnote{9/28:}
+    \item \marginnote{9/28:}Office hours will be pooled between the two sections.
+    \begin{itemize}
+        \item Our section's TA is Abhijit Mudigonda (\href{mailto:abjihitm@uchicago.edu}{abjihitm@uchicago.edu}). His office hours will always be in JCL 267\footnote{JCL is John Crerar Library.}. The times are\dots
+        \begin{itemize}
+            \item Monday: 12:30-2:00 (OH).
+            \item Wednesday: 1:30-2:30 (PS).
+            \item Thursday: 12:30-2:00 (OH).
+        \end{itemize}
+        \item The other section's TA is Ray Li (\href{mailto:rayli@uchicago.edu}{rayli@uchicago.edu}). His office hours will always be in Eck 17\footnote{Eckhart basement.}. The times are\dots
+        \begin{itemize}
+            \item Tuesday: 5:00-7:00 (OH).
+            \item Thursday: 4:00-5:00 (OH).
+            \item Thursday: 5:00-6:00 (PS).
+        \end{itemize}
+    \end{itemize}
+    \item Textbook: Abstract Algebra. Download the PDF from LibGen.
+    \item Weekly HW due on Monday at the beginning of class. Submit online or in person. There is a webpage w/ all the homeworks, but don't do them all at once because they're subject to change.
+    \item Notes on math and math pedagogy.
+    \begin{itemize}
+        \item There's a tendency to say here's an object, here's its properties, etc.
+        \item But this is not historically accurate or motivated. Calegari really gets it! Math is motivated by abstracting examples.
+        \item Let's not just define a group, but start with an example. This week, we will give examples of groups. In later weeks, we will establish the axiomatic framework that is really only there to understand these examples.
+        \item Don't stare at the page blankly waiting for inspiration when doing homework; think of examples first and test out your intuition on them to actually understand what the question means.
+        \item There are some hard problems; work with each other, but acknowledge our collaborators.
+        \item In-class midterm; final will be take-home. Calegari doesn't like timed exams.
+    \end{itemize}
+    \item Today's example: Shuffling.
+    \begin{itemize}
+        \item 52 cards; can be shuffled.
+        \item Number of shuffles:
+        \begin{equation*}
+            |\text{shuffles}| = 52! \approx \num{8e67}
+        \end{equation*}
+        \item Properties of shuffles.
+        \begin{itemize}
+            \item \textbf{Distinguished shuffle}: $e$, the identity shuffle, where you do nothing.
+            \item Shuffle once; shuffle again. The composition of two shuffles is another shuffle.
+            \item If you repeat the \emph{same} shuffle enough times, the cards will come back to the same order.
+            \begin{itemize}
+                \item Let $\sigma$ be a shuffle, and $n\in\N$. Does there exist $n$ such that
+                \begin{equation*}
+                    \sigma^n = \underbrace{\sigma\circ\cdots\circ\sigma}_{n\text{ times}} = e
+                \end{equation*}
+                \item Proving this: By the piegeonhole principle, if you have $\sigma^1,\dots,\sigma^{52!+1}$, then we have repeats $a,b$ with $52!+1\geq a>b\geq 1$ such that $\sigma^a=\sigma^b$. This statement is weaker than we want, though.
+                \item We need more tools. A shuffle is a bijection/permutation. Thus, for every $\sigma$, there exists $\sigma^{-1}$. This allows us to do this:
+                \begin{align*}
+                    \sigma^a &= \sigma^b\\
+                    \sigma^{-b}\circ\sigma^a &= \sigma^{-b}\circ\sigma^b\\
+                    \sigma^{a-b} &= e
+                \end{align*}
+                \item This implies a bound! We get that $n\leq 52!$, so $a-b\leq 52!$.
+            \end{itemize}
+        \end{itemize}
+        \item Define two shuffles: $A$ and $B$.
+        \begin{itemize}
+            \item $A$ splits the deck into two halves (cards 1-26 and 27-52) and stacks (from the top down) the first card off of the 1-26 pile, then the first card off of the 27-52 pile, then the second card off of the 1-26 pile, then the second card off of the 27-52 pile, etc. The final order is $1,27,2,28,\dots,26,52$.
+            \item $B$ does the same thing as $A$ but with the first card off of the 27-52 pile. The final order is $27,1,28,2,\dots,52,26$.
+        \end{itemize}
+        \item Computation shows that $A^8=e$ and $B^{52}=e$.
+        \begin{itemize}
+            \item For $A$, $2\to 3\to 5\to 9\to 17\to 33\to 14\to 27\to 2$.
+            \item For $B$, ??
+        \end{itemize}
+        \item We shouldn't necessarily have an intuition for this right now, but in doing more examples, Calegari certainly believes we can develop it.
+        \item First HW problem (due Friday). Can, just by using combinations of $A$ and $B$, we generate any possible shuffle? Hint: Develop your intuition on a smaller value of 52.
+    \end{itemize}
+    \item I really like Calegari. Very nice, relatable, not demeaning.
+    \item \textbf{Binary operation} (on $G$): A map from $G\times G\to G$.
+    \item \textbf{Group}: A mathematical object consisting of a set $G$ and a binary operation $*$ on $G$ satisfying the following properties.
+    \begin{enumerate}
+        \item There exists an identity element $e\in G$ such that $e\times g=g\times e=g$ for all $g\in G$.
+        \item For any $g\in G$, there exists $h\in G$ such that $h*g=g*h=e$.
+        \item (Associativity) For any $g_1,g_2,g_3\in G$, $g_1*(g_2*g_3)=(g_1*g_2)*g_3$.
+    \end{enumerate}
+    \emph{Denoted by} $\bm{(G,*)}$.
+    \item In the cards example, the elements of $G$ are the shuffles and $*$ is the composition operation between two shuffles.
+    \item Aside on shuffles: For bijections, $h(g(x))=x$ implies $g(h(y))=y$.
+    \begin{itemize}
+        \item Proof: Let $x=h(y)$ --- we can do this since $h$ is a bijection. Then since $h(g(h(y)))=h(y)$ and $h$ is injective, $g(h(y))=y$. This works for all $y$.
+    \end{itemize}
+    \item The set of shuffles, together with composition, does form a group.
+    \item Theorem: If $G$ is a group such that $|G|<\infty$, then any $g\in G$ has finite \textbf{order}, i.e., there exists $n$ such that $g^n=e$.
+    \item Lemma:
+    \begin{enumerate}
+        \item The identity $e$ is unique.
+        \begin{itemize}
+            \item Let $e_1,e_2$ be identities. Then
+            \begin{equation*}
+                e_1 = e_1*e_2 = e_2
+            \end{equation*}
+        \end{itemize}
+        \item Inverses are unique.
+        \begin{itemize}
+            \item Let $h,h'$ be inverses of $g$. Then
+            \begin{equation*}
+                h = e*h
+                = (h'*g)*h
+                = h'*(g*h)
+                = h'*e
+                = h'
+            \end{equation*}
+        \end{itemize}
+    \end{enumerate}
+    \item Proving examples is easier, but these aren't that hard.
+    \item If you understand everything about $S_5$, you'll understand everything about this course.
 \end{itemize}
 
 
