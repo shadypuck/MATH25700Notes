@@ -8,9 +8,51 @@
 
 
 
-\section{???}
+\section{Groups as Tools}
 \begin{enumerate}
-    \item \marginnote{??/??:}
+    \item \marginnote{10/3:}There are two \textbf{riffle shuffles} of a deck of 52 cards obtained as follows: Divide the deck into the top 26 and bottom 26 cards. Then interweave the two decks card by card; there are two different shuffles depending on whether the top card from the top deck ends up on top, or the top card from the bottom deck ends up on top. If we denote the shuffles by $A$ and $B$, respectively, then we saw in class that $A^8=1$ and $B^{52}=1$. Determine whether every permutation of 52 cards can be obtained by some combination of riffle shuffles.
+    \item \textbf{The Orthogonal Group.} For two vectors $\mathbf{v}$ and $\mathbf{w}$ in $\R^n$, let $\inp{\mathbf{v}}{\mathbf{w}}$ denote the usual dot product of $\mathbf{v}$ and $\mathbf{w}$, so, if $\mathbf{v}=(v_i)$ and $\mathbf{w}=(w_i)$, then $\inp{\mathbf{v}}{\mathbf{w}}=\sum v_iw_i$. If $M=[a_{ij}]$ is a matrix with coefficients in $\R$, let $M^T$ denote the transpose of $M$, which is the matrix $[a_{ji}]$.
+    \begin{enumerate}
+        \item Let $\text{O}(n)\subset M_n(\R)$ denote the set of matrices $M$ such that $MM^T=I$. Prove that $\text{O}(n)$ is a group. (Hint: Show that $(AB)^T=B^TA^T$.)
+        \item Prove that every element in $\text{O}(n)$ has determinant 1 or $-1$. Let $\text{SO}(n)\subset\text{O}(n)$ denote the matrices $M\in\text{O}(n)$ such that $\det(M)=1$. Prove that $\text{SO}(n)$ is a group.
+        \item Show that any element $M\in\text{SO}(2)$ is of the form
+        \begin{equation*}
+            M =
+            \begin{pmatrix}
+                a & b\\
+                -b & a\\
+            \end{pmatrix}
+        \end{equation*}
+        where $a,b\in\R$ satisfy $a^2+b^2=1$. Prove that for such $a$ and $b$, one can find a unique $\theta\in[0,2\pi)$ such that $a=\cos(\theta)$ and $b=\sin(\theta)$, and that $M$ is a rotation by $\theta$ about the origin.
+        \item Show that any $M\in\text{O}(2)\setminus\text{SO}(2)$ has the form
+        \begin{equation*}
+            \begin{pmatrix}
+                0 & 1\\
+                1 & 0\\
+            \end{pmatrix}
+            \begin{pmatrix}
+                a & b\\
+                -b & a\\
+            \end{pmatrix}
+            =
+            \begin{pmatrix}
+                -b & a\\
+                a & b\\
+            \end{pmatrix}
+        \end{equation*}
+        Prove that these elements also have the following properties.
+        \begin{enumerate}
+            \item $M^2$ is the identity.
+            \item $M$ is a reflection through some line that passes through the origin $(0,0)$.
+            \item If $M,N\in\text{O}(2)\setminus\text{SO}(2)$, then $MN\in\text{SO}(2)$ is a rotation.
+        \end{enumerate}
+        \item Let $\mathbf{u}$ be any non-zero vector in $\R^3$ of length one, so $\norm{\mathbf{u}}^2=\inp{\mathbf{u}}{\mathbf{u}}=1$. The vectors $\mathbf{v}$ with $\inp{\mathbf{u}}{\mathbf{v}}=0$ live inside the plane orthogonal to $\mathbf{u}$. Show that if $\mathbf{u}_1=\mathbf{u}$, then there exist vectors $\mathbf{u}_i\in\R^3$ ($i=1,2,3$) which are orthonormal and mutually orthogonal, that is, $\inp{\mathbf{u}_i}{\mathbf{u}_j}=0$ for $i\neq j$ and $\norm{\mathbf{u}_i}^2=\inp{\mathbf{u}_i}{\mathbf{u}_i}=1$. Suppose that $M\in\text{SO}(3)$ is a matrix such that $M\mathbf{u}=\mathbf{u}$. Prove that $M\mathbf{u}_1=\mathbf{u}_1$, $M\mathbf{u}_2=a\mathbf{u}_2+b\mathbf{u}_3$, and $M\mathbf{u}_3=-b\mathbf{u}_2+a\mathbf{u}_3$ for some $a,b$ with $a^2+b^2=1$, that $a=\cos(\theta)$ and $b=\sin(\theta)$ for a unique $\theta\in[0,2\pi)$, and deduce that $M$ is a rotation about the line $\mathbf{u}$ by angle $\theta$.
+        \item \textbf{Triviality}: Let $\mathbf{v}_1,\mathbf{v}_2$ be any two linearly independent vectors in $\R^3$. Prove that if $g\in\text{SO}(3)$ fixes $\mathbf{v}_1,\mathbf{v}_2$, then it is the identity. (Hint: Let $\mathbf{u}=\mathbf{v_1}/|\mathbf{v}_1|$ and use part (e).)
+        \item \textbf{Equality}: Let $\mathbf{v}_1,\mathbf{v}_2$ be any two linearly independent vectors in $\R^3$. Prove that if $g\in\text{SO}(3)$ and $h\in\text{SO}(3)$ satisfy $g(\mathbf{v}_1)=h(\mathbf{v}_1)$ and $g(\mathbf{v}_2)=h(\mathbf{v}_2)$, then $g=h$.
+        \item Prove that any matrix $M$ has the same eigenvalues as the transpose matrix $M^T$. (Hint: Show that $M$ and $M^T$ have the same characteristic polynomial.) Prove that if $M$ is invertible, then the matrix $M^{-1}$ has eigenvalues which are the inverses of the eigenvalues of $M$.
+        \item Deduce that if $M\in\text{SO}(3)$, then $M^{-1}=M^T$, and then use part (h) to deduce that 1 is an eigenvalue of $M$.
+        \item Deduce that every $M\in\text{SO}(3)$ is a rotation about some line $\mathbf{u}$ passing through the origin. Deduce that the composition of a rotation in $\R^3$ about some line $\mathbf{u}$ passing through the origin with a rotation about any second line $\mathbf{v}$ also passing through the origin is also a rotation about some third line $\mathbf{w}$ passing through the origin. Note that $\mathbf{u},\mathbf{v},\mathbf{w}$ need not be distinct.
+    \end{enumerate}
 \end{enumerate}
 
 
