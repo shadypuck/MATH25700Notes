@@ -1,4 +1,5 @@
 \usepackage[margin=1in]{geometry}
+\usepackage{csquotes}
 \usepackage{fancyhdr}
 \usepackage{marginnote}
 \usepackage{enumitem}
@@ -6,9 +7,11 @@
 \usepackage[bottom]{footmisc}
 \usepackage{siunitx}
 \usepackage{tikz}
-\usepackage{amsmath,amssymb}
-\usepackage{bm,physics}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{bm,physics,nicematrix}
 \usepackage[hidelinks]{hyperref}
+
+\MakeOuterQuote{"}
 
 \fancypagestyle{main}{
     \fancyhf{}
@@ -32,7 +35,10 @@
 \deffootnotemark{\textsuperscript{\textup{[}\thefootnotemark\textup{]}}}
 \deffootnote[1.8em]{0em}{0em}{\textsuperscript{\thefootnote}}
 
+\DeclareMathOperator{\spn}{span}
+
 \newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
 \newcommand{\R}{\mathbb{R}}
 
 \newcommand{\inp}[2]{\left\langle{#1},{#2}\right\rangle}

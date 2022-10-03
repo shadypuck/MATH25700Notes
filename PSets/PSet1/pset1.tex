@@ -11,10 +11,131 @@
 \section{Groups as Tools}
 \begin{enumerate}
     \item \marginnote{10/3:}There are two \textbf{riffle shuffles} of a deck of 52 cards obtained as follows: Divide the deck into the top 26 and bottom 26 cards. Then interweave the two decks card by card; there are two different shuffles depending on whether the top card from the top deck ends up on top, or the top card from the bottom deck ends up on top. If we denote the shuffles by $A$ and $B$, respectively, then we saw in class that $A^8=1$ and $B^{52}=1$. Determine whether every permutation of 52 cards can be obtained by some combination of riffle shuffles.
+    \begin{proof}
+        As functions, $A,B:[52]\to[52]$ can be defined piecewise as follows.
+        \begin{align*}
+            A(n) &=
+            \begin{cases}
+                2n-1 & n\in[26]\\
+                2n-52 & n\in[27:52]
+            \end{cases}&
+            B(n) &=
+            \begin{cases}
+                2n & n\in[26]\\
+                2n-53 & n\in[27:52]
+            \end{cases}
+        \end{align*}
+        We can confirm via casework that both functions obey the rule $f(53-n)=53-f(n)$ for all $n\in[52]$\footnote{In layman's terms, we have intuited that the mappings are symmetric about the center of the stack. More specifically, both functions map cards that are initially positioned equidistant from the center of the stack to positions that are \emph{still} equidistant from the center of the stack. For example, notice that 2 and 51 are both 25 cards from the center of the stack, and $A$ maps them to 3 and 50, which are both 24 cards from the center of the stack. Alternative perspective: Cards equidistant from the center of the stack always add to 53.}: If $n\in[26]$, then
+        \begin{align*}
+            A(53-n) &\stackrel{?}{=} 53-A(n)&
+                B(53-n) &\stackrel{?}{=} 53-B(n)\\
+            2(53-n)-52 &\stackrel{?}{=} 53-(2n-1)&
+                2(53-n)-53 &\stackrel{?}{=} 53-2n\\
+            54-2n &\stackrel{\checkmark}{=} 54-2n&
+                53-2n &\stackrel{\checkmark}{=} 53-2n
+        \end{align*}
+        and if $n\in[27:52]$, then
+        \begin{align*}
+            A(53-n) &\stackrel{?}{=} 53-A(n)&
+                B(53-n) &\stackrel{?}{=} 53-B(n)\\
+            2(53-n)-1 &\stackrel{?}{=} 53-(2n-52)&
+                2(53-n) &\stackrel{?}{=} 53-(2n-53)\\
+            105-2n &\stackrel{\checkmark}{=} 105-2n&
+                106-2n &\stackrel{\checkmark}{=} 106-2n
+        \end{align*}
+        It follows since both $A,B$ obey this rule that every permutation of 52 cards obtained by some combination of riffle shuffles (i.e., composition of $A,B$) obeys this rule. In particular, we can prove that $f^k(53-n)=53-f^k(n)$ for all $k\in\N$ via induction. For the base case $k=2$, we have that
+        \begin{equation*}
+            f^2(53-n) = f(f(53-n))
+            = f(53-f(n))
+            = 53-f(f(n))
+            = 53-f^2(n)
+        \end{equation*}
+        Now suppose inductively that $f^k(53-n)=53-f^k(n)$. Then
+        \begin{equation*}
+            f^{k+1}(53-n) = f(f^k(53-n))
+            = f(53-f^k(n))
+            = 53-f(f^k(n))
+            = 53-f^{k+1}(n)
+        \end{equation*}
+        as desired.\par
+        Moreover, there are shuffles of 52 cards that do \emph{not} obey this rule. For example, consider the transposition $\tau_{1,2}$: We, for instance, have that
+        \begin{equation*}
+            \tau_{1,2}(53-1) = 52
+            \neq 51
+            = 53-\tau_{1,2}(1)
+        \end{equation*}
+        so $\tau_{1,2}$ doesn't obey this rule. Therefore, we know that:
+        \begin{equation*}
+            \boxed{\text{Every permutation of 52 cards \emph{cannot} be obtained by some combination of riffle shuffles.}}
+        \end{equation*}
+    \end{proof}
     \item \textbf{The Orthogonal Group.} For two vectors $\mathbf{v}$ and $\mathbf{w}$ in $\R^n$, let $\inp{\mathbf{v}}{\mathbf{w}}$ denote the usual dot product of $\mathbf{v}$ and $\mathbf{w}$, so, if $\mathbf{v}=(v_i)$ and $\mathbf{w}=(w_i)$, then $\inp{\mathbf{v}}{\mathbf{w}}=\sum v_iw_i$. If $M=[a_{ij}]$ is a matrix with coefficients in $\R$, let $M^T$ denote the transpose of $M$, which is the matrix $[a_{ji}]$.
     \begin{enumerate}
         \item Let $\text{O}(n)\subset M_n(\R)$ denote the set of matrices $M$ such that $MM^T=I$. Prove that $\text{O}(n)$ is a group. (Hint: Show that $(AB)^T=B^TA^T$.)
+        \begin{proof}
+            To prove that $\text{O}(n)$ is a group, it will suffice to show that it contains an identity element, every element has an inverse, and composition (our chosen operation) is associative and closed on $\text{O}(n)$.\par
+            We can take the $n\times n$ identity matrix $I$ to be our identity element (note that $I\in\text{O}(n)$ since $II^T=II=I$).\par
+            The inverse of every $M\in\text{O}(n)$ is $M^T$. We know that $M^T\in\text{O}(n)$ since, taking the hint\footnote{We'll take this as a fact of linear algebra. To show it, we could use entry-by-entry matrix multiplication, as is done analogously below to show that composition is associative.} that $(AB)^T=B^TA^T$, we can find that
+            \begin{equation*}
+                M^T(M^T)^T = (MM^T)^T
+                = I^T
+                = I
+            \end{equation*}
+            Additionally, $M^T=M^{-1}$ since $M\in\text{O}(n)$ implies $MM^T=I$ (i.e., $M^T$ is a right-inverse of $M$) by definition, and
+            \begin{equation*}
+                M^TM = M^T(M^T)^T
+                = I
+            \end{equation*}
+            shows that $M^T$ is a left-inverse of $M$.\par
+            Suppose $A,B,C\in\text{O}(n)$. We know that the entry in the $i^\text{th}$ row and $k^\text{th}$ column of $AB$ is given by the left equation below, and the entry in the $k^\text{th}$ row and $j^\text{th}$ column of $BC$ is given by the right equation below.
+            \begin{align*}
+                ab_{ik} &= \sum_{k'=1}^na_{ik'}b_{k'k}&
+                bc_{kj} &= \sum_{k'=1}^nb_{kk'}c_{k'j}
+            \end{align*}
+            It follows that the entry in the $i^\text{th}$ row and $j^\text{th}$ column of $(AB)C$ and $A(BC)$ are related as follows.
+            \begin{align*}
+                (ab)c_{ij} &= \sum_{k=1}^nab_{ik}c_{kj}\\
+                &= \sum_{k=1}^n\left( \sum_{k'=1}^na_{ik'}b_{k'k} \right)c_{kj}\\
+                &= \sum_{k=1}^n\sum_{k'=1}^na_{ik'}b_{k'k}c_{kj}\\
+                &= \sum_{k=1}^n\sum_{k'=1}^na_{ik}b_{kk'}c_{k'j}\\
+                &= \sum_{k=1}^na_{ik}\left( \sum_{k'=1}^nb_{kk'}c_{k'j} \right)\\
+                &= \sum_{k=1}^na_{ik}bc_{kj}\\
+                &= a(bc)_{ij}
+            \end{align*}
+            Therefore, composition is associative.\par
+            Suppose $A,B\in\text{O}(n)$. Then since
+            \begin{equation*}
+                (AB)(AB)^T = ABB^TA^T
+                = AIA^T
+                = AA^T
+                = I
+            \end{equation*}
+            we have that $\text{O}(n)$ is closed under composition, as desired.
+        \end{proof}
         \item Prove that every element in $\text{O}(n)$ has determinant 1 or $-1$. Let $\text{SO}(n)\subset\text{O}(n)$ denote the matrices $M\in\text{O}(n)$ such that $\det(M)=1$. Prove that $\text{SO}(n)$ is a group.
+        \begin{proof}
+            By the construction of the determinant, we know that $\det(A)=\det(A^T)$, that $\det(AB)=\det(A)\det(B)$, and that $\det(I)=1$ for $A,B\in M_n(\R)$ and $I$ the identity matrix in $M_n(\R)$. Let $M\in\text{O}(n)$ be arbitrary. Then
+            \begin{align*}
+                1 &= \det(I)\\
+                &= \det(MM^T)\\
+                &= \det(M)\det(M^T)\\
+                &= \det(M)\det(M)\\
+                &= \det(M)^2\\
+                \det(M) &= \pm 1
+            \end{align*}
+            as desired.\par\smallskip
+            As in part (a), to prove that $\text{SO}(n)$ is a group, it will suffice to show that it contains an identity element, every element has an inverse, and composition is associative and closed on $\text{SO}(n)$.\par
+            Since $I\in\text{O}(n)$ has $\det(I)=1$, we may choose $I\in\text{SO}(n)$ (the same matrix) to be our identity.\par
+            If $\det(M)=1$, $\det(M^T)=1$, so $M\in\text{SO}(n)$ implies that $M^T\in\text{SO}(n)$. As in part (a), we can show that $M^T=M^{-1}$.\par
+            The proof that composition is associative is entirely symmetric to that given in part (a).\par
+            To prove that $\text{SO}(n)$ is closed under composition, we supplement the proof in part (a) with the fact that if $A,B$ have determinant equal to one, then
+            \begin{equation*}
+                \det(AB) = \det(A)\det(B)
+                = 1\cdot 1
+                = 1
+            \end{equation*}
+            as desired.
+        \end{proof}
         \item Show that any element $M\in\text{SO}(2)$ is of the form
         \begin{equation*}
             M =
@@ -24,6 +145,111 @@
             \end{pmatrix}
         \end{equation*}
         where $a,b\in\R$ satisfy $a^2+b^2=1$. Prove that for such $a$ and $b$, one can find a unique $\theta\in[0,2\pi)$ such that $a=\cos(\theta)$ and $b=\sin(\theta)$, and that $M$ is a rotation by $\theta$ about the origin.
+        \begin{proof}
+            Let $M\in\text{SO}(2)$ be arbitrary. As a $2\times 2$ matrix, we can denote $M$ by
+            \begin{equation*}
+                M =
+                \begin{pmatrix}
+                    a & b\\
+                    c & d\\
+                \end{pmatrix}
+            \end{equation*}
+            for $a,b,c,d\in\R$. It follows since $MM^T=I$ that
+            \begin{align*}
+                \begin{pmatrix}
+                    1 & 0\\
+                    0 & 1\\
+                \end{pmatrix}
+                &=
+                \begin{pmatrix}
+                    a & b\\
+                    c & d\\
+                \end{pmatrix}
+                \begin{pmatrix}
+                    a & c\\
+                    b & d\\
+                \end{pmatrix}\\
+                &=
+                \begin{pmatrix}
+                    a^2+b^2 & ac+bd\\
+                    ca+db & c^2+d^2\\
+                \end{pmatrix}
+            \end{align*}
+            Since $a^2+b^2=1$, we know that $a\in[-1,1]$. Thus, since cosine is a bijective mapping between $[0,\pi]$ and $[-1,1]$, we know that $a=\cos(\theta)$ for a unique $\theta\in[0,\pi]$. It follows since $\cos^2(\theta)+\sin^2(\theta)=1$ for all $\theta$ that we may take $b=\pm\sin(\theta)$. If $b<0$, redefine $\theta:=2\pi-\theta$; this will keep the value of $a$ the same since cosine is even about $x=\pi$ and flip the sign of $\sin(\theta)$ since sine is odd about $x=\pi$. This process yields a unique $\theta\in[0,2\pi)$ such that $a=\cos(\theta)$ and $b=\sin(\theta)$.\par
+            Now repeat the process for $c,d$ to get $c=\cos(\gamma)$ and $d=\sin(\gamma)$ for some $\gamma\in[0,2\pi)$. We will now use the determinant to relate $\theta$ and $\gamma$: We have that
+            \begin{align*}
+                1 &= \det(M)\\
+                &= ad-bc\\
+                &= \cos(\theta)\sin(\gamma)-\sin(\theta)\cos(\gamma)\\
+                &= \sin(\gamma-\theta)
+            \end{align*}
+            Hence,
+            \begin{align*}
+                \gamma-\theta &= \frac{\pi}{2}+2\pi n\\
+                \gamma &= \frac{\pi}{2}+\theta+2\pi n
+            \end{align*}
+            for some $n\in\Z$. It follows that
+            \begin{align*}
+                c &= \cos(\gamma)&
+                    d &= \sin(\gamma)\\
+                &= \cos(\frac{\pi}{2}+\theta+2\pi n)&
+                    &= \sin(\frac{\pi}{2}+\theta+2\pi n)\\
+                &= -\sin(\theta+2\pi n)&
+                    &= \cos(\theta+2\pi n)\\
+                &= -\sin(\theta)&
+                    &= \cos(\theta)
+            \end{align*}
+            Therefore,
+            \begin{align*}
+                c &= -\sin(\theta) = -b&
+                d &= \cos(\theta) = a
+            \end{align*}
+            so $M$ has the desired form with $a^2+b^2=1$ and we have found the appropriate $\theta$.\par\smallskip
+            The last piece of the puzzle is proving that $M$ is a rotation by $\theta$ about the origin. To do so, we will prove that $M$ sends every
+            \begin{equation*}
+                \begin{pmatrix}
+                    r\cos(\phi)\\
+                    r\sin(\phi)\\
+                \end{pmatrix}
+                \mapsto
+                \begin{pmatrix}
+                    r\cos(\phi-\theta)\\
+                    r\sin(\phi-\theta)\\
+                \end{pmatrix}
+            \end{equation*}
+            i.e., is a clockwise rotation.
+            But indeed, if $M$ is arbitrary, we have by invoking its form and basic rules of trigonometry that
+            \begin{align*}
+                \begin{pmatrix}
+                    \cos(\theta) & \sin(\theta)\\
+                    -\sin(\theta) & \cos(\theta)\\
+                \end{pmatrix}
+                \begin{pmatrix}
+                    r\cos(\phi)\\
+                    r\sin(\phi)\\
+                \end{pmatrix}
+                &=
+                \begin{pmatrix}
+                    r\cos(\theta)\cos(\phi)+r\sin(\theta)\sin(\phi)\\
+                    -r\sin(\theta)\cos(\phi)+r\cos(\theta)\sin(\phi)\\
+                \end{pmatrix}\\
+                &=
+                \begin{pmatrix}
+                    r\left[ \cos(\theta)\cos(\phi)+\sin(\theta)\sin(\phi) \right]\\
+                    r\left[ \sin(\phi)\cos(\theta)-\cos(\phi)\sin(\theta) \right]\\
+                \end{pmatrix}\\
+                &=
+                \begin{pmatrix}
+                    r\left[ \cos(\theta-\phi) \right]\\
+                    r\left[ \sin(\phi-\theta) \right]\\
+                \end{pmatrix}\\
+                &=
+                \begin{pmatrix}
+                    r\cos(\phi-\theta)\\
+                    r\sin(\phi-\theta)\\
+                \end{pmatrix}
+            \end{align*}
+        \end{proof}
         \item Show that any $M\in\text{O}(2)\setminus\text{SO}(2)$ has the form
         \begin{equation*}
             \begin{pmatrix}
@@ -40,18 +266,311 @@
                 a & b\\
             \end{pmatrix}
         \end{equation*}
+        \begin{proof}
+            This proof will begin analogously to that of part (c), i.e., we can still conclude that
+            \begin{align*}
+                a &= \cos(\theta)&
+                b &= \sin(\theta)&
+                c &= \cos(\gamma)&
+                d &= \sin(\gamma)
+            \end{align*}
+            However, with the opposite determinant, we now have
+            \begin{equation*}
+                -1 = \sin(\gamma-\theta)
+            \end{equation*}
+            Thus,
+            \begin{align*}
+                \gamma-\theta &= -\frac{\pi}{2}+2\pi n\\
+                \gamma &= -\frac{\pi}{2}+\theta+2\pi n
+            \end{align*}
+            for some $n\in\Z$. It follows that
+            \begin{align*}
+                c &= \cos(\gamma)&
+                    d &= \sin(\gamma)\\
+                &= \cos(-\frac{\pi}{2}+\theta+2\pi n)&
+                    &= \sin(-\frac{\pi}{2}+\theta+2\pi n)\\
+                &= \sin(\theta+2\pi n)&
+                    &= -\cos(\theta+2\pi n)\\
+                &= \sin(\theta)&
+                    &= -\cos(\theta)
+            \end{align*}
+            Therefore,
+            \begin{align*}
+                c &= \sin(\theta) = b&
+                d &= -\cos(\theta) = -a
+            \end{align*}
+            The relabeling $a:=-b$ and $b:=a$ gives the desired form.
+        \end{proof}
         Prove that these elements also have the following properties.
         \begin{enumerate}
             \item $M^2$ is the identity.
+            \begin{proof}
+                We have that
+                \begin{align*}
+                    M^2 &=
+                    \begin{pmatrix}
+                        -b & a\\
+                        a & b\\
+                    \end{pmatrix}
+                    \begin{pmatrix}
+                        -b & a\\
+                        a & b\\
+                    \end{pmatrix}\\
+                    &=
+                    \begin{pmatrix}
+                        (-b)(-b)+(a)(a) & (-b)(a)+(a)(b)\\
+                        (a)(-b)+(b)(a) & (a)(a)+(b)(b)\\
+                    \end{pmatrix}\\
+                    &=
+                    \begin{pmatrix}
+                        a^2+b^2 & ab-ab\\
+                        ab-ab & a^2+b^2\\
+                    \end{pmatrix}\\
+                    &=
+                    \begin{pmatrix}
+                        1 & 0\\
+                        0 & 1\\
+                    \end{pmatrix}\\
+                    &= I
+                \end{align*}
+                as desired.
+            \end{proof}
             \item $M$ is a reflection through some line that passes through the origin $(0,0)$.
+            \begin{proof}
+                Consider a matrix, the action of which is a reflection across a line through the origin. This matrix must map every vector collinear with the line of reflection to itself, and every vector $\mathbf{v}$ orthogonal to the line of reflection to $-\mathbf{v}$. Thus, if $M$ is a reflection matrix, it has eigenvalues 1 and $-1$ (of multiplicity 1 and $n-1$, respectively). Furthermore, it must have a mutually orthogonal set of eigenvectors. In fact, these properties are enough to fully characterize a reflection matrix. Therefore, to prove that $M$ is a reflection matrix, we need only show that it has eigenvalues $1$ and $-1$ and that its two eigenvectors are orthogonal. Let's begin.\par
+                The eigenvalues of $M$ can be computed as follows
+                \begin{align*}
+                    0 &= (-b-\lambda)(b-\lambda)-a^2\\
+                    &= -b^2+b\lambda-b\lambda+\lambda^2-a^2\\
+                    &= \lambda^2-(a^2+b^2)\\
+                    &= \lambda^2-1\\
+                    \lambda &= \pm 1
+                \end{align*}
+                giving the desired result.\par
+                It follows by solving the systems of equations
+                \begin{align*}
+                    \begin{pmatrix}
+                        -b & a\\
+                        a & b\\
+                    \end{pmatrix}
+                    \begin{pmatrix}
+                        x_1\\
+                        x_2\\
+                    \end{pmatrix}
+                    &=
+                    \begin{pmatrix}
+                        x_1\\
+                        x_2\\
+                    \end{pmatrix}&
+                    \begin{pmatrix}
+                        -b & a\\
+                        a & b\\
+                    \end{pmatrix}
+                    \begin{pmatrix}
+                        y_1\\
+                        y_2\\
+                    \end{pmatrix}
+                    &= -
+                    \begin{pmatrix}
+                        y_1\\
+                        y_2\\
+                    \end{pmatrix}&
+                \end{align*}
+                that suitable eigenvectors are
+                \begin{align*}
+                    \mathbf{x} &=
+                    \begin{pmatrix}
+                        a\\
+                        b+1\\
+                    \end{pmatrix}&
+                    \mathbf{y} &=
+                    \begin{pmatrix}
+                        a\\
+                        b-1\\
+                    \end{pmatrix}
+                \end{align*}
+                Indeed, we have by direct computation that
+                \begin{equation*}
+                    \inp{\mathbf{x}}{\mathbf{y}} = a^2+(b+1)(b-1)
+                    = a^2+b^2-1
+                    = 1-1
+                    = 0
+                \end{equation*}
+                as desired.
+            \end{proof}
             \item If $M,N\in\text{O}(2)\setminus\text{SO}(2)$, then $MN\in\text{SO}(2)$ is a rotation.
+            \begin{proof}
+                Since $\text{O}(2)$ is a group (and hence closed) by part (a), $MN\in\text{O}(2)$. Additionally,
+                \begin{equation*}
+                    \det(MN) = \det(M)\det(N)
+                    = (-1)(-1)
+                    = 1
+                \end{equation*}
+                so $MN\in\text{SO}(2)$ by part (b). Lastly, since every element of $\text{SO}(2)$ is a rotation by part (c), $MN$ is a rotation, as desired.
+            \end{proof}
         \end{enumerate}
         \item Let $\mathbf{u}$ be any non-zero vector in $\R^3$ of length one, so $\norm{\mathbf{u}}^2=\inp{\mathbf{u}}{\mathbf{u}}=1$. The vectors $\mathbf{v}$ with $\inp{\mathbf{u}}{\mathbf{v}}=0$ live inside the plane orthogonal to $\mathbf{u}$. Show that if $\mathbf{u}_1=\mathbf{u}$, then there exist vectors $\mathbf{u}_i\in\R^3$ ($i=1,2,3$) which are orthonormal and mutually orthogonal, that is, $\inp{\mathbf{u}_i}{\mathbf{u}_j}=0$ for $i\neq j$ and $\norm{\mathbf{u}_i}^2=\inp{\mathbf{u}_i}{\mathbf{u}_i}=1$. Suppose that $M\in\text{SO}(3)$ is a matrix such that $M\mathbf{u}=\mathbf{u}$. Prove that $M\mathbf{u}_1=\mathbf{u}_1$, $M\mathbf{u}_2=a\mathbf{u}_2+b\mathbf{u}_3$, and $M\mathbf{u}_3=-b\mathbf{u}_2+a\mathbf{u}_3$ for some $a,b$ with $a^2+b^2=1$, that $a=\cos(\theta)$ and $b=\sin(\theta)$ for a unique $\theta\in[0,2\pi)$, and deduce that $M$ is a rotation about the line $\mathbf{u}$ by angle $\theta$.
+        \begin{proof}
+            % This implies the desired result with respect to $M$. {\color{red}Show that the $\mathbf{u}_2,\mathbf{u}_3$ equations actually hold for $M$. Use the change of basis matrix?}
+
+
+            Let $\mathbf{u}$ be defined as in the problem statement. Pick $\mathbf{x},\mathbf{y}$ linearly independent from each other and from $\mathbf{u}$ (this is possible since the space we are working with has dimension 3). Use Gram-Schmidt orthogonalization to orthonormalize $\{\mathbf{u},\mathbf{x},\mathbf{y}\}$. Symbolically, let
+            \begin{align*}
+                \mathbf{u}_1 &= \mathbf{u}&
+                \mathbf{u}_2 &= \frac{\mathbf{x}-\inp{\mathbf{x}}{\mathbf{u}_1}\mathbf{u}_1}{\norm{\mathbf{x}-\inp{\mathbf{x}}{\mathbf{u}_1}\mathbf{u}_1}}&
+                \mathbf{u}_3 &= \frac{\mathbf{y}-\inp{\mathbf{y}}{\mathbf{u}_1}\mathbf{u}_1-\inp{\mathbf{y}}{\mathbf{u}_2}\mathbf{u}_2}{\norm{\mathbf{y}-\inp{\mathbf{y}}{\mathbf{u}_1}\mathbf{u}_1-\inp{\mathbf{y}}{\mathbf{u}_2}\mathbf{u}_2}}
+            \end{align*}
+            Since $M\mathbf{u}_1=\mathbf{u}_1$ and $MM^T=M^TM=I$, we know that
+            \begin{align*}
+                M^TM\mathbf{u}_1 &= M^T\mathbf{u}_1\\
+                \mathbf{u}_1 &= M^T\mathbf{u}_1
+            \end{align*}
+            Let $T:\R^3\to\R^3$ denote the linear transformation defined by $M$. It follows from the above that the matrix $\mathcal{M}(T)$ of $T$ with respect to the basis $\{\mathbf{u}_1,\mathbf{u}_2,\mathbf{u}_3\}$ must be of the form
+            \begin{equation*}
+                \mathcal{M}(T) =
+                \begin{pNiceArray}{c|cc}
+                    1 & 0 & 0\\
+                    \hline
+                    0 & a & b\\
+                    0 & c & d\\
+                \end{pNiceArray}
+            \end{equation*}
+            Knowing that analogous blocks multiply in matrix multiplication, we can thus use part (c) to show that $\mathcal{M}(T)$ is of the form
+            \begin{equation*}
+                \mathcal{M}(T) =
+                \begin{pmatrix}
+                    1 & 0 & 0\\
+                    0 & a & b\\
+                    0 & -b & a\\
+                \end{pmatrix}
+            \end{equation*}
+            with $a^2+b^2=1$ and an appropriate $\theta$. Moreover, it follows that if $S$ is the change of basis matrix from $\{\mathbf{e}_1,\mathbf{e}_2,\mathbf{e}_3\}$ to $\{\mathbf{u}_1,\mathbf{u}_2,\mathbf{u}_3\}$, then
+            \begin{align*}
+                M\mathbf{u}_2 &= S\mathcal{M}(T)S^{-1}\mathbf{u}_2\\
+                &=
+                \begin{pmatrix}
+                    \mathbf{u}_1 & \mathbf{u}_2 & \mathbf{u}_3\\
+                \end{pmatrix}
+                \begin{pmatrix}
+                    1 & 0 & 0\\
+                    0 & a & b\\
+                    0 & -b & a\\
+                \end{pmatrix}
+                \begin{pmatrix}
+                    \mathbf{u}_1 & \mathbf{u}_2 & \mathbf{u}_3\\
+                \end{pmatrix}^{-1}
+                \mathbf{u}_2\\
+                &=
+                \begin{pmatrix}
+                    \mathbf{u}_1 & \mathbf{u}_2 & \mathbf{u}_3\\
+                \end{pmatrix}
+                \begin{pmatrix}
+                    1 & 0 & 0\\
+                    0 & a & b\\
+                    0 & -b & a\\
+                \end{pmatrix}
+                \begin{pmatrix}
+                    0\\
+                    1\\
+                    0\\
+                \end{pmatrix}\\
+                &=
+                \begin{pmatrix}
+                    \mathbf{u}_1 & \mathbf{u}_2 & \mathbf{u}_3\\
+                \end{pmatrix}
+                \begin{pmatrix}
+                    0\\
+                    a\\
+                    -b\\
+                \end{pmatrix}\\
+                &= a\mathbf{u}_2-b\mathbf{u}_3
+            \end{align*}
+            The relabeling $b:=-b$ gives the desired result. The proof of the statement $M\mathbf{u}_3=-b\mathbf{u}_2+a\mathbf{u}_3$ is entirely symmetric.\par
+            We define a "rotation about the line $\mathbf{u}$ by angle $\theta$" to be a matrix $M$ which sends every
+            \begin{equation*}
+                t\mathbf{u}_1+r\cos(\phi)\mathbf{u}_2+r\sin(\phi)\mathbf{u}_3 \mapsto t\mathbf{u}_1+r\cos(\phi-\theta)\mathbf{u}_2+r\sin(\phi-\theta)\mathbf{u}_3
+            \end{equation*}
+            i.e., which fixes the $\mathbf{u}_1$ component and rotates the $\mathbf{u}_2,\mathbf{u}_3$ component in that perpendicular plane analogously to part (c). Using the same $M=S\mathcal{M}(T)S^{-1}$ trick as above and the argument from part (c), we can clearly see that $M$ is such a matrix.
+        \end{proof}
         \item \textbf{Triviality}: Let $\mathbf{v}_1,\mathbf{v}_2$ be any two linearly independent vectors in $\R^3$. Prove that if $g\in\text{SO}(3)$ fixes $\mathbf{v}_1,\mathbf{v}_2$, then it is the identity. (Hint: Let $\mathbf{u}=\mathbf{v_1}/|\mathbf{v}_1|$ and use part (e).)
+        \begin{proof}
+            Let $\mathbf{x}=c\mathbf{v}_1+d\mathbf{v}_2$. Then
+            \begin{equation*}
+                g\mathbf{x} = cg\mathbf{v}_1+dg\mathbf{v}_2
+                = c\mathbf{v}_1+d\mathbf{v}_2
+            \end{equation*}
+            In other words, if $g$ fixes $\mathbf{v}_1,\mathbf{v}_2$, then it fixes all linear combinations of them as well.\par
+            Taking the hint, let $\mathbf{u}_1=\mathbf{v_1}/|\mathbf{v}_1|$. Define $\mathbf{u}_2$ from $\mathbf{v}_2$ as in part (e), and define $\mathbf{u}_3$ from some third linearly independent vector as in part (e). By the construction of $\mathbf{u}_1,\mathbf{u}_2$, we know that $\mathbf{u}_1,\mathbf{u}_2\in\spn(\mathbf{v}_1,\mathbf{v}_2)$. Thus, $g$ fixes $\mathbf{u}_1,\mathbf{u}_2$. This combined with part (e) shows that
+            \begin{equation*}
+                1\mathbf{u}_2+0\mathbf{u}_3 = \mathbf{u}_2
+                = g\mathbf{u}_2
+                = a\mathbf{u}_2+b\mathbf{u}_3
+            \end{equation*}
+            i.e., that $a=1$ and $b=0$. Thus,
+            \begin{equation*}
+                g\mathbf{u}_3 = -b\mathbf{u}_2+a\mathbf{u}_3
+                = 0\mathbf{u}_2+1\mathbf{u}_3
+                = \mathbf{u}_3
+            \end{equation*}
+            i.e., $g$ fixes $\mathbf{u}_3$ as well. Since $g$ fixes a basis of $\R^3$, $g$ must be the identity on $\R^3$, as desired.
+        \end{proof}
         \item \textbf{Equality}: Let $\mathbf{v}_1,\mathbf{v}_2$ be any two linearly independent vectors in $\R^3$. Prove that if $g\in\text{SO}(3)$ and $h\in\text{SO}(3)$ satisfy $g(\mathbf{v}_1)=h(\mathbf{v}_1)$ and $g(\mathbf{v}_2)=h(\mathbf{v}_2)$, then $g=h$.
+        \begin{proof}
+            Since $g(\mathbf{v}_1)=h(\mathbf{v}_1)$ and $g(\mathbf{v}_2)=h(\mathbf{v}_2)$, we know that
+            \begin{align*}
+                h^Tg(\mathbf{v}_1) &= h^Th(\mathbf{v}_1)&
+                    h^Tg(\mathbf{v}_2) &= h^Th(\mathbf{v}_2)\\
+                &= \mathbf{v}_1&
+                    &= \mathbf{v}_2
+            \end{align*}
+            Thus, $h^Tg$ fixes two linearly independent vectors, so by part (f), $h^Tg=I$. Therefore,
+            \begin{align*}
+                hh^Tg &= hI\\
+                g &= h
+            \end{align*}
+            as desired.
+        \end{proof}
         \item Prove that any matrix $M$ has the same eigenvalues as the transpose matrix $M^T$. (Hint: Show that $M$ and $M^T$ have the same characteristic polynomial.) Prove that if $M$ is invertible, then the matrix $M^{-1}$ has eigenvalues which are the inverses of the eigenvalues of $M$.
+        \begin{proof}
+            We know that $\det(A)=\det(A^T)$ for all $A\in M_n(\R)$ and, since $\lambda I$ is symmetric, that
+            \begin{equation*}
+                M^T-\lambda I = M^T-(\lambda I)^T
+                = (M-\lambda I)^T
+            \end{equation*}
+            Thus,
+            \begin{equation*}
+                \det(M-\lambda I) = \det((M-\lambda I)^T)
+                = \det(M^T-\lambda I)
+            \end{equation*}
+            so $M,M^T$ have the same characteristic polynomial. Since the eigenvalues of a matrix are the roots of its characteristic polynomial, it follows that $M,M^T$ have the same eigenvalues.\par\smallskip
+            To prove that the eigenvalues of $M^{-1}$ are the inverses of the eigenvalues of $M$, it will suffice to show that for every eigenvalue $\lambda$ of $M$, $\lambda^{-1}$ is an eigenvalue of $M^{-1}$, and for every eigenvalue $\gamma$ of $M^{-1}$, $\gamma^{-1}$ is an eigenvalue of $M$. Let's begin.\par
+            Suppose $\lambda$ is an eigenvalue of $M$ and $\mathbf{x}$ is a corresponding eigenvector. Then $M\mathbf{x}=\lambda\mathbf{x}$. It follows that
+            \begin{equation*}
+                M^{-1}M\mathbf{x} = \mathbf{x}
+                = \lambda^{-1}\lambda\mathbf{x}
+                = \lambda^{-1}M\mathbf{x}
+            \end{equation*}
+            as desired.\par
+            The proof of the second statement is symmetric to that of the first.
+        \end{proof}
         \item Deduce that if $M\in\text{SO}(3)$, then $M^{-1}=M^T$, and then use part (h) to deduce that 1 is an eigenvalue of $M$.
+        \begin{proof}
+            The proof that $M^{-1}=M^T$ is given for the general special orthogonal group $\text{SO}(n)$ in part (a). Clearly, the special case $n=3$ holds as well.\par
+            If $M^{-1}=M^T$, then $\sigma(M^{-1})=\sigma(M^T)$\footnote{$\sigma(A)$ denotes the \textbf{spectrum} of $A$, i.e., the set of all eigenvalues of the matrix $A$.}. Additionally, by part (h), $\sigma(M)=\sigma(M^T)$, so in this case, transitivity implies that $\sigma(M)=\sigma(M^{-1})$. Furthermore, part (h) asserts that for every $\lambda\in\sigma(M)$, we have that $\lambda^{-1}\in\sigma(M^{-1})$. Combining this with the above, we have that $\lambda\in\sigma(M)$ implies that $\lambda^{-1}\in\sigma(M)$.\par
+            Now suppose $\lambda_1,\lambda_2,\lambda_3$ are eigenvalues of $M$. Note that these eigenvalues need not be distinct, but they do exist (every linear transformation has at least one [possibly complex] eigenvalue). Since the inverses of each of these eigenvalues are amongst the set, too, WLOG let $\lambda_2=\lambda_1^{-1}$. It follows that
+            \begin{equation*}
+                1 = \det(M)
+                = \lambda_1\lambda_2\lambda_3
+                = \lambda_1\lambda_1^{-1}\lambda_3
+                = \lambda_3
+            \end{equation*}
+            as desired.
+        \end{proof}
         \item Deduce that every $M\in\text{SO}(3)$ is a rotation about some line $\mathbf{u}$ passing through the origin. Deduce that the composition of a rotation in $\R^3$ about some line $\mathbf{u}$ passing through the origin with a rotation about any second line $\mathbf{v}$ also passing through the origin is also a rotation about some third line $\mathbf{w}$ passing through the origin. Note that $\mathbf{u},\mathbf{v},\mathbf{w}$ need not be distinct.
+        \begin{proof}
+            Let $M\in\text{SO}(3)$ be arbitrary. By part (i), 1 is an eigenvalue of $M$. Let $\mathbf{u}$ be the normalized corresponding eigenvector. Then $M\mathbf{u}=\mathbf{u}$, so by part (e), $M$ is a rotation about the line $\mathbf{u}$ passing through the origin by some angle $\theta$.\par
+            It follows since $\text{SO}(3)$ is a group by part (b) (and hence closed) that for any $M,N\in\text{SO}(3)$, $MN\in\text{SO}(3)$ as well. In effect, the composition of a rotation in $\R^3$ about some line $\mathbf{u}$ passing through the origin with a rotation about any second line $\mathbf{v}$ also passing through the origin is also a rotation about some third line $\mathbf{w}$ passing through the origin, as desired.
+        \end{proof}
     \end{enumerate}
 \end{enumerate}
 
