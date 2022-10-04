@@ -1,0 +1,174 @@
+\documentclass[../notes.tex]{subfiles}
+
+\pagestyle{main}
+\renewcommand{\chaptermark}[1]{\markboth{\chaptername\ \thechapter\ (#1)}{}}
+\stepcounter{chapter}
+
+\begin{document}
+
+
+
+
+\chapter{???}
+\section{Groups of Low Order}
+\begin{itemize}
+    \item \marginnote{10/3:}Calegari: Nothing in particular to know for missing Friday; Adi will get me notes.
+    \item Having explored examples, today, we're coming back down to earth to flex our axiomatic muscles.
+    \item Distinguishing sets and binary operations.
+    \begin{table}[h!]
+        \centering
+        \small
+        \renewcommand{\arraystretch}{1.2}
+        \begin{tabular}{c|c|c|c}
+            Group & $G$ & $*$ & ?\\
+            \hline
+            $S_n$ & shuffles & composition & cards\\
+            $\text{O}(n)$ and $\text{SO}(n)$ & (sp) orthogonal matrices & composition & vectors?\\
+            $\Z$ & integers & addition\\
+            $\Z/n\Z$ & $\{0,1,\dots,n-1\}$ & addition modulo $n$
+        \end{tabular}
+        \caption{Elements of a group.}
+        \label{tab:setsBinaryops}
+    \end{table}
+    \begin{itemize}
+        \item Be careful not to confuse the shuffles and the cards; the cards are something else curious but are \emph{not} the elements of the group.
+        \item Notice that $\Z$ and $\Z/n\Z$ are \textbf{commutative} groups, but the shuffles (for $n>1$) and $\text{O}(n)$ are not.
+        \item Note that $S_2$, $\text{O}(1)$, and $\Z/2\Z$ are all isomorphic groups.
+    \end{itemize}
+    \item \textbf{Commutative} (group): A group such that for all $x,y\in G$, $x*y=y*x$. \emph{Also known as} \textbf{Abelian}.
+    \item Lemma (Cancellation Lemma): Let $x,y,z\in G$. Then $xy=xz$ implies $y=z$ and $yx=zx$ implies $y=z$.
+    \begin{proof}
+        We have that
+        \begin{align*}
+            x*y &= x*z\\
+            x^{-1}*(x*y) &= x^{-1}*(x*z)\tag*{Inverses exist}\\
+            (x^{-1}*x)*y &= (x^{-1}*x)*z\tag*{Associativity}\\
+            e*y &= e*z\\
+            y &= z
+        \end{align*}
+        as desired.\par
+        The proof of the second statement is symmetric.
+    \end{proof}
+    \begin{itemize}
+        \item This will be Calegari's only proof from the axioms directly.
+    \end{itemize}
+    \item \textbf{Multiplication table} (for $G$): A table with all elements of $G$ on the top and the side, and all binary products in it.
+    \begin{itemize}
+        \item The total number of binary operations is $n^{n^2}$?
+        \item To check that a group is a group, we can write out its multiplication table and confirm pointwise that the group axioms are satisfied. However, there are also many ways to speed this process up.
+        \item An example of a multiplication table can be found on the right in Figure \ref{fig:Sudoku3}.
+    \end{itemize}
+    \item \textbf{Trivial group}: The only group with $|G|=1$, i.e., $G=\{e\}$.
+    \item A group of $|G|=2$ has the form $G=\{e,x\}$ where we must have $x=x^{-1}$.
+    \begin{itemize}
+        \item We can find this by inspection or invoke the \textbf{Sudoku Lemma}.
+        \item Thus, all groups of order 2 are isomorphic.
+    \end{itemize}
+    \item Lemma (Sudoku Lemma): Fix $x\in G$. Then
+    \begin{equation*}
+        \{xg\mid g\in G\} = G
+        = \{gx\mid g\in G\}
+    \end{equation*}
+    \begin{proof}
+        There exists $g$ such that $xg=y$ for $x,y$ fixed: Choose $g=x^{-1}y$.\par
+        $y$ only occurs once: If $xg=y$ and $xg'=y$, transitivity and the cancellation lemma imply $g=g'$.
+    \end{proof}
+    \begin{itemize}
+        \item In layman's terms, in every row and column of the multiplication table, each element of $G$ occurs exactly once.
+    \end{itemize}
+    \item Playing Sudoku, we can show that all groups of order 3 are isomorphic.
+    \begin{figure}[h!]
+        \centering
+        \small
+        \renewcommand{\arraystretch}{1.2}
+        \begin{tikzpicture}
+            \node at (-2.5,0) {
+                \begin{tabu}{c|[0.8pt]c|c|c}
+                     & \multicolumn{1}{c}{$e$} & \multicolumn{1}{c}{$x$} & $y$\\
+                    \tabucline[1pt]{-}
+                    $e$ & $e$ & $x$ & $y$\\
+                    \tabucline{2-}
+                    $x$ & $x$ &  & \\
+                    \tabucline{2-}
+                    $y$ & $y$ &  & \\
+                \end{tabu}
+            };
+            \draw [-stealth] (-0.4,0) -- (0.4,0);
+            \node at (2.5,0) {
+                \begin{tabu}{c|[0.8pt]c|c|c}
+                     & \multicolumn{1}{c}{$e$} & \multicolumn{1}{c}{$x$} & $y$\\
+                    \tabucline[1pt]{-}
+                    $e$ & $e$ & $x$ & $y$\\
+                    \tabucline{2-}
+                    $x$ & $x$ & $y$ & $e$\\
+                    \tabucline{2-}
+                    $y$ & $y$ & $e$ & $x$\\
+                \end{tabu}
+            };
+        \end{tikzpicture}
+        \caption{Playing Sudoku for $|G|=3$.}
+        \label{fig:Sudoku3}
+    \end{figure}
+    \begin{itemize}
+        \item Start from the left table above.
+        \item Notice that row 3 has a $y$ and column 2 has an $x$, so by the Sudoku Lemma, $e$ must be the element in row 3, column 2.
+        \item Then column 2 has $e,x$ in it, so the entry in row 2, column 2 must by $y$.
+        \item Then row 2 has $x,y$ in it, so the entry in row 2, column 3 must be $e$.
+        \item Then row/column 3 both have $e,y$ in them, so the entry in row 3, column 3 must be $x$.
+    \end{itemize}
+    \item However, we cannot play Sudoku in the same way with groups of order 4. In fact, there are multiple groups of order 4.
+    \begin{itemize}
+        \item Two cases: (1) $x^2\neq e$ so WLOG let $x^2=y$, and (2) $a^2=e$ for $a=x,y,z$.
+        \begin{itemize}
+            \item Case 1 is isomorphic to $\Z/4\Z$.
+            \item Case 2 is isomorphic to the \textbf{direct product} of $\Z/2\Z$ with itself, also known as the \textbf{Klein 4-group}.
+        \end{itemize}
+        \item This should not come as a surprise: We've already encountered the very different groups $S_4$ and $\Z/24\Z$ of order 24.
+    \end{itemize}
+    \item \textbf{Direct product}: The group whose set is the Cartesian product of the sets of groups $A=(A,*_A),B=(B,*_B)$, and whose operation is coordinate-wise multiplication. \emph{Given by}
+    \begin{align*}
+        G &= A\times B&
+        (a,b)*_G(a',b') &= (a*_Aa',b*_Bb')
+    \end{align*}
+    \begin{itemize}
+        \item We can prove that $e=(e_A,e_B)$, that $(a,b)^{-1}=(a^{-1},b^{-1})$, and that associativity holds.
+        \item We have that
+        \begin{equation*}
+            |G| = |A|\cdot|B|
+        \end{equation*}
+    \end{itemize}
+    \item There is only one group of order 5.
+    \item Examples of groups of order 6: $S_3$, $\Z/6\Z$, $(\Z/2\Z)\times(\Z/3\Z)$, $(\Z/3\Z)\times(\Z/2\Z)$.
+    \begin{itemize}
+        \item Are there any two groups which are distinct?
+        \begin{itemize}
+            \item $S_3$ is not commutative, but the others are, so it is distinct from them.
+            \item $(\Z/2\Z)\times(\Z/3\Z)$ and $(\Z/3\Z)\times(\Z/2\Z)$ are the same because order doesn't matter in the construction of the direct product.
+            \item $\Z/6\Z$ and the two direct products are the same because they both have elements of order 6 (i.e., a one-element generator). The cycles are:
+            \begin{alignat*}{6}
+                1^1 &= 1 &&= 1&\hspace{7em}
+                    (1,1)^1 &= (1,1) &&= (1,1)\\
+                1^2 &= 1+1 &&= 2&
+                    (1,1)^2 &= (1+1,1+1) &&= (2,0)\\
+                1^3 &= 2+1 &&= 3&
+                    (1,1)^3 &= (2+1,0+1) &&= (0,1)\\
+                1^4 &= 3+1 &&= 4&
+                    (1,1)^4 &= (0+1,1+1) &&= (1,0)\\
+                1^5 &= 4+1 &&= 5&
+                    (1,1)^5 &= (1+1,0+1) &&= (2,1)\\
+                1^6 &= 5+1 &&= 0&
+                    (1,1)^6 &= (2+1,1+1) &&= (0,0)\\
+                1^7 &= 0+1 &&= 1&
+                    (1,1)^3 &= (0+1,0+1) &&= (1,1)
+            \end{alignat*}
+        \end{itemize}
+        \item These are the only two groups of order 6.
+    \end{itemize}
+    \item Continuing on, there is only 1 group with $|G|=2047$ (which is "mostly prime" --- connection between primes and number of groups?), but there are 1,774,274,116,992,170 groups of $|G|=2048=2^{11}$.
+    \item Conclusion: The arithmetic of $|G|$ has an impact on the structure of $G$.
+\end{itemize}
+
+
+
+
+\end{document}
