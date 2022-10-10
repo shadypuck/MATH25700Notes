@@ -170,5 +170,153 @@
 
 
 
+\section{Characteristics of the Symmetric Group}
+\begin{itemize}
+    \item \marginnote{10/5:}\textbf{Symmetric group} (on $n$ letters): The set of all bijections from the set of numbers $\{1,\dots,n\}$ to itself, whose operation is function composition. \emph{Denoted by} $\bm{S_n}$.
+    \begin{itemize}
+        \item Convention: Denote elements of $S_n$ not by $f$ but by $\sigma,\tau$.
+        \item $\sigma\tau$ means do $\tau$ first and then $\sigma$.
+        \item $|S_n|=n!$.
+    \end{itemize}
+    \item One of the first challenges we encounter when defining new objects is a notational one.
+    \begin{itemize}
+        \item We could define a function with a table, but cycle notation is easier.
+    \end{itemize}
+    \item \textbf{$\bm{k}$-cycle}: The bijection
+    \begin{equation*}
+        m \mapsto
+        \begin{cases}
+            a_{i+1} & m=a_i,\ i\neq k\\
+            a_1 & m=a_k\\
+            m & m\neq a_i
+        \end{cases}
+    \end{equation*}
+    in $S_n$, where $a_1,\dots,a_k$ are distinct elements of $[n]$. \emph{Denoted by} $\bm{(a_1,a_2,\ldots,a_k)}$.
+    \begin{itemize}
+        \item If $\sigma$ is a $k$-cycle, then the order of $\sigma$ is $k$.
+        \item There are $k$ ways to write down the same $k$-cycle.
+        \begin{itemize}
+            \item For example, $(i,j)=(j,i)$ and $(a,b,c)=(b,c,a)=(c,a,b)$.
+        \end{itemize}
+        \item All 1-cycles are the identity $e$.
+        \item Combinatorics: How many $k$-cycles are there in $S_n$?
+        \begin{itemize}
+            \item $k=1$: Just one -- $(e)$.
+            \item $k=2$: $\binom{n}{2}$.
+            \item $k=3$: $\binom{n}{3}\cdot 2$.
+            \begin{itemize}
+                \item We must first choose 3 of the $n$ possible elements to be manipulated by the $k$-cycle.
+                \item But then we can send $a_1$ to $a_2$ or $a_3$, so that's an additional two choices beyond just a selection of 3 elements. Once we send $a_1$ to $a_2$ or $a_3$, the rest of the cycle is determined, so we need not augment any more.
+            \end{itemize}
+            \item $k$: $\binom{n}{k}\cdot(k-1)!=\frac{n!}{(n-k)!k}$.
+            \begin{itemize}
+                \item As before, we must choose $k$ of the $n$ possible elements to be manipulated by the $k$-cycle.
+                \item However, here, there are $k-1$ possibilities to which we can send $a_1$, so we need to multiply by that. Once we've determined $\sigma(a_1)$, there are $k-2$ possibilities to which we can send $\sigma(a_1)$. This pattern naturally continues, and we end up needing to correct $\binom{n}{k}$ by $(k-1)!$.
+            \end{itemize}
+        \end{itemize}
+    \end{itemize}
+    \item Proposition: Every $\sigma\in S_n$ can be written as a product/composition of disjoint cycles. Moreover, disjoint cycles commute.
+    \begin{figure}[h!]
+        \centering
+        \begin{tikzpicture}[scale=1.5]
+            \draw [semithick] ellipse (2cm and 1cm);
+    
+            \draw [rotate around={20:(-0.9,0.2)}] (-0.9,0.2) ellipse (6mm and 3mm);
+            \draw (0,-0.5) circle (2mm);
+            \draw (0.9,0) ellipse (5mm and 3mm);
+    
+            \draw [xshift=-1.48cm,yshift=-0.1cm,scale=0.6] (0,0) -- ++(0.1,0.2) ++(-0.1,0) -- ++(0.1,-0.2);
+            \draw [xshift=-1.3cm,yshift=0.28cm,scale=0.6] (0,0) -- ++(0.1,0.2) ++(-0.1,0) -- ++(0.1,-0.2);
+            \draw [xshift=-0.6cm,yshift=0.48cm,scale=0.6] (0,0) -- ++(0.1,0.2) ++(-0.1,0) -- ++(0.1,-0.2);
+    
+            \draw [xshift=-0.1cm,yshift=-0.374cm,scale=0.6] (0,0) -- ++(0.1,0.2) ++(-0.1,0) -- ++(0.1,-0.2);
+    
+            \draw [xshift=1.4cm,yshift=0cm,scale=0.3] (0,0) ++(-0.1,-0.2) -- ++(0.2,0.4) ++(-0.2,0) -- ++(0.2,-0.4);
+            \draw [xshift=0.4cm,yshift=0cm,scale=0.3] (0,0) ++(-0.1,-0.2) -- ++(0.2,0.4) ++(-0.2,0) -- ++(0.2,-0.4);
+            \draw [xshift=0.9cm,yshift=0.3cm,scale=0.3] (0,0) ++(-0.1,-0.2) -- ++(0.2,0.4) ++(-0.2,0) -- ++(0.2,-0.4);
+            \draw [xshift=0.9cm,yshift=-0.3cm,scale=0.3] (0,0) ++(-0.1,-0.2) -- ++(0.2,0.4) ++(-0.2,0) -- ++(0.2,-0.4);
+        \end{tikzpicture}
+        \caption{Decomposing $\sigma$ into disjoint cycles.}
+        \label{fig:disjointCycles}
+    \end{figure}
+    \begin{itemize}
+        \item The idea behind this proposition is that every element will cycle back to itself eventually, and you can't get to elements of one cycle if you're not in the cycle (so all cycles are disjoint).
+        \item Every permutation can be visualized by ordering the $n$ letters in a set in $\R^2$ and connecting all disjoint cycles (think a circle full of oriented circles/loops/cycles).
+    \end{itemize}
+    \item Composing cycles. See what the right one does and then the left one. Canonically, start with 1.
+    \item Proposition: The cycle decomposition of $\sigma$ is unique up to\dots
+    \begin{itemize}
+        \item The ordering of the disjoint cycles;
+        \item Cycle permutations of each cycle;
+        \item Include/exclude 1-cycles.
+    \end{itemize}
+    Moreover, $|\sigma|$ is the least common multiple of the cycle lengths.
+    \item How many elements in $S_6$ have a cycle shape that looks like $(x,x)(x,x)(x,x)$?
+    \begin{itemize}
+        \item It is
+        \begin{equation*}
+            \frac{6!}{2^3\cdot 3!} = 15
+        \end{equation*}
+        \item Rationale: See PSet 2, Q1a.
+    \end{itemize}
+    \item The cycle decompositions of all elements in $S_4$.
+    \begin{table}[H]
+        \centering
+        \small
+        \renewcommand{\arraystretch}{1.2}
+        \begin{tabular}{|c|c|c|c|c|}
+            $(1,2,3,4)$ & $(1,2,3)$ & $(1,2)$ & $(1,2)(3,4)$ & $e$\\
+            $(1,2,4,3)$ & $(1,3,2)$ & $(1,3)$ & $(1,3)(2,4)$ &    \\
+            $(1,3,2,4)$ & $(1,2,4)$ & $(1,4)$ & $(1,4)(2,3)$ &    \\
+            $(1,3,4,2)$ & $(1,4,2)$ & $(2,3)$ &              &    \\
+            $(1,4,2,3)$ & $(1,3,4)$ & $(2,4)$ &              &    \\
+            $(1,4,3,2)$ & $(1,4,3)$ &         &              &    \\
+                        & $(2,3,4)$ &         &              &    \\
+                        & $(2,4,3)$ &         &              &    \\
+        \end{tabular}
+        \caption{$S_4$ cycle decompositions.}
+        \label{tab:S4Cycles}
+    \end{table}
+    \item \textbf{Conjugate} (elements $x,y$): Two elements $x,y\in G$ a group for which there exists $g\in G$ such that $y=g\cdot x\cdot g^{-1}$. \emph{Denoted by} $\bm{x\sim y}$.
+    \item Lemma: Conjugacy is an equivalence relation.
+    \begin{enumerate}[label={(\Roman*)}]
+        \item $x\sim x$.
+        \begin{proof}
+            $x=exe^{-1}$.
+        \end{proof}
+        \item If $y\sim x$, then $x\sim y$.
+        \begin{proof}
+            Take
+            \begin{align*}
+                y &= gxg^{-1}\\
+                g^{-1}y(g^{-1})^{-1} &= x
+            \end{align*}
+        \end{proof}
+        \item If $x\sim y$ and $y\sim z$, then $x\sim z$.
+        \begin{proof}
+            Suppose $y=gxg^{-1}$ and $z=hyh^{-1}$. Then
+            \begin{equation*}
+                z = hgxg^{-1}h^{-1}
+                = (hg)x(hg)^{-1}
+            \end{equation*}
+        \end{proof}
+    \end{enumerate}
+    \item \textbf{Conjugacy class}: A subset of $G$ containing all $g\in G$ which are conjugate to a certain $x\in G$.
+    \item Straightforward: Not necessarily obvious, but there's nothing really tricky going on.
+    \begin{itemize}
+        \item The joke about the mathematician who says something is obvious, someone asks why?, he thinks for 20 minutes, and then says it's obvious.
+    \end{itemize}
+    \item Why is conjugacy important?
+    \begin{itemize}
+        \item In linear algebra, we've seen it with similar matrices.
+        \begin{itemize}
+            \item Same linear map in a different basis is the same as conjugating the matrix of the map in one basis with the change of basis matrix.
+        \end{itemize}
+        \item Conjugacy tells us that a set of objects are, in some way, the same.
+    \end{itemize}
+\end{itemize}
+
+
+
 
 \end{document}
