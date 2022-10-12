@@ -9,7 +9,7 @@
 
 
 
-\chapter{???}
+\chapter{Group Theory Foundations}
 \section{Groups of Low Order}
 \begin{itemize}
     \item \marginnote{10/3:}Calegari: Nothing in particular to know for missing Friday; Adi will get me notes.
@@ -301,7 +301,10 @@
             \end{equation*}
         \end{proof}
     \end{enumerate}
-    \item \textbf{Conjugacy class}: A subset of $G$ containing all $g\in G$ which are conjugate to a certain $x\in G$.
+    \item \textbf{Conjugacy class} (of $x$): A subset of $G$ containing all $g\in G$ which are conjugate to a certain $x\in G$. \emph{Given by}
+    \begin{equation*}
+        \{g\in G\mid g\sim x\}
+    \end{equation*}
     \item Straightforward: Not necessarily obvious, but there's nothing really tricky going on.
     \begin{itemize}
         \item The joke about the mathematician who says something is obvious, someone asks why?, he thinks for 20 minutes, and then says it's obvious.
@@ -313,6 +316,193 @@
             \item Same linear map in a different basis is the same as conjugating the matrix of the map in one basis with the change of basis matrix.
         \end{itemize}
         \item Conjugacy tells us that a set of objects are, in some way, the same.
+    \end{itemize}
+\end{itemize}
+
+
+
+\section{Conjugacy}
+\begin{itemize}
+    \item \marginnote{10/7:}You can request one extension per quarter on homework (possibly more if you have a really good reason) for sickness, etc., no questions asked. Email your TA to secure this extension.
+    \item Last time, we began covering conjugacy.
+    \begin{itemize}
+        \item Conjugacy classes.
+        \item Conjugacy defines an equivalence relation on $G$.
+        \item $G=\bigsqcup\text{conjugacy classes}$\footnote{$\bigsqcup$ denotes a \textbf{disjoint union}. Think of the \emph{disjoint} union of sets as a union of sets that happen to be disjoint, the same way a \emph{direct} sum of subspaces is a sum of subspaces that happen to be linearly independent.}.
+    \end{itemize}
+    \item More on conjugacy today.
+    \item The conjugacy class of $e$ is $\{e\}$.
+    \item If $y=gxg^{-1}$, then $y^k=gx^kg^{-1}$.
+    \item Proposition: $y\sim x$ implies $|y|=|x|$.
+    \begin{proof}
+        Suppose $|y|=k$, i.e., $y^k=e$. By the above statement, we know that $y^k\sim x^k$. Since $y^k=e$, it follows that $e\sim x^k$. Thus, $x^k$ is in the conjugacy class of $e$. But since the conjugacy class of $e$ is $\{e\}$, this means that $x^k=e$, as desired.
+    \end{proof}
+    \item Conjugacy in $S_n$, $n\geq 2$.
+    \begin{itemize}
+        \item Each $x\in S^n$ has a cycle decomposition
+        \begin{equation*}
+            x = (a_1,\dots,a_k)(b_1,\dots,b_m)(c_1,\dots)\cdots
+        \end{equation*}
+        \item We want to investigate the properties of $gxg^{-1}$ for an arbitrary $g\in S_n$. Ideally, we'd like to express it in a form related to $x$.
+        \item Trick: Apply $gxg^{-1}$ to $g(a_1)$. Then
+        \begin{equation*}
+            gxg^{-1}(g(a_1)) = gx(a_1)
+            = g(a_2)
+        \end{equation*}
+        \item It follows by induction that
+        \begin{equation*}
+            gxg^{-1} = (g(a_1),\dots,g(a_k))(g(b_1),\dots,g(b_m))(g(c_1),\dots)\cdots
+        \end{equation*}
+        \item Now suppose that $m\neq g(a_i),g(b_j),g(c_k),\dots$. Then
+        \begin{equation*}
+            g^{-1}(m) \notin \{a_1,\dots,a_k,b_1,\dots,b_m,c_1,\dots\}
+        \end{equation*}
+        It follows since $x$ is the identity on such elements that $x(g^{-1}(m))=g^{-1}(m)$. Therefore, since all functions involved are bijections,
+        \begin{equation*}
+            [gxg^{-1}](m) = g[x(g^{-1}(m))] = g(g^{-1}(m)) = m
+        \end{equation*}
+        \item It follows that $gxg^{-1}$ has the same cycle \textbf{shape}.
+    \end{itemize}
+    \item \textbf{Shape} (of $g\in S_n$): The partition of $n$ given by the lengths of the cycles in the cycle decomposition of $g$ in decreasing order. \emph{Also known as} \textbf{cycle shape}.
+    \begin{table}[H]
+        \centering
+        \small
+        \renewcommand{\arraystretch}{1.2}
+        \begin{tabular}{c|c|c|c|c}
+            $S_4$ & 4-cycle & 3-cycle & Product of 2-cycles & 1-cycles\\
+            \hline
+            Cycle decomposition & $(x,x,x,x)$ & $(x,x,x)(x)$ & $(x,x)(x,x)$ & $(x)(x)(x)(x)$\\
+            Shape & $4$ & $3+1$ & $2+2$ & $1+1+1+1$\\
+        \end{tabular}
+        \caption{Shape of elements in $S_4$.}
+        \label{tab:shapeS4}
+    \end{table}
+    \item Claim: $x,y\in S_n$ are conjugate iff they have the same cycle shape.
+    \begin{proof}
+        We will do a proof by example that illustrates the idea of the generalized proof.\par
+        Let
+        \begin{align*}
+            x &= (1,2,3)(4,5,6)(7,10)&
+            y &= (2,3)(4,1,5)(6,9,10)
+        \end{align*}
+        Note that both have the same cycle shape: $3+3+2+1+1$. We now use a two-step process to define a $g$ such that $y=gxg^{-1}$.\par
+        Step 1: Including 1-cycles, line both $x$ and $y$ up so they "match."
+        \begingroup
+        \small
+        \renewcommand{\arraystretch}{1.2}
+        \begin{equation*}
+            \begin{NiceArray}{c|c@{}ccc@{}c@{}ccc@{}c@{}cc@{}c@{}c@{}c@{}c@{}c}
+                x        & (&  1   &  2   &  3   &)(&  4   &  5   &  6   &)(&  7   &  10   &)(&  8   &)(&  9   &)\\
+                \hline
+                y        & (&  4   &  1   &  5   &)(&  6   &  9   &  10  &)(&  2   &  3    &)(&  7   &)(&  8   &)\\
+                \hline
+                gxg^{-1} & (& g(1) & g(2) & g(3) &)(& g(4) & g(5) & g(6) &)(& g(7) & g(10) &)(& g(8) &)(& g(9) &)\\
+            \end{NiceArray}
+        \end{equation*}
+        \endgroup
+        Step 2: We want $y=gxg^{-1}$. Thus, take $g$ to be the map which sends every entry in $gxg^{-1}$ to the entry of $y$ directly above it. For example, we want $g(1)=4$, $g(2)=1$, $g(3)=5$, \dots. Noting that $g(1)=4$, $g(4)=6$, $g(6)=10$, \dots, we realize that $g$ can actually be written as the following cycle.
+        \begin{equation*}
+            g = (1,4,6,10,3,5,9,8,7,2)
+        \end{equation*}
+    \end{proof}
+    \item Follow ups.
+    \begin{itemize}
+        \item How many different $g$'s satisfy $y=gxg^{-1}$?
+        \begin{itemize}
+            \item Depends on the number of ways $y$ can be matched up with $x$.
+            \item The above manner obviously works.
+            \item However, we can rotate the elements in both 3-cycles three ways, and the elements of the 2-cycle two ways, so that's $3\cdot 3\cdot 2=18$ $g$'s right there.
+            \item Additionally, we can swap the place of the 3-cycles and the 1-cycles entirely, so thats an additional $2\cdot 2$ times as many ways.
+            \item All told, there are $3\cdot 3\cdot 2\cdot 2\cdot 2=72$ possible $g$'s.
+            \item See HW2, Q1a for a treatment of an analogous problem.
+        \end{itemize}
+        \item Counting the size of conjugacy classes.
+        \begin{itemize}
+            \item Suppose $G$ is an abelian group. Then if $y=gxg^{-1}$, $y=gg^{-1}x=x$, so the size of the conjugacy class of any $x\in G$ is 1.
+            \item For this reason, the elements of $\Z/n\Z$ and of $\text{SO}(2)$ are conjugate only to themselves.
+            \item However, we get something different for $\text{O}(2)$. Here, we can prove that the conjugacy class of every rotation $r$ is $\{r,r^{-1}\}$, and that all reflections are in the same conjugacy class\footnote{This is fundamentally related to the structure of point groups in inorganic chemistry! Remember that in $C_{5v}$, for instance, $C_5,C_5^4$ are conjugate, $C_5^2,C_5^3$ are conjugate, and all reflections get lumped together.}.
+            \begin{itemize}
+                \item Let $r$ denote a rotation, and $s$ denote a reflection.
+                \item Suppose $x=r$. Then
+                \begin{align*}
+                    e &= (sr)^2\\
+                    &= srsr\\
+                    r^{-1} &= srs\\
+                    &= srs^{-1}
+                \end{align*}
+                where we have HW1, Q2d(i) to justify the first equality and the fact that every reflection is it's own inverse\footnote{Intuitively, applying any reflection twice yields the original object.} to justify the last equality.
+                \item On the other hand, suppose $x=s$. Then if $r$ is any rotation,
+                \begin{align*}
+                    srsr &= e\\
+                    rsr &= s^{-1}\\
+                    rsrr^{-2} &= s^{-1}r^{-2}\\
+                    rsr^{-1} &= sr'
+                \end{align*}
+                where $r'$ denotes $r^{-2}$ to express the main takeaway: that $s$ is conjugate to itself times any rotation (for $r'$ arbitrary, we may choose $r=(r')^2$). In other words, since all reflections are related by some rotation, all reflections are, indeed, in the same conjugacy class.
+            \end{itemize}
+        \end{itemize}
+    \end{itemize}
+    \item Generators of $S_n$, $n\geq 3$.
+    \item Lemma: The set of 2-cycles generates $S_n$.
+    \begin{proof}
+        It only requires $n-1$ swaps between pairs of elements to get to any permutation. For example, to get to
+        \begin{equation*}
+            \begin{matrix}
+                1\\
+                2\\
+                3\\
+                4\\
+            \end{matrix}
+            \mapsto
+            \begin{matrix}
+                3\\
+                4\\
+                2\\
+                1\\
+            \end{matrix}
+        \end{equation*}
+        we can swap 1 and 3 (so $1\mapsto 3$), then 2 and 4 (so $2\mapsto 4$), then "3" and "4" (so $3\mapsto 2$ and $4\mapsto 1$). More graphically,
+        \begin{figure}[H]
+            \centering
+            \begin{tikzpicture}
+                \matrix (A) [matrix of math nodes,column sep=1cm] {
+                    1 & 3 & 3 & 3\\
+                    2 & 2 & 4 & 4\\
+                    3 & 1 & 1 & 2\\
+                    4 & 4 & 2 & 1\\
+                };
+            
+                \draw
+                    (A-1-1) -- (A-3-2) -- (A-3-3) -- (A-4-4)
+                    (A-2-1) -- (A-2-2) -- (A-4-3) -- (A-3-4)
+                    (A-3-1) -- (A-1-2) -- (A-1-3) -- (A-1-4)
+                    (A-4-1) -- (A-4-2) -- (A-2-3) -- (A-2-4)
+                ;
+            \end{tikzpicture}
+            \caption{Generating $S_n$ with 2-cycles.}
+            \label{fig:SnGenerate2}
+        \end{figure}
+        The idea is we fix the first element and then work down the list.
+    \end{proof}
+    \item $S_n$ is also generated by
+    \begin{align*}
+        \{(1,2),(2,3),(3,4),\dots,(n-1,n)\}&&
+        \{(1,2),(1,3),(1,4),\dots,(1,n)\}
+    \end{align*}
+    \begin{itemize}
+        \item Both of these sets have cardinality $n-1$.
+    \end{itemize}
+    \item As we can see from the above\dots
+    \begin{itemize}
+        \item If we generate $S_n$ with all 2-cycles, the generator set has cardinality $\frac{n}{2}(n-1)$;
+        \item If we generate $S_n$ with all elementary 2-cycles, the generator set has cardinality $n-1$.
+    \end{itemize}
+    \item But we can do even better: Let $\sigma=(1,2)$ and $\tau=(1,2,\dots,n)$. Then any
+    \begin{equation*}
+        (k,k+1) = \tau^{k-1}\sigma\tau^{-(k-1)}
+    \end{equation*}
+    \begin{itemize}
+        \item Indeed, we can see that using the RHS above, $k\mapsto 1\mapsto 2\mapsto k+1$ and $k+1\mapsto 2\mapsto 1\mapsto k$. Every other element receives the identity treatment, as we can confirm.
     \end{itemize}
 \end{itemize}
 
