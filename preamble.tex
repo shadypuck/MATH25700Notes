@@ -5,12 +5,13 @@
 \usepackage{enumitem}
 \usepackage{scrextend}
 \usepackage[bottom]{footmisc}
+\usepackage[style=apa]{biblatex}
 \usepackage{siunitx}
 \usepackage{tabu}
 \usepackage{tikz,graphicx}
 \usepackage{float}
 \usepackage{amsmath,amssymb,amsthm}
-\usepackage{bm,physics,nicematrix}
+\usepackage{bm,physics,nicematrix,empheq}
 \usepackage[hidelinks]{hyperref}
 
 \MakeOuterQuote{"}
@@ -34,12 +35,16 @@
     \fill (1.2,0) -- (0,-1) -- (3.5,0);
 }}}
 
+\addbibresource{../main.bib}
+\DefineBibliographyStrings{english}{bibliography={References}}
+
 \deffootnotemark{\textsuperscript{\textup{[}\thefootnotemark\textup{]}}}
 \deffootnote[1.8em]{0em}{0em}{\textsuperscript{\thefootnote}}
 
 \usetikzlibrary{matrix}
 
 \DeclareMathOperator{\spn}{span}
+\DeclareMathOperator{\lcm}{lcm}
 \setcounter{MaxMatrixCols}{20}
 
 \newcommand{\N}{\mathbb{N}}
