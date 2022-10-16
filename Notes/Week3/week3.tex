@@ -9,7 +9,7 @@
 
 
 
-\chapter{???}
+\chapter{Types of Subgroups and Group Functions}
 \section{Subgroups and Generators}
 \begin{itemize}
     \item \marginnote{10/10:}Defining \textbf{subgroups}.
@@ -157,7 +157,7 @@
         \end{equation*}
     \end{proof}
     \item Examples:
-    \begin{table}[h!]
+    \begin{table}[H]
         \centering
         \small
         \renewcommand{\arraystretch}{1.2}
@@ -251,6 +251,110 @@
     \item Idea: $S_4\cong\text{Cu}\cong S_3$.
     \begin{itemize}
         \item 3 pairs of opposite faces and 4 diagonals.
+    \end{itemize}
+\end{itemize}
+
+
+
+\section{Cosets}
+\begin{itemize}
+    \item \marginnote{10/14:}Asking, "what's the intuition for this question?" in OH.
+    \begin{itemize}
+        \item Calegari: Intuition is borne of experience. You get intuition from grubby computations, and then you finally recognize the structure. If you don't know what's going on, it's good to struggle. Start with the simplest possible example and then struggle until you develop intuition.
+    \end{itemize}
+    \item Last time, we discussed the fact that there is no surjective homomorphism from $S_5\to S_4$, but there is a surjective homomoprhism from $S_4\to S_3$. How about the case $S_{n+1}\to S_n$ for arbitrary $n$?
+    \item Teaser theorem: Let $n>m$ and $\phi:S_n\twoheadrightarrow S_m$. Then
+    \begin{enumerate}
+        \item $m=1$.
+        \item $m=2$.
+        \item $m=3$.
+    \end{enumerate}
+    \item Think about the problem of maps from $G\to\Gamma$, where $\Gamma$ is another group. What we know:
+    \begin{itemize}
+        \item Let $K=\ker\phi$. Recall that $\phi$ is injective iff $\ker\phi=\{e\}$. But there is some additional structure: If $\phi(g)=x$, then $\phi(gK)=x$ where $gK=\{gk\in G\mid k\in K\}$. Another way of phrasing this: If $\phi(g')=x$, then $g'=gk$ for some $k\in K$.
+        \item This motivates the following definition.
+    \end{itemize}
+    \item \textbf{Left coset}: The set defined as follows, where $g\in G$ and $H$ is a subgroup of $G$. \emph{Denoted by} $\bm{gH}$. \emph{Given by}
+    \begin{equation*}
+        gH = \{gh\mid h\in H\}
+    \end{equation*}
+    \begin{itemize}
+        \item You can define cosets for $H$ a subset (not a subgroup) of $G$, but we will not be interested in these cases.
+    \end{itemize}
+    \item Claim: $gH\subset G$ means that $gh=gh'$ implies $h=h'$??
+    \item Example: $G=S_3$, $H=\gen{e,(1,2)}$.
+    \begin{table}[h!]
+        \centering
+        \small
+        \renewcommand{\arraystretch}{1.2}
+        \begin{tabular}{c|c}
+            $g$ & $gH$\\
+            \hline
+            $e$ & $\{e,(1,2)\}$\\
+            $(1,2)$ & $\{e,(1,2)\}$\\
+            $(1,3)$ & $\{(1,3),(1,2,3)\}$\\
+            $(1,2,3)$ & $\{(1,3),(1,2,3)\}$\\
+            $(2,3)$ & $\{(2,3),(1,3,2)\}$\\
+            $(1,3,2)$ & $\{(2,3),(1,3,2)\}$\\
+        \end{tabular}
+        \caption{Cosets of $\gen{e,(1,2)}$ in $S_3$.}
+        \label{tab:S3Cosets}
+    \end{table}
+    \begin{itemize}
+        \item Observations: Cosets are pairwise disjoint. $x\in gH$ implies $xH=gH$.
+    \end{itemize}
+    \item $\bm{G/H}$: The set of all left cosets of $H$ in $G$.
+    \item Proposition:
+    \begin{enumerate}
+        \item Any two cosets in $G/H$ are either (i) the same or (ii) disjoint.
+        \item All $g\in G$ lie in a unique coset (in particular, $gH$).
+        \item $|gH|=|H|$.
+    \end{enumerate}
+    \begin{proof}
+        % 2 follows from 1, and 3 from 2 (how??), so we will focus on proving 1.\par
+        % Suppose a coset contains $g$. Then it is $gH$. (Argument: If $g\in C_1\cap C_2$, then $C_1=gH$ and $C_2=gH$, so $C_1=C_2$.) Let $C$ a coset contain $g$. Suppose $C=\gamma H$. How do we prove that $gH=\gamma H$? Bidirectional inclusion: If $h\in H$, want $\gamma h\in gH$; if $h\in H$, want to prove there exists $h'\in H$ such that $\gamma h=gh'$. We know that $g\in\gamma H$ implies that there exists $h''$ such that $g=\gamma h''$. We know that $h'=g^{-1}xh=(h'')^{-1}x^{-1}\gamma h=(h'')^{-1}$, $h\in H$. Then $gh=\gamma h''h\in\gamma H$.
+
+
+        Claim 1: Let $C_1,C_2\in G/H$. We divide into two cases ($C_1\cap C_2=\emptyset$ and $C_1\cap C_2\neq\emptyset$). In the first case, $C_1,C_2$ are disjoint, as desired. In the latter case, they are not disjoint, so we need to prove that they are the same. Suppose $g\in C_1\cap C_2$. Let $C_1=\gamma H$. We will prove that $gH=\gamma H$ via a bidirectional inclusion argument. It will follow by similar logic that $gH=C_2$, from which transitivity will imply that $C_1=gH=C_2$, as desired. Let's begin. Let $x\in gH$. Then $x=gh$ for some $h\in H$. Additionally, we know that $g\in\gamma H$ by hypothesis, so $g=\gamma h'$ for some $h'\in H$. It follows by combining the last two equations that $x=\gamma h'h$. But since $h'h\in H$, $x\in\gamma H$ as desired. A symmetric argument works in the other direction.\par
+        Claim 2: We know that $g\in gH$ since $e\in H$ and $g=ge$. Additionally, if $g\in\gamma H$, we have by part (1) that $\gamma H=gH$, so $g$ does lie in a \emph{unique} coset.\par
+        Claim 3: Suppose there exist $h,h'\in H$ such that $gh=gh'$. Then $h=h'$ by the cancellation lemma. Thus, every distinct $h\in H$ induces a distinct $gh\in gH$. Therefore, $|gH|=|H|$, as desired.
+    \end{proof}
+    \item Notice that so far, general statements we've made about groups have been very easy to prove; it's only in particular instances that things become tricky.
+    \item Decomposition of a group into equivalence classes: Cosets and conjugacy both do this.
+    \item Corollary: Let $H$ be a subgroup of $G$. Then
+    \begin{equation*}
+        |G| = |G/H|\cdot|H|
+    \end{equation*}
+    \begin{proof}
+        Sketch: Partition $G$ into cosets, each of order $|H|$. But there are $|G/H|$ of these. Thus, the number of elements in $G$ is $|G/H|\cdot|H|$.
+    \end{proof}
+    \item \textbf{Index} (of $H$ in $G$): The number of cosets into which $H$ partitions $G$. \emph{Denoted by} $\bm{[G:H]}$. \emph{Given by}
+    \begin{equation*}
+        [G:H] = |G/H|
+    \end{equation*}
+    \item If $|G|<\infty$, then $[G:H]=|G|/|H|$. If $|G|=\infty$, then we can still define the concept $|G/H|$, but we don't have a nice formula for it.
+    \item Example: Let $G=\Z$ and $H=2\Z$ (i.e., $H$ is the set of even integers). Then the orbits are all even and all odd nunbers. The index is 2??
+    \item Theorem (Lagrange):
+    \begin{enumerate}
+        \item Let $G$ be a finite group, $H\subset G$. Then $|H|$ divides $|G|$.
+        \item Let $G$ be a finite group. Let $g\in G$. Then $|g|$ divides $|G|$.
+    \end{enumerate}
+    \item Example: Let $p$ be prime. If $|G|=p$, then $G\cong\Z/p\Z$.
+    \begin{proof}
+        Take $g\in G$ such that $g\neq e$. By Lagrange's theorem, $|g|$ divides $p$. But this means that $|g|=1$ or $|g|=p$. But it's not the first case because $g\neq e$. Thus, $G=\gen{g}\cong\Z/p\Z$, as desired.
+    \end{proof}
+    \item \textbf{Right coset}: The set defined as follows, where $g\in G$ and $H$ is a subgroup of $G$. \emph{Denoted by} $\bm{Hg}$. \emph{Given by}
+    \begin{equation*}
+        Hg = \{hg\mid h\in H\}
+    \end{equation*}
+    \item $\bm{H/G}$: The set of all right cosets of $H$ in $G$.
+    \item The theories of left and right cosets are very similar, but they are not entirely equivalent.
+    \begin{itemize}
+        \item For example, $H=\gen{e,(1,2)}$ implies
+        \begin{align*}
+            (1,3)H &= \{(1,3),(1,2,3)\}&
+            H(1,3) &= \{(1,3),(1,3,2)\}
+        \end{align*}
     \end{itemize}
 \end{itemize}
 
