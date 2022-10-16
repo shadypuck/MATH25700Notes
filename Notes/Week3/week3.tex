@@ -10,7 +10,7 @@
 
 
 \chapter{???}
-\section{Introduction to Subgroups and Generators}
+\section{Subgroups and Generators}
 \begin{itemize}
     \item \marginnote{10/10:}Defining \textbf{subgroups}.
     \begin{itemize}
@@ -75,6 +75,182 @@
     \item Group \textbf{presentations} allow us to write and describe a group really easily.
     \begin{itemize}
         \item Seems useful at first, but isn't really that useful once you see it more.
+    \end{itemize}
+\end{itemize}
+
+
+
+\section{Homomorphisms}
+\begin{itemize}
+    \item \marginnote{10/12:}We've studied groups a lot at this point. But as with vector spaces, we don't have a complete theory of groups until we consider maps between them.
+    \item Today: Homomorphisms.
+    \item Let $H,G$ be groups.
+    \item What qualities do we want a map of groups to have?
+    \begin{itemize}
+        \item Maps between vector spaces preserve linearity, so maps between groups should probably preserve the group operation.
+        \item Bijection? As with linear maps, the bijective case is interesting, but we don't want to be this restrictive.
+        \item In fact, that first quality is the only one we want.
+    \end{itemize}
+    \item \textbf{Homomorphism}: A map $\phi:H\to G$ of sets such that $\phi(x*_Hy)=\phi(x)*_G\phi(y)$.
+    \item Lemma: Let $\phi:H\to G$ be a homomorphism. Then\dots
+    \begin{enumerate}
+        \item $\phi(e_H)=e_G$.
+        \item $\phi(x^{-1})=\phi(x)^{-1}$.
+    \end{enumerate}
+    \begin{proof}
+        Claim 1:
+        \begin{align*}
+            e_G\phi(x) &= \phi(x) = \phi(xe_H) = \phi(x)\phi(e_H)\\
+            e_G &= \phi(e_H)
+        \end{align*}
+        Claim 2:
+        \begin{equation*}
+            e_G = \phi(e_H) = \phi(xx^{-1}) = \phi(x)\phi(x^{-1})
+        \end{equation*}
+    \end{proof}
+    \item \textbf{Image} (of $\phi$): The subset of $G$ such that for all $h\in H$, $\phi(h)=g$. \emph{Denoted by} $\bm{\im\phi}$.
+    \item \textbf{Kernel} (of $\phi$): The subset of $H$ containing all $h\in H$ such that $\phi(h)=e_G$. \emph{Denoted by} $\bm{\ker\phi}$.
+    \item Lemma:
+    \begin{enumerate}
+        \item $\im\phi\subset G$ is a subgroup.
+        \item $\ker\phi\subset H$ is a subgroup.
+    \end{enumerate}
+    \begin{proof}
+        % Prove closed under multiplication, inverses, and nonempty. Let $g_1,g_2\in\im\phi$.\par
+        % Same idea. Prove...
+
+
+        Claim 1: We know that $\phi(e_H)=e_G$, so
+        \begin{equation*}
+            \im\phi \neq \emptyset
+        \end{equation*}
+        as desired. Next, let $g_1,g_2\in\im\phi$. Suppose $g_1=\phi(h_1)$ and $g_2=\phi(h_2)$. Then since $H$ is closed under multiplication as a subgroup, $h_1h_2\in H$. It follows that
+        \begin{equation*}
+            g_1g_2 = \phi(h_1)\phi(h_2)
+            = \phi(h_1h_2)
+            \in \im\phi
+        \end{equation*}
+        as desired. Lastly, let $g\in\im\phi$. Suppose $g=\phi(h)$. Then since $H$ is closed under inverses as a subgroup, $h^{-1}\in H$. It follows that
+        \begin{equation*}
+            g^{-1} = \phi(h)^{-1}
+            = \phi(h^{-1})
+            \in \im\phi
+        \end{equation*}
+        as desired.\par
+        Claim 2: We know that $\phi(e_H)=e_G$, so
+        \begin{equation*}
+            \ker\phi \neq \emptyset
+        \end{equation*}
+        as desired. Next, let $g_1,g_2\in\ker\phi$. Then
+        \begin{equation*}
+            e_G = e_Ge_G
+            = \phi(g_1)\phi(g_2)
+            = \phi(g_1g_2)
+        \end{equation*}
+        so $g_1g_2\in\ker\phi$, as desired. Lastly, let $g\in\ker\phi$. Then
+        \begin{equation*}
+            e_G = \phi(e_H)
+            = \phi(gg^{-1})
+            = \phi(g)\phi(g^{-1})
+            = e_G\phi(g^{-1})
+            = \phi(g^{-1})
+        \end{equation*}
+    \end{proof}
+    \item Examples:
+    \begin{table}[h!]
+        \centering
+        \small
+        \renewcommand{\arraystretch}{1.2}
+        \begin{tabular}{c|c|c|c|c}
+            $H$ & $G$ & $\phi$ & $\im\phi$ & $\ker\phi$\\
+            \hline
+            $H$ & $G$ & $\phi(h)=e$ & $\{e\}$ & $H$\\
+            $H\leq G$ & $G$ & inclusion & $H$ & $\{e\}$\\
+            $\Z$ & $\Z/n\Z$ & $k\mapsto k\mod n$ & $\Z/n\Z$ & $n\Z$\\
+            $\text{O}(n)$ & $\R^*$ & $\det$ & $\{\pm 1\}$ & $\text{SO}(n)$\\
+            $\text{GL}_n\R$ & $\R^*$ & $\det$ & $\R^*$ & $\text{SL}_n\R$\\
+        \end{tabular}
+        \caption{Examples of images and kernels.}
+        \label{tab:ImKer}
+    \end{table}
+    \begin{itemize}
+        \item The first example shows that there is always at least one homomorphism between two groups.
+        \item $\R^*$ is the group of nonzero real numbers with multiplication as the group operation.
+        \item The $\text{O}(n)$ example expresses the fact that $\det(AB)=\det(A)\det(B)$, i.e., that the determinant is a homomorphism.
+        \begin{itemize}
+            \item The kernel is $\text{SO}(n)$ since 1 is the multiplicative identity of $\R^*$ and all matrices in $\text{SO}(n)\subset\text{O}(n)$ get mapped to 1 by the determinant.
+        \end{itemize}
+        \item $\text{GL}_n\R$ is the set of all $n\times n$ invertible matrices over the field $\R$.
+    \end{itemize}
+    \item \textbf{Isomorphism}: A bijective homomorphism from $H\to G$.
+    \begin{itemize}
+        \item If an isomorphism exists between $H$ and $G$, we say, "$H$ is isomorphic to $G$."
+    \end{itemize}
+    \item Lemma: $H$ is isomorphic to $G$ implies $G$ is isomorphic to $H$.
+    \begin{proof}
+        $\phi:H\to G$ a bijection implies the existence of $\phi^{-1}:G\to H$. Claim: This is an isomorphism. We can formalize the notion, or just think of $\phi$ as relabeling elements of $H$ and $\phi^{-1}$ as unrelabeling them.
+    \end{proof}
+    \item Lemma: A homomorphism $\phi:H\to G$ is \textbf{injective} iff $\ker\phi=\{e_H\}$.
+    \begin{proof}
+        % We will prove that $\ker\phi\neq\{e_H\}$ implies that $\phi$ is not injective, and that $\phi$ is not injective implies $\ker\phi\neq\{e_H\}$.
+        % Note that the kernel certainly contains $e_H$ by a previous lemma. Suppose $x\in\ker\phi$ and $x\neq e$. Then $\phi(x)=\phi(e_H)$ so $\phi$ is not injective. Proof by contrapositive here?\par
+        % Now assume $\phi$ is not injective. Then $\phi(x)=\phi(y)$ for some $x\neq y$. Let $g=xy^{-1}$. If $g=e$, then $x=y$, a contradiction. Otherwise,
+        % \begin{equation*}
+        %     \phi(g) = \phi(xy^{-1}) = \phi(x)\phi(y^{-1})
+        %     = \phi(x)\phi(y)^{-1}
+        %     = \phi(x)\phi(x)^{-1}
+        %     = e
+        % \end{equation*}
+        % Note that we get from the fourth to the fifth entry above using the fact that $\phi(x)=\phi(y)$.
+
+        Suppose $\phi$ is injective. We know that $\phi(e_H)=e_G$ from a previous lemma; this implies that $e_H\in\ker\phi$. Now let $x\in\ker\phi$ be arbitrary. Then $\phi(x)=e_G=\phi(e_H)$. But since $\phi$ is injective, we have that $x=e_H$. Thus, we have proven that $e_H\in\ker\phi$, and any $x\in\ker\phi$ is equal to $e_H$; hence, we know that $\ker\phi=\{e_H\}$, as desired.\par
+        Now suppose that $\ker\phi=\{e_H\}$. Let $\phi(x)=\phi(y)$. It follows that
+        \begin{equation*}
+            \phi(xy^{-1}) = \phi(x)\phi(y^{-1})
+            = \phi(x)\phi(y)^{-1}
+            = \phi(x)\phi(x)^{-1}
+            = e_G
+        \end{equation*}
+        But this implies that
+        \begin{align*}
+            xy^{-1} &= e_H\\
+            x &= y
+        \end{align*}
+        as desired.
+    \end{proof}
+    \item Problem: Is there a surjective homomorphism $\phi:S_5\to S_4$?
+    \begin{itemize}
+        \item Proposal 1: Send 5-cycles to the identity and everything else to itself.
+        \item Proposal 2: "Drop 5" $(1,2)(3,4,5)\mapsto(1,2)(3,4)$.
+        \begin{itemize}
+            \item Counterexample: $(1,2,3,4,5)\mapsto(1,2,3,4)$.
+        \end{itemize}
+        \item Proposal 3: If it doesn't do something to everything, send it to $e$.
+    \end{itemize}
+    \item Lemma: Let $\phi:H\mapsto G$ be a homomorphism. If $|h|=n$, then $|\phi(h)|$ divides $n$, i.e., $n$ is a multiple of $|
+    \phi(h)|$.
+    \begin{proof}
+        If $h^n=e$, then $\phi(h^n)=e=\phi(h)^n$.
+    \end{proof}
+    \item Equipped with this lemma, let's return to the previous problem.
+    \begin{itemize}
+        \item Suppose for the sake of contradiction that such a surjective homomorphism $\phi$ exists.
+        \item Consider a 5-cycle $h\in S_5$; obviously, $|h|=5$.
+        \item It follows by the lemma that $\phi(h)\in S_4$ has order which divides 5. But since the maximum order of an element in $S_4$ is 4, this means that $|\phi(h)|=1$, so $\phi(h)=e$.
+    \end{itemize}
+    \item If one 5-cycle maps to the identity, then all of their products must, too.
+    \item What can map to an order 3 element in $S_4$?
+    \item If $\psi(g)=(1,2,3)$, then $|g|$ is divisible by 3.
+    \item In fact, no surjective map exists!
+    \item In order for homomorphisms to exist, there must be some reason. If there aren't any (nontrivial ones), proving this can be easy.
+    \item Now consider $S_4\mapsto S_3$.
+    \begin{itemize}
+        \item 4-cycles to $e$ or 2-cycles.
+        \item 3-cycles to 3-cycles.
+    \end{itemize}
+    \item Idea: $S_4\cong\text{Cu}\cong S_3$.
+    \begin{itemize}
+        \item 3 pairs of opposite faces and 4 diagonals.
     \end{itemize}
 \end{itemize}
 
