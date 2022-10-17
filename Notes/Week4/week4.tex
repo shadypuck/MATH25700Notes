@@ -1,0 +1,175 @@
+\documentclass[../notes.tex]{subfiles}
+
+\pagestyle{main}
+\renewcommand{\chaptermark}[1]{\markboth{\chaptername\ \thechapter\ (#1)}{}}
+\setcounter{chapter}{3}
+
+\begin{document}
+
+
+
+
+\chapter{???}
+\section{Quotient Groups}
+\begin{itemize}
+    \item \marginnote{10/17:}Notational confusion regarding $\Z/10\Z$.
+    \begin{itemize}
+        \item Let $G=\Z$ and $H=10\Z$ (the multiples of 10).
+        \item A few of the cosets are as follows:
+        \begin{align*}
+            H &= \{\dots,-20,-10,0,10,20,30,\dots\}\\
+            1+H &= \{\dots,-19,-9,1,11,21,31,\dots\}\\
+            2+H &= \{\dots,-18,-8,2,12,22,32,\dots\}
+        \end{align*}
+        \item Evidently, $|\Z/10\Z|=10$.
+        \item Yet $\Z/10\Z$ is also the notation for the cyclic group of order 10.
+        \item This notation is not an error, but reveals something deep: We can make the set of cosets into a group and define addition by
+        \begin{equation*}
+            (a+10\Z)+(b+10\Z) = (a+b+10\Z)
+        \end{equation*}
+        More specifically, we can define an isomorphism between the two definitions of $\Z/10\Z$ via $a+H\mapsto a$ for $a=0,\dots,9$.
+    \end{itemize}
+    \item This example motivates the following goal.
+    \item Goal: Make $G/H$, which is a set, into a group.
+    \begin{itemize}
+        \item This set needs a binary operation. It makes natural sense to define the binary operation as follows.
+        \begin{equation*}
+            xH*yH = xyH
+        \end{equation*}
+        \item We then need an identity coset, inverse cosets, and associativity.
+        \begin{itemize}
+            \item The identity is $H$.
+            \item The inverse of $xH$ is $x^{-1}H$.
+            \item Associativity of $G/H$ follows from the associativity of $G$ (which tells us that $(ab)c=a(bc)$). More specifically,
+            \begin{align*}
+                aH*_H(bH*_HcH) &= aH*_H(b*_Gc)H\\
+                &= a*_G(b*_Gc)H\\
+                &= (a*_Gb)*_gcH\\
+                &= (a*_Gb)H*_HcH\\
+                &= (aH*_HbH)*_HcH
+            \end{align*}
+        \end{itemize}
+    \end{itemize}
+    \item Calegari's impromptu explanation of associativity drives home that he really is very good at drilling down to the core of an idea and working with it. He really has a very similar mind to mine.
+    \item Something else we need to investigate: Equivalence classes, and defining functions on equivalence classes.
+    \begin{itemize}
+        \item We need to make sure that functions are defined the same regardless of how you label the equivalence classes.
+        \item Consider the set of names.
+        \begin{itemize}
+            \item Say we define equivalency classes based on all names which share the same first letter.
+            \item Then we define a function $F$ on the equivalency classes based on the last letter.
+            \item But then $[\text{Frank}]=[\text{Fen}]$ will be mapped to two different elements of the alphabet, so $F$ is not well-defined.
+        \end{itemize}
+        \item Thus, for our example, we need to guarantee that if $x,x'\in xH$, then $xH*yH=x'H*yH$.
+    \end{itemize}
+    \item Check: Independence of choice.
+    \begin{itemize}
+        \item Suppose we relabel $x\mapsto xh$ and $y\mapsto yh$. We need
+        \begin{equation*}
+            xhyh' = xyh''
+        \end{equation*}
+        for some $h''\in H$.
+        \begin{itemize}
+            \item Note that $x,y,h,h'$ are all fixed; $h''$ is the only free thing (i.e., is what we're looking for).
+        \end{itemize}
+        \item Algebraically manipulating the above implies that we want
+        \begin{align*}
+            h'' &= y^{-1}hyh'
+        \end{align*}
+        \item Thus, we know that $h''\in G$, but we need to make sure that $h''\in H$. Alternatively, we want $y^{-1}hy=h''(h')^{-1}\in H$.
+        \item An example where $y^{-1}hy$ is not in $H$: $G=S_3$, $H=\gen{(1,2)}$, $h=(1,2)$, $y=(1,3)$, $yhy^{-1}=(2,3)$.
+    \end{itemize}
+    \item Why did $\Z/10\Z$ work? Because it was abelian, so conjugacy cancelled $y^{-1}hy=y^{-1}yh=h$.
+    \begin{itemize}
+        \item We could restrict ourselves entirely to abelian groups, but can we be more general?
+    \end{itemize}
+    \item What should we require of $G/H$?
+    \begin{itemize}
+        \item The cananonical map of sets $\phi:G\to G/H$ is given by $\phi(x)=xH$.
+        \item We should require that $\phi$ is a homomorphism (i.e., that the group structure of $G$ is preserved for $G/H$).
+        \item See how $xH*yH=xyH$ is analogous to $\phi(x)\phi(y)=\phi(xy)$.
+    \end{itemize}
+    \item Let's suppose $\phi:G\to G/H$ is a homomorphism.
+    \begin{itemize}
+        \item Then $\phi(g)=eH$ implies that $g\in H$, i.e., $\ker\phi=H$.
+        \item Realization: An alternate way to do HW3, Q2b would have been in terms of quotient groups: In that case, $G/H\cong S_{26}$, and the following proposition would give us the surjectivity and kernel requirements.
+    \end{itemize}
+    \item Lemma: Let $\phi$ be a homomorphism from $G$ to another group. Let $K=\ker\phi\subset G$. Then $K$ has the following property, which is not true for all subgroups but is for kernels: If $x\in K$ and $g\in G$, then $gxg^{-1}\in K$.
+    \begin{proof}
+        Since $\phi(x)=e$, we have that
+        \begin{equation*}
+            \phi(gxg^{-1}) = \phi(g)\phi(x)\phi(g^{-1})
+            = \phi(g)\phi(g^{-1})
+            = e
+        \end{equation*}
+    \end{proof}
+    \item \textbf{Normal} (subgroup): A subgroup $H$ of $G$ such that for all $x\in H$ and $g\in G$, $gxg^{-1}\in H$. \emph{Denoted by} $\bm{H\trianglelefteq G}$, $\bm{H\triangleleft G}$.
+    \begin{itemize}
+        \item We often write $gHg^{-1}$.
+    \end{itemize}
+    \item Example: As per the lemma, $\ker\phi$ is a normal subgroup.
+    \item Example: If $G$ be abelian, then every $H\trianglelefteq G$.
+    \item Lemma: A subset $H\subset G$ is normal iff
+    \begin{enumerate}
+        \item $H$ is a subgroup.
+        \item $H$ is a union of some number of conjugacy classes.
+    \end{enumerate}
+    \item Proposition: Let $G$ be a group and $H\triangleleft G$. Then $G/H$ is a group under the multiplication
+    \begin{equation*}
+        xH*yH = xyH
+    \end{equation*}
+    and the map $\phi:G\to G/H$ is a surjective homomorphism with kernel $H$.
+    \begin{proof}
+        Recall that we want $xhyh'=xyh''h'$. Apply the cancellation lemma. Then
+        \begin{align*}
+            hy &= yy^{-1}hy\\
+            &= y(y^{-1}hy)\\
+            &= yh''
+        \end{align*}
+        where we get from the second to the third line above because $H$ is a normal subgroup, i.e., conjugates of its elements are elements of it. This implies the desired result.
+    \end{proof}
+    \item Example: Let $G=\Z$, $H=10\Z$, and $G/H=\Z/10\Z$.
+    \item Example: Let $G=G$ and $H=\{e\}$.
+    \begin{itemize}
+        \item $H$ is normal since it's a subgroup and it's a union of conjugacy classes.
+        \item In this case, $G/H\cong G$.
+    \end{itemize}
+    \item Example: $G=\text{O}(2)$ and $H=\text{SO}(2)$.
+    \begin{itemize}
+        \item $G$ is not abelian here.
+        \item From HW1, the cosets are $H=\{\text{rotations}\}$ and $\{\text{reflections}\}$.
+        \item The cosets are $H$ and $sH$ for some reflection $s\in\text{O}(2)\setminus\text{SO}(2)$.
+        \item What the group structure tells us here is that $\text{rotation}\circ\text{reflection}$ is like $\text{even}\times\text{odd}$ numbers.
+        \item $G/H\cong\Z/2\Z$ here.
+    \end{itemize}
+    \item An equivalent formulation of normality.
+    \item Proposition: $H\triangleleft G$ iff the left cosets coincide with the right cosets, i.e.,
+    \begin{equation*}
+        gH = Hg
+    \end{equation*}
+    \begin{proof}
+        Suppose first that $H\triangleleft G$. Use a bidirectional inclusion argument. Let $gh\in gH$. Then
+        \begin{equation*}
+            gh = ghg^{-1}g = h'g \in Hg
+        \end{equation*}
+        where $h'$ may or may not equal $h$, but we know it is an element of $H$ by the definition of normal subgroups. The argument is symmetric in the other direction.\par
+        Now suppose $gH=Hg$. Let $h\in H$. Then there exist $g,h'$ such that $gh=h'g$. Therefore, $ghg^{-1}=h'\in H$.
+    \end{proof}
+    \item This is a nice resolution of left and right cosets.
+    \begin{itemize}
+        \item It tells us when they're the same, and when they're different.
+    \end{itemize}
+    \item Implication: If $H\triangleleft G$, then
+    \begin{equation*}
+        xH\cdot yH = x(Hy)H
+        = x(yH)H
+        = xyHH
+        = xyH
+    \end{equation*}
+    \item Midterm next week.
+\end{itemize}
+
+
+
+
+\end{document}
