@@ -120,13 +120,13 @@
     \end{equation*}
     and the map $\phi:G\to G/H$ is a surjective homomorphism with kernel $H$.
     \begin{proof}
-        Recall that we want $xhyh'=xyh''h'$. Apply the cancellation lemma. Then
+        We want to show that $xhyh'=xyh''h'$. We can do so via multiplying the following by $x$ on the left and $h'$ on the right:
         \begin{align*}
-            hy &= yy^{-1}hy\\
+            hy &= (yy^{-1})hy\\
             &= y(y^{-1}hy)\\
             &= yh''
         \end{align*}
-        where we get from the second to the third line above because $H$ is a normal subgroup, i.e., conjugates of its elements are elements of it. This implies the desired result.
+        Note that we get from the second to the third line above because $H$ is a normal subgroup, i.e., conjugates of its elements are elements of it. This implies the desired result.
     \end{proof}
     \item Example: Let $G=\Z$, $H=10\Z$, and $G/H=\Z/10\Z$.
     \item Example: Let $G=G$ and $H=\{e\}$.
@@ -153,7 +153,7 @@
             gh = ghg^{-1}g = h'g \in Hg
         \end{equation*}
         where $h'$ may or may not equal $h$, but we know it is an element of $H$ by the definition of normal subgroups. The argument is symmetric in the other direction.\par
-        Now suppose $gH=Hg$. Let $h\in H$. Then there exist $g,h'$ such that $gh=h'g$. Therefore, $ghg^{-1}=h'\in H$.
+        Now suppose $gH=Hg$. Let $h\in H$. Then there exist $h,h'\in H$ such that $gh=h'g$. Therefore, $ghg^{-1}=h'\in H$.
     \end{proof}
     \item This is a nice resolution of left and right cosets.
     \begin{itemize}
@@ -167,6 +167,250 @@
         = xyH
     \end{equation*}
     \item Midterm next week.
+\end{itemize}
+
+
+
+\section{First Isomorphism Theorem}
+\begin{itemize}
+    \item \marginnote{10/19:}Last time:
+    \begin{itemize}
+        \item If $K\triangleleft G$, then the map $\phi:G\to G/K$ defined by $g\mapsto gK$ is a surjective homomorphism with kernel $K$.
+    \end{itemize}
+    \item Today: Understand a general surjective homomorphism $\phi:G\twoheadrightarrow H$ with kernel $K\triangleleft G$.
+    \begin{figure}[h!]
+        \centering
+        \begin{tikzpicture}
+            \footnotesize
+            \draw
+                (-2,0) ellipse (1cm and 1.6cm)
+                (2,0) ellipse (0.8cm and 1.1cm)
+            ;
+            \node at (-2,-2) {$G$};
+            \node at (2,-2) {$H$};
+    
+            \draw
+                (-2,0.8) circle (6mm) node[above]{$gK$}
+                (-2,-0.8) circle (6mm) node{$K$}
+            ;
+            \fill
+                (-2,0.5) circle (2pt) node[left=1pt]{$g$}
+                (2,0.2) circle (2pt) node[above=1pt]{$h=\phi(g)$}
+                (2,-0.2) circle (2pt) node[below=1pt]{$e$}
+            ;
+            \draw [dashed]
+                (-2,0.2) -- (2,0.2)
+                (-2,0.8) ++(70:0.6) -- (2,0.2)
+                (-2,-0.2) -- (2,-0.2)
+                (-2,-0.8) ++(-70:0.6) -- (2,-0.2)
+            ;
+        \end{tikzpicture}
+        \caption{Visualizing a surjective homomorphism.}
+        \label{fig:surjHom}
+    \end{figure}
+    \begin{itemize}
+        \item In general, we know that $K\mapsto\{e\}$.
+        \item Since $\phi$ is surjective, every $h\in H$ equals $\phi(g)$ for some $g\in G$.
+        \item More broadly, $gK\mapsto\{h\}$.
+        \item Can you get more elements than those in $gK$ that map to $h$? Perhaps elements of $Kg$ or $KgK$? Well since $K$ is normal, $kg=gk$.
+        \item Thus, all surjective homomorphisms have the same general structure.
+        \begin{itemize}
+            \item In particular, they all map disjoint cosets to single elements.
+            \item Alternatively, we can take the perspective that they send every element to their coset with the kernel.
+        \end{itemize}
+    \end{itemize}
+    \item Lemma: If $\phi:G\to H$ is a surjective homomorphism, $h\in H$, $\phi(g)=h$, and $K=\ker\phi$, then $\phi^{-1}(h)=gK$.
+    \begin{proof}
+        % , $\phi(g')=h=\phi(g)$ where $x\in G$, $g'=gx$, $\phi(g')=\phi(g)\phi(x)$, and $e=\phi(x)$, as desired.
+        
+        % Then $\phi(g')=\phi(g)\phi(x)$, but since $\phi
+
+
+        Suppose $g'\in\phi^{-1}(h)$. Suppose $g'=gx$ (we do know that such an $x$ exists in $G$; in particular, choose $x=g^{-1}g'$). Then
+        \begin{equation*}
+            \phi(g') = \phi(gx)
+            = \phi(g)\phi(x)
+        \end{equation*}
+        Since $\phi(g')=h=\phi(g)$, we have by the cancellation lemma that
+        \begin{equation*}
+            e = \phi(x)
+        \end{equation*}
+        i.e., $x\in K$. Therefore, $g'\in gK$, as desired.
+    \end{proof}
+    \item We can define a bijection $\tilde{\phi}:G/K\mapsto H$ defined by $gK\mapsto\phi(g)$.
+    \item Claim: $\tilde{\phi}$ is an isomorphism of groups.
+    \begin{proof}
+        Need to check that $\tilde{\phi}$ is a homomorphism, surjective, and injective. We also need to check that it is well-defined (we did this with our picture).\par
+        Surjective: Let $h\in H$ be arbitrary. Then $h=\phi(g)$. It follows that $h=\tilde{\phi}(gK)$.\par
+        Injective: Show that $\ker\tilde{\phi}=\{eK\}$. Let $gK\in\ker\tilde{\phi}$. Then $\phi(g)=\tilde{\phi}(gK)=e$. Thus, $g\in K$. Therefore, $gK=eK$, as desired.\par
+        Homomorphism: Check $\tilde{\phi}(xK)\tilde{\phi}(yK)=\tilde{\phi}(xyK)$. Since $\tilde{\phi}(zK)=\phi(z)$, we have the desired property. Explicitly,
+        \begin{equation*}
+            \tilde{\phi}(xyK) = \phi(xy)
+            = \phi(x)\phi(y)
+            = \tilde{\phi}(xK)\tilde{\phi}(yK)
+        \end{equation*}
+    \end{proof}
+    \item Takeaway: All surjective homomorphisms are somewhat the same.
+    \item Generalize:
+    \item Let $\phi:G\to H$ be a homomorphism.
+    \begin{itemize}
+        \item We know that $G\twoheadrightarrow\im\phi\hookrightarrow H$. Essentially, we can break up any homomorphism into the composition of a surjective homomorphism onto the image and an injective homomorphism into $H$.
+    \end{itemize}
+    \item Theorem (FIT: First Isomorphism Theorem): To every homomorphism $\phi$ there corresponds an isomorphism $\tilde{\phi}:G/\ker\phi\to\im\phi$ such that
+    \begin{equation*}
+        \tilde{\phi}(g\cdot\ker\phi) = \phi(g)
+    \end{equation*}
+    \begin{figure}[h!]
+        \centering
+        \begin{tikzpicture}[
+            node distance=3mm,
+            text height=1.5ex,text depth=0.25ex
+        ]
+            \small
+            \node (G) at (150:1) {$G$};
+            \node (Gk) at (-90:1) {$G/\ker\phi$};
+            \node (Gi) at (30:1) {$\im\phi$};
+            \node (H) at ([xshift=1.73cm]30:1) {$H$};
+            
+            \footnotesize
+            \draw [->>] (G) -- (Gk);
+            \draw [->] (Gk) -- node[above,sloped]{$\sim$} node[below right,yshift=3pt]{$\tilde{\phi}$} (Gi);
+            \draw [->>] (G) -- node[above]{$\phi$} (Gi);
+            \draw [right hook->] (Gi) -- (H);
+    
+            \node (g1) [above=of G] {$g$};
+            \node (g2) [left=of G] {$g$};
+            \node (gk) [node distance=7mm,below=of Gk] {$g\cdot\ker\phi$};
+            \node (gi1) [above=of Gi] {$\phi(g)$};
+            \node (gi2) [below right=of Gi,xshift=-6mm,yshift=2mm] {$\phi(g)$};
+    
+            \draw [|->] (g1) -- (gi1);
+            \draw [|->] (g2) -- (gk);
+            \draw [|->] (gk) -- (gi2);
+    
+            \path (-3,0) -- (3,0);
+        \end{tikzpicture}
+        \caption{First isomorphism theorem.}
+        \label{fig:isoTrm1}
+    \end{figure}
+    \begin{itemize}
+        \item The triangle is \textbf{commutative}. This means that sending $g$ along both paths gets you to the same result.
+        \item The way to understand normal subgroups is to understand the homomorphisms.
+    \end{itemize}
+    \item $N\subset G$ is normal if
+    \begin{enumerate}
+        \item $N$ is a subgroup.
+        \item $N$ is normal, i.e., $N$ is a union of conjugacy classes.
+        \item $e\in N$.
+        \item $|h|\big||G|$ (Lagrange).
+    \end{enumerate}
+    \item 3-4 both follow from 1. They are not sufficient conditions for normality, but they can put restrictions on what is normal and make the computation easier.
+    \item Examples.
+    \begin{itemize}
+        \item Let $\phi:\Z\to H$ send $1\mapsto h$ and $k\mapsto h^k$.
+        \begin{figure}[h!]
+            \centering
+            \begin{tikzpicture}[
+                node distance=3mm,
+                text height=1.5ex,text depth=0.25ex
+            ]
+                \small
+                \node (Z) at (135:1) {$\Z$};
+                \node (ZnZ) at (-135:1) {$\Z/n\Z$};
+                \node (h) at (-45:1) {$\gen{h}$};
+                \node (H) at (45:1) {$H$};
+                
+                \footnotesize
+                \draw [->>] (Z) -- (ZnZ);
+                \draw [->] (ZnZ) -- node[above]{$\sim$} (h);
+                \draw [right hook->] (h) -- (H);
+                \draw [->] (Z) -- (H);
+        
+                \node (kpnZ) [below=of ZnZ] {$k+n\Z$};
+                \node (hk) [below=of h] {$h^k$};
+        
+                \draw [|->] (kpnZ) -- (hk);
+            \end{tikzpicture}
+            \caption{An example of the FIT.}
+            \label{fig:FITexample}
+        \end{figure}
+        \begin{itemize}
+            \item $\im\phi=\gen{h}$.
+            \item $\ker\phi=n\Z$ where $|h|=n$; if $|h|=\infty$, then $\ker\phi=\{0\}$.
+            \item The FIT tells us that there is a map from $\Z$ to $\Z/n\Z$ to $\gen{h}$ to $H$. The first map sends $k\mapsto k+n\Z$ and the second sends $k+n\Z\mapsto h^k$.
+        \end{itemize}
+        \item Let $G=S_3$.
+        \begin{itemize}
+            \item The conjugacy classes are
+            \begin{align*}
+                \{e\}&&
+                \{(1,2),(1,3),(2,3)\}&&
+                \{(1,2,3),(1,3,2)\}
+            \end{align*}
+            \item Thus, the only possible normal subgroup $N$ is
+            \begin{equation*}
+                H = \{e\}\cup(xxx)
+                = \gen{(1,2,3)}
+            \end{equation*}
+            \begin{itemize}
+                \item $e\in N$ eliminates union 2,3; Lagrange eliminates union 1,2 (which has order 4).
+            \end{itemize}
+        \end{itemize}
+        \item Let $G=S_4$.
+        \begin{itemize}
+            \item The conjugacy classes are
+            \begin{align*}
+                e&&
+                (xx)&&
+                (xxx)&&
+                (xxxx)&&
+                (xx)(xx)
+            \end{align*}
+            \item The number of elements of the above form is
+            \begin{align*}
+                1&&
+                6&&
+                8&&
+                6&&
+                3
+            \end{align*}
+            \item The divisors of $|S_4|=24$ are 1,2,3,4,6,8,12,24.
+            \begin{itemize}
+                \item 1 is possible; no way to get 2,3; 4 is possible; 6,8 are impossible; 12,24 are possible.
+                \item The 4 example is
+                \begin{equation*}
+                    K = \gen{e,(1,2)(3,4),(1,3)(2,4),(1,4)(2,3)}
+                \end{equation*}
+            \end{itemize}
+        \end{itemize}
+    \end{itemize}
+    \item $S_3/\gen{(1,2,3)}\cong\Z/2\Z$.
+    \item $S_4/K$ is a group of order 6.
+    \item The first instance corresponds to some map from $S_3\to S_2$.
+    \begin{itemize}
+        \item You can get an isomorphism from $S_3$ to $D_6$.
+        \item The surjective map sends rotations to the identity and reflections to the nonidentity element.
+        \item By the FIT, $S_3/\gen{(1,2,3)}\cong S_2$.
+        \begin{itemize}
+            \item Yes, if you know enough about the quotient group, you can think about its properties. But it's easier to use the FIT.
+        \end{itemize}
+    \end{itemize}
+    \item We constructed a map $S_4\to\text{Cu}\to S_3$. If $N=\ker$, by the FIT, $S_4/N\cong S_3$.
+    \begin{itemize}
+        \item As per the above example, we need to take $N=K$ here.
+    \end{itemize}
+    \item Example: $G=\text{O}(2)$.
+    \begin{itemize}
+        \item The normal subgroups of $\text{O}(2)$ are $\{e\}$, $\{r,r^{-1}\}$, and $\{\text{reflections}\}$.
+        \item If $N\triangleleft\text{O}(2)$ contains a reflection, then $N=\text{O}(2)$.
+        \item Let $N\subset\text{SO}(2)$ be such that $|N|=k$, i.e., $N$ is generated by the rotation of $2\pi k/N$. What is $\text{O}(2)/N$? You can think of $\text{SO}(2)$ as a rotation in $\R$. Thus, $\R/2\pi\Z\cong\text{O}(2)$. Thus, $\text{SO}(2)/N\cong\text{SO}(2)$.
+    \end{itemize}
+    \item Next time: Replace $S_4$ with $S_5$.
+    \item The midterm is most likely Wednesday next week.
+    \begin{itemize}
+        \item The midterm will not be on Monday, but it could test stuff covered next Monday.
+    \end{itemize}
+    \item Read the blog post on dihedral groups and the other blog posts I've missed!
 \end{itemize}
 
 
