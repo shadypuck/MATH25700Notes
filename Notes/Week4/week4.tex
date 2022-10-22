@@ -9,7 +9,7 @@
 
 
 
-\chapter{???}
+\chapter{Normal Subgroups: Motivation and Properties}
 \section{Quotient Groups}
 \begin{itemize}
     \item \marginnote{10/17:}Notational confusion regarding $\Z/10\Z$.
@@ -411,6 +411,106 @@
         \item The midterm will not be on Monday, but it could test stuff covered next Monday.
     \end{itemize}
     \item Read the blog post on dihedral groups and the other blog posts I've missed!
+\end{itemize}
+
+
+
+\section{The Alternating Group}
+\begin{itemize}
+    \item \marginnote{10/21:}Today, we continue our investigation of normal subgroups.
+    \item Recall our conditions for normal subgroups that we can check first as constraints before doing the formal evaluation.
+    \item Normal subgroups of $S_5$.
+    \begin{table}[h!]
+        \centering
+        \begin{tabular}{l|c|c}
+            $(x)$ & 1 & $\subset H$\\
+            $(xx)$ & 10 & X\\
+            $(xxx)$ & 20 & \\
+            $(xxxx)$ & 30 & X\\
+            $(xxxxx)$ & 24 & $\subset H$\\
+            $(xx)(xx)$ & 15 & $\subset H$\\
+            $(xx)(xxx)$ & 20 & \\
+        \end{tabular}
+        \caption{Counting $S_5$ cycle decompositions.}
+        \label{tab:normalS5}
+    \end{table}
+    \begin{itemize}
+        \item $H=\{e\},S_5$ are normal subgroups.
+        \item $|H|=11$. Nope.
+        \item $|H|=16$. Nope.
+        \item Let's change strategy: Divisors of 120 that are greater than 16 are 120, 60, 40, 30, 24, and 20.
+        \item Can't hit 20, 24, 30.
+        \item Possibility 1: $H=\{e\}\cup\{(xx)(xx)\}\cup\{(xxxxx)\}$.
+        \item We know that the $\subset H$ subgroups must be included if we want to get a multiple of 10 greater than 40.
+        \item Possibility 2: $H=\{e\}\cup\{(xx)(xx)\}\cup\{(xxxxx)\}\cup\{(xxx)\}$.
+        \item Possibility 3: $H=\{e\}\cup\{(xx)(xx)\}\cup\{(xxxxx)\}\cup\{(xxx)(xx)\}$.
+        \item Which of these, if any, are subgroups of $S_5$?
+        \item We know that the X'ed out subgroups cannot be included because they generate $S_5$.
+        \item $n$-cycles imply 3-cycles since
+        \begin{equation*}
+            (n,n-1,\dots,4,2,3,1)\cdot(1,2,3,4,\dots,n) = (1,3,2)
+        \end{equation*}
+        \item Thus, we lose 1 and 3.
+        \item It follows that if $H\triangleleft S_5$ is proper and nontrivial, then $|H|=60$ and $H$ equals possibility 2, or there is no such $H$.
+        \item We now show that possibility 2 is a group and apply a construction more general than technically necessary but it will be useful later.
+        \item We've already seen possibility 2: It's the symmetries of the dodecahedron $D_0\subset S_5$ from the homework.
+        \item Thus, the only proper subgroup of $S_5$ is this one (which we will later equate to a group called $A_5$).
+    \end{itemize}
+    \item \textbf{Alternating} (group of order $n$): The set of all $g\in S_n$ that can be written as the product of an even number of transpositions. \emph{Denoted by} $\bm{A_n}$.
+    \item $A_n$ is a subgroup:
+    \begin{itemize}
+        \item $e=\tau\tau^{-1}$.
+        \item Product of an even number of 2-cycles: Add an even number of 2 cycles to an even number of 2-cycles; still have an even number.
+        \item Inverse is same length: $\sigma=\tau_1\cdots\tau_{2k}$; $\sigma^{-1}=\tau_{2k}^{-1}\cdots\tau_1^{-1}$.
+    \end{itemize}
+    \item Proposition: Either $A_n$ is normal of index 2, $|A_n|=n!/2$, or $A_n=S_n$.
+    \item Claim: Let $\sigma\in S_n/A_n$ be such that $\sigma=\tau_1\cdots\tau_{2k+1}$. Then $S_n=A_n\cup\sigma A_n$.
+    \begin{proof}
+        Let $g\in S_n$ be arbitrary. We divide into two cases. If $g$ is the product of an even number of transpositions, then $g\in A_n$. If $g$ is the product of an odd number of transpositions, then $g\sigma^{-1}$ is the product of an even number of transpositions, i.e., $g\sigma^{-1}\in A_n$. But this implies that $g\in\sigma A_n$, as desired.
+    \end{proof}
+    \item Define $C_n$ to be the set of all $g\in S_n$ that is a product of a multiple of three 2-cycles. This is just equal to $S_n$ because $(a,b)=(a,b)(a,b)(a,b)$, so it contains all 2-cycles, so it generates $S_n$.
+    \item So we want to prove that $A_n$ preserves a property (some invariant) that general elements of the symmetric group of not.
+    \item Let $n\geq 2$. There are $\binom{n}{2}$ pairs $\{i,j\}$ in $[n]$. We now take the product of all ordered pairs, or all ordered pairs where $i>j$. This is equal to 1 if $\sigma(i)>\sigma(j)$ and equal to $-1$ if $\sigma(i)<\sigma(j)$. All 2-cycles swap an odd number of things around. We can thus take
+    \begin{equation*}
+        \prod_{i>j}\frac{\sigma(i)-\sigma(j)}{i-j}
+    \end{equation*}
+    \begin{itemize}
+        \item This leads to an argument, but we wanna give a slick argument.
+    \end{itemize}
+    \item Here's a trick that's a bit subtle.
+    \item Work in $\R^n$; think about the standard basis of orthonormal vectors. Represent $S_n$ as a subset of $O(n)$ (the subset of all permutation matrices with one 1 in every row and column and zeroes everywhere else) and then compose it with the determinant map to get to $\pm 1$. This is a homomorphism. It sends all 2-cycles to $-1$. So the things that are all products of an even number of 2-cycles, we send to 1. Check \textcite{bib:DummitFoote} for more details.
+    \item Theorem: Assume $n\geq 2$.
+    \begin{enumerate}
+        \item $A_n$ is generated by 3-cycles.
+        \item $A_n$ is generated by $k$-cycles where $k$ is odd.
+        \item If $n\geq 5$, then the only proper normal subgroup of $S_n$ is $A_n$.
+    \end{enumerate}
+    \begin{proof}
+        $1\Rightarrow 2$: If $k\geq 3$ and odd, take
+        \begin{equation*}
+            (k,\dots,2,3,1)(1,2,\dots,k) = (1,3,2)
+        \end{equation*}
+        Note: $(1,\dots,k)=(1,2)(1,3)\cdots(1,k)$.\par
+        1: $A_n$ is generated by all products of two 2-cycles. Three cases:
+        \begin{align*}
+            (a,b)(c,d) &= (c,a,d)(a,b,c)\\
+            (a,b)(a,c) &= (a,c,b)\\
+            (a,b)(a,b) &= e
+        \end{align*}
+        3: If $H\triangleleft S_n$, then $(xxx)\in H$ implies $A_n\triangleleft H$. Case 1: $\sigma\in H$ with $\sigma=(xxx\cdots x)(xx)(xxx)$...
+        Case 2: $\sigma=(xx)(xx)\cdots(xx)$ ($\sigma$ is a product of disjoint two cycles; "the only thing left"). Subcase 0: $(ab)$ implies $H=S_n$. Subcase 1: $(ab)(cd)$. Multiply by $(a,b)(c,e)$ gives $(c,e,d)$. Subcase 2: $(a,b)(c,d)(e,f)\cdots$. Not changing anything else. Choose $(a,c)(b,e)(d,f)$. Then $(a,b)(c,d)(e,f)\cdot(a,c)(b,e)(d,f)=(a,d,e)(b,f,c)$. We've reduced to the previous case at this point. We can now get it to $(a,d,e)$. When you have two things, you need that extra space of an $e$. If $n=4$ it's false because there are other normal subgroups. Note that $S_3$ actually does work in this proof; it's just $n=4$ that causes the issue.
+    \end{proof}
+    \item Corollary: Let $n\geq 5$. Let $\phi:S_n\to\Gamma$ be a homomorphism. Then 3 possible things occur.
+    \begin{enumerate}
+        \item $\im\phi=\{e\}$.
+        \item $\im\phi\cong\Z/2\Z$.
+        \item $\im\phi\cong S_n$.
+    \end{enumerate}
+    \begin{proof}
+        By the FIT, $\im\phi\cong S_n/\ker\phi$. Since $\ker\phi\triangleleft S_n$, we have that $\ker\phi=S_n$, $\ker\phi=A_n$, or $\ker\phi=\{e\}$. These three cases correspond to possibilities 1-3, respectively.
+    \end{proof}
+    \item This does imply the surjective homomorphism thing.
+    \item Notes on the exam: The material in this class covered on Monday may be tested. Emphasis on it not being too long. He will not be able to avoid one "fun" small amount of credit problem. Look at the practice problems! Would not be as hard as the riffle shuffle problem. A boring problem is "do a computation" or "is it a subgroup? No: It violates Lagrange's theorem." A fun problem is more like some of the practice/HW problems.
 \end{itemize}
 
 
