@@ -301,9 +301,9 @@
             \end{equation*}
         \end{proof}
     \end{enumerate}
-    \item \textbf{Conjugacy class} (of $x$): A subset of $G$ containing all $g\in G$ which are conjugate to a certain $x\in G$. \emph{Given by}
+    \item \textbf{Conjugacy class} (of $x$): A subset of $G$ containing all $g\in G$ which are conjugate to a certain $x\in G$. \emph{Denoted by} $\bm{C(x)}$. \emph{Given by}
     \begin{equation*}
-        \{g\in G\mid g\sim x\}
+        C(x) = \{g\in G\mid g\sim x\}
     \end{equation*}
     \item Straightforward: Not necessarily obvious, but there's nothing really tricky going on.
     \begin{itemize}
@@ -317,6 +317,15 @@
         \end{itemize}
         \item Conjugacy tells us that a set of objects are, in some way, the same.
     \end{itemize}
+\end{itemize}
+
+
+
+\section{Blog Post: The Symmetric Group}
+\emph{From \textcite{bib:Calegari}.}
+\begin{itemize}
+    \item \marginnote{10/24:}Relevant section from \textcite{bib:DummitFoote}: 1.3.
+    \item Review from class plus more details on the riffle shuffle problem.
 \end{itemize}
 
 
@@ -361,9 +370,9 @@
         \begin{equation*}
             [gxg^{-1}](m) = g[x(g^{-1}(m))] = g(g^{-1}(m)) = m
         \end{equation*}
-        \item It follows that $gxg^{-1}$ has the same cycle \textbf{shape}.
+        \item It follows that $gxg^{-1}$ has the same \textbf{cycle shape}.
     \end{itemize}
-    \item \textbf{Shape} (of $g\in S_n$): The partition of $n$ given by the lengths of the cycles in the cycle decomposition of $g$ in decreasing order. \emph{Also known as} \textbf{cycle shape}.
+    \item \textbf{Shape} (of $g\in S_n$): The partition of $n$ given by the lengths of the cycles in the cycle decomposition of $g$ in decreasing order. \emph{Also known as} \textbf{cycle shape}, \textbf{partition}.
     \begin{table}[H]
         \centering
         \small
@@ -503,6 +512,38 @@
     \end{equation*}
     \begin{itemize}
         \item Indeed, we can see that using the RHS above, $k\mapsto 1\mapsto 2\mapsto k+1$ and $k+1\mapsto 2\mapsto 1\mapsto k$. Every other element receives the identity treatment, as we can confirm.
+    \end{itemize}
+\end{itemize}
+
+
+
+\section{Blog Post: Conjugacy}
+\emph{From \textcite{bib:Calegari}.}
+\begin{itemize}
+    \item \marginnote{10/22:}$x,y$ are conjugate implies $|x|=|y|$, but $|x|=|y|$ does not imply $x,y$ are conjugate.
+    \begin{itemize}
+        \item Example: $(1,2)$ and $(1,2)(3,4)$ in $S_4$ are not conjugate (their cycle shapes differ) but they are both of order 2.
+    \end{itemize}
+    \item $\bm{p(n)}$: The number of possible partitions of $\sigma\in S_n$.
+    \item Growth rate of $|n|$ and $p(n)$.
+    \begin{itemize}
+        \item We have
+        \begin{equation*}
+            p(n) \sim \frac{1}{4n\sqrt{3}}\exp(\pi\sqrt\frac{2n}{3})
+        \end{equation*}
+        \begin{itemize}
+            \item $\sim$ means that the ratio of the two numbers converges to 1 as $n\to\infty$.
+        \end{itemize}
+        \item We also have that
+        \begin{equation*}
+            |n| = n! \sim n^n\e[-n]\sqrt{2\pi n}
+        \end{equation*}
+        \item Since
+        \begin{align*}
+            \log n! &\sim n\log n&
+            \log p(n) & \sim Cn^{1/2}
+        \end{align*}
+        for some explicit $C$, we know that $|n|$ grows much faster than $p(n)$.
     \end{itemize}
 \end{itemize}
 

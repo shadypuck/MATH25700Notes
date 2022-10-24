@@ -72,10 +72,26 @@
         \end{itemize}
     \end{itemize}
     \item When you want to answer questions like, "Is $\Z/180180\Z$ a subgroup of $S_n$ for some $n$," you need some more information on the structure of $S_n$.
-    \item Group \textbf{presentations} allow us to write and describe a group really easily.
-    \begin{itemize}
-        \item Seems useful at first, but isn't really that useful once you see it more.
-    \end{itemize}
+    \item Group \textbf{presentations} allow us to describe a group really easily. Seems useful at first but isn't really.
+\end{itemize}
+
+
+
+\section{Blog Post: Subgroups}
+\emph{From \textcite{bib:Calegari}.}
+\begin{itemize}
+    \item \marginnote{10/24:}Relevant section from \textcite{bib:DummitFoote}: 2.1.
+    \item \textbf{Subgroup}: A subset $H$ of a group $G$ for which the binary operation $\cdot$ on $G$ restricts to a binary operation (which we can also call $\cdot$) on $H$ and $(H,\cdot)$ is a group.
+    \item Lemma: $H\subset G$ iff the following three conditions are satisfied.
+    \begin{enumerate}
+        \item $H$ is nonempty.
+        \item $H$ is closed under multiplication, that is, if $x,y\in H$, then $x\cdot y\in H$.
+        \item $H$ has inverses, that is, if $x\in H$, then $x^{-1}\in H$.
+    \end{enumerate}
+    \begin{proof}
+        Calegari gives a totally rigorous proof of this.
+    \end{proof}
+    \item Rigorous definitions of the notation $x^n$ as well as proving that the usual properties of exponents hold.
 \end{itemize}
 
 
@@ -256,6 +272,20 @@
 
 
 
+\section{Blog Post: Homomorphisms and Isomorphisms}
+\emph{From \textcite{bib:Calegari}.}
+\begin{itemize}
+    \item \marginnote{10/24:}Relevant section from \textcite{bib:DummitFoote}: 1.7.
+    \item Additional homomorphism examples:
+    \begin{itemize}
+        \item Let $\text{Cu}$ be the cube group. Then the action of this group on vertices, faces, edges, diagonals, and pairs of opposite faces gives homomorphisms $\psi:\text{Cu}\to S_n$ for $n=8,6,12,4,3$, respectively.
+        \item Let $G=\Z/6\Z$ and $H=\Z/3\Z\times\Z/2\Z$. Then $\psi:G\to H$ sending $n\mod 6\mapsto(n\mod 2,n\mod 3)$ is a homomorphism.
+    \end{itemize}
+    \item Lemma: If $\psi:G\to H$ is an injection, then $\tilde{\psi}:G\to\im(\psi)$ is an isomorphism.
+\end{itemize}
+
+
+
 \section{Cosets}
 \begin{itemize}
     \item \marginnote{10/14:}Asking, "what's the intuition for this question?" in OH.
@@ -281,7 +311,7 @@
     \begin{itemize}
         \item You can define cosets for $H$ a subset (not a subgroup) of $G$, but we will not be interested in these cases.
     \end{itemize}
-    \item Claim: $gH\subset G$ means that $gh=gh'$ implies $h=h'$??
+    \item Claim: Let $x,y\in G$ be arbitrary. Then either $xH\cap yH=\emptyset$ or $xH=yH$.
     \item Example: $G=S_3$, $H=\gen{e,(1,2)}$.
     \begin{table}[h!]
         \centering
@@ -356,6 +386,263 @@
             H(1,3) &= \{(1,3),(1,3,2)\}
         \end{align*}
     \end{itemize}
+\end{itemize}
+
+
+
+\section{Blog Post: Dihedral Groups}
+\emph{From \textcite{bib:Calegari}.}
+\begin{itemize}
+    \item \marginnote{10/24:}Moving on from the cube group as a subset of $\text{SO}(3)$, we can talk about 2-dimensions.
+    \item In 2-dimensions, we choose to admit both rotations and reflections of a given geometric object.
+    \begin{itemize}
+        \item This is because reflections in 2D are equal to rotations in 3D. Mathematically, there is a homomorphism $\psi:\text{O}(2)\to\text{SO}(3)$ given by
+        \begin{equation*}
+            A \mapsto
+            \begin{pNiceArray}{cc|c}
+                \Block{2-2}{A} &  & 0\\
+                 &  & 0\\
+                \hline
+                0 & 0 & \det(A)\\
+            \end{pNiceArray}
+        \end{equation*}
+    \end{itemize}
+    \item \textbf{Dihedral group}: The subgroup of $\text{O}(2)$ consisting of elements which preserve the regular $n$-gon ($n\geq 3$) centered at the origin. \emph{Denoted by} $D_{2n}$.
+    \item We can study $D_{2n}\subset S_n$ by labeling the vertices of the $n$-gon from 1 through $n$.
+    \begin{itemize}
+        \item Similarly to in the cube group, any two nonopposite vertices are linearly independent, and the transformation is uniquely determined by any two such vertices.
+        \item In particular, we can move vertex 1 anywhere we want (say $m$), but then since vertex 2 must remain a neighbor, it can either move to $m\pm 1$ (addition modulo $n$).
+        \item Thus, we get an injective homomorphism from $D_{2n}\to S_n$.
+    \end{itemize}
+    \item We can write down the elements of $D_{2n}$ explicitly in terms of $S_n$. For example\dots
+    \begin{itemize}
+        \item A rotation $r$ of $2\pi/n$ is sent to $(1,2,\dots,n)$.
+        \item A reflection $s$ through the edge connecting 1 and $n$ is sent to $(1,n)(2,n-1)(3,n-2)\cdots$.
+        \begin{itemize}
+            \item Note that depending on whether $n$ is odd or even (i.e., depending on the \textbf{parity} of $n$), $s$ may or may not (respectively) fix one vertex.
+        \end{itemize}
+    \end{itemize}
+    \item We can easily write out all of the elements of $D_{2n}$ and the multiplication table; this is rather rare.
+    \item Lemma: The elements of $D_{2n}$ are as follows.
+    \begin{enumerate}
+        \item The powers of $r$, given by $e,r,r^2,\dots,r^{n-1}$.
+        \item The elements $s,sr,sr^2,\dots,sr^{n-1}$.
+    \end{enumerate}
+    The multiplication table is given by
+    \begin{align*}
+        r^i\cdot r^j &= r^{i+j}\\
+        sr^i\cdot r^j &= sr^{i+j}\\
+        r^i\cdot sr^j &= sr^{-i+j}\\
+        sr^i\cdot sr^j &= r^{-i+j}
+    \end{align*}
+    \item All rotations are distinct.
+    \item All elements $sr^i$ are distinct: If $sr^i=r^j$, then $s=r^{j-i}$, but $r$ is a reflection not a rotation.
+    \item To check the multiplication table, we use the identity
+    \begin{equation*}
+        rs = sr^{-1}
+    \end{equation*}
+    \begin{itemize}
+        \item This identity has the alternate form
+        \begin{equation*}
+            srs = s^{-1}rs = r^{-1}
+        \end{equation*}
+        since $s$ has order 2.
+    \end{itemize}
+    \item Claim: The above identity is true for any rotation and reflection.
+    \begin{figure}[H]
+        \centering
+        \footnotesize
+        \begin{subfigure}[b]{0.3\linewidth}
+            \centering
+            \begin{tikzpicture}
+                \coordinate (O) at (0,0);
+                \draw
+                    (-1.5,0) -- (1.5,0) coordinate (x)
+                    (0,-1.5) -- (0,1.5)
+                ;
+    
+                \draw [semithick] (55:2cm) coordinate (s) -- (55:-2cm);
+                \draw [->,shorten <=2pt] (55:1.5cm) -- ++(-35:3mm) node[above right]{$s$};
+                \draw [->,shorten <=2pt] (55:1.5cm) -- ++(-35:-3mm);
+                \draw [->,shorten <=2pt] (55:-1.5cm) -- ++(-35:3mm);
+                \draw [->,shorten <=2pt] (55:-1.5cm) -- ++(-35:-3mm);
+                \pic [draw,angle radius=4mm,angle eccentricity=1.4,pic text={$\alpha$}] {angle=x--O--s};
+    
+                \draw [rex,thick] circle (1cm);
+            \end{tikzpicture}
+            \caption{Reflection.}
+            \label{fig:rotRefCommutea}
+        \end{subfigure}
+        \begin{subfigure}[b]{0.3\linewidth}
+            \centering
+            \begin{tikzpicture}
+                \coordinate (O) at (0,0);
+                \draw
+                    (-1.5,0) -- (1.5,0) coordinate (x)
+                    (0,-1.5) -- (0,1.5)
+                ;
+    
+                \path [semithick] (55:2cm) -- (55:-2cm);
+                \draw [semithick] (25:2cm) coordinate (r) -- (25:-2cm);
+                \pic [draw,angle radius=4mm,angle eccentricity=1.4,pic text={$\theta$}] {angle=x--O--r};
+                \pic [draw,->,shorten <=2pt,shorten >=2pt,angle radius=1.7cm,angle eccentricity=1.1,pic text={$r$}] {angle=x--O--r};
+    
+                \draw [rex,thick] circle (1cm);
+            \end{tikzpicture}
+            \caption{Rotation.}
+            \label{fig:rotRefCommuteb}
+        \end{subfigure}
+        \caption{Commuting rotations and reflections.}
+        \label{fig:rotRefCommute}
+    \end{figure}
+    \begin{proof}
+        Let's consider the plane to be the complex plane, and represent points on the unit circle using the complex numbers $z=\e[i\gamma]$. In this case, we have that
+        \begin{align*}
+            s:\e[i\gamma] &\mapsto \e[i(2\alpha-\gamma)]&
+            r:\e[i\gamma] &\mapsto \e[i(\gamma+\theta)]&
+            r^{-1}:\e[i\gamma] &\mapsto \e[i(\gamma-\theta)]
+        \end{align*}
+        It follows that for any $\e[i\gamma]$ on the unit circle,
+        \begin{equation*}
+            [srs](\e[i\gamma]) = [sr](\e[i(2\alpha-\gamma)])
+            = s(\e[i(2\alpha-\gamma+\theta)])
+            = \e[i(2\alpha-(2\alpha-\gamma+\theta))]
+            = \e[i(\gamma-\theta)]
+            = r^{-1}(\e[i\gamma])
+        \end{equation*}
+        meaning that
+        \begin{equation*}
+            srs = r^{-1}
+        \end{equation*}
+        as desired.
+    \end{proof}
+    \item The identity $r^i\cdot sr^j=sr^{-i+j}$ follows inductively.
+    \item Lemma: The conjugacy classes of $D_{2n}$ are as follows.
+    \begin{enumerate}
+        \item The identity.
+        \item If $n=2m$, the element $r^m$.
+        \item For all other $0<m<n$, the pair $\{r^m,r^{-m}\}$.
+        \item If $n$ is odd, then all reflections are conjugate.
+        \item If $n=2m$, then the reflections divide into two conjugacy classes of size $m$, consisting of elements of the form $sr^{2i}$ and $sr^{2i+1}$, respectively.
+    \end{enumerate}
+    \begin{proof}
+        Consider the rotation $r^i$ and, more specifically, $gr^ig^{-1}$ for $g\in D_{2n}$. We divide into two cases. If $g$ is a rotation, then it commutes with $r^i$. Thus,
+        \begin{equation*}
+            gr^ig^{-1} = r^igg^{-1} = r^i
+        \end{equation*}
+        If $g$ is a reflection, then since the inverse of a reflection is itself and $r^{j+i}s=sr^{-i-j}$, we have that
+        \begin{equation*}
+            gr^ig^{-1} = sr^jr^i(sr^j)^{-1}
+            = sr^{j+i}sr^j
+            = ssr^{-i-j}r^j
+            = r^{-i}
+        \end{equation*}
+        Therefore, the only elements in the conjugacy class of $r^i$ are $r^i$ and $r^{-i}$. This validates claims 1-3, above.\par
+        Now consider the reflection $sr^i$ and, more specifically, $gsr^ig^{-1}$ for $g\in D_{2n}$. Once again, we divide into two cases. If $g$ is a rotation, then
+        \begin{equation*}
+            gsr^ig^{-1} = r^jsr^ir^{-j}
+            = sr^{-j}r^ir^{-j}
+            = sr^{i-2j}
+        \end{equation*}
+        If $g$ is a reflection, then since $sr^is=r^{-i}$ as proven above, we have that
+        \begin{equation*}
+            gsr^ig^{-1} = sr^jsr^isr^j
+            = sr^j(sr^is)r^j
+            = sr^jr^{-i}r^j
+            = sr^{2j-i}
+        \end{equation*}
+        Therefore, either way, $sr^i$ is only conjugate to reflections with the same parity of a power of a rotation. If $n$ is odd, then we will be able to get to all reflections using different values of $j$, but if $n$ is even, then we will only be able to get to half at a time. This validates claims 4-5, above.
+    \end{proof}
+    \item Geometric intuition for the relation between the reflection conjugacy classes and $n$.
+    \begin{figure}[h!]
+        \centering
+        \footnotesize
+        \begin{subfigure}[b]{0.3\linewidth}
+            \centering
+            \begin{tikzpicture}
+                \draw [semithick]
+                    (90:-2cm) -- (90:2cm) node[above]{$\ell_1$}
+                    (60:-2cm) -- (60:2cm) node[above]{$\ell_2$}
+                ;
+    
+                \foreach [remember=\r as \lastr (initially -30)] \r in {30,90,...,389} {
+                    \draw [rey] (\lastr:1) -- (\r:1);
+                }
+                \foreach \r in {30,90,...,389} {
+                    \fill [rex] (\r:1) circle (2pt);
+                }
+            \end{tikzpicture}
+            \caption{$n$ even.}
+            \label{fig:refConja}
+        \end{subfigure}
+        \begin{subfigure}[b]{0.3\linewidth}
+            \centering
+            \begin{tikzpicture}
+                \draw [semithick]
+                    (90:-2cm) -- (90:2cm) node[above]{$\ell$}
+                ;
+    
+                \foreach [remember=\r as \lastr (initially -54)] \r in {18,90,...,378} {
+                    \draw [rey] (\lastr:1) -- (\r:1);
+                }
+                \foreach \r in {18,90,...,378} {
+                    \fill [rex] (\r:1) circle (2pt);
+                }
+            \end{tikzpicture}
+            \caption{$n$ odd.}
+            \label{fig:refConjb}
+        \end{subfigure}
+        \caption{Reflection conjugacy classes for $n$ even or odd.}
+        \label{fig:refConj}
+    \end{figure}
+    \begin{itemize}
+        \item If $n$ is even, there are two "flavors" of reflection: Those in which the line of reflection passes through two opposite vertices (e.g., $\ell_1$ in Figure \ref{fig:refConja}), and those in which the line of reflection passes through the midpoints of two opposite edges (e.g., $\ell_2$ in Figure \ref{fig:refConja}).
+        \item If $n$ is odd, all lines of reflection pass through one vertex and through the middle of the opposite edge (e.g., $\ell$ in Figure \ref{fig:refConjb}).
+    \end{itemize}
+\end{itemize}
+
+
+
+\section{Blog Post: Cosets and Lagrange's Theorem}
+\emph{From \textcite{bib:Calegari}.}
+\begin{itemize}
+    \item \marginnote{10/24:}\textbf{Left coset}: The following subset of $G$, where $g\in G$ and $H$ is a subgroup of $G$. \emph{Denoted by} $\bm{gH}$, $\bm{[g]}$. \emph{Given by}
+    \begin{equation*}
+        [g] = gH
+        = \{gh\mid h\in H\}
+    \end{equation*}
+    \item Additional coset examples:
+    \begin{itemize}
+        \item If $H=G$, then $[g]=gH=G$ for any $g\in G$.
+        \item If $H=\{e\}$, then $[g]=gH=\{e\}$ for any $g\in G$.
+        \item If $G=\Z$ and $H=10\Z$, then
+        \begin{equation*}
+            [7] = \{\dots,-13,-3,7,17,27,37,47,\dots\}
+            = [17]
+            = [-3]
+        \end{equation*}
+        for instance.
+    \end{itemize}
+    \item Calegari does want us to attempt to prove the claims in the blog by ourselves.
+    \item Calegari offers two proofs of the fact claim that either $xH\cap yH=\emptyset$ or $xH=yH$.
+    \item Lemma: If $g\in G$ is arbitrary, then there is a bijection between $H$ and $gH$.
+    \begin{proof}
+        The bijection is given by $h\mapsto gh$; the fact that this is a bijection follows from the cancellation lemma. Explicitly,
+        \begin{equation*}
+            gh = gh'
+            \quad\Longleftrightarrow\quad
+            h = h'
+        \end{equation*}
+        and $gh$ in the codomain is mapped to by $h$ in the domain.
+    \end{proof}
+    \item Theorem: There is an equality
+    \begin{equation*}
+        |G| = |G/H|\cdot|H|
+    \end{equation*}
+    for all subgroups $H$ of $G$, where when $|G|=\infty$ the above statement is interpreted to mean that at least one of the quantities on the RHS is also infinite.
+    \begin{proof}
+        We count the elements of $G$ in two ways. The first is to say that there are $|G|$ elements in $G$. The second is to say that $G=\bigcup_{g\in G}gH$. But by the previous lemma, $|gH|=|H|$ so the size of $G$ is the product of the size of each coset $|H|$ and the number of cosets $|G/H|$. Therefore, via transitivity, we have the desired result.
+    \end{proof}
 \end{itemize}
 
 

@@ -120,6 +120,51 @@
 
 
 
+\section{Blog Post: What is Group Theory About?}
+\emph{From \textcite{bib:Calegari}.}
+\begin{itemize}
+    \item \marginnote{10/24:}Many great ideas on how mathematics should be taught.
+    \begin{itemize}
+        \item Example: "A natural mathematical question is: How do we quantify this symmetry? This is unlike mathematical questions you might be used to, like "what is $2^{10}$" or "what is $\int_{-1}^1\sqrt{1-x^2}$," but it is actually reflective of what real mathematicians do."
+    \end{itemize}
+    \item A terrific intuitive motivation for group theory.
+    \item Using symmetry to put constraints on physical laws.
+    \begin{itemize}
+        \item Suppose we want to understand the gravitational attraction between two particles $\mathbf{x},\mathbf{y}$ in $\R^3$.
+        \item The gravitation pull $F$ has a certain magnitude which depends on the positions of the two particles, i.e.,
+        \begin{equation*}
+            F(\mathbf{x},\mathbf{y}) = F(x_1,x_2,x_3,y_1,y_2,y_3)
+        \end{equation*}
+        \item However, "our conception of this force is that it shouldn't depend on how we are labeling the coordinates," i.e., the force should be invariant under translation. Thus,
+        \begin{equation*}
+            F(\mathbf{x},\mathbf{y}) = F(\mathbf{x}-\mathbf{y},\bm{0})
+            = F(x_1-y_1,x_2-y_2,x_3-y_3,0,0,0)
+        \end{equation*}
+        \item Going further, the force should not depend on the direction, but only the distance between the two particles. Thus,
+        \begin{equation*}
+            F(\mathbf{x},\mathbf{y}) = H(|\mathbf{x}-\mathbf{y}|)
+        \end{equation*}
+        \item Thus, we see that through only consideration of symmetry, we have put strong constraints on how the force of gravity may behave.
+    \end{itemize}
+    \item Review of the riffle shuffle stuff from class.
+\end{itemize}
+
+
+
+\section{Blog Post: The Axioms of a Group}
+\emph{From \textcite{bib:Calegari}.}
+\begin{itemize}
+    \item Relevant section from \textcite{bib:DummitFoote}: 1.1.
+    \item Review of the content covered in class, plus the cancellation lemma (from the 10/3 lecture).
+    \item Note that the cancellation lemma for groups is stronger than the one for the real numbers.
+    \begin{itemize}
+        \item In $\R$, we have $xy=xz$ implies $y=z$ or $x=0$, but the latter case doesn't happen in groups.
+        \item One consequence of this observation is that $\R$ under numerical multiplication does not form a group.
+    \end{itemize}
+\end{itemize}
+
+
+
 \section{The Cube Group}
 \begin{itemize}
     \item \marginnote{9/30:}Can't download \verb|.tex| file for homework?
@@ -192,6 +237,36 @@
         \item If $Cv_1=v_1$, it implies that $Cv_i=v_i$ for $i=2,3,4$.
         \item Thus, $A$ and $B$ are distinct?
     \end{itemize}
+\end{itemize}
+
+
+
+\section{Blog Post: Symmetries of the Cube}
+\emph{From \textcite{bib:Calegari}.}
+\begin{itemize}
+    \item \marginnote{10/24:}Motivating the definition of symmetries of the cube.
+    \item From our intuition, symmetries can be of the form\dots
+    \begin{enumerate}
+        \item Rotations in lines passing through the origin.
+        \item Linear maps which preserve distances, angles, and orientation.
+    \end{enumerate}
+    \item Claim: These two sets are the same.
+    \begin{proof}
+        From HW1, the first set is $\text{SO}(3)$. Thus, we need only prove that the second set is exactly $\text{SO}(3)$. To begin, we will concentrate only on distances and angles.\par
+        Let $\inp{x}{y}$ denote the Euclidean inner product of $x,y\in\R^3$. Since $\inp{x}{y}=|x||y|\cos(\theta)$, the set of all linear maps that preserve distances and angles is equal to the set of all linear maps $M$ satisfying
+        \begin{equation*}
+            \inp{Mx}{My} = \inp{x}{y}
+        \end{equation*}
+        Since $\inp{x}{y}=x^Ty$, this means we want
+        \begin{align*}
+            (Mx)^T(My) &= x^Ty\\
+            x^TM^TMy &= x^Ty\\
+            M^TM &= I
+        \end{align*}
+        It follows that we want all $M\in\text{O}(3)$.\par
+        Without going into detail, the orientation issue further restricts us to $\text{SO}(3)$.
+    \end{proof}
+    \item Calegari subtly gives away the $f(n)+f(53-n)=53$ from the homework in this post!
 \end{itemize}
 
 

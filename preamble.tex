@@ -9,7 +9,7 @@
 \usepackage{siunitx}
 \usepackage{tabu}
 \usepackage{tikz,graphicx}
-\usepackage{float}
+\usepackage{float,subcaption}
 \usepackage{amsmath,amssymb,amsthm}
 \usepackage{bm,physics,nicematrix,empheq}
 \usepackage[hidelinks]{hyperref}
@@ -41,7 +41,9 @@
 \deffootnotemark{\textsuperscript{\textup{[}\thefootnotemark\textup{]}}}
 \deffootnote[1.8em]{0em}{0em}{\textsuperscript{\thefootnote}}
 
-\usetikzlibrary{matrix,positioning,arrows}
+\usetikzlibrary{matrix,positioning,arrows,angles}
+\colorlet{rex}{red!80!black!90!orange!80}
+\colorlet{rey}{red!80!black!90!orange!40}
 
 \DeclareMathOperator{\spn}{span}
 \DeclareMathOperator{\lcm}{lcm}
@@ -50,6 +52,8 @@
 \DeclareMathOperator{\Inn}{Inn}
 \DeclareMathOperator{\Out}{Out}
 \setcounter{MaxMatrixCols}{20}
+
+\NiceMatrixOptions{cell-space-limits=1pt}
 
 \newcommand{\N}{\mathbb{N}}
 \newcommand{\Z}{\mathbb{Z}}
@@ -60,5 +64,6 @@
 
 \newcommand{\inp}[2]{\left\langle{#1},{#2}\right\rangle}
 \newcommand{\gen}[1]{\left\langle{#1}\right\rangle}
+\newcommand{\e}[1][]{\text{e}^{#1}}
 
 \usepackage{subfiles}
