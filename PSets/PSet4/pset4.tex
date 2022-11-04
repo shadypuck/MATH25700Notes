@@ -12,46 +12,433 @@
 \section{Types of Subgroups}
 \begin{enumerate}
     \item \marginnote{10/24:}Let $H$ and $K$ be normal subgroups of $G$ such that $H\cap K$ is trivial. Prove that $xy=yx$ for all $x\in H$ and $y\in K$. (Exercise 3.1.42 of \textcite{bib:DummitFoote}.)
+    \begin{proof}
+        % We know that $gxg^{-1}=h\in H$ for all $g\in G$ (including those in $K$) and $gyg^{-1}=k\in K$ for all $g\in G$ (including those in $H$). Thus, $yxy^{-1}=h\in H$ and $xyx^{-1}=k\in K$.
+
+        % $G/H$ and $G/K$ are groups under the appropriate multiplication.
+
+        % $gH=Hg$, i.e., $xK=Kx$ and $yH=Hy$. $xy=kx$ and $yx=hy$. $x=kxy^{-1}$, $ykxy^{-1}=hy$.
+
+        % Suppose $k\neq y$. Then $kxy^{-1}\in H$ or $k^{-1}xy\in H$. Then $(k^{-1}xy)^{-1}=y^{-1}x^{-1}k\in H$ and $x^{-1}kx\in K$. Should imply that $k\in H$.
+
+        % \begin{align*}
+        %     xyyx &= xyk^{-1}x^{-1}
+        %     e &= xh^{-1}
+        % \end{align*}
+
+        % $xy=kx$ and $yx=xk'$
+
+        % Conjugating any element of $H$ by any element of $K$ gives the same element back. All elements of $H$ are only similar to themselves under the basis transformation $K$.
+
+        % Let $\phi:G\to H$ be defined such that $\ker\phi=K$.
+
+        % $xy=kx$. $k=xyx^{-1}$. $yx=xk'$ $x^{-1}yx=k'$.
+
+        % $xy=kx$ implies $y,k$ are in the same conjugacy class.
+        % $kx\notin K$. $xy\notin K$ and $xy\notin H$ (ignoring the trivial case). $xy\in xK$ and $xy\in Hy=yH$. $xyx^{-1}=k\in K$. $x=kxy^{-1}\in H$. $kx\in kH$. $k^{-1}\in K$. So $k^{-1}kxy^{-1}=xy^{-1}\in k^{-1}H$ $kxk^{-1}=h\in H$ and $yxy^{-1}=h'\in H$.
+
+        % $xy=kx$, $xk'=yx$.
+
+        % WTS: $xy=yx$. $x\in H$, $y\in K$. $H\cap K=\{e\}$.
+
+        % Let $x\in H$ and $y\in K$ be arbitrary. We know from the proposition in class that $xK=Kx$. But this only implies that $xy=kx$ for some $k\in K$. We now seek to prove that $k=y$.\par
+
+        % Equivalent to showing that $x^{-1}y^{-1}xy=e$ by showing that it's an element of $H\cap K$. $y^{-1}xy\in H$, $x^{-1}\in H$, so...
+
+
+        Let $x\in H$ and $y\in K$ be arbitrary.\par
+        Since $H$ is normal, $gxg^{-1}\in H$ for all $g\in G$. Choosing $g=y^{-1}$ reveals that $y^{-1}xy\in H$. Additionally, we know since $H$ is a subgroup that $x^{-1}\in H$. It similarly follows that $x^{-1}y^{-1}xy\in H$.\par
+        Similarly, $x^{-1}y^{-1}x\in K$ and $y\in K$ imply that $x^{-1}y^{-1}xy\in K$.\par
+        Having proven that $x^{-1}y^{-1}xy\in H$ and $x^{-1}y^{-1}xy\in K$, we know that $x^{-1}y^{-1}xy\in H\cap K=\{e\}$. Therefore,
+        \begin{align*}
+            x^{-1}y^{-1}xy &= e\\
+            xy &= yx
+        \end{align*}
+        as desired.
+    \end{proof}
     \item Show that $S_4$ does not have a normal subgroup of order 3 or order 8.
+    \begin{proof}
+        Suppose for the sake of contradiction that $N$ be a normal subgroup of order 3 or 8. We know that $N$ is a subgroup; thus, $e\in N$. We also know that $N$ is a union of conjugacy classes. Thus, if we include any other cycle of a given shape in $N$, we know that all cycles of that shape are elements of $N$. Since there are 5 cycles of shape $(xx)$, 8 cycles of shape $(xxx)$, 6 cycles of shape $(xxxx)$, and 3 cycles of shape $(xx)(xx)$, and 1 plus the sum of any combination of these numbers does not equal 3 or 8, we have arrived at a contradiction.
+    \end{proof}
     \item If $H$ is a subgroup of $G$, define the \textbf{normalizer} of $H$ to be
     \begin{equation*}
         N_G(H) = \{g\in G\mid gHg^{-1}=H\}
     \end{equation*}
     \begin{enumerate}
         \item Prove that $N_G(H)=G$ if and only if $H$ is normal.
+        \begin{proof}
+            Suppose first that $N_G(H)=G$. Then $gHg^{-1}=H$ for all $g\in G$. It follows that $ghg^{-1}\in H$ for all $h\in H$ and $g\in G$. Therefore, by the definition of normality, $H$ is normal, as desired.\par
+            Now suppose that $H$ is normal. Then $ghg^{-1}\in H$ for all $g\in G$ and $h\in H$. Additionally, if $h'\in H$, then $h=g^{-1}h'g\in H$ by hypothesis, so $h'=ghg^{-1}\in gHg^{-1}$. It follows by the definition of set equality that $gHg^{-1}=H$ for all $g\in G$. But by the definition of $N_G(H)$, this means that $N_G(H)=G$, as desired.
+        \end{proof}
         \item Prove that $N_G(H)$ contains $H$.
+        \begin{proof}
+            % Let $h'\in H$ be arbitrary. Then since $H$ is a subgroup and $h,h'\in H$, we have that $hh'h^{-1}\in H$. Additionally, if $hh'h^{-1}=hh''h^{-1}$, we have by consecutive applications of the cancellation lemma that $h'=h''$. Thus, all $hh'h^{-1}\in H$ are distinct. Consequently, $hHh^{-1}$ and $H$ are in bijective correspondence. But this combined with the fact that $hHh^{-1}\subset H$ implies that $hHh^{-1}=H$, as desired.
+
+
+            Let $h\in H$ be arbitrary. To prove that $h\in N_G(H)$, it will suffice to show that $hHh^{-1}=H$. We will do this with a bidirectional inclusion argument. Suppose first that $hh'h^{-1}\in hHh^{-1}$. Then since $h,h'\in H$ by hypothesis and $H$ is a subgroup (i.e., is closed under multiplication), we have that $hh'h^{-1}\in H$, as desired. Now let $h''\in H$. Then choosing $h'=h^{-1}h''h\in H$, we have that $h''=hh'h^{-1}\in hHh^{-1}$, as desired.
+        \end{proof}
         \item Prove that $H$ is a \textbf{normal} subgroup of $N_G(H)$.
+        \begin{proof}
+            $H$ is a clearly a subgroup of $N_G(H)$: $H$ is a subset of $N_G(H)$ by part (b) and $H$ is nonempty, closed under multiplication, closed under inverses, and associative as a subgroup of $G$. All that remains now is to prove that $H$ is normal.\par
+            To prove that $H\triangleleft N_G(H)$, it will suffice to show that for all $g\in N_G(H)$, $gHg^{-1}\subset H$. But we have this by the definition of $N_G(H)$, as desired.
+        \end{proof}
+        \pagebreak
         \item Compute $N_G(H)$ for the following pairs $(G,H)$.
         \begin{enumerate}
             \item $(S_4,\gen{(1,2,3,4)})$.
+            \begin{proof}
+                % Using the same argument to find values of $g$ such that $g
+
+                % Thus, if $gxg^{-1}\in H$, either $g$ is the identity (in which case $gxg^{-1}=x$) or $g=(1,4)(2,3)$ (in which case $gxg^{-1}=(4,3,2,1)\in H$).
+
+                % $H=\gen{x}$ is cyclic. If $gxg^{-1}\in H$, then $gx^ng^{-1}=(gxg^{-1})^n=h^n\in H$, so $gHg^{-1}=H$.
+
+                % Suppose $gx^ng^{-1}\in H$. Then $gx^ng^{-1}=x^m$. Then
+                
+                % Then $(gxg^{-1})^n\in H$. But then $(gxg^{-1})^n=x^m$, so $gxg^{-1}=x^{m/n}$.
+
+
+                We will first prove a lemma.\par\smallskip
+                Lemma: Let $H=\gen{x}=\gen{y}$ be a subgroup of $G$. If $gxg^{-1}=y$, then $gHg^{-1}=H$.\par
+                Proof: We proceed via a bidirectional inclusion argument. Suppose first that $ghg^{-1}\in gHg^{-1}$. Since $h\in H$ by hypothesis, $h=x^n$ for some $n\in\N$. Therefore, since $gxg^{-1}=y\in H$ and by the closure of $H$, $ghg^{-1}=gx^ng^{-1}=(gxg^{-1})^n\in H$, as desired. Now suppose that $h'\in H$. Then $h'=y^n=gx^ng^{-1}\in gHg^{-1}$, as desired. Q.E.D.\par\medskip
+                Let $x=(1,2,3,4)$. We know that
+                \begin{equation*}
+                    gxg^{-1} = (g(1),g(2),g(3),g(4))
+                \end{equation*}
+                There are two 4-cycles in $H$, each of which can be written in four ways:
+                \begin{align*}
+                    (1,2,3,4)&&
+                        (1,4,3,2)\\
+                    (2,3,4,1)&&
+                        (2,1,4,3)\\
+                    (3,4,1,2)&&
+                        (3,2,1,4)\\
+                    (4,1,2,3)&&
+                        (4,3,2,1)
+                \end{align*}
+                Thus, the values of $g$ that make $gxg^{-1}$ equal to one of the above are
+                \begin{align*}
+                    e&&
+                        (2,4)\\
+                    (1,2,3,4)&&
+                        (1,2)(3,4)\\
+                    (1,3)(2,4)&&
+                        (1,3)\\
+                    (1,4,3,2)&&
+                        (1,4)(2,3)
+                \end{align*}
+                Letting $y=(4,3,2,1)$, we have $H=\gen{x}=\gen{y}$ and $gxg^{-1}\in\{x,y\}$ for all of the above $g$ and our chosen $x$. Thus, by the lemma, $gHg^{-1}=H$ for all of the above $g$. It follows that they are all elements of $N_G(H)$.\par
+                Moreover, any value of $g$ that would make $g(1,3)(2,4)g^{-1}$ equal to some other value of $H$ has already been included in the above list, so we have no additional cases to check from there.\par
+                Of course, all $g\in G$ satisfy $geg^{-1}\in H$, the $g$ there that have not already been mentioned would take $gxg^{-1}$ outside of $H$.\par
+                Therefore,
+                \begin{equation*}
+                    \boxed{N_G(H) = \{e,(2,4),(1,2,3,4),(1,2)(3,4),(1,3)(2,4),(1,3),(1,4,3,2),(1,4)(2,3)\}}
+                \end{equation*}
+            \end{proof}
             \item $(S_5,\gen{(1,2,3,4,5)})$.
+            \begin{proof}
+                Let $x=(1,2,3,4,5)$. As before, we know that
+                \begin{equation*}
+                    gxg^{-1} = (g(1),g(2),g(3),g(4),g(5))
+                \end{equation*}
+                There are four 5-cycles in $H$, each of which can be written in five ways:
+                \begin{align*}
+                    (1,2,3,4,5)&&
+                        (1,3,5,2,4)&&
+                            (1,4,2,5,3)&&
+                                (1,5,4,3,2)\\
+                    (2,3,4,5,1)&&
+                        (2,4,1,3,5)&&
+                            (2,5,3,1,4)&&
+                                (2,1,5,4,3)\\
+                    (3,4,5,1,2)&&
+                        (3,5,2,4,1)&&
+                            (3,1,4,2,5)&&
+                                (3,2,1,5,4)\\
+                    (4,5,1,2,3)&&
+                        (4,1,3,5,2)&&
+                            (4,2,5,3,1)&&
+                                (4,3,2,1,5)\\
+                    (5,1,2,3,4)&&
+                        (5,2,4,1,3)&&
+                            (5,3,1,4,2)&&
+                                (5,4,3,2,1)
+                \end{align*}
+                Thus, the values of $g$ that make $gxg^{-1}$ equal to one of the following are
+                \begin{align*}
+                    e&&
+                        (2,3,5,4)&&
+                            (2,4,5,3)&&
+                                (2,5)(3,4)\\
+                    (1,2,3,4,5)&&
+                        (1,2,4,3)&&
+                            (1,2,5,4)&&
+                                (1,2)(3,5)\\
+                    (1,3,5,2,4)&&
+                        (1,3,2,5)&&
+                            (1,3,4,2)&&
+                                (1,3)(4,5)\\
+                    (1,4,2,5,3)&&
+                        (1,4,5,2)&&
+                            (1,4,3,5)&&
+                                (1,4)(2,3)\\
+                    (1,5,4,3,2)&&
+                        (1,5,3,4)&&
+                            (1,5,2,3)&&
+                                (1,5)(2,4)
+                \end{align*}
+                Since each of the four 5-cycles generates $H$, we have by the lemma to part (d)i that $gHg^{-1}$ for all of the above $g$. It follows that they are all elements of $N_G(H)$. Therefore,
+                \begin{equation*}
+                    \boxed{
+                        \begin{aligned}
+                            N_G(H) ={}& \{e,(2,3,5,4),(2,4,5,3),(2,5)(3,4),\\
+                            &\quad(1,2,3,4,5),(1,2,4,3),(1,2,5,4),(1,2)(3,5)\\
+                            &\quad(1,3,5,2,4),(1,3,2,5),(1,3,4,2),(1,3)(4,5)\\
+                            &\quad(1,4,2,5,3),(1,4,5,2),(1,4,3,5),(1,4)(2,3)\\
+                            &\quad(1,5,4,3,2),(1,5,3,4),(1,5,2,3),(1,5)(2,4)\}
+                        \end{aligned}
+                    }
+                \end{equation*}
+            \end{proof}
         \end{enumerate}
     \end{enumerate}
     \item Prove that the subgroup $N$ generated by elements of the form $x^{-1}y^{-1}xy$ for all $x,y\in G$ is normal. (Exercise 3.1.41 of \textcite{bib:DummitFoote}.)
+    \begin{proof}
+        To prove that $N$ is normal, it will suffice to show that for all $z\in N$ and $g\in G$, $gzg^{-1}\in N$. Let $x^{-1}y^{-1}xy\in N$ and $g\in G$ be arbitrary. Then
+        \begin{align*}
+            gx^{-1}y^{-1}xyg^{-1} &= gx^{-1}(g^{-1}g)y^{-1}(g^{-1}g)x(g^{-1}g)yg^{-1}\\
+            &= (gx^{-1}g^{-1})(gy^{-1}g^{-1})(gxg^{-1})(gyg^{-1})\\
+            &= (gxg^{-1})^{-1}(gyg^{-1})^{-1}(gxg^{-1})(gyg^{-1})\\
+            &\in N
+        \end{align*}
+        as desired.
+    \end{proof}
     \item Prove that if $G/Z(G)$ is cyclic, then $G$ is abelian. (For a hint, see Exercise 3.1.36 of \textcite{bib:DummitFoote}.)
+    \begin{proof}
+        % $Z(G)=\{z\in G\mid zg=gz\ \forall g\in G\}$.
+
+        % If $G/Z(G)$ is cyclic with generator $xZ(G)$, show that every element of $G$ can be written in the form $x^az$ for some integer $a\in\Z$ and some element $z\in Z(G)$.
+
+
+        We first prove the hint. Let $G/Z(G)=\gen{xZ(G)}$ and let $\sigma\in G$ be arbitrary. Then $\sigma\in[xZ(G)]^a$ for some $a\in\Z$. It follows by the rules of coset multiplication that $\sigma\in x^aZ(G)$. Therefore, $\sigma=x^az$ for some $a\in\Z$ and $z\in Z(G)$, as desired.\par
+        To prove that $G$ is abelian, it will suffice to show that for all $\sigma,\tau\in G$, $\sigma\tau=\tau\sigma$. Let $\sigma,\tau\in G$ be arbitrary. Let $\sigma=x^az$ and $\tau=x^bz'$. Then since elements of $Z(G)$ --- such as $z,z'$ --- commute with any $g\in G$ and exponents commute with each other, we have that
+        \begin{equation*}
+            \sigma\tau = x^azx^bz'
+            = zx^ax^bz'
+            = zx^bx^az'
+            = x^bz'x^az
+            = \tau\sigma
+        \end{equation*}
+        as desired.
+    \end{proof}
     \item Let $G$ be a finite group, and let $H\subset G$ be a subgroup of index two --- i.e., $|G|/|H|=2$. Prove that $H$ is normal.
+    \begin{proof}
+        % To prove that $H$ is normal, it will suffice to show that $ghg^{-1}\in H$ for all $g\in G$ and $h\in H$. Let $g\in G$ and $h\in H$ be arbitrary. If $g\notin H$, then $g,g^{-1}\in gH$. $g=gh$
+
+        To prove that $H$ is normal, it will suffice to show that $gH=Hg$ for all $g\in G$. Let $g\in G$ be arbitrary. We divide into two cases ($g\in H$ and $g\notin H$).\par
+        Suppose first that $g\in H$. Let $gh\in gH$ be arbitrary. Then by closure under multiplication, $gh\in H$. Choosing $h'=ghg^{-1}\in H$, it follows that $gh=h'g\in Hg$, as desired. The proof that $gH\supset Hg$ is analogous.\par
+        Now suppose that $g\notin H$. Since $[G:H]=2$, $G$ can be partitioned into the disjoint union of $H$ and the coset $gH$ or, symmetrically, $H$ and the coset $Hg$. It follows that
+        \begin{equation*}
+            gH = G\setminus H = Hg
+        \end{equation*}
+        as desired.
+    \end{proof}
     \item Let $G$ be a finite group, and let $H\subset G$ be a subgroup of index three --- i.e., $|G|/|H|=3$. Show that $H$ is not necessarily normal.
+    \begin{proof}
+        Let $G=S_3$, $H=\gen{(1,2)}$, $h=(1,2)$, and $g=(1,3)$. Since $|G|=6$ and $|H|=2$, $[G:H]=6/2=3$. Additionally, $ghg^{-1}=(2,3)\notin H$, so $H$ is not normal, as desired.
+    \end{proof}
     \item \textbf{Automorphism Groups}. Define an automorphism of a group $G$ to be an isomorphism $\phi:G\to G$ from $G$ to itself. (See \S 4.4 of \textcite{bib:DummitFoote}.)
     \begin{enumerate}
         \item Prove that the identity map is an automorphism.
+        \begin{proof}
+            To prove that the identity map $\iota$ on an arbitrary group $G$ is an automorphism, it will suffice to show that $\iota$ is a homomorphism, injective, surjective, and sends $G\mapsto G$.\par
+            Homomorphism:
+            \begin{equation*}
+                \iota(xy) = xy = \iota(x)\iota(y)
+            \end{equation*}
+            Injective:
+            \begin{equation*}
+                \iota(x) = \iota(x')
+                \quad\Longleftrightarrow\quad
+                x = x'
+            \end{equation*}
+            Surjective: If $x\in G$, $\iota(x)=x$.\par
+            Naturally, $\iota:G\to G$.
+        \end{proof}
         \item Prove that the composition of two automorphisms is an automorphism.
+        \begin{proof}
+            Suppose $\phi,\psi$ are automorphisms on a group $G$; we seek to prove that $\phi\circ\psi$ is an automorphism. To do so, it will suffice to show that $\phi\circ\psi$ is a homomorphism, injective, surjective, and sends $G\to G$.\par
+            Homorphism:
+            \begin{equation*}
+                [\phi\circ\psi](xy) = \phi(\psi(xy))
+                = \phi(\psi(x)\psi(y))
+                = \phi(\psi(x))\phi(\psi(y))
+                = [\phi\circ\psi](x)\cdot[\phi\circ\psi](y)
+            \end{equation*}
+            Injective:
+            \begin{align*}
+                [\phi\circ\psi](x) &= [\phi\circ\psi](x')\\
+                \phi(\psi(x)) &= \phi(\psi(x'))\\
+                \psi(x) &= \psi(x')\\
+                x &= x'
+            \end{align*}
+            Surjective: If $z\in G$, then the surjectivity of $\phi$ implies that there exists $y\in G$ such that $\phi(y)=x$. Similarly, there exists $x\in G$ such that $\psi(x)=y$. It follows that
+            \begin{equation*}
+                z = \phi(\psi(x))
+                = [\phi\circ\psi](x)
+            \end{equation*}
+            $\psi(G)=G$ and $\phi(G)=G$, so
+            \begin{equation*}
+                [\phi\circ\psi](G) = \phi(\psi(G))
+                = \phi(G)
+                = G
+            \end{equation*}
+            as desired.
+        \end{proof}
         \item Prove that the set of automorphisms forms a group under composition. We will call this group $\Aut(G)$.
+        \begin{proof}
+            To prove that $\Aut(G)$ is a group, it will suffice to show that $\Aut(G)$ contains an identity element, is closed under inverses, and is associative.\par
+            Identity: Per part (a), we may choose $\iota$ to be the identity element of $\Aut(G)$. Indeed, if $\phi\in\Aut(G)$ and $g\in G$ are arbitrary, then
+            \begin{equation*}
+                [\phi\circ\iota](g) = \phi(\iota(g))
+                = \phi(g)
+                = \iota(\phi(g))
+                = [\iota\circ\phi](g)
+            \end{equation*}
+            Inverses: Since $\phi$ is a bijection, $\phi^{-1}:G\to G$ is a well-defined automorphism in its own right. We can prove in an analogous manner to the above that $\phi\circ\phi^{-1}=\phi^{-1}\circ\phi=e$.\par
+            Associativity: Let $f,g,h\in\Aut(G)$ and $x\in G$ be arbitrary. Then
+            \begin{equation*}
+                [(f\circ g)\circ h](x) = [f\circ g](h(x))
+                = f(g(h(x)))
+                = f([g\circ h](x))
+                = [f\circ(g\circ h)](x)
+            \end{equation*}
+        \end{proof}
         \item If $g\in G$ is a fixed element, prove that the map $\phi_g:G\to G$ given by $\phi_g(x)=gxg^{-1}$ is an isomorphism.
+        \begin{proof}
+            To prove that $\phi_g$ is an isomorphism, it will suffice to show that it is a homomorphism, injective, and surjective.\par
+            Homomorphism:
+            \begin{equation*}
+                \phi_g(xy) = gxyg^{-1}
+                = gx(g^{-1}g)yg^{-1}
+                = (gxg^{-1})(gyg^{-1})
+                = \phi_g(x)\phi_g(y)
+            \end{equation*}
+            Injective:
+            \begin{align*}
+                \phi_g(x) &= \phi_g(x')\\
+                gxg^{-1} &= gx'g^{-1}\\
+                x &= x'\tag*{Cancellation Lemma}
+            \end{align*}
+            Surjective: Let $y\in G$ be arbitrary. Choose $x=g^{-1}yg$. Then
+            \begin{equation*}
+                y = (gg^{-1})y(gg^{-1})
+                = g(g^{-1}yg)g^{-1}
+                = gxg^{-1}
+                = \phi_g(x)
+            \end{equation*}
+        \end{proof}
         \item Prove that the map $\psi:G\to\Aut(G)$ given by $\psi(g)=\phi_g$ (sending the element $g$ to the automorphism $\phi_g$) is a homomorphism of groups.
+        \begin{proof}
+            Let $x,y,g\in G$ be arbitrary. Then we have that
+            \begin{equation*}
+                [\psi(xy)](g) = \phi_{xy}(g)
+                = (xy)g(xy)^{-1}
+                = xygy^{-1}x^{-1}
+                = x\phi_y(g)x^{-1}
+                = \phi_x(\phi_y(g))
+                = [\phi_x\circ\phi_y](g)
+            \end{equation*}
+            as desired.
+        \end{proof}
         \item Prove that the kernel of the map $\psi:G\to\Aut(G)$ is the center
         \begin{equation*}
             Z(G) = \{g\in G\mid gx=xg,\ \forall x\in G\}
         \end{equation*}
+        \begin{proof}
+            % To prove that $\ker\psi=Z(G)$, we will use a bidirectional inclusion argument.\par
+            % Suppose first that $g\in\ker\psi$. To demonstrate that $g\in Z(G)$, it will suffice to confirm that $gx=xg$ for all $x\in G$. But since $g\in\ker\psi$ and $\psi$ is a homomorphism, we have that
+            % \begin{equation*}
+            %     \psi(gx) = \psi(g)\circ\psi(x) = \iota\circ\psi(x) = \psi(x)\circ\iota = \psi(x)\circ\psi(g) = \psi(xg)
+            % \end{equation*}
+            % for all $x\in G$ It follows since 
+            
+            % Then $\psi(x)=\iota=\phi_e$.
+
+            % Now suppose that $g\in Z(G)$. Then $\psi(gx)=\psi(xg)$ for all $x\in G$. Now suppose for the sake of contradiction that $g\notin\ker\phi$. Then there exists $y\in G$ such that $[\psi(g)](y)\neq y$.
+
+
+            To prove that $\ker\psi=Z(G)$, we will use a bidirectional inclusion argument.\par
+            Suppose first that $g\in\ker\psi$. Then $\iota=\psi(g)=\phi_g$. It follows that $gxg^{-1}=\phi_g(x)=\iota(x)=x$ for all $x\in X$, but this directly implies that $gx=xg$ for all $x\in G$.\par
+            The proof is symmetric in the reverse direction.
+        \end{proof}
         \item Define the inner automorphism group $\Inn(G)$ of $G$ to be the subgroup of $\Aut(G)$ given by the image of $G$ under $\psi$. Prove that $\Inn(G)$ is a normal subgroup of $\Aut(G)$.
+        \begin{proof}
+            We have from the lemma in class that $\Inn(G)=\im\psi$ is a subgroup of $\Aut(G)$ since $\psi$ is a homomorphism.\par
+            To prove that $\Inn(G)$ is normal, it will suffice to show that if $\phi_g=\psi(g)\in\Inn(G)$ and $\varphi\in\Aut(G)$, then $\varphi\phi_g\varphi^{-1}\in\Inn(G)$. Let $\phi_g\in\Inn(G)$, $\varphi\in\Aut(G)$, and $x\in G$ be arbitrary. Then we have that
+            \begin{align*}
+                [\varphi\phi_g\varphi^{-1}](x) &= \varphi(\phi_g(\varphi^{-1}(x)))\\
+                &= \varphi(g\varphi^{-1}(x)g^{-1})\\
+                &= \varphi(g)\varphi(\varphi^{-1}(x))\varphi(g^{-1})\\
+                &= \varphi(g)x\varphi(g)^{-1}\\
+                &= \phi_{\varphi(g)}(x)\\
+                &\in \Inn(G)
+            \end{align*}
+            as desired.
+        \end{proof}
         \item Show that if $G$ is abelian, then $\Inn(G)$ is trivial.
+        \begin{proof}
+            Suppose $G$ is abelian. Then $gx=xg$ for all $g,x\in G$. It follows that $Z(G)=G$. Thus, by part (f), $\ker\phi=Z(G)=G$, meaning that $\Inn(G)=\im\psi=\{\iota\}$, as desired.
+        \end{proof}
         \item Let $\Out(G)=\Aut(G)/\Inn(G)$. Prove that\dots
         \begin{enumerate}
             \item $\Aut(\Z/3\Z)=\Out(\Z/3\Z)\cong\Z/2\Z$;
+            \begin{proof}
+                $\Z/3\Z$ is abelian. Thus, by part (h), $\Inn(\Z/3\Z)$ is trivial. It follows that $\Aut(\Z/3\Z)=\Out(\Z/3\Z)$ as desired.\par\smallskip
+                Constructing $\psi$: Let $\psi:\Aut(G)\to\Z/2\Z$ be the isomorphism we seek to construct. First notice that since $\Z/3\Z$ is cyclic, any homomorphism $\phi:\Z/3\Z\to\Z/3\Z$ is uniquely determined by $\phi(1)$. Indeed, if we know $\phi(1)$, then $\phi(n)=n\phi(1)$. Since $\phi(1)$ can have three possible values, we divide into three cases. If $\phi_1(1)=0$, then $\phi_1$ sends every element of $\Z/3\Z$ to zero. Thus, $\phi_1$ is not surjective, so $\phi_1\notin\Aut(G)$. If $\phi_2(1)=1$, then $\phi_2(n)=n$, i.e., $\phi_2=\iota$. Thus, take $\psi(\phi_2)=0$. It follows that $\phi_3$ defined by
+                \begin{align*}
+                    1 &\mapsto 2&
+                    2 &\mapsto 1&
+                    0 &\mapsto 0
+                \end{align*}
+                must be sent by $\psi$ to $1\in\Z/2\Z$.\par
+                Verifying that $\psi$ is an isomorphism: We have mapped the two distinct elements of $\Aut(G)$ to the two distinct elements of $\Z/2\Z$. Therefore, $\psi$ is injective and surjective. Moreover, $\psi$ is a homomorphism since
+                \begin{align*}
+                    \psi(\phi_2\circ\phi_2) &= \psi(\phi_2) = 0 = 0+0 = \psi(\phi_2)+\psi(\phi_2)\\
+                    \psi(\phi_2\circ\phi_3) &= \psi(\phi_3) = 1 = 0+1 = \psi(\phi_2)+\psi(\phi_3)\\
+                    \psi(\phi_3\circ\phi_2) &= \psi(\phi_3) = 1 = 1+0 = \psi(\phi_3)+\psi(\phi_2)\\
+                    \psi(\phi_3\circ\phi_3) &= \psi(\phi_2) = 0 = 1+1 = \psi(\phi_3)+\psi(\phi_3)
+                \end{align*}
+            \end{proof}
             \item $\Out(S_3)=\{1\}$;
+            \begin{proof}
+                $S_3$ is not abelian. In fact, it contains no nontrivial elements which commute: We know that disjoint cycles commute, but in $S_3$, any nontrivial cycle is of length at least 2 and thus must share an element with another cycle of length at least 2. Thus $Z(S_3)=\{e\}$. It follows by part (f) that $\psi:S_3\to\Aut(S_3)$ is an isomorphism. Thus, $\Inn(G)=\Aut(G)$. It follows that $\Out(G)=\{1\}$, as desired.
+            \end{proof}
             \item $\Aut(K)\cong\Out(K)\cong S_3$, where $K=(\Z/2\Z)^2$ is the Klein 4-group.
+            \begin{proof}
+                $K$ is abelian; hence, by part (h), $\Aut(K)\cong\Out(K)$.\par
+                $K=\gen{(0,1),(1,0)}$; hence, any $\phi\in\Aut(K)$ is uniquely defined by its action on $(0,1)$ and $(1,0)$. In particular, since $\phi$ is a homomorphism, we know $\phi(0,0)=(0,0)$. Additionally, whichever element of $\{(0,1),(1,0),(1,1)\}$ is not in $\phi(\{(0,1),(1,0)\})$ is the element to which $\phi$ maps $(1,1)$. Thus, we can define an isomorphism from $\psi:\Aut(G)\to S_3$ as follows. Let $f:K\setminus\{(0,0)\}\to[3]$ be defined by
+                \begin{align*}
+                    (0,1) &\mapsto 1&
+                    (1,0) &\mapsto 2&
+                    (1,1) &\mapsto 3
+                \end{align*}
+                Then define $\psi$ by
+                \begin{equation*}
+                    \psi(\phi) = f\circ\phi\circ f^{-1}
+                \end{equation*}
+                It follows by an analogous argument to that used in part (d) that $\psi$ is an isomorphism.
+            \end{proof}
         \end{enumerate}
     \end{enumerate}
     \item Let $p$ be an odd prime number. Prove that there are no surjective homomorphisms from $S_n$ to $\Z/p\Z$ for any prime $p$. (Hint: Consider the image of the two-cycles).
+    \begin{proof}
+        Let $\phi:S_n\to\Z/p\Z$ be an arbitrary homomorphism. Let $(a,b)\in S_n$ be an arbitrary 2-cycle. By Lagrange's theorem, $|\phi(a,b)|$ divides $|\Z/p\Z|$, i.e, $|\phi(a,b)|\in\{1,p\}$. Additionally, we have that
+        \begin{equation*}
+            2\phi(a,b) = \phi[(a,b)\circ(a,b)] = \phi(e) = 0
+        \end{equation*}
+        i.e., $|\phi(a,b)|\leq 2$. Thus, $|\phi(a,b)|=1$. It follows that $\phi(a,b)=0$ for all $(a,b)\in S_n$. But since a homomorphism is uniquely defined by its action on the generators and the 2-cycles generate $S_n$, this means that $\phi$ is the trivial homomorphism. Therefore, since all homomorphisms from $S_n$ to $\Z/p\Z$ are equal to the trivial one (which is not surjective), we know that there are no surjective homomorphisms from $S_n$ to $\Z/p\Z$, as desired.
+    \end{proof}
 \end{enumerate}
 
 
