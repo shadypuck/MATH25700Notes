@@ -1,0 +1,93 @@
+\documentclass[../notes.tex]{subfiles}
+
+\pagestyle{main}
+\renewcommand{\chaptermark}[1]{\markboth{\chaptername\ \thechapter\ (#1)}{}}
+\setcounter{chapter}{5}
+
+\begin{document}
+
+
+
+
+\chapter{???}
+\section{Examples of Group Actions}
+\begin{itemize}
+    \item \marginnote{10/31:}Today: A number of interesting group actions.
+    \item \textbf{Left action} (of $G$ on $X$): A group action of the form $g\cdot x$ (as opposed to $x\cdot g$).
+    \item Let $G$ be a group, and let $X=G$. Take $g\cdot x=gx$.
+    \begin{itemize}
+        \item Axiom confirmation.
+        \begin{enumerate}
+            \item $e\cdot x=ex=x$.
+            \item $g\cdot(h\cdot x)=ghx=gh\cdot x$.
+        \end{enumerate}
+        \item Let $e\in X$. Then $\Orb(e)=X$. In particular, this means that the action is transitive.
+        \item $\Stab(x)=\{g\in G\mid gx=x\}=\{e\}$ for $x\in X$ arbitrary, in general.
+        \item $\ker=\{e\}$. This also follows from the above. Thus, the action is faithful.
+    \end{itemize}
+    \item Corollary: Let $G$ be a finite group. Then $G$ is isomorphic to a subgroup of $S_n$ for some $n$. We may take $n=|G|$.
+    \begin{itemize}
+        \item Construction: We invoke the proposition from last lecture. In particular, we know that the action $G\acts G$ implies the existence of a homomorphism $\phi:G\to S_G$ defined by $g\mapsto\psi_g$.
+        \item The map in the above construction has trivial kernel. By the FIT, $G/\ker\cong\im\phi$. Combining these results, we obtain $G\cong G/\ker\cong\im\phi\leq S_n$.
+        \item Applying this construction to $S_3$, we deduce that $S_3\leq S_6$.
+    \end{itemize}
+    \item $\text{SO}(2)\cong\R/\Z\cong\Q/\Z\oplus\Q^\infty$.
+    \begin{itemize}
+        \item In infinite cases, you usually want to consider some other topological things that disappear in the finite case.
+    \end{itemize}
+    \item Let $G$ be a group and take $X=G$ again. We can also consider $g\cdot x=gxg^{-1}$.
+    \begin{itemize}
+        \item Axioms.
+        \begin{enumerate}
+            \item $e\cdot x=exe^{-1}=x$.
+            \item $g\cdot(h\cdot x)=ghxh^{-1}g^{-1}=(gh)x(gh)^{-1}=gh\cdot x$.
+        \end{enumerate}
+        \item $\Orb(e)=\{e\}$; not transitive if $|G|>1$.
+        \item Let $x\in X$. Then $\Orb(x)$ is the conjugacy class of $x$.
+        \item $\Stab(x)=C_G(x)$.
+        \item $\ker=Z(G)$. Thus, the group action is faithful iff the center is trivial. Abelian implies not faithful.
+    \end{itemize}
+    \item A nice thing about these constructions is that they cast other constructions we've encountered in the more general language of group actions.
+    \item \textbf{Right actions} are even nastier than left cosets and right cosets, so Calegari will not mention them again.
+    \begin{itemize}
+        \item $g\cdot x=x\cdot g^{-1}$ and $g\cdot(h\cdot x)=(x\cdot h^{-1})\cdot g^{-1}$.
+    \end{itemize}
+    \item Let $G=G$, $X$ be the subgroups of $G$. $g\cdot H=gHg^{-1}$.
+    \begin{itemize}
+        \item Note that $H\leq G$ does indeed imply that $gHg^{-1}\leq G$. In particular, \dots
+        \begin{itemize}
+            \item $H$ is nonempty (contains at least $e$), so $gHg^{-1}\supset\{geg^{-1}\}$ is nonempty;
+            \item $gh_1g^{-1},gh_2g^{-1}\in gHg^{-1}$ imply that $gh_1g^{-1}gh_2g^{-1}=g(h_1h_2)g^{-1}\in gHg^{-1}$;
+            \item $ghg^{-1}\in gHg^{-1}$ has inverse $gh^{-1}g^{-1}\in gHg^{-1}$.
+        \end{itemize}
+        \item Axioms (entirely analogous to the last example).
+        \item $\Orb(H)$ is the "conjugates" of $H$.
+        \item $\Stab(H)=N_G(H)$.
+        \item $\ker=?$. We know that $Z(G)\subset\ker$. The conclusion is that there is not a nice definition for the kernel other than the intersections of the stabilizers/normalizers.
+        \begin{itemize}
+            \item ...
+            \item If any $H\triangleleft G$ is normal, and $x\in G$ had order 2, then $\gen{x}\triangleleft G$, meaning that $gxg^{-1}\in\gen{x}$, i.e., $x\in Z(G)$, so this rules out $D_8$??
+        \end{itemize}
+    \end{itemize}
+    \item Fix $G$ and $H\leq G$. Let $X=G/H$ (not assuming $H\triangleleft G$, so we know that $G/H$ is the set of left cosets but it is not a group in general). Define $g\cdot xH=gxH$.
+    \begin{itemize}
+        \item We have $g\cdot xhH=gxhH$.
+        \item Orbit: $\Orb(eH)=X$.
+        \item Stabilizer: $\Stab(eH)=H$.
+        \begin{itemize}
+            \item $\Stab(gH)=gHg^{-1}$.
+            \item This is because $(ghg^{-1})gH=ghH=gH$.
+            \item Go to the more general case $G\acts X$, $\Stab(x)=H$. Then $gHg^{-1}\subset\Stab(g\cdot x)$??
+        \end{itemize}
+        \item Transitive: Yes (see orbits).
+        \item Faithful: If $H$ is normal, no. If $H$ contains a normal subgroup, no. Maybe yes.
+        \item Kernel: If $H$ is normal, then $\ker=H$. In general, $\ker=\bigcap_{g\in G}gHg^{-1}$ (the largest normal subgroup of $H$).
+    \end{itemize}
+    \item Takeaway: General constructions allow us to see things we've already done.
+    \item Next time: The most useful theorem of the course, that provides lots of information on relations between objects.
+\end{itemize}
+
+
+
+
+\end{document}
