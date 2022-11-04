@@ -10,7 +10,8 @@
 \usepackage{tabu}
 \usepackage{tikz,graphicx}
 \usepackage{float,subcaption}
-\usepackage{amsmath,amssymb,amsthm}
+\usepackage{multirow}
+\usepackage{amsmath,amssymb,amsthm,amsbsy}
 \usepackage{bm,physics,nicematrix,empheq}
 \usepackage[hidelinks]{hyperref}
 
@@ -51,9 +52,33 @@
 \DeclareMathOperator{\Aut}{Aut}
 \DeclareMathOperator{\Inn}{Inn}
 \DeclareMathOperator{\Out}{Out}
+\DeclareMathOperator{\Orb}{Orb}
+\DeclareMathOperator{\Stab}{Stab}
 \setcounter{MaxMatrixCols}{20}
 
 \NiceMatrixOptions{cell-space-limits=1pt}
+
+\DeclareFontFamily{U}{mathb}{}
+\DeclareFontShape{U}{mathb}{m}{n}{
+       <-5.5> mathb5
+    <5.5-6.5> mathb6
+    <6.5-7.5> mathb7
+    <7.5-8.5> mathb8
+    <8.5-9.5> mathb9
+    <9.5-11>  mathb10
+    <11->     mathb12
+}{}
+\DeclareSymbolFont{mathb}{U}{mathb}{m}{n}
+\DeclareMathSymbol{\righttoleftarrow}{3}{mathb}{"FD}
+% 
+\makeatletter
+\DeclareRobustCommand{\looparrow}[1]{%
+  \mathrel{\mathpalette\looparrow@{#1}}%
+}
+\newcommand{\looparrow@}[2]{\reflectbox{$\m@th#1#2$}}
+\makeatother
+% 
+\newcommand{\acts}{\looparrow{\righttoleftarrow}}
 
 \newcommand{\N}{\mathbb{N}}
 \newcommand{\Z}{\mathbb{Z}}

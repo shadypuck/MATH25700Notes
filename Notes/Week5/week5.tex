@@ -9,7 +9,7 @@
 
 
 
-\chapter{???}
+\chapter{Applications and Generalizations}
 \section{Special Normal Subgroups}
 \begin{itemize}
     \item \marginnote{10/24:}Last time: If $H\triangleleft S_n$, $n\neq 4$, then $H=\{e\},S_n,A_n$. If $n=4$, $H$ can also equal $\{e\}\cup\{(xx)(xx)\}$.
@@ -225,6 +225,147 @@
     \begin{itemize}
         \item A 4D vector space where you define a noncommutative product. If you just take 8 specific quaternions, the group of order 8 is distinct from $D_8$ but related.
     \end{itemize}
+\end{itemize}
+
+
+
+\section{Group Actions}
+\begin{itemize}
+    \item \marginnote{10/28:}Let $G$ be a group and $X$ be a set.
+    \item \textbf{Group action} (of $G$ on $X$): A map $\cdot:G\times X\to X$ satisfying the following. \emph{Denoted by} $\bm{G\,\pmb{\acts}\,X}$.
+    \begin{enumerate}
+        \item For all $g,h\in G$ and $x\in X$, $g\cdot(h\cdot x)=gh\cdot x$.
+        \item For all $x\in X$, $e\cdot x=x$.
+    \end{enumerate}
+    \item Note that condition 2 does not follow from condition 1, and an "inverse condition" follows from both.
+    \begin{itemize}
+        \item In particular, condition 1 relates certain elements of the domain of the group action but does not relate any elements of the domain to elements of $X$ (as condition 2 does).
+        \item The inverse condition $g^{-1}\cdot(g\cdot x)=g\cdot(g^{-1}\cdot x)=x$ follows from conditions 1-2 via
+        \begin{equation*}
+            g^{-1}\cdot(g\cdot x) = g^{-1}g\cdot x
+            = e\cdot x
+            = x
+            = e\cdot x
+            = gg^{-1}\cdot x
+            = g\cdot(g^{-1}\cdot x)
+        \end{equation*}
+    \end{itemize}
+    \item Example: If $G$ is any group and $X$ is any set, we may define a group action by $g\cdot x=x$ for all $g\in G$ and $x\in X$.
+    \item Let $X$ be a set and $S_X$ be the set of all bijections from $X\to X$ under composition. Note that if $|X|=n$, then $S_X\cong S_n$.
+    \item Lemma: Let $G\acts X$ and $g\in G$. Define $\psi_g:X\to X$ by $x\mapsto g\cdot x$. Then $\psi_g$ is a bijection.
+    \begin{proof}
+        Injectivity:
+        \begin{align*}
+            \psi_g(x) &= \psi_g(y)\\
+            g\cdot x &= g\cdot y\\
+            g^{-1}\cdot(g\cdot x) &= g^{-1}\cdot(g\cdot y)\\
+            e\cdot x &= e\cdot y\\
+            x &= y
+        \end{align*}
+        Surjectivity: Given $x\in X$, we want $y$ such that $\psi_g(y)=x$. Choose $y=g^{-1}\cdot x$.
+    \end{proof}
+    \item This allows us to recast group actions into the following equivalent form.
+    \item Proposition: An action $G$ on the set $X$ is equivalent to a homomorphism from $G$ to $S_X$ defined by $g\mapsto\psi_g$.
+    \begin{proof}
+        % WTS: $\psi_g\circ\psi_h=\psi_{gh}$. This would follow if $[\psi_g\circ\psi_h](x)=\psi_{gh}(x)$ for all $x\in X$. This would follow if $g\cdot(h\cdot x)=gh\cdot x$ for all $x\in X$. But we have this by the definition of a group action, as desired.\par
+        % Conversely, given the described homomorphism, we have $g\cdot x=\psi_g(x)$. Thus,
+        % \begin{equation*}
+        %     g\cdot h\cdot x = g\cdot\psi_h(x) = [\psi_g\circ\psi_h](x) = \psi_{gh}(x) = gh\cdot x
+        % \end{equation*}
+        % and
+        % \begin{equation*}
+        %     e\cdot x = \psi_e(x) = x
+        % \end{equation*}
+
+
+        A statement of the proposition that makes it more clear what exactly it is we want to prove is, "there exists an action $\cdot:G\times X\to X$ iff there exists a homomorphism $\phi:G\to X$ defined by $g\mapsto\psi_g$." Let's begin.\par\smallskip
+        Suppose first that $\cdot:G\times X\to X$ is group action of $G$ on $X$. Define $\phi:G\to S_X$ by $g\mapsto\psi_g$. To prove that $\phi$ is a homomorphism, it will suffice to show that $\phi(gh)=\phi(g)\circ\phi(h)$ for all $g,h\in G$. Let $g,h\in G$ be arbitrary. Then by condition 1, we have for any and all $x\in X$ that
+        \begin{align*}
+            g\cdot(h\cdot x) &= gh\cdot x\\
+            \psi_g(\psi_h(x)) &= \psi_{gh}(x)\\
+            [\psi_g\circ\psi_h](x) &= \psi_{gh}(x)\\
+            [\phi(g)\circ\phi(h)](x) &= [\phi(gh)](x)
+        \end{align*}
+        Therefore, $\phi(gh)=\phi(g)\circ\phi(h)$, as desired.\par
+        Now suppose that $\phi:G\to S_X$ is a homomorphism defined by $g\mapsto\psi_g$. Define $\cdot:G\times X\to X$ by $g\cdot x=[\phi(g)](x)$. To prove that $\cdot$ is a group action, it will suffice to show that for all $g,h\in G$ and $x\in X$, $g\cdot(h\cdot x)=gh\cdot x$ and $e\cdot x=x$. Let $g,h\in G$ and $x\in X$ be arbitrary. Then
+        \begin{equation*}
+            g\cdot(h\cdot x) = g\cdot\psi_h(x)
+            = [\psi_g\circ\psi_h](x)
+            = [\phi(g)\circ\phi(h)](x)
+            = [\phi(gh)](x)
+            = \psi_{gh}(x)
+            = gh\cdot x
+        \end{equation*}
+        and
+        \begin{equation*}
+            e\cdot x = \psi_e(x) = x
+        \end{equation*}
+        as desired.
+    \end{proof}
+    \item You need to be careful with what the set is and what the group is; $x\cdot y$ probably doesn't make any sense (unless you start to get into cases where $X$ is a group, too).
+    \item \textbf{Kernel} (of a group action): The set of all $g\in G$ such that $g\cdot x=x$ for all $x\in X$.
+    \begin{itemize}
+        \item The kernel is a (normal) subgroup of $G$.
+        \item We know this since it is equivalent to the kernel of the homomorphism described by the above proposition.
+    \end{itemize}
+    \item \textbf{Faithful} (group action): A group action for which the kernel is trivial, i.e., $\ker=\{e\}$.
+    \begin{itemize}
+        \item Such a group action is "faithful" because it is telling the whole story, i.e., not leaving out any information, i.e., mapping everything to everything.
+        \item The trivial group action is an example of a group action that isn't faithful.
+    \end{itemize}
+    \item \textbf{Orbit} (of $x\in X$): The set of $g\cdot x$ for all $g\in G$. \emph{Denoted by} $\bm{\Orb(x)}$.
+    \begin{itemize}
+        \item A subset of $X$.
+        \item Everywhere you can get to from your starting point $x$.
+    \end{itemize}
+    \item \textbf{Transitive} (group action): A group action for which $\Orb(x)=X$ for some (any) $x\in X$.
+    \begin{itemize}
+        \item In what way is a transitive group action \emph{transitive}??
+    \end{itemize}
+    \item \textbf{Stabilizer} (of $x\in X$): The set of all $g\in G$ for which $g\cdot x=x$. \emph{Denoted by} $\bm{\Stab(x)}$.
+    \begin{itemize}
+        \item A subgroup of $G$.
+    \end{itemize}
+    \item The kernel is a subgroup of the stabilizer. More specifically,
+    \begin{equation*}
+        \ker = \bigcap_{x\in X}\Stab(x)
+    \end{equation*}
+    \begin{itemize}
+        \item This is because the elements of the stabilizer fix \emph{some} $x\in X$, whereas the elements of the kernel fix \emph{all} $x\in X$.
+    \end{itemize}
+    \item Orbits are equivalence relations, i.e., $x\in\Orb(x)$ and $x\in\Orb(y)$ imply that $\Orb(x)=\Orb(y)$.
+    \begin{itemize}
+        \item In particular,
+        \begin{equation*}
+            X = \bigsqcup\text{Orbits}
+        \end{equation*}
+    \end{itemize}
+    \item ...
+    \item Let $G=S_n$ and $X=[n]$.
+    \item Let $G=\text{Cu}$.
+    \item Examples.
+    \begin{table}[H]
+        \centering
+        \small
+        \renewcommand{\arraystretch}{1.2}
+        \begin{tabular}{c|c|c|c|c|c|c|c}
+            $G$ & $X$ & $|X|$ & Transitive & Faithful & Kernel & $\Stab(x)$ & $|\Stab(x)|$\\
+            \hline
+            \multirow{7}{*}{Cu} & Faces & 6 & $\checkmark$ & $\checkmark$ & $\{e\}$ & $\Z/4\Z$ (rotations by \ang{90}) & 4\\
+             & Vertices & 8 & $\checkmark$ & $\checkmark$ & $\{e\}$ & $\Z/3\Z$ & 3\\
+             & Edges & 12 & $\checkmark$ & $\checkmark$ & $\{e\}$ & $\Z/2\Z$ & 2\\
+             & Diagonals & 4 & $\checkmark$ & $\checkmark$ & $\{e\}$ & $S_3\cong D_6$ & 6\\
+             & \begin{tabular}{c}Pairs of\\[-4pt]opposite faces\end{tabular} & 3 & $\checkmark$ & X & \begin{tabular}{c}Rotations by \ang{180},\\[-4pt]in particular, $|K|=4$\end{tabular} & $D_8$ & 8\\
+             & Inscribed tetrahedra & 2 & $\checkmark$ & X & $A_4$ & $A_4$ & 12\\
+             & $\text{Ed}\cup\text{Fac}$ & 18 & X & ... & ... & ... & ...\\
+        \end{tabular}
+        \caption{Examples of group actions.}
+        \label{tab:GAexamples}
+    \end{table}
+    \begin{itemize}
+        \item The last two rows we filled out by first asserting transitivity, $A_4$, and 12; and edges union faces, not transitive.
+    \end{itemize}
+    \item On Monday, we will look into group actions where the geometry is not so convenient.
 \end{itemize}
 
 
