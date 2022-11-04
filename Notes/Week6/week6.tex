@@ -89,5 +89,74 @@
 
 
 
+\section{Orbit-Stabilizer Theorem}
+\begin{itemize}
+    \item \marginnote{11/2:}We will have a take-home open-book final. Should take you a couple hours or a little more to do, but we'll have more time than that. Don't Google answers or collaborate. We'll have more practice problems (and 50\% of the exam will be on that sheet); if we do every problem on the sheet, we'll certainly get an A.
+    \item We will cover all theoretical material by Thanksgiving and then spend the rest of the time exploring applications.
+    \item Today: The most fundamental theorem of the class.
+    \item Let $G$ be a group acting on a set $X$.
+    \item Theorem (Orbit-Stabilizer Theorem): Let $x\in X$ be arbitrary. Then
+    \begin{equation*}
+        |G| = |\Orb(x)|\cdot|\Stab(x)|
+    \end{equation*}
+    \begin{proof}
+        We will break up $G$ and count it in two different ways.
+        \begin{equation*}
+            G = \bigsqcup_{y\in\Orb(x)}\{g\mid g\cdot x=y\}
+        \end{equation*}
+        Each of these sets is equal to $g\cdot\Stab(x)$ (the left coset of the stabilizer by $g$).\par
+        Thus,
+        \begin{equation*}
+            |G| = \sum_{\Orb(x)}|g\cdot\Stab(x)|
+            = \sum_{\Orb(x)}|\Stab(x)|
+            = |\Orb(x)|\cdot|\Stab(x)|
+        \end{equation*}
+        as desired.
+    \end{proof}
+    \item Examples:
+    \begin{itemize}
+        \item Let $H\leq G$, $X=G/H$. Then $G$ acts on $X$ by left multiplication. Taking $x=H$ in particular, we have that
+        \begin{equation*}
+            |G| = |G/H|\cdot|H|
+        \end{equation*}
+        \item $G=S_n$, $X=[n]$.
+        \begin{itemize}
+            \item Then $S_n=\{\sigma(1)=1\}\cup\{\sigma(1)=2\}\cup\cdots\cup\{\sigma(1)=n\}$. This is analogous to the proof strategy decomposition.
+        \end{itemize}
+        \item $G$ acts on $G$ by conjugation.
+        \begin{itemize}
+            \item Take $g\in G$. Then $\Orb(g)=\{g\}$, i.e., the conjugacy class of $g$, and $\Stab(g)=C_G(g)$. Therefore, we have the below corollary.
+        \end{itemize}
+        \item $G=S_n$.
+        \begin{itemize}
+            \item Let $g=(1,\dots,k)$ for $2\leq k\leq n$. Recall that $|g|=n!/(n-k)!k$. Thus, $|C_{S_n}(g)|=(n-k)!\cdot k$.
+            \item Alternatively, we can derive the order of this centralizer directly: $C_{S_n}(g)=\gen{g}\times S_{n-k}$, i.e., all powers of the $k$-cycle and everything that's disjoint. $\times$ denotes the direct product.
+        \end{itemize}
+        \item $G=S_4$, $g=(12)(34)$.
+        \begin{itemize}
+            \item $|\{g\}|=3$, so $|C_G(g)|=8$.
+            \item Here $C_G(g)=D_8$. Visualize a square with vertices clockwise (1,4,2,3).
+        \end{itemize}
+        \item $G=S_6$, $g=(16)(25)(34)$.
+        \begin{itemize}
+            \item We have that $|\{g\}|=6!/2^3\cdot 3!=15$, so $|C_{S_6}(g)|=48$. The centralizer is the set of all elements satisfying $\sigma(i)+\sigma(7-i)=7$.
+            \item Moreover, there is an injective homomorphism from $\widetilde{\text{Cu}}\hookrightarrow S_6$ whose image is exactly the centralizer of $(16)(25)(34)$. Moreover, it follows that $C_{S_6}(g)\cong S_4\times S_2$.
+            \item Let $h=(16)$. Then $|\{h\}|=|\{g\}|=15$. Does there exist an automorphism of $S_6$ to $S_6$ which sends $h\to g$? No: $S_2\times S_4\cong C_{S_6}(h)$ and $C_{S_6}(g)\cong S_2\times S_4$.
+        \end{itemize}
+    \end{itemize}
+    \item Corollary: We have that
+    \begin{equation*}
+        |G| = |\{g\}|\cdot|C_G(g)|
+    \end{equation*}
+    \item $\bm{\widetilde{\textbf{Cu}}}$: The set of all orthogonal symmetries of the cube (i.e., including reflections).
+    \begin{itemize}
+        \item There is an isomorphism between $\text{Cu}\times\Z/2\Z$ and $\widetilde{\text{Cu}}$ defined by $(g,1)\mapsto g$ and $(g,-1)\mapsto -g$. The reverse function is $g\mapsto(g\cdot\deg g,\deg g)$.
+        \item $\widetilde{\text{Cu}}$ acts on 6 faces.
+    \end{itemize}
+    \item The pace will be this fast through Thanksgiving.
+\end{itemize}
+
+
+
 
 \end{document}
