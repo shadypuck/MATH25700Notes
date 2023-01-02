@@ -18,14 +18,53 @@
         \item Let $G$ be a transitive permutation group on the finite set $A$. A \textbf{block} is a nonempty subset $B$ of $A$ such that for all $\sigma\in G$, either $\sigma(B)=B$ or $\sigma(B)\cap B=\emptyset$ (here $\sigma(B)$ is the set $\{\sigma(b)\mid b\in B\}$).
         \begin{enumerate}[label={\textbf{(\alph*)}}]
             \item Prove that if $B$ is a block containing the element $a\in A$, then the set $G_B$ defined by $G_B=\{\sigma\in G\mid\sigma(B)=B\}$ is a subgroup of $G$ containing $G_a$.
+            \begin{proof}
+                To prove that $G_B$ is a subgroup, it will suffice to show that $G_B$ is nonempty, closed under multiplication, and closed under inverses. Since we naturally have $e(B)=B$, $G_B$ is nonempty. Suppose $\sigma,\tau\in G_B$. Then $\sigma(B)=B$ and $\tau(B)=B$. It follows that $[\sigma\cdot\tau](B)=\sigma(\tau(B))=\sigma(B)=B$, so $\sigma\cdot\tau\in G_B$ as well. Thus, $G_B$ is closed under multiplication. Now suppose $\sigma\in G_B$. Then $\sigma(B)=B$. It follows since $\sigma$ is bijective that $\sigma^{-1}(B)=B$ as well. Thus, $\sigma^{-1}\in G_B$, and hence $G_B$ is closed under inverses.\par
+                We know that $G_a=\{\sigma\in G\mid\sigma(a)=a\}$. To prove that $G_a\subset G_B$, it will suffice to show that every $\sigma\in G_a$ is an element of $G_B$. Let $\sigma\in G_a$ be arbitrary. Since $B$ is a block, either $\sigma(B)=B$ or $\sigma(B)\cap B=\emptyset$. Suppose for the sake of contradiction that $\sigma(B)\cap B=\emptyset$. Since $\sigma(a)=a$, we have that $\sigma(a)\in B$ and $\sigma(a)\in\sigma(B)$. Consequently, $\sigma(a)\in\sigma(B)\cap B$, a contradiction. Therefore, $\sigma(B)=B$, and $\sigma\in G_B$, as desired.
+            \end{proof}
             \item Show that if $B$ is a block and $\sigma_1(B),\sigma_2(B),\dots,\sigma_n(B)$ are all the distinct images of $B$ under the elements of $G$, then these form a partition of $A$.
+            \begin{proof}
+                % $\sigma_iG_B\subset G$ is the set of all $\sigma\in G$ such that $\sigma(B)=\sigma_i(B)$.
+
+                % Transitive implies $\Orb(a)=A$ for all $a\in A$.
+
+                % Form a partition of $A$ using cosets as equivalence classes. Consider $G/G_B$ in particular.
+
+                % To prove that the $\sigma_i(B)$ form a partition of $A$, it will suffice to show that they are pairwise disjoint and that all $a\in A$ lie in some $\sigma_i(B)$.
+
+                % To do this, we will identify each $\sigma_i(B)$ with the coset $\sigma_iG_B$.
+
+                % Pick $a\in B$. Define a homomorphism $\phi:G\to A$ by $\phi(\sigma)=\sigma(a)$. Since the action is transitive, $\im\phi=A$. $\ker\phi=G_B$.
+
+
+                To prove that the $\sigma_i(B)$ form a partition of $A$, it will suffice to show that they are pairwise disjoint and that all $a\in A$ lie in some $\sigma_i(B)$.\par
+                Suppose for the sake of contradiction that there exist $1\leq i\neq j\leq n$ such that $\sigma_i(B)\cap\sigma_j(B)\neq\emptyset$. Then there exists an $a\in A$ such that $a=\sigma_ib=\sigma_jb'$ for some $b,b'\in B$. Since $\sigma_ib=\sigma_jb'$, $b=\sigma_i^{-1}\sigma_jb'$. It follows that $b\in\sigma_i^{-1}\sigma_j(B)$ and $b\in B$, so $b\in\sigma_i^{-1}\sigma_j(B)\cap B$, a contradiction.\par
+                Let $a\in A$ be arbitrary, and pick some $b\in B$. Since the action is transitive, there exists $\sigma\in G$ such that $\sigma(b)=a$. Thus, $a\in\sigma(B)$. But since $\sigma_1(B),\sigma_2(B),\dots,\sigma_n(B)$ encapsulates \emph{all} distinct images of $B$ under the elements of $G$, $\sigma(B)=\sigma_i(B)$ for some $1\leq i\leq n$, as desired.
+            \end{proof}
             \item A (transitive) group $G$ on a set $A$ is said to be \textbf{primitive} if the only blocks in $A$ are the trivial ones: The sets of size 1 and $A$ itself. Show that $S_4$ is primitive on $A=\{1,2,3,4\}$. Show that $D_8$ is not primitive as a permutation group on the four vertices of a square.
+            \begin{proof}
+                To prove that $S_4$ is primitive on $A$, it will suffice to show that if $B\subset A$ contains 2 or 3 elements, then there exists $\sigma\in S_4$ such that $\emptyset\neq\sigma(B)\cap B\neq B$. Let $B\subset A$ contain 2 or 3 elements. Pick $a\in A\setminus B$ and $b\in B$. Then $\sigma=(a,b)\in S_4$ guarantees that at least one element of $B$ is left in $\sigma(B)$ and one element is taken out, meaning that $\emptyset\neq\sigma(B)\cap B\neq B$, as desired.\par
+                To prove that $D_8$ is not primitive on $A$ (where $1,2,3,4$ denote the four vertices of a square going clockwise), it will suffice to find a block $B\subset A$ with cardinality not equal to 1 or 4. Choose $B=\{1,3\}$. Then if $r$ is a clockwise rotation by \ang{90} and $s$ is a reflection along the diagonal from vertex 1 to 3, $e,r^2,s,sr^2:B\mapsto B$ and $r,r^3,sr,sr^3:B\mapsto A\setminus B$.
+            \end{proof}
             \item Prove that the transitive group $G$ is primitive on $A$ if and only if for each $a\in A$, the only subgroups of $G$ containing $G_a$ are $G_a$ and $G$ (i.e., $G_a$ is a \textbf{maximal} subgroup of $G$). \emph{Hint.} See Exercise 2.4.16. Use part (a).
+            \begin{proof}
+                Suppose first that $G$ acts transitively and is primitive on $A$. Let $a\in A$ be arbitrary, and let $H\leq G$ contain $G_a$. Define $B=\{h(a)\mid h\in H\}$. We now seek to prove that $B$ is a block.\par
+                To prove that $B$ is a block, it will suffice to show that for all $\sigma\in G$, either $\sigma(B)=B$ or $\sigma(B)\cap B=\emptyset$. Let $\sigma\in G$ be arbitrary. We divide into two cases ($\sigma\in H$ and $\sigma\notin H$). If $\sigma\in H$, then every $\sigma h(a)\in\sigma(B)$ is an element of $B$ since $\sigma,h\in H$ implies $\sigma h\in H$ implies $\sigma h(a)\in B$. Thus, $\sigma(B)=B$ in this case. If $\sigma\notin H$, then suppose for the sake of contradiction that $\sigma(B)\cap B\neq\emptyset$. Let $b\in\sigma(B)\cap B$. Then $b=\sigma(h(a))$ for some $h(a)\in B$ and $b=h'(a)$ for some $h'(a)\in B$. It follows that $\sigma h(a)=h'(a)$. Consequently, ${h'}^{-1}\sigma h\cdot a=a$, so ${h'}^{-1}\sigma h\in G_a\subset H$. But if ${h'}^{-1}\sigma h\in H$, then $\sigma\in h'Hh^{-1}=H$, a contradiction. Therefore, $B$ is a block.\par
+                Having proven that $B$ is a block, we complete the proof in this direction. Since $G$ is primitive, $B=G$ or $|B|=1$. If $B=G$, then $H=G$. If $|B|=1$, then since $e\in H$ implies $e(a)=a\in B$, the definition of $B$ implies that every $h\in H$ makes $h(a)=a$. But this means that $H\leq G_a$; this combined with the hypothesis that $G_a\leq H$ means that $H=G_a$.\par\medskip
+                Now suppose that for each $a\in A$, the $G_a$ is a maximal subgroup of $G$. To prove that (the transitive group) $G$ is primitive on $A$, it will suffice to show that the only blocks in $A$ are the trivial ones. Let $B$ be an arbitrary block in $A$. Pick an $a\in B$. By part (a), $G_a\leq G_B\leq G$. It follows by the hypothesis that $G_a$ is maximal that $G_B=G_a$ or $G_B=G$. We now divide into two cases. If $G_B=G_a$, suppose for the sake of contradiction that there exists $b\neq a$ in $B$. Since $G\acts A$ is transitive, there exists $\sigma\in G$ such that $\sigma(a)=b$. It follows since $B$ is a block that $\sigma(B)=B$, hence $\sigma\in G_B=G_a$. But this implies that $\sigma(a)=a$, a contradiction. Therefore, $B=\{a\}$. On the other hand, if $G_B=G$, then let $a\in A$ be arbitrary. By transitivity, there once again exists $\sigma\in G$ such that $\sigma\cdot b=a$ for some $b\in B$. But since $G=G_B$, $\sigma(B)=B$, so $a\in B$. Therefore, $A\subset B$, so $B=A$, as desired.
+            \end{proof}
         \end{enumerate}
         \item A transitive permutation group $G$ on a set $A$ is called \textbf{doubly transitive} if for any (hence all) $a\in A$, the subgroup $G_a$ is transitive on the set $A\setminus\{a\}$.
         \begin{enumerate}[label={\textbf{(\alph*)}}]
             \item Prove that $S_n$ is doubly transitive on $\{1,2,\dots,n\}$ for all $n\geq 2$.
+            \begin{proof}
+                Let $\Sigma=\{1,2,\dots,n\}$. It follows from the definition of $S_n$ that $S_n\acts\Sigma$ is transitive. Now let $k\in\Sigma$ be arbitrary, and let $G=S_n$ (for ease of writing $G_a$ instead of $S_{n_a}$ or something). Then $G_a$ is the set of all permutations of $\Sigma$ that fix $k$, which is naturally transitive on $\Sigma\setminus\{a\}$ for $n\geq 2$. (The $n\geq 2$ condition helps us avoid the case where $\Sigma=\emptyset$.) Therefore, $S_n$ is doubly transitive on $\Sigma$, as desired.
+            \end{proof}
             \item Prove that a doubly transitive group is primitive. Deduce that $D_8$ is not doubly transitive in its action on the four vertices of a square.
+            \begin{proof}
+                Let $G$ a transitive permutation group on $A$ be doubly transitive. To prove that $G$ is primitive, it will suffice to show that the only blocks in $A$ are the trivial ones. Let $B\subset A$ be an arbitrary block. We divide into two cases ($B=A$ and $B\neq A$). If $B=A$, then we are done. If $B\neq A$, then we can pick $c\in A\setminus B$. Additionally, since $B$ (as a block) is nonempty, we may pick an $a\in B$. Now suppose for the sake of contradiction that there exists $b\in B$ such that $b\neq a$. Then since $G_a$ is transitive on $A\setminus\{a\}$, there exists $\sigma\in G_a$ such that $\sigma(b)=c$. This implies that $\sigma(B)\supsetneq B$. However, since $G_a\leq G_B$ by Exercise 7a, $\sigma(B)=B$, a contradiction. Therefore, $B=\{a\}$, as desired.\par
+                Since $D_8$ acting on the four vertices of a square is not primitive by Exercise 7c, we have by the above argument that it cannot be doubly transitive in action on this set either, as desired.
+            \end{proof}
         \end{enumerate}
     \end{enumerate}
     \item Exercise 4.2.9 of \textcite{bib:DummitFoote}.
@@ -34,10 +73,49 @@
         \item Prove that if $p$ is a prime and $G$ is a group of order $p^\alpha$ for some $\alpha\in\Z^+$, then every subgroup of index $p$ is normal in $G$. Deduce that every group of order $p^2$ has a normal subgroup of order $p$.
     \end{enumerate}
     \item Suppose that $G$ acts transitively and faithfully on a finite set $X$, and that $G$ is abelian. Prove that $|G|=|X|$. Show that the equality need not hold if $G$ is not abelian.
+    \begin{proof}
+        % $\Orb(x)=X$. $\ker=\{e\}$.
+        % $|G|=|X|\cdot|\Stab(x)|$.
+
+        % Suppose $g\cdot x=x$ for some $g\neq e$.
+
+        We approach this proof from the perspective of the Orbit-Stabilizer Theorem. According to it,
+        \begin{equation*}
+            |G| = |\Orb(x)|\cdot|\Stab(x)|
+        \end{equation*}
+        for all $x\in X$. Since $G\acts X$ is transitive, $\Orb(x)=X$, and we can further refine the above to
+        \begin{equation*}
+            |G| = |X|\cdot|\Stab(x)|
+        \end{equation*}
+        Thus, to prove that $|G|=|X|$, it will suffice to show that $|\Stab(x)|=1$ for all $x\in X$. To do so, we will show that $\Stab(x)=\Stab(y)$ for all $x,y\in X$, from which it will follow that $\Stab(x)=\bigcap_{y\in X}\Stab(y)=\{e\}$ for all $x\in X$, as desired. Let $x,y\in X$ be arbitrary. Since $G$ is transitive, there exists $g\in G$ such that $g\cdot x=y$. Now suppose $h\in\Stab(y)$. Then since $G$ is abelian,
+        \begin{align*}
+            g\cdot x &= y\\
+            &= h\cdot y\\
+            &= h\cdot(g\cdot x)\\
+            &= hg\cdot x\\
+            &= gh\cdot x\\
+            &= g\cdot(h\cdot x)
+        \end{align*}
+        It follows by the cancellation lemma that $h\cdot x=x$, i.e., $h\in\Stab(x)$. Having shown that an arbitrary element of one stabilizer is necessarily in another, we know that all stabilizers are equal, and thus have the desired result.\par
+        Let $G=D_6$ and $X$ be the a set of three points in the plane that $D_6$ can shuffle around. There are elements of $D_6$ that move every point to every other point, so the action is transitive, and the only element that fixes every point is the identity, so the action is faithful. Additionally, $D_6$ is not abelian: recall our special rule for commuting in $D_6$ as $rs=sr^{-1}$. And lastly, note that $|G|=6\neq 3=|X|$, as desired.
+    \end{proof}
     \item Let $G$ be a finite group and let $H$ be any subgroup.
     \begin{enumerate}
         \item Prove that the left action of $G$ on the coset space $G/H$ has kernel $N=\bigcap_{g\in G}gHg^{-1}$.
+        \begin{proof}
+            Let $gH\in G/H$ be arbitrary. We seek to show that $\Stab(gH)=gHg^{-1}$. Suppose $\sigma\in\Stab(gH)$ is such that $\sigma\cdot gH=gH$. Then $\sigma gH=gH$, i.e., for every $h\in H$, there exists $h'\in H$ such that $\sigma gh=gh'$. It follows that $\sigma=gh'h^{-1}g^{-1}\in gHg^{-1}$.\par
+            Therefore, we have that
+            \begin{equation*}
+                \ker = \bigcap_{gH\in G/H}\Stab(gH)
+                = \bigcap_{g\in G}\Stab(gH)
+                = \bigcap_{g\in G}gHg^{-1}
+            \end{equation*}
+            as desired.
+        \end{proof}
         \item Prove that $N=\bigcap_{g\in G}gHg^{-1}$ is the largest normal subgroup of $G$ contained in $H$.
+        \begin{proof}
+            Suppose for the sake of contradiction that there exists $M\triangleleft G$ such that $M\subset H$ and $M\supsetneq N$.
+        \end{proof}
     \end{enumerate}
     \item \textbf{The Quaternions.} Let $\HH=\R\oplus\R i\oplus\R j\oplus\R k$ be a 4-dimensional vector space over $\R$. Define a non-commutative associative multiplication structure on $\HH$ by the formulae
     \begin{align*}
@@ -71,9 +149,47 @@
             \item $\phi$ respects multiplication; if $q_1,q_2$ are two quaternions, then $\phi(q_1q_2)=\phi(q_1)\phi(q_2)$. This should reduce easily enough to the case where $q_i,q_j$ are elements of the set $\phi(1),\phi(i),\phi(j),\phi(k)$. The map $\phi$ is not a group homomorphism since 0 is not an invertible quaternion, but we shall see below in part (c) that non-zero quaternions form a group, so $\phi$ restricted to $\HH^\times$ is actually a homomorphism from $\HH^\times$ to $\text{GL}_2(\C)$.
         \end{enumerate}
         \item Define the conjugate of a quaternion $q=a+bi+cj+dk$ by $\bar{q}:=a-bi-cj-dk$. Prove that $N(q):=q\bar{q}=a^2+b^2+c^2+d^2$.
+        \begin{proof}
+            We have that
+            \begin{align*}
+                N(q) &= q\bar{q}\\
+                &= (a+bi+cj+dk)(a-bi-cj-dk)\\
+                &= a^2-abi-acj-adk+abi-b^2i^2-bcij-bdik+acj-bcji-c^2j^2-cdjk+adk-bdki-cdkj-d^2k^2\\
+                &= a^2-b^2i^2-bcij-bdik-bcji-c^2j^2-cdjk-bdki-cdkj-d^2k^2\\
+                &= a^2-b^2i^2-bcij-bdik+bcij-c^2j^2-cdjk+bdik+cdjk-d^2k^2\\
+                &= a^2-b^2i^2-c^2j^2-d^2k^2\\
+                &= a^2+b^2+c^2+d^2
+            \end{align*}
+            as desired.
+        \end{proof}
         \item Prove that non-zero quaternions $\HH^\times$ form a group under multiplication.
+        \begin{proof}
+            To prove that $(\HH^\times,\cdot)$ is a group, it will suffice to show that there exists an identity element $e$, there exist inverses for every element, and associativity holds. Pick 1 to be the identity element; we clearly have that
+            \begin{equation*}
+                1\cdot(a+bi+cj+dk) = (a+bi+cj+dk)\cdot 1
+                = a+bi+cj+dk
+            \end{equation*}
+            where $a+bi+cj+dk\in\HH^\times$ is arbitrary. For every $q\in\HH^\times$, pick $\bar{q}/N(q)$ to be its inverse; by part (a), we have that
+            \begin{equation*}
+                q\cdot\frac{\bar{q}}{N(q)} = \frac{N(q)}{N(q)}
+                = 1
+                = \frac{N(q)}{N(q)}
+                = \frac{\bar{q}}{N(q)}\cdot q
+            \end{equation*}
+            Associativity holds by hypothesis. Therefore, $\HH^\times$ is a group, as desired.
+        \end{proof}
         \item Let $Q=\gen{i,j}$ be the subgroup of $\HH^\times$ generated by $i,j$. Prove that $Q$ is a group of order 8. ($Q$ is known as the "quaternion group.")
+        \begin{proof}
+            The elements of $Q$ are
+            \begin{equation*}
+                Q = \{1=i^4,-1=i^2,i,j,-i=i^3,-j=j^3,k=ij,-k=ji\}
+            \end{equation*}
+            We can confirm by manual computation that the product of any two of these elements is in $Q$. The rest of the group axioms are satisfied since any set defined in terms of group generators is a group.
+        \end{proof}
         \item Prove that every subgroup of $Q$ is normal.
+        \begin{proof}
+            Let $H\leq Q$, and let $h\in H$. We want to show that $qhq^{-1}\in H$ for all $q\in Q$. We divide into two cases ($q=1,-1$, and $q\neq 1,-1$). If $q=1,-1$, then both $q,q^{-1}$ commute with $h$, so $qhq^{-1}=qq^{-1}h=h\in H$. If $q\neq 1,-1$, then 
+        \end{proof}
         \item Let $N=\pm 1\subset Q$. Prove that $Q/N\cong(\Z/2\Z)^2$ and that $Q/N$ is not isomorphic to a subgroup of $Q$.
         \item ($\star$) Let $\Gamma$ be the subgroup of $\HH^\times$ generated by the elements of $Q$ together with $\frac{1}{2}(1+i+j+k)$. Prove that $\Gamma$ is a group of order 24.
         \item Prove that $\Gamma$ is \emph{not} isomorphic to $S_4$, and $Q$ is \emph{not} isomorphic to $D_8$. In fact, $\Gamma=\text{SL}_2(\F_3)$.
