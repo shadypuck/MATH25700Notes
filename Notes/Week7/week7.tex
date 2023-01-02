@@ -436,6 +436,113 @@
 
 
 
+\section[Blog Post: \texorpdfstring{$p$}{TEXT}-Groups]{\texorpdfstring{Blog Post: $\bm{p}$}{TEXT}-Groups}
+\emph{From \textcite{bib:Calegari}.}
+\begin{itemize}
+    \item \marginnote{11/27:}Mostly review of lecture.
+    \item Claim (by Lagrange): Any subgroup of a $p$-group $P$ is also a $p$-group. The order of any element of $P$ is a power of $p$.
+    \item \textbf{Fixed points} (of $X$ under $G\acts X$): The set of all fixed points of $X$. \emph{Denoted by} $\bm{\Fixed(X)}$.
+    \item Theorem:
+    \begin{equation*}
+        |\Fixed(X)| \equiv |X|\mod p
+    \end{equation*}
+    \item Example: Let $X=P$ and $P\acts P$ by left multiplication. Then $|P|\mod p=p^m\mod p=0\mod p$. This squares with the fact that by the Sudoku lemma, $P$ has no fixed points ($|P|>1$ by definition since the smallest prime number is 2), so $|\Fixed(P)|=0\equiv 0\mod p$.
+    \item Following up on the center being a non-trivial normal subgroup, we have the following corollary.
+    \item More on $\text{GL}_3(\F_p)$.
+    \begin{itemize}
+        \item Let $P\subset\text{GL}_3(\F_p)$ be the set of matrices of the following form.
+        \begin{equation*}
+            \begin{pmatrix}
+                1 & * & *\\
+                0 & 1 & *\\
+                0 & 0 & 1\\
+            \end{pmatrix}
+        \end{equation*}
+        \item $P$ is non-abelian since the operation is matrix multiplication, which is not commutative.
+        \item $|P|=p^3$ since we have 3 free entries in the matrix, each of which can take on $p$ values.
+        \item Every matrix in $P$ is invertible (and hence an element of $\text{GL}_3(\F_p)$) since the determinant for such an upper triangular matrix is the product of the diagonal entries and hence $1\neq 0$.
+        \item $P$ is closed under inversion since
+        \begin{equation*}
+            \begin{pmatrix}
+                1 & x & y\\
+                0 & 1 & z\\
+                0 & 0 & 1\\
+            \end{pmatrix}^{-1}
+            =
+            \begin{pmatrix}
+                1 & -x & -y+xz\\
+                0 & 1 & -z\\
+                0 & 0 & 1\\
+            \end{pmatrix}
+        \end{equation*}
+        \item $P$ is closed under multiplication since
+        \begin{equation*}
+            \begin{pmatrix}
+                1 & a & b\\
+                0 & 1 & c\\
+                0 & 0 & 1\\
+            \end{pmatrix}
+            \begin{pmatrix}
+                1 & x & y\\
+                0 & 1 & z\\
+                0 & 0 & 1\\
+            \end{pmatrix}
+            =
+            \begin{pmatrix}
+                1 & a+x & b+y+az\\
+                0 & 1 & c+z\\
+                0 & 0 & 1\\
+            \end{pmatrix}
+        \end{equation*}
+        \item Exercises:
+        \begin{enumerate}
+            \item If $p\geq 3$, then every non-trivial element of $P$ has order $p$. In particular, knowing that every element of a group $P$ satisfies $x^p=e$ does not imply that $P$ is abelian unless $p=2$, in which case we did prove that such a group is abelian.
+            % \begin{proof}
+            %     Let
+            %     \begin{equation*}
+            %         \begin{pmatrix}
+            %             1 & a & b\\
+            %             0 & 1 & c\\
+            %             0 & 0 & 1\\
+            %         \end{pmatrix}
+            %     \end{equation*}
+            %     be an arbitrary non-trivial element of $P$. Then
+            %     \begin{equation*}
+            %         \begin{pmatrix}
+            %             1 & a & b\\
+            %             0 & 1 & c\\
+            %             0 & 0 & 1\\
+            %         \end{pmatrix}^2
+            %         =
+            %         \begin{pmatrix}
+            %             1 & 2a & 2b+ac\\
+            %             0 & 1 & 2c\\
+            %             0 & 0 & 1\\
+            %         \end{pmatrix}
+            %     \end{equation*}
+            % \end{proof}
+            \item What are the order four elements in $P$ when $p=2$?
+            \item The center $Z(P)$ is the subgroup of order $p$ containing all elements of the form
+            \begin{equation*}
+                \begin{pmatrix}
+                    1 & 0 & *\\
+                    0 & 1 & 0\\
+                    0 & 0 & 1\\
+                \end{pmatrix}
+            \end{equation*}
+            Moreover, we have $P/Z=(\Z/p\Z)^2$. In fact, I claim that if $P$ is any non-abelian group of order $p^3$, then $P/Z=(\Z/p\Z)^2$ has to be true. Since $P$ is not abelian, we can't have $Z=P$. We also know since $P$ is a $p$-group that $Z$ is non-trivial. Finally, we can't have $|Z|=p^2$ since then $P/Z$ would be cyclic and then (by HW4 Q5 again) $P=Z$, which is a contradiction. Finally, even when $|Z|=p$, we can't have $P/Z\cong\Z/p^2\Z$ since that still implies by HW4 Q5 that $P$ is cyclic and thus $P=Z$, another contradiction.
+            \item When $p=2$, is this group the dihedral group $D_8$ or the quaternion group $Q$? (It is one of these groups --- see the claim below.)
+        \end{enumerate}
+        \item Claim: There are exactly 5 groups of order $p^3$, three of which are abelian and two of which are not. When $p>2$, the non-abelian groups of order $p^3$ are distinguished by whether all elements in $P$ have order dividing $p$ or not. When $p=2$, the two non-abelian groups are $D_8$ and $Q$.
+        \begin{proof}
+            No proof given.
+        \end{proof}
+        \item Exercise: Can you construct the other non-abelian group of order $p^3$ which has an element of order $p^2$?
+    \end{itemize}
+\end{itemize}
+
+
+
 \section{Sylow I-II}
 \begin{itemize}
     \item \marginnote{11/11:}\textbf{$\bm{p}$-Sylow}\footnote{Sylow is pronounced "SIH-lohv."}: A subgroup $P\leq G$ of order $|P|=p^n$ for some prime $p$ and $n\in\N$, where $G$ is a finite group of order $|G|=p^n\cdot k$ for $\gcd(p,k)=1$.
