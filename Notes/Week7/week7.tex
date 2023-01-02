@@ -261,5 +261,59 @@
 
 
 
+\section{Sylow I-II}
+\begin{itemize}
+    \item \marginnote{11/11:}\textbf{$\bm{p}$-Sylow}\footnote{Sylow is pronounced "SIH-lohv."}: A subgroup $P\leq G$ of order $|P|=p^n$ for some prime $p$ and $n\in\N$, where $G$ is a finite group of order $|G|=p^n\cdot k$ for $\gcd(p,k)=1$.
+    \item Theorem (Sylow I --- Existence): Let $G$ be a finite group with order divisible by $p$. Then $G$ has a $p$-Sylow subgroup.
+    \begin{proof}
+        Let $X$ be the set of all subsets (not subgroups!) of $G$ of order $p^n$. Define $G\acts X$ by left multiplication. Then if $S=\{s_1,\dots,s_{p^n}\}\in X$, we have for instance that
+        \begin{equation*}
+            g\cdot S = gS = \{gs_1,\dots,gs_{p^n}\}
+        \end{equation*}
+        We now investigate the properties of $\Stab(S)$; we will eventually prove that there exists an $S$ for which $\Stab(S)$ is the desired $p$-Sylow. Let's begin.\par
+        We will first show that $|\Stab(S)|\leq p^n$. Pick a $g\in\Stab(S)$. By definition $gs_1\in S$, so $gs_1=s_i$ for some $i=1,\dots,p^n$. It follows that $g=s_is_1^{-1}$. Thus, every element of $\Stab(S)$ is of the form $s_is_1^{-1}$, so there are at most $p^n$ elements in the set (one for each $i$).\par
+        We now divide into two cases ($|\Stab(S)|=p^n$ for some $S$ and $|\Stab(S)|<p^n$ for all $S$). In the former case, we may choose $P=\Stab(S)$ to be our $p$-Sylow, and we are done. In the latter case, we can derive a contradiction, meaning that the former case is always true. To do so, let $S\in X$ be arbitrary. Note that by the Orbit-Stabilizer theorem,
+        \begin{equation*}
+            |\Stab(S)|\cdot|\Orb(S)| = |G| = p^n\cdot k \equiv 0\mod p^n
+        \end{equation*}
+        Since $|\Stab(S)|<p^n$, we know that $|\Stab(S)|\not\equiv 0\mod p^n$. It follows that the largest power of $p$ dividing $|\Stab(S)|$ (which we will call $m$) is less than $n$ (note that it is possible that $m=0$). But since $|G|$ is divisible by $p^n$ and $|\Stab(S)|$ is not, we have that
+        \begin{equation*}
+            |\Orb(S)| = \frac{|G|}{|\Stab(S)|}
+            = \frac{p^n\cdot k}{p^m\cdots}
+            = p^{n-m}\cdots
+        \end{equation*}
+        i.e., that $|\Orb(S)|$ has at least one power of $p$ in its prime factorization. This implies that $|\Orb(S)|\equiv 0\mod p$. But since $|\Orb(S)|$ is divisible by $p$ for all $S$, $|X|$ must be, too (why??). However,
+        \begin{equation*}
+            |X| = \binom{p^nk}{p^n}
+            = \frac{(p^nk)!}{(p^nk-p^n)!p^n!}
+            = \frac{(p^nk)(p^nk-1)\cdots(p^nk-p^n+1)}{(p^n)(p^n-1)\cdots 1}
+            = \frac{p^nk}{p^n}\cdots\frac{p^nk-(p^n-1)}{p^n-(p^n-1)}
+        \end{equation*}
+        We show that every power of $p$ in the numerator above cancels with one in the denominator. In fact, we can do this term-by-term. Consider $p^nk-i$ and $p^n-i$ for some $i=0,\dots,p^n-1$. Let $p^j$ be the largest power of $p$ dividing $i$. Note that since $i<p^n$, we must have $j<n$. Thus, $p^j$ will divide $p^nk$ and $p^n$, too, and hence the differences $p^nk-i$ and $p^n-i$ as well. This implies the desired result. Therefore, since there are no "excess" powers of $p$ in the numerator above, $|X|$ is \emph{not} divisible by $p$, a contradiction.
+    \end{proof}
+    \item Example: Let $G=S_p$.
+    \begin{itemize}
+        \item $|G|=p!=p\cdot k$.
+        \item Need to find a subgroup of order $p$.
+        \item $P=\gen{(1,2,\dots,p)}$ is a $p$-Sylow of $G$.
+    \end{itemize}
+    \item Example: Let $G=S_4$.
+    \begin{itemize}
+        \item Pick $p=2$ so that $|G|=24=2^3\cdot 3$.
+        \item Need to find a subgroup of order 8.
+        \item We can choose $D_8\leq S_4$.
+    \end{itemize}
+    \item Theorem (Sylow II --- Uniqueness up to conjugation): Fix $P$ a $p$-Sylow.
+    \begin{enumerate}
+        \item If $Q\subset G$ is a $p$-Sylow, then $Q=gPg^{-1}$ for some $g\in G$.
+        \item If $Q\subset G$ is a $p$-group, then $Q\subset gPg^{-1}$ for some $g\in G$.
+    \end{enumerate}
+    \begin{proof}
+        Ask in office hours??
+    \end{proof}
+\end{itemize}
+
+
+
 
 \end{document}
