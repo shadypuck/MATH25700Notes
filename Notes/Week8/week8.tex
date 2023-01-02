@@ -1,0 +1,153 @@
+\documentclass[../notes.tex]{subfiles}
+
+\pagestyle{main}
+\renewcommand{\chaptermark}[1]{\markboth{\chaptername\ \thechapter\ (#1)}{}}
+\setcounter{chapter}{7}
+
+\begin{document}
+
+
+
+
+\chapter{Applications of the Sylow Theorems}
+\section{Sylow III and Examples}
+\begin{itemize}
+    \item \marginnote{11/14:}Last time:
+    \begin{itemize}
+        \item Sylow I: $p$-Sylow subgroups exist.
+        \item Sylow II: $p$-Sylow subgroups are unique up to conjugation. Moreover, if $Q\subset G$ is a $p$-group, then $Q\subset gPg^{-1}$ with the same $g$.
+        \item We proved Sylow II by taking $H\subset G$, and separately taking $P\subset G$ to be $p$-Sylow. In this case, there exists $g\in G$ such that $H\cap gPg^{-1}$ is a $p$-Sylow of $H$. If $H=Q$, then $Q\cap gPg^{-1}=Q$.
+        \begin{itemize}
+            \item More on this??
+        \end{itemize}
+    \end{itemize}
+    \item Alternate proof of Sylow II.
+    \begin{proof}
+        % Consider the action $G\acts G/P$ by left multiplication. Restrict it to $Q\hookrightarrow G$. So why do we want to consider this action? $P$ is a $p$-group. Fact: For any $P,Q$, $Q$ fixes a point in $G/P$. This is equivalent to $Q\subset G/P$. $Q$ stabilizes a point $gP$, so $Q\subset gPg^{-1}=\Stab(gP)$. One group is contained in the other iff the action of one on the other has a fixed point??\par
+        % Say $Q$ has a fixed point. We have proven that the number of fixed points of $Q$ is congruent to $|G/P|\mod p$; this is also equal to $|G|/|P|$. The order of $P$ is the largest power of $p$ dividing $G$. Thus, $|G|/|P|\neq 0\mod p$, so there (doesn't?? which one is it) exists a fixed point.
+
+
+        We attack the first claim (equality for $p$-Sylows) in three steps; we will not prove the second claim (containment for $p$-groups) herein. Step 1 defines a useful group action, allowing us to apply relevant theorems from that domain later on. Step 2 proves the existence of a fixed point of said group action, which will be intimately related to the final element $g$ by which we conjugate $P$ to make it equal $Q$. Step 3 relates this element $g$ to the desired result. Let's begin.\par\smallskip
+        Let $X$ denote the set of all $p$-Sylows of $G$. By Sylow I, $X$ is nonempty. Thus, we may choose $P,Q\in X$ (note that $P,Q$ are not necessarily distinct). Define $G\acts G/P$ by left multiplication. Restrict the group action to $Q$ (i.e., restrict the function $\cdot:G\times G/P\to G/P$ to $Q\times G/P$).\par
+        Since $|G|=p^nk$ and $|P|=p^n$, we have that $\gcd(|G/P|,p)=1$. Thus, $|G/P|$ is not divisible by $p$, so $|G/P|\mod p\not\equiv 0\mod p$. Additionally, since $Q$ is a $p$-group (by definition as a $p$-Sylow), we have from the proposition in Lecture 7.2 that $\Fixed(G/P)\equiv|G/P|\mod p$. This combined with the previous result reveals that $\Fixed(G/P)$ is nonempty. As such, we may choose $gP\in\Fixed(G/P)$.\par
+        By definition, $Q$ stabilizes $gP$, i.e.,
+        \begin{align*}
+            QgP &= gP\\
+            g^{-1}QgP &= P
+        \end{align*}
+        where the latter equation above is a simple rearrangement of the first, but can be interpreted to mean that $g^{-1}Qg$ stabilizes $P$. Thus, if $g^{-1}qg\in g^{-1}Qg$, we have $(g^{-1}qg)p_1=p_i$ for some $i=1,\dots,p^n$, and hence $q=g(p_ip_1^{-1})g^{-1}\in gPg^{-1}$. Therefore, $Q\subset gPg^{-1}$. Since $|P|=|Q|$, we additionally have that $Q=gPg^{-1}$, as desired.
+    \end{proof}
+    \item Sylow III. The first is existence, the second is uniqueness, and then there's this one (divisibility and congruence).
+    \item Theorem (Sylow III --- divisibility and congruence): Let $P$ be a $p$-Sylow, and let $n_p$ denote the number of $p$-Sylows of $G$. Then
+    \begin{enumerate}
+        \item Let $N=N_G(P)$. Then $n_p=|G|/|N|=[G:N]$. In particular, $n_p$ divides $|G|$.
+        \begin{proof}
+            % What group action is relevant to 1? Should be something to do with conjugation, because we have a normalizer involved. The normalizer is associated with the stabilizer. Let $X=\{p\text{-Silow subgroups}\}$. $G\acts X$ by conjugation. Apply O-S. Then $|G|=|\Stab_G(P)|\cdot|\Orb(P)|=|N|\cdot|X|$. The fact that $\Orb(P)=X$ follows from Sylow II. And $|X|=n_p$, implying the desired result.
+
+            To prove a claim which expresses $|G|$ in terms of the product of two other numbers, we should think about using the Orbit-Stabilizer theorem. To do so, we need a group action. In particular, a group action by conjugation could be useful because we have a normalizer involved. With this motivation mentioned, let's begin.\par\smallskip
+            Let $X$ be the set of $p$-Sylows of $G$. Define $G\acts X$ by conjugation. By the Orbit-Stabilizer theorem,
+            \begin{equation*}
+                |\Stab_G(P)|\cdot|\Orb(P)| = |G|
+            \end{equation*}
+            Since the group action is by conjugation, we have by the definition of the stabilizer and the normalizer that
+            \begin{equation*}
+                \Stab_G(P) = \{g\in G\mid gPg^{-1}=P\}
+                = N_G(P)
+                = N
+            \end{equation*}
+            According to Sylow II, every $p$-Sylow (every element of $X$) is conjugate to every other via some element of $G$. Thus, since our group action is conjugation, the group action is transitive and $\Orb(P)=X$. Thus,
+            \begin{equation*}
+                |\Orb(P)| = |X| = n_p
+            \end{equation*}
+            Therefore, substituting the previous two results into the preceding one, we have that
+            \begin{align*}
+                |N|\cdot n_p &= |G|\\
+                n_p &= |G|/|N| = [G:N]
+            \end{align*}
+            as desired.
+        \end{proof}
+        \item $n_p\equiv 1\mod p$.
+        \begin{proof}
+            % Second part. Congruence should make us think, "fixed points." Let $|Y|=n_p$. We have a $p$-group acting on $Y$ with 1 fixed point. Take $X$ since $|X|=n_p$. Restrict action by conjugation to $P\acts X$. $P$ acting on the $p$-Sylows. Doesn't have to be transitive like the action of $G$. We want to compute the number of fixed points.\par
+            % $P$ is a fixed point of $P$. Assume $Q\neq P$ is a fixed point of $P$. How do we translate this statement about the group action into a statement about the groups $P,Q$. This translates to $P\subset N=N_G(Q)$. What do we know about $N$? Fact 1: $P\subset N$. Fact 2: $Q\subset N$. Fact 3: $Q\triangleleft N$. $|P|$ is the largest power of $p$ that divides $G$. $G$ has order $p^n\cdot k$, and each of $P,Q$ has order $p^n$. Thus, $P,Q$ are $p$-Sylow subgroups of $N$. Just what's on this board is now enough to achieve a contradiction. Therefore, either by II or III(1), we can deduce that $P=Q$. Now we apply this to $N$.
+
+
+            Congruence should make us think, "fixed points." In this argument, we will pick up where we left off, using the same group action defined in the proof of part 1 to express the claim in the language of fixed points. We will then deduce that this latter claim is true, proving the original claim. Let's begin.\par\smallskip
+            Restrict the action from part 1 to $P$. This may mean that $P\acts X$ is no longer transitive, but this will not cause any issues. Moving on, we know by the closure of subgroups that $gPg^{-1}=P$ for any $g\in P$; thus, $P$ is a fixed point of $P\acts X$. It follows by the proposition from Lecture 7.2 that $\Fixed_P(X)\equiv|X|\mod p$, and hence $n_p=|X|\equiv\Fixed_P(X)\mod p$. Thus, we are done if we can show that $\Fixed_P(X)=1$, i.e., that $P$ is the only fixed point of $X$ under $P\acts X$.\par
+            Let $Q\in\Fixed_P(X)$ be arbitrary; we seek to prove that $Q=P$. Define $N:=N_G(Q)$. By definition, $Q\subset N$. Additionally, $P\subset N$: Since $Q\in\Fixed_P(X)$, $gQg^{-1}=g\cdot Q=Q$ for all $g\in P$. Hence $P,Q$ are both $p$-Sylows of $N$ (the order of $p$ dividing $|N|$ certainly [by Lagrange's Theorem] divides the order of $p$ dividing $|G|$). By Sylow II, any two $p$-Sylows are conjugate, so there exists $n\in N$ such that $nQn^{-1}=P$. Additionally, since $Q\triangleleft N$ by HW4 Q3c, we have that $nQn^{-1}=Q$. Therefore, by transitivity, $P=Q$, as desired.
+        \end{proof}
+    \end{enumerate}
+    \item We are now done with proving the Sylow theorems. Make sure you have nice copies written out!
+    \begin{itemize}
+        \item Perhaps before the final, I should take all important proofs from the quarter and make "proof outlines" in my review sheet, giving the tricks and motivation in as concise a format as possible but still allowing me to deduce the rest of the proof for myself. This could be a great exercise!
+    \end{itemize}
+    \item The arguments that we've used thus far in this class are mostly combinatorical with a bit of number theory sprinkled in.
+    \item Before going into applications of the Sylow theorems, we present an example that's good to keep in mind.
+    \item Let $G=S_p$ for some $p\in\N$ prime.
+    \begin{itemize}
+        \item S I: Yes, $G$ has a $p$-Sylow, namely $P=\gen{(1,2,\dots,p)}$.
+        \item S II: Any $p$-cycles are conjugate to one another.
+        \item Intuitive derivation of the value of $n_p$: $n_p$ is the number of elements of order $p$\footnote{Recall that this is $p!/p$, since there are $p$ options for the first entry, $p-1$ for the second, on and on down to 1, but there are also $p$ ways to write said element.} divided by $p-1$\footnote{Each $p$-Sylow $P$ contains $p-1$ distinct $p$-cycles.}. Thus,
+        \begin{equation*}
+            n_p = \frac{p!}{p(p-1)}
+            = (p-2)!
+        \end{equation*}
+        \item S III: $(p-2)!\equiv 1\mod p$.
+        \begin{itemize}
+            \item We obtain a related statement from \textbf{Wilson's theorem}: $(p-1)!\equiv -1\mod p$.
+        \end{itemize}
+        \item S III: $|N|=|N_G(P)|=p(p-1)$.
+        \item This result combined with $P\triangleleft N$: $|N/P|=p-1$.
+    \end{itemize}
+    \item Theorem (Wilson's theorem): A natural number $p>1$ is prime iff
+    \begin{equation*}
+        (p-1)! \equiv -1\mod p
+    \end{equation*}
+    \item \textbf{Affine group} (of order $p$): The following group, which consists of permutations given by affine maps. \emph{Denoted by} $\bm{\Aff_p}$. \emph{Given by}
+    \begin{equation*}
+        \Aff_p = S_{\Z/p\Z}
+    \end{equation*}
+    \begin{itemize}
+        \item We send $x\in\Z/p\Z$ to $ax+b\in\Z/p\Z$.
+        \item Injective:
+        \begin{align*}
+            ax+b &= ay+b\\
+            a(x-y) &\equiv 0\mod p\\
+            x &= y
+        \end{align*}
+        \item We also need to check that $\Aff_p$ is actually a subgroup. The group operation...
+        \item An affine map is the sum of a linear transformation and a translation. Thus,
+        \begin{equation*}
+            A(ax+b)+B = Aax+Ab+B
+        \end{equation*}
+        so
+        \begin{equation*}
+            (a,b)(A,B) = (aA,Ab+B)
+        \end{equation*}
+        \item We claim that $P=\gen{X\to X+1}$ is a subgroup??
+        \item In particular, $P\triangleleft\Aff_p\leq N$.
+        \item Thus, $\Aff_p=N_{S_p}(\gen{(1,2,\dots,p)})$. This is a nice new group to have.
+        \item We have $P:\Aff_p\to(\Z/p\Z)^*$ defined by $\gen{x\mapsto x+b}$. $x\mapsto ax+b$ goes to $a$ in the codomain, $Ax+B$ maps to $A$, and $aAx+\cdots$ maps to $aA$.
+        \item Remark: If $q|p-1$ is prime, then $(\Z/p\Z)^*$ has an element of order $q$ (Sylow). Call it $\sigma$. Then $\gen{\sigma}\leq(\Z/p\Z)^*$.
+    \end{itemize}
+    \item Theorem: Let $p,q$ be primes such that $p>q$. Then either\dots
+    \begin{enumerate}
+        \item $p\equiv 1\mod q$ and there exists a nonabelian group of order $pq$ that is a subset of $\Aff_p$.
+        \item $p\not\equiv 1\mod q$ and all groups of order $pq$ are isomorphic to $\Z/p\Z\times\Z/q\Z\cong\Z/pq\Z$.
+    \end{enumerate}
+    \begin{proof}
+        ...
+    \end{proof}
+    \item Misc notes: According to S III\dots
+    \begin{itemize}
+        \item $|G|=pq$ and $n_p\equiv 1\mod p$. Either $n_p=1$ or $n_p=q\equiv 1\mod p$, implying $q>p$, a contradiction.
+        \item Alternatively, $G\cong P_p\times P_q$. $n_q=1$ or $n_q=p$. If $p\not\equiv 1\mod q$, then $n_q=1$. We end up with $P_p\trianglelefteq G$ and $P_q\trianglelefteq G$, which implies that $P_p\cap P_q=\{e\}$. Therefore, $P_p$ and $P_q$ commute.
+    \end{itemize}
+    \item First example: 15; the first composite number for which $p,q>2$ (and thus the structure is not covered by our previous analysis).
+    \item We still haven't completely classified groups of order $pq$; sometimes there's one, sometimes there's more. We will look at these groups in greater detail next lecture.
+\end{itemize}
+
+
+
+
+\end{document}
