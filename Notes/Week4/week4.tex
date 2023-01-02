@@ -452,6 +452,46 @@
 
 
 
+\section{Blog Post: The First Isomorphism Theorem}
+\emph{From \textcite{bib:Calegari}.}
+\begin{itemize}
+    \item \marginnote{11/12:}Again, a fairly straight review of class.
+    \item Implication of the FIT: The image of \emph{any} homomorphism $\phi$ is naturally (i.e., isomorphic to) the quotient group of $G/\ker\phi$.
+    \item A direct statement and proof of the FIT is given.
+    \item Example: We can use the FIT to prove that $S_4/K\cong S_3$, which would be painful to verify by hand.
+    \item "First" Isomorphism Theorem?
+    \begin{itemize}
+        \item There are other isomorphism theorems, but since they are all consequences of the first, Calegari recommends we only memorize the first.
+    \end{itemize}
+    \item Theorem (Second Isomorphism Theorem): Let $G$ be a group, $H$ a subgroup, and $N$ a normal subgroup of $G$. Then there is an isomorphism
+    \begin{equation*}
+        H/(H\cap N) \cong HN/N
+    \end{equation*}
+    \item What this means:
+    \begin{itemize}
+        \item $HN=\{hn\mid h\in H,\ n\in N\}$.
+        \item $HN$ is a subgroup of $G$ since
+        \begin{equation*}
+            (hn)_1(hn)_2 = h_1n_1h_2n_2
+            = h_1(h_2h_2^{-1})n_1h_2n_2
+            = \underbrace{h_1h_2}_{\in H}\underbrace{(h_2^{-1}n_1h_2)n_2}_{\in N}
+        \end{equation*}
+        \item Since $e\in H$, $N\subset HN$. Moreover, $N\triangleleft HN$ since $N\triangleleft G$.
+        \item $H\cap N$ is normal in $H$: If $n\in H\cap N$ and $h\in H$, then $hnh^{-1}\in N$ since $N\triangleleft G$; $hnh^{-1}\in H$ since $n,h\in H$; and therefore, $hnh^{-1}\in H\cap N$.
+    \end{itemize}
+    \item If we now define a map $\phi(h(H\cap N))=hN$, we can easily prove that it is well-defined, surjective, injective, and a homomorphism.
+    \item Calegari can't really think of any applications of the SIT, so he recommends we forget it and just view the proof as another exercise in thinking about the constructions we introduced in building up to the FIT.
+    \item Why normal subgroups are interesting:
+    \begin{itemize}
+        \item The FIT asserts that any homomorphism of groups $\phi:G\to H$ can be understood by understanding (1) the subgroups of $H$ (one of which will be $\im\phi$) and (2) the quotients $G/K$ of $G$.
+        \item These problems can be studied individually.
+        \item Thus, to understand maps among the $S_n$ for example which we're often interested in, we should study these two things.
+    \end{itemize}
+    \item Union of conjugacy classes and $e\in N$ / Lagrange lemma.
+\end{itemize}
+
+
+
 \section{The Alternating Group}
 \begin{itemize}
     \item \marginnote{10/21:}Today, we continue our investigation of normal subgroups.
