@@ -110,6 +110,181 @@
 
 
 
+\section{Blog Post: Actions of the Dodecahedral Group}
+\emph{From \textcite{bib:Calegari}.}
+\begin{itemize}
+    \item \marginnote{11/26:}Recall that in HW2, we found a faithful action $\text{Do}\acts\text{5 inscribed cubes}$. This yielded an injective homomorphism $\text{Do}\to S_5$ identifying $\text{Do}$ with an order 60 subgroup. Moreover, this subgroup was necessarily $A_5$ since it is of order 60 and hence normal. Therefore,
+    \begin{equation*}
+        \text{Do} \cong A_5
+    \end{equation*}
+    \item Herein, we seek to classify all transitive actions of $\text{Do}$.
+    \item \textbf{Equivalent} (group actions): Two group actions $G\acts X$ and $G\acts Y$ for which there exists a bijection $\phi:X\to Y$ satisfying
+    \begin{equation*}
+        \phi(g\cdot x) = g\cdot\phi(x)
+    \end{equation*}
+    for all $g\in G$ and $x\in X$.
+    \item Because of the following theorem, to classify all transitive actions of $\text{Do}$, it will actually only be necessary to classify the conjugacy classes of the subgroups of $G$!
+    \item Theorem: The transitive actions of a group $G$ up to equivalence are in bijection to the conjugacy classes of the subgroups of $G$.
+    \begin{proof}
+        To prove this claim, we will first define a map $f$ from the set of transitive actions of $G$ to the set of conjugacy classes of the subgroups of $G$, and a map $g$ from the set of conjugacy classes of the subgroups of $G$ to the set of transitive actions of $G$. We will then check that $f,g$ are well-defined, and that $g=f^{-1}$. Let's begin.\par
+        Define\dots
+        \begin{enumerate}
+            \item $f$ by the rule, "take $X$ a set with a transitive action to the conjugacy class of $H=\Stab(x)$ for some $x\in X$;"
+            \item $g$ by the rule, "take the conjugacy class of $H\leq G$ to $G\acts X=G/H$ by left multiplication."
+        \end{enumerate}
+        To prove that $f$ is well-defined, it will suffice to show that if $G\acts X$ and $G\acts Y$ transitive are equivalent, then $H=\Stab(x)$ for an arbitrary $x\in X$ and $H'=\Stab(y)$ for an arbitrary $y\in Y$ satisfy $H=\sigma H'\sigma^{-1}$ for some $\sigma\in G$. Suppose $G\acts X$ and $G\acts Y$ transitive are equivalent. Then there exists a bijection $\phi:X\to Y$ which preserves the group action. Let $H=\Stab(x)$ for some $x\in X$ arbitrary, and $H'=\Stab(y)$ for some $y\in Y$ arbitrary. Since $G\acts Y$ is transitive, $\phi(x)=\sigma\cdot y$ for some $\sigma\in G$. We choose this $\sigma$ to be our $\sigma$. To confirm that $H=\sigma H'\sigma^{-1}$, we will verify that $\sigma H'\sigma^{-1}\subset H$ and that $|\sigma H'\sigma^{-1}|=|H|$. Let $\sigma h'\sigma^{-1}\in\sigma H'\sigma^{-1}$ be arbitrary. Before we show that $\sigma h'\sigma^{-1}\cdot x=x$ (and hence $\sigma h'\sigma^{-1}\in\Stab(x)=H$), we prove one preliminary result. Indeed, we can show that like $\phi$, $\phi^{-1}$ also preserves the group action:
+        \begin{align*}
+            g\cdot\phi(x) &= \phi(g\cdot x)\\
+            \phi^{-1}(g\cdot y) &= \phi^{-1}(\phi(g\cdot\phi^{-1}(y)))\\
+            \phi^{-1}(g\cdot y) &= g\cdot\phi^{-1}(y)
+        \end{align*}
+        With this result, we have that
+        \begin{align*}
+            \sigma h'\sigma^{-1}\cdot x &= \sigma\cdot(h'\cdot(\sigma^{-1}\cdot x))\\
+            &= \sigma\cdot(h'\cdot(\sigma^{-1}\cdot\phi^{-1}(\sigma\cdot y)))\\
+            &= \sigma\cdot(h'\cdot\phi^{-1}(\sigma^{-1}\cdot(\sigma\cdot y)))\\
+            &= \sigma\cdot(h'\cdot\phi^{-1}(y))\\
+            &= \sigma\cdot\phi^{-1}(h'\cdot y)\\
+            &= \sigma\cdot\phi^{-1}(y)\\
+            &= \phi^{-1}(\sigma\cdot y)\\
+            &= x
+        \end{align*}
+        as desired. As to the second statement we wish to verify, since $\phi$ is a bijection, $|X|=|Y|$. Thus, by the Orbit-Stabilizer theorem and the transitivity of both group actions,
+        \begin{equation*}
+            |H| = |\Stab(x)|
+            = \frac{|G|}{|\Orb(x)|}
+            = \frac{|G|}{|X|}
+            = \frac{|G|}{|Y|}
+            = \frac{|G|}{|\Orb(y)|}
+            = |\Stab(y)|
+            = |H'|
+        \end{equation*}
+        Since conjugate groups have the same order, $|H'|=|\sigma H'\sigma^{-1}|$. Therefore, by transitivity,
+        \begin{equation*}
+            |H| = |\sigma H'\sigma^{-1}|
+        \end{equation*}
+        as desired.\par
+        To prove that $g$ is well-defined, it will suffice to show that $H\leq G$ and $\sigma H\sigma^{-1}\leq G$ map to equivalent transitive group actions. First off, since all actions of a group on its quotient groups are transitive as per the previous lecture, we know that we are mapping subgroups to \emph{transitive} group actions of $G$. Additionally, let $X=G/H$ and $Y=G/\sigma H\sigma^{-1}$. To confirm that $G\acts X$ and $G\acts Y$ are \emph{equivalent}, it will suffice to find a bijection $\phi:X\to Y$ that preserves the action. Define $\phi:X\to Y$ by
+        \begin{equation*}
+            \phi(\gamma H) = (\gamma\sigma^{-1})\sigma H\sigma^{-1} = \gamma H\sigma^{-1}
+        \end{equation*}
+        To confirm that $\phi$ is well-defined, it will suffice to verify that $\phi(\gamma H)=\phi(\gamma hH)$ for all $\gamma\in G$, $h\in H$. Let $\gamma\in G$, $h\in H$ be arbitrary. Then
+        \begin{equation*}
+            \phi(\gamma hH) = \gamma hH\sigma^{-1}
+            = \gamma H\sigma^{-1}
+            = \phi(\gamma H)
+        \end{equation*}
+        as desired.
+        % We can also check that $\phi$ is a homomorphism and is bijective. 
+        % To confirm that $\phi$ is a homomorphism, it will suffice to show that $\phi(\gamma H*\gamma' H)=\phi(\gamma H)\phi(\gamma' H)$ for all $\gamma,\gamma'\in G$. Let $\gamma,\gamma'\in G$ be arbitrary. Then
+        % \begin{equation*}
+        %     \phi(\gamma H*\gamma' H) = \phi(\gamma\gamma' H)
+        %     = \gamma\gamma'\sigma^{-1}\sigma H\sigma^{-1}
+        %     = \gamma\sigma^{-1}\sigma H\sigma^{-1}*\gamma'\sigma^{-1}\sigma H\sigma^{-1}
+        %     = \phi(\gamma H)\phi(\gamma' H)
+        % \end{equation*}
+        % as desired.
+        $\phi$ is naturally bijective since it takes as input $\gamma H$ for all $\gamma\in G$ (i.e., all cosets of $H$) and produces as output $(\gamma\sigma^{-1})\sigma H\sigma^{-1}$ (i.e., all cosets of $\sigma H\sigma^{-1}$ since all $\gamma\sigma^{-1}$'s are distinct by the Sudoku lemma).
+        To confirm that $\phi$ preserves the group action, it will suffice to verify that $\phi(g\cdot\gamma H)=g\cdot\phi(\gamma H)$ for all $g\in G$ and $\gamma H\in X$. Let $g\in G$ and $\gamma H\in X$ be arbitrary. Then
+        \begin{equation*}
+            \phi(g\cdot\gamma H) = \phi(g\gamma H)
+            = g\gamma H\sigma^{-1}
+            = g\gamma\sigma^{-1}\sigma H\sigma^{-1}
+            = g\cdot\gamma\sigma^{-1}\sigma H\sigma^{-1}
+            = g\cdot\phi(\gamma H)
+        \end{equation*}
+        as desired.\par\smallskip
+        To prove that $g=f^{-1}$, if will suffice to show that $f\circ g$ is the identity on the set of conjugacy classes of the subgroups of $G$ and $g\circ f$ is the identity on the set of transitive actions of $G$.\par
+        Tackling $f\circ g$: Let $H\leq G$ be arbitrary. Then $g$ takes $H$ to the action of $G$ on $G/H$ by left multiplication, and $f$ takes $G/H$ back to $\Stab(\gamma H)$ for some $\gamma H\in G/H$. We now need only confirm that $\Stab(\gamma H)$ is conjugate to $H$. But since $\Stab(\gamma H)=\gamma H\gamma^{-1}$ by last lecture, we have the desired result.\par
+        Tackling $g\circ f$: Let $X$ be an arbitrary set on which $G$ acts transitively. Then $f$ takes $X$ to the conjugacy class of $H=\Stab(x)$ for some $x\in X$, and $g$ takes $H$ back to the (transitive) action of $G$ on $G/H$ by left multiplication. To prove that these two actions are equivalent, it will suffice to find a bijection $\phi:G/H\to X$ that preserves the action. Define $\phi:G/H\to X$ by
+        \begin{equation*}
+            \phi(gH) = g\cdot x
+        \end{equation*}
+        where $x$ is the same element of $X$ used to define $H$. To confirm that $\phi$ is well-defined, it will suffice to verify that $\phi(gH)=\phi(ghH)$ for all $g\in G$, $h\in H$. Let $g\in G$, $h\in H$ be arbitrary. But since $h\in\Stab(x)$, we have that
+        \begin{equation*}
+            \phi(ghH) = gh\cdot x
+            = g\cdot(h\cdot x)
+            = g\cdot x
+            = \phi(gH)
+        \end{equation*}
+        as desired. To confirm that $\phi$ is bijective, it will suffice to verify that $\phi$ is injective and surjective. For injectivity, we have that
+        \begin{align*}
+            \phi(gH) &= \phi(g'H)\\
+            g\cdot x &= g'\cdot x
+        \end{align*}
+        so $g^{-1}g'\in\Stab(x)=H$. But this implies that $g'=gh$ for some $h\in H$, meaning that
+        \begin{equation*}
+            g'H = ghH = gH
+        \end{equation*}
+        as desired. For surjectivity, since $G\acts X$ is transitive, there exists $g\in G$ for which $g\cdot x=x'$ for all $x'\in X$. Therefore, for any $x'\in X$, $gH\in G/H$ satisfies
+        \begin{equation*}
+            \phi(gH) = g\cdot x = x'
+        \end{equation*}
+        as desired. To confirm that $\phi$ preserves the group action, it will suffice to verify that $\phi(\gamma\cdot gH)=\gamma\cdot\phi(gH)$ for all $\gamma\in G$ and $gH\in G/H$. Let $\gamma\in G$ and $gH\in G/H$ be arbitrary. Then
+        \begin{equation*}
+            \phi(\gamma\cdot gH) = \phi(\gamma gH)
+            = \gamma g\cdot x
+            = \gamma\cdot(g\cdot x)
+            = \gamma\cdot\phi(gH)
+        \end{equation*}
+        as desired.
+    \end{proof}
+    \item Calegari reviews the isomorphism between $\text{Do}\cong\text{Ic}$.
+    \item Subgroups of $A_5$ with distinct conjugacy classes.
+    \begin{enumerate}
+        \item The trivial subgroup.
+        \item The cyclic group $\gen{(12)(34)}$ of order 2.
+        \item The cyclic group $\gen{(123)}$ of order 3.
+        \item The Klein 4-group $\gen{(12)(34),(13)(24),(14)(23)}$ of order 4.
+        \item The cyclic group $\gen{(12345)}$ of order 5.
+        \item The group $\gen{(123),(23)(45)}\cong S_3\cong D_6$ of order 6.
+        \item The dihedral group $D_{10}=\gen{(12345),(25)(34)}$ of order 10.
+        \item The group $A_4=\gen{(123),(124)}$ of order 12.
+        \item The group $A_5$ of order 60.
+    \end{enumerate}
+    \item Notes on the above.
+    \begin{itemize}
+        \item These are actually \emph{all} of the subgroups of $A_5$.
+        \item All of the above subgroups have different orders. Thus, there is a unique equivalence class of transitive actions on this group for a given set $X$ with
+        \begin{equation*}
+            |X| = 60,30,20,15,12,10,6,5,1
+        \end{equation*}
+    \end{itemize}
+    \item Since $A_5$ has no non-trivial normal subgroups to act as kernels, all actions save the final one below will be faithful.
+    \item Actions of the dodecahedral group:
+    \begin{enumerate}
+        \item The action on the "one" dodecahedron.
+        \item The action on the five inscribed cubes.
+        \item The action on the six pairs of opposite faces of the dodecahedron.
+        \begin{enumerate}
+            \item Equivalently, the action on the six pairs of opposite diagonals of the icosahedron.
+        \end{enumerate}
+        \item The action on the ten pairs of opposite vertices of the dodecahedron.
+        \begin{enumerate}
+            \item Equivalently, the action on the ten pairs of opposite faces of the icosahedron.
+        \end{enumerate}
+        \item The action on the twelve faces of the dodecahedron.
+        \begin{enumerate}
+            \item Equivalently, the action on the twelve vertices of the icosahedron.
+        \end{enumerate}
+        \item The action on the fifteen pairs of opposite edges of the dodecahedron.
+        \begin{enumerate}
+            \item Equivalently, the action on the fifteen pairs of opposite edges of the icosahedron.
+        \end{enumerate}
+        \item The action on the twenty vertices of the dodecahedron.
+        \begin{enumerate}
+            \item Equivalently, the action on the twenty faces of the icosahedron.
+        \end{enumerate}
+        \item The action on the thirty edges of the dodecahedron.
+        \begin{itemize}
+            \item Equivalently, the action on the thirty edges of the icosahedron.
+        \end{itemize}
+        \item The action of the group on itself by left multiplication.
+    \end{enumerate}
+\end{itemize}
+
+
+
 \section[\texorpdfstring{$p$}{TEXT}-Groups]{\texorpdfstring{$\bm{p}$}{TEXT}-Groups}
 \begin{itemize}
     \item \marginnote{11/9:}\textbf{$\bm{p}$-group}: A finite group of order $p^m$, where $p$ is prime and $m\geq 1$. \emph{Denoted by} $\bm{P}$.
