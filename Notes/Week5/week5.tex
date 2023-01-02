@@ -251,7 +251,6 @@
         \end{equation*}
     \end{itemize}
     \item Example: If $G$ is any group and $X$ is any set, we may define a group action by $g\cdot x=x$ for all $g\in G$ and $x\in X$.
-    \item Let $X$ be a set and $S_X$ be the set of all bijections from $X\to X$ under composition. Note that if $|X|=n$, then $S_X\cong S_n$.
     \item Lemma: Let $G\acts X$ and $g\in G$. Define $\psi_g:X\to X$ by $x\mapsto g\cdot x$. Then $\psi_g$ is a bijection.
     \begin{proof}
         Injectivity:
@@ -265,6 +264,7 @@
         Surjectivity: Given $x\in X$, we want $y$ such that $\psi_g(y)=x$. Choose $y=g^{-1}\cdot x$.
     \end{proof}
     \item This allows us to recast group actions into the following equivalent form.
+    \item Let $X$ be a set and $S_X$ be the set of all bijections from $X\to X$ under composition. Note that if $|X|=n$, then $S_X\cong S_n$.
     \item Proposition: An action $G$ on the set $X$ is equivalent to a homomorphism from $G$ to $S_X$ defined by $g\mapsto\psi_g$.
     \begin{proof}
         % WTS: $\psi_g\circ\psi_h=\psi_{gh}$. This would follow if $[\psi_g\circ\psi_h](x)=\psi_{gh}(x)$ for all $x\in X$. This would follow if $g\cdot(h\cdot x)=gh\cdot x$ for all $x\in X$. But we have this by the definition of a group action, as desired.\par
@@ -340,7 +340,6 @@
             X = \bigsqcup\text{Orbits}
         \end{equation*}
     \end{itemize}
-    \item ...
     \item Let $G=S_n$ and $X=[n]$.
     \item Let $G=\text{Cu}$.
     \item Examples.
@@ -357,7 +356,7 @@
              & Diagonals & 4 & $\checkmark$ & $\checkmark$ & $\{e\}$ & $S_3\cong D_6$ & 6\\
              & \begin{tabular}{c}Pairs of\\[-4pt]opposite faces\end{tabular} & 3 & $\checkmark$ & X & \begin{tabular}{c}Rotations by \ang{180},\\[-4pt]in particular, $|K|=4$\end{tabular} & $D_8$ & 8\\
              & Inscribed tetrahedra & 2 & $\checkmark$ & X & $A_4$ & $A_4$ & 12\\
-             & $\text{Ed}\cup\text{Fac}$ & 18 & X & ... & ... & ... & ...\\
+             & $\text{Ed}\cup\text{Fac}$ & 18 & X & $\checkmark$ & $\{e\}$ & $\Z/4\Z$ or $\Z/2\Z$ & 4 or 2\\
         \end{tabular}
         \caption{Examples of group actions.}
         \label{tab:GAexamples}

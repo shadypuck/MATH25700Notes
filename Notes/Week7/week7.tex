@@ -1,0 +1,114 @@
+\documentclass[../notes.tex]{subfiles}
+
+\pagestyle{main}
+\renewcommand{\chaptermark}[1]{\markboth{\chaptername\ \thechapter\ (#1)}{}}
+\setcounter{chapter}{6}
+
+\begin{document}
+
+
+
+
+\chapter[Group Action Applications: \texorpdfstring{$A_5$}{TEXT} and the Sylow Theorems]{Group Action Applications: \texorpdfstring{$\bm{A_5}$}{TEXT} and the Sylow Theorems}
+\section[Actions of \texorpdfstring{$A_5$}{TEXT}]{Actions of \texorpdfstring{$\bm{A_5}$}{TEXT}}
+\begin{itemize}
+    \item \marginnote{11/7:}Classifying subgroups of $G=A_5\cong\text{Do}$.
+    \item Let $H\leq G$. We must have $|H|\big||G|$ by Lagrange's theorem.
+    \begin{itemize}
+        \item Thus, if $H\leq A_5$, we must have
+        \begin{equation*}
+            |H| \in \{1,2,3,4,5,6,10,12,15,20,30,60\}
+        \end{equation*}
+    \end{itemize}
+    \item A good place to start is with orders of $H$ that correspond to cyclic subsets.
+    \item In particular, let's start with subgroups of the form $\gen{(**)(**)}$, which all have order 2.
+    \begin{itemize}
+        \item Are such groups conjugate?
+        \item To prove that two groups of the form $\gen{(**)(**)}$ are conjugate, it will suffice to show that their generators are conjugate (since the only other element --- the identity --- will naturally be conjugate to itself).
+        \item Let $x,y\in A_5$ be arbitrary elements of the form $(**)(**)$. Then there exists $g\in S_5$ such that $gxg^{-1}=y$.
+        \item But is $g\in A_5$? If $g\in A_5$, then we are done. If $g\notin A_5$, then can we find an element $g'\in A_5$ such that $g'xg'^{-1}=y$?
+        \item First, note that if $gxg^{-1}=y=g'xg'^{-1}$, then
+        \begin{align*}
+            g^{-1}(gxg^{-1})g' &= g^{-1}(g'xg'^{-1})g'\\
+            x(g^{-1}g') &= (g^{-1}g')x
+        \end{align*}
+        Thus, $g^{-1}g'\in C_{S_5}(x)$, or $g'=gh$ for some $h\in C_{S_5}(x)$.
+        \begin{itemize}
+            \item If $g\notin A_5$ and we want $g'\in A_5$, then we must have $h\notin A_5$.
+            \begin{itemize}
+                \item Intuitively, this means that if $g$ is the product of an odd number of permutations and we want $g'=gh$ to be the product of an even number of permutations, $h$ had better be a product of an odd number of permutations as well.
+                \item More formally, consider $G/A_5$. If $g\in gA_5\neq A_5$ and we want $g'\in g'A_5=A_5$, then by homomorphically mapping $gA_5$ to $1\in\Z/2\Z$ and $A_5$ to $0\in\Z/2\Z$, we must have $h\in gA_5$ to get $gh\in A_5$.
+            \end{itemize}
+            \item Regardless, this example motivates the following two propositions, which we can use to resolve the original conjugacy question.
+        \end{itemize}
+        \item By Proposition 1, since $x\sim y$ in $S_5$ and $C_{S_5}(x)\not\subset A_5$ (take the first transposition in $(**)(**)$; for example, know that $(12)$ commutes with $(12)(34)$), we know that $x\sim y$ in $A_5$.
+        \item Therefore, there are 15 subgroups of the form $\gen{(**)(**)}$, all of which are conjugate in $A_5$.
+    \end{itemize}
+    \item Proposition 1: Let $x\sim y$ in $S_n$. Then if $C_{S_n}(x)\not\subset A_n$, then $x\sim y$ in $A_n$.
+    \begin{proof}
+        Since $x\sim y$ in $S_n$, there exists $g\in S_n$ such that $gxg^{-1}=y$. If $g\in A_n$, then we are done. Now suppose $g\notin A_n$. Since $C_{S_n}(x)\not\subset A_n$, there exists $h\in C_{S_n}(x)$ such that $hxh^{-1}=x$ and $h\notin A_n$. Since $g,h\notin A_n$, we have that $gh\in A_n$. Additionally, we have that
+        \begin{equation*}
+            (gh)x(gh)^{-1} = g(hxh^{-1})g^{-1}
+            = gxg^{-1}
+            = y
+        \end{equation*}
+        Therefore, $x\sim y$ in $A_n$, as desired.
+    \end{proof}
+    \item Proposition 2: If $C_{S_n}(x)\subset A_n$ and $\sigma x\sigma^{-1}=y$, then $x\sim y$ in $A_n$ iff $\sigma\in A_n$.
+    \begin{proof}
+        Suppose first that $x\sim y$ in $A_n$. Then $gxg^{-1}=y$ for some $g\in A_n$. Then as per the above, $gxg^{-1}=\sigma x\sigma^{-1}$ implies that $g^{-1}\sigma\in C_{S_n}(x)$. Thus, $\sigma=gh$ for some $h\in C_{S_n}(x)\subset A_n$. But since $g,h\in A_n$, we must have $\sigma\in A_n$, too.\par
+        Now suppose that $\sigma\in A_n$. Then since $\sigma x\sigma^{-1}=y$, $x\sim y$ in $A_n$ as desired.
+    \end{proof}
+    \item Now we discuss subgroups of the form $\gen{(***)}$.
+    \begin{itemize}
+        \item Let $x$ be an arbitrary element of $A_5$ of the form $(***)$. In particular, suppose $x=(abc)$ for $a,b,c\in[5]$.
+        \item Then $(de)\in C_{S_5}(x)$, where $d,e\in[5]$ are the other two elements that are not already represented by $a,b,c$.
+        \item Moreover, $(de)$ will be in the centralizers of both $x$ and $x^2$.
+        \item There are $\binom{5}{2}=10$ subgroups of the form we're discussing (20 generators/elements of the form $(***)$, though).
+        \item Suppose we have two subgroups $\gen{x},\gen{y}$ of the form being discussed. We know that $\gen{x},\gen{y}$ are conjugate in $S_5$. But since $C_{S_5}(x)\not\subset A_5$ again as per the above, we know the groups are conjugate in $A_5$.
+        \item Therefore, there are 10 subgroups of the form $\gen{(***)}$, all of which are conjugate in $A_5$.
+    \end{itemize}
+    \item Now we discuss subgroups of the form $\gen{(*****)}$.
+    \begin{itemize}
+        \item We know that $|C_{S_5}((12345))|\cdot|\{(12345)\}|=120$. Additionally, only a power of $(12345)$ commutes with it in this case, so the first term is 5. Thus, the second must be 24.
+        \begin{itemize}
+            \item In sum, we have showed that there are 24 elements conjugate to $(12345)$ in $S_5$.
+            \item Another way we could show this is by counting all of the 5-cycles and knowing that they are all conjugate as 5-cycles. Indeed, there are $4!=24$ 5-cycles.
+        \end{itemize}
+        \item Claim: In $A_5$, $|x|=5$ implies $x\sim x$, $x\nsim x^2$, $x\nsim x^3$, and $x\sim x^4=x^{-1}$.
+        \begin{proof}
+            We know that $|x|=5$. Thus, let $x=(abcde)$.\par
+            By the above statements on $C_{S_5}((12345))$, we know that $C_{S_5}(x)\subset A_5$. Thus, by proposition 2, $gxg^{-1}=x'$ iff $g\in A_n$. Thus,
+            \begin{align*}
+                exe^{-1} = x &\quad\Longrightarrow\quad x\sim x\\
+                [(bc)(cd)(de)]x[(bc)(cd)(de)]^{-1} = (bced)(abcde)(bced)^{-1} = (acebd) &\quad\Longrightarrow\quad x\nsim x^2\\
+                (bdec)(abcde)(bdec)^{-1} = (adbec) &\quad\Longrightarrow\quad x\nsim x^3\\
+                [(be)(cd)](abcde)[(be)(cd)]^{-1} = (aedcb) &\quad\Longrightarrow\quad x\sim x^4=x^{-1}
+            \end{align*}
+            as desired.
+        \end{proof}
+        \item $x^2\sim x^3$ in $A_5$ as well.
+        \item $(abced)$ and $(acebd)$ are conjugate by $(bce)\in A_5$.
+        \item Six subgroups, all conjugate.
+        \item All of the subgroups are conjugate, but not all of the elements are conjugate?
+    \end{itemize}
+    \item Consider $K=\{e,(12)(34),(13)(24),(14)(23)\}\triangleleft A_4\subset A_5$.
+    \item Consider a transitive group action from $A_5$ to $X=\{\text{cong of }K\}$.
+    \item $\Stab(K)=N_{A_5}(K)\supset A_4$.
+    \item By O.S. trm, $X=|A_5|/|A_4|=5$.
+    \item Let $H\subset A_5$ have $|H|=4$.
+    \item We want to show that $H$ fixes a point. Equivalently, we want to find $x\in\{1,2,3,4,5\}$ such that $|\Orb(x)|=1$.
+    \item Since $4=|H|=|\Orb(x)|\cdot|\Stab(x)|$ and $5\equiv 1\mod 2$. Thus, there is a fixed point.
+    \item Thus, there are 15 cyclic subgroups of order 4 like $K$, and they are all conjugate.
+    \item $H\leq A_5$ has index $d$ iff there is a transitive action and puts $A_5/H$. Induces a map from $A_5\to S_d$?? As $A_5$ has no normal subgroups. If $d=2,3,4$, ...?? If $d=5$, then $A_5\to S_5\to S_5/A_5$. But really $A_5\to S_5\to S_5/A_5\cong\Z/2\Z$.
+    \item The hard ones are 6, 10, or 12.
+    \item Consider a subgroup of $A_5$ of order 6. Must be $\Z/6\Z$ or $S_3$. These groups have subgroups of order 3. If we have this, it must be a subgroup of $S_3\times S_2\cap A_5$. Important: $\gen{(1,2,3)}$ and $(1,2)(4,5)$.
+    \item Same analysis for subgroups of order 10. Subsets of order 1,2,5,10. $(12)$ orbits include...
+    \item Table with sets.
+    \item If we spend a couple of hours understanding this example in complete detail, that will be very helpful for the final.
+\end{itemize}
+
+
+
+
+\end{document}

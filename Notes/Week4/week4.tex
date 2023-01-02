@@ -178,7 +178,7 @@
         \item If $K\triangleleft G$, then the map $\phi:G\to G/K$ defined by $g\mapsto gK$ is a surjective homomorphism with kernel $K$.
     \end{itemize}
     \item Today: Understand a general surjective homomorphism $\phi:G\twoheadrightarrow H$ with kernel $K\triangleleft G$.
-    \begin{figure}[h!]
+    \begin{figure}[H]
         \centering
         \begin{tikzpicture}
             \footnotesize
@@ -307,7 +307,7 @@
     \item 3-4 both follow from 1. They are not sufficient conditions for normality, but they can put restrictions on what is normal and make the computation easier.
     \item Examples.
     \begin{itemize}
-        \item Let $\phi:\Z\to H$ send $1\mapsto h$ and $k\mapsto h^k$.
+        \item Let $\phi:\Z\to H$ send $1\mapsto h$ and $k\mapsto h^k$ (see Figure \ref{fig:FITexample}).
         \begin{figure}[h!]
             \centering
             \begin{tikzpicture}[
@@ -420,7 +420,7 @@
     \item \marginnote{10/21:}Today, we continue our investigation of normal subgroups.
     \item Recall our conditions for normal subgroups that we can check first as constraints before doing the formal evaluation.
     \item Normal subgroups of $S_5$.
-    \begin{table}[h!]
+    \begin{table}[H]
         \centering
         \begin{tabular}{l|c|c}
             $(x)$ & 1 & $\subset H$\\
@@ -464,9 +464,9 @@
         \item Inverse is same length: $\sigma=\tau_1\cdots\tau_{2k}$; $\sigma^{-1}=\tau_{2k}^{-1}\cdots\tau_1^{-1}$.
     \end{itemize}
     \item Proposition: Either $A_n$ is normal of index 2, $|A_n|=n!/2$, or $A_n=S_n$.
-    \item Claim: Let $\sigma\in S_n/A_n$ be such that $\sigma=\tau_1\cdots\tau_{2k+1}$. Then $S_n=A_n\cup\sigma A_n$.
+    \item Claim: Let $\sigma\in S_n\setminus A_n$ be such that $\sigma=\tau_1\cdots\tau_{2k+1}$. Then $S_n=A_n\cup\sigma A_n$.
     \begin{proof}
-        Let $g\in S_n$ be arbitrary. We divide into two cases. If $g$ is the product of an even number of transpositions, then $g\in A_n$. If $g$ is the product of an odd number of transpositions, then $g\sigma^{-1}$ is the product of an even number of transpositions, i.e., $g\sigma^{-1}\in A_n$. But this implies that $g\in\sigma A_n$, as desired.
+        Let $g\in S_n$ be arbitrary. We divide into two cases. If $g$ is the product of an even number of transpositions, then $g\in A_n$. If $g$ is the product of an odd number of transpositions, then $\sigma^{-1}g$ is the product of an even number of transpositions, i.e., $g\sigma^{-1}\in A_n$. But this implies that $g\in\sigma A_n$, as desired.
     \end{proof}
     \item Define $C_n$ to be the set of all $g\in S_n$ that is a product of a multiple of three 2-cycles. This is just equal to $S_n$ because $(a,b)=(a,b)(a,b)(a,b)$, so it contains all 2-cycles, so it generates $S_n$.
     \item So we want to prove that $A_n$ preserves a property (some invariant) that general elements of the symmetric group of not.
@@ -497,9 +497,14 @@
             (a,b)(a,c) &= (a,c,b)\\
             (a,b)(a,b) &= e
         \end{align*}
-        3: If $H\triangleleft S_n$, then $(xxx)\in H$ implies $A_n\triangleleft H$. Case 1: $\sigma\in H$ with $\sigma=(xxx\cdots x)(xx)(xxx)$...
-        Case 2: $\sigma=(xx)(xx)\cdots(xx)$ ($\sigma$ is a product of disjoint two cycles; "the only thing left"). Subcase 0: $(ab)$ implies $H=S_n$. Subcase 1: $(ab)(cd)$. Multiply by $(a,b)(c,e)$ gives $(c,e,d)$. Subcase 2: $(a,b)(c,d)(e,f)\cdots$. Not changing anything else. Choose $(a,c)(b,e)(d,f)$. Then $(a,b)(c,d)(e,f)\cdot(a,c)(b,e)(d,f)=(a,d,e)(b,f,c)$. We've reduced to the previous case at this point. We can now get it to $(a,d,e)$. When you have two things, you need that extra space of an $e$. If $n=4$ it's false because there are other normal subgroups. Note that $S_3$ actually does work in this proof; it's just $n=4$ that causes the issue.
+        3: We want $H\triangleleft S_n$. We know that if $(xxx)\in H$, then $A_n\triangleleft H$.\par
+        Case 1: $\sigma\in H$ with $\sigma=(xxx\cdots x)(xx)(xxx)\dots$ (i.e., at least one component $k$-cycle satisfies $k\geq 3$). Implies that we can generate a three cycle by the $n$-cycles implies 3-cycles approach.\par
+        Case 2: $\sigma=(xx)(xx)\cdots(xx)$ ($\sigma$ is a product of disjoint two cycles; "the only thing left" after case 1). Subcase 0: $\sigma=(ab)$. Implies $H=S_n$. Subcase 1: $\sigma=(ab)(cd)$. Multiply by $(a,b)(c,e)$ to get $(c,e,d)$. Subcase 2: $\sigma=(a,b)(c,d)(e,f)\cdots$. Choose $(a,c)(b,e)(d,f)$. Then $(a,b)(c,d)(e,f)\cdot(a,c)(b,e)(d,f)=(a,d,e)(b,f,c)$. We've reduced to the previous case at this point, i.e., we can now get it to $(a,d,e)$.
     \end{proof}
+    \item Misc. notes:
+    \begin{itemize}
+        \item When you have two things, you need that extra space of an $e$. If $n=4$ it's false because there are other normal subgroups. Note that $S_3$ actually does work in this proof; it's just $n=4$ that causes the issue.
+    \end{itemize}
     \item Corollary: Let $n\geq 5$. Let $\phi:S_n\to\Gamma$ be a homomorphism. Then 3 possible things occur.
     \begin{enumerate}
         \item $\im\phi=\{e\}$.

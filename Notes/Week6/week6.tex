@@ -100,12 +100,12 @@
         |G| = |\Orb(x)|\cdot|\Stab(x)|
     \end{equation*}
     \begin{proof}
-        We will break up $G$ and count it in two different ways.
+        We will break up $G$ and count it in two different ways. Let $x\in X$ be arbitrary and consider $\Orb(x)$. By definition, $\Orb(x)$ is the set of all $y$ such that $g\cdot x=y$ for some $g\in G$. Equivalently, every $g\in G$ maps $x$ to some $y\in\Orb(x)$. Thus, we can partition $G$ into sets of $g$ that map $x$ to a particular $y$, knowing that every $g$ must send it to some $y$. Symbolically,
         \begin{equation*}
             G = \bigsqcup_{y\in\Orb(x)}\{g\mid g\cdot x=y\}
         \end{equation*}
-        Each of these sets is equal to $g\cdot\Stab(x)$ (the left coset of the stabilizer by $g$).\par
-        Thus,
+        Each of the sets over which we sum above is equal to $g\cdot\Stab(x)$ (the left coset of the stabilizer by $g$).\par
+        Thus, for each $y\in\Orb(x)$, we contribute $|g\cdot\Stab(x)|$ to $|G|$. Symbolically,
         \begin{equation*}
             |G| = \sum_{\Orb(x)}|g\cdot\Stab(x)|
             = \sum_{\Orb(x)}|\Stab(x)|
@@ -119,6 +119,7 @@
         \begin{equation*}
             |G| = |G/H|\cdot|H|
         \end{equation*}
+        and we recover Lagrange's theorem as a special case of the O-S theorem.
         \item $G=S_n$, $X=[n]$.
         \begin{itemize}
             \item Then $S_n=\{\sigma(1)=1\}\cup\{\sigma(1)=2\}\cup\cdots\cup\{\sigma(1)=n\}$. This is analogous to the proof strategy decomposition.
@@ -129,7 +130,7 @@
         \end{itemize}
         \item $G=S_n$.
         \begin{itemize}
-            \item Let $g=(1,\dots,k)$ for $2\leq k\leq n$. Recall that $|g|=n!/(n-k)!k$. Thus, $|C_{S_n}(g)|=(n-k)!\cdot k$.
+            \item Let $g=(1,\dots,k)$ for $2\leq k\leq n$. Recall that $|\{g\}|=n!/(n-k)!k$. Thus, $|C_{S_n}(g)|=(n-k)!\cdot k$.
             \item Alternatively, we can derive the order of this centralizer directly: $C_{S_n}(g)=\gen{g}\times S_{n-k}$, i.e., all powers of the $k$-cycle and everything that's disjoint. $\times$ denotes the direct product.
         \end{itemize}
         \item $G=S_4$, $g=(12)(34)$.
