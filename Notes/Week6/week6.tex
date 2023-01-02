@@ -159,6 +159,116 @@
 
 
 
+\section{Blog Post: The Orbit-Stabilizer Theorem, Cayley's Theorem}
+\emph{From \textcite{bib:Calegari}.}
+\begin{itemize}
+    \item \marginnote{11/13:}Lemma: Let $G\acts X$ and let $x\in X$. Let $y\in\Orb(x)$, i.e., let there exist $\sigma\in G$ such that $y=\sigma\cdot x$. Then
+    \begin{enumerate}
+        \item $\Stab(y)=\sigma\cdot\Stab(x)\cdot\sigma^{-1}$.
+        \begin{proof}
+            Let $H:=\Stab(x)$. We use a bidirectional inclusion argument.\par
+            Suppose first that $\sigma h\sigma^{-1}\in\sigma H\sigma^{-1}$. Then
+            \begin{equation*}
+                \sigma h\sigma^{-1}\cdot y = \sigma h\cdot(\sigma^{-1}\cdot y)
+                = \sigma h\cdot x
+                = \sigma\cdot(h\cdot x)
+                = \sigma\cdot x
+                = y
+            \end{equation*}
+            so $\sigma h\sigma^{-1}\in\Stab(y)$, as desired.\par
+            Now suppose that $g\in\Stab(y)$. An analogous argument to the above shows that $\sigma^{-1}g\sigma\in\Stab(x)$, so $g=\sigma h\sigma^{-1}\in\sigma H\sigma^{-1}$, as desired.
+        \end{proof}
+        \item The set of elements $g\in G$ such that $g\cdot x=y$ is exactly the coset $\sigma\cdot\Stab(x)$.
+        \begin{proof}
+            As before, let $H:=\Stab(x)$ and proceed via a bidirectional inclusion argument.\par
+            Suppose first that $\sigma h\in\sigma H$. Then
+            \begin{equation*}
+                \sigma h\cdot x = \sigma\cdot(h\cdot x)
+                = \sigma\cdot x
+                = y
+            \end{equation*}
+            so $\sigma h$ is in the first set, as desired.\par
+            Now suppose that $g\cdot x=y$. Since $\sigma\cdot x=y$ as well by hypothesis, it follows by transitivity that
+            \begin{align*}
+                g\cdot x &= \sigma\cdot x\\
+                \sigma^{-1}\cdot(g\cdot x) &= \sigma^{-1}\cdot(\sigma\cdot x)\\
+                \sigma^{-1}g\cdot x &= x
+            \end{align*}
+            This implies that $\sigma^{-1}g\in H$, i.e., that $g\in\sigma H$, as desired.
+        \end{proof}
+    \end{enumerate}
+    \item This lemma further justifies the following step we took when proving the Orbit-Stabilizer Theorem in class: Equating each $\{g\mid g\cdot x=y\}=\sigma\Stab(x)$.
+    \item Further comments on $G\acts G/H$ ($H$ a subgroup).
+    \begin{itemize}
+        \item Why the action is well-defined.
+        \begin{itemize}
+            \item $g\cdot xhH=gxhH=gxH=g\cdot xH$.
+            \item What saves the day here is that we're combining an unambiguous term ($g$) with our ambiguous term ($xH$) instead of trying to combine two ambiguous terms (e.g., $xH$ and $yH$).
+        \end{itemize}
+        \item An example where the action is faithful.
+        \begin{itemize}
+            \item Let $G=S_n$ and $H=\{\sigma\mid\sigma(1)=1\}\cong S_{n-1}$.
+            \item Note that if $\sigma\in H$, then $(1,k)\sigma(1,k)^{-1}$ sends $\sigma(k)=k$.
+            \item Thus,
+            \begin{equation*}
+                \ker = \bigcap_{g\in G}gHg^{-1} 
+                \subset \bigcap_{k=1,\dots,n}(1,k)H(1,k)^{-1}
+                = \{e\}
+            \end{equation*}
+            so the action is faithful, here.
+        \end{itemize}
+        \item When $H=\{e\}$, $G\acts G/H$ is entirely analogous to left multiplication within the group: $g\cdot x=gx$.
+    \end{itemize}
+    \item Lemma: $G\acts G$ by left multiplication is faithful.
+    \begin{proof}
+        To prove this result, we will actually prove the stronger result that $\Stab(x)=\{e\}$ for all $x\in G$, from which it will follow that $\ker=\bigcap_{x\in G}\Stab(x)=\{e\}$. We have this stronger result by the cancellation lemma since
+        \begin{align*}
+            g\cdot x &= x\\
+            gx &= ex\\
+            g &= e
+        \end{align*}
+        for all $g\in\Stab(x)$.
+    \end{proof}
+    \item Corollary (Cayley's Theorem): If $|G|=n$, then $G\leq S_n$.
+    \begin{proof}
+        From the construction $G\acts G$ via left multiplication, we get a homomorphism $\phi:G\to S_G$ as per the Proposition in Lecture 5.2. Since this action is faithful (by the lemma), this homomorphism is an injection. This implies that $G\cong\im\phi\leq S_G\cong S_n$, as desired.
+    \end{proof}
+    \item Implication: Even without knowing anything about $G$, we can get useful information by considering its actions on a set.
+    \item More on $G\acts G$ by conjugation.
+    \begin{itemize}
+        \item Since $|G|=|\{g\}|\cdot|C_G(g)|$, we can calculate the orders of centralizers. From the order, we can often get even more specific information.
+        \item Consider $G=S_n$.
+        \begin{itemize}
+            \item If $g=(1,2,\dots,n)$, then $|\{g\}|=(n-1)!$ and $C_G(g)=n!/(n-1)!=n$. This combined with the fact that $g$ commutes with $g$ implies that
+            \begin{equation*}
+                C_{S_n}((1,2,\dots,n)) = \gen{(1,2,\dots,n)}
+            \end{equation*}
+            \item If $g=(1,2,\dots,k)$, then $|\{g\}|=n!/k(n-k)!$ so $|C_{S_n}(g)|=k\cdot(n-k)!$. Naturally, $g\in C_{S_n}(g)$, but so are all elements which fix $1,2,\dots,k$ and shuffle $k+1,k+2,\dots,n$. Thus,
+            \begin{equation*}
+                C_{S_n}((1,2,\dots,k)) = \Z/k\Z\times S_{n-k}
+            \end{equation*}
+            \item Let $g$ have cycle shape corresponding to the partition $a_1n_1+a_2n_2+\cdots$ where $n_1>n_2>\cdots$ denote cycle lengths and the $a_i$ denote the corresponding multiplicity. We can deduce that the centralizer has order $\prod n_i^{a_i}a_i!$.\par
+            It follows from the fact that disjoint cycles commute that $g$ commutes with each component cycle, i.e., if $g=\cdots(a_1,\dots,a_k)\cdots$, then $g$ and $(a_1,\dots,a_k)$ commute. $g$ therefore also commutes with all powers of each component cycle. Going even further, $g$ commutes with all products of all powers of each component cycle, i.e., if $g=(a_1,\dots,a_k)(b_1,\dots,b_\ell)(c_1,c_2,\dots)\cdots$, then
+            \begin{equation*}
+                C_{S_n}(g) \supset \gen{(a_1,\dots,a_k),(b_1,\dots,b_\ell),(c_1,c_2,\dots),\dots}
+            \end{equation*}
+            The group on the right above is isomorphic to $\prod(\Z/n_i\Z)^{a_i}$ and thus has order $\prod n_i^{a_i}$.\par
+            What are the other elements in the centralizer that account for the $\prod a_i!$ term?? Is it the products of the powers of the cycles??
+        \end{itemize}
+        \item How many elements $g\in G$ make $g\cdot x=y$ true?
+        \begin{itemize}
+            \item Equivalent to asking how many $g\in G$ make $gxg^{-1}=y$.
+            \item Relating to before, this will be a coset of the centralizer (we need a particular solution, and then we can compose it with all homogeneous solutions).
+        \end{itemize}
+    \end{itemize}
+    \item More on $G\acts X$ ($X$ is the set of subsets of $G$).
+    \begin{itemize}
+        \item Let $H$ be a subgroup. Since $\Orb(H)$ is the conjugates of $H$ and $\Stab(H)=N_G(H)$, we have by the Orbit-Stabilizer Theorem that the number of subgroups of $G$ conjugate to $H$ is equal to $|G|/|N_G(H)|=[G:N_G(H)]$.
+    \end{itemize}
+\end{itemize}
+
+
+
 \section{Group Actions on the Quotient Group}
 \begin{itemize}
     \item \marginnote{11/4:}Let $G\supset H$ and $X=G/H$. Consider a group action $G\acts X$ defined by $g\cdot xH=gxH$ that is transitive.
