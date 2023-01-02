@@ -290,6 +290,53 @@
 
 
 
+\section{Blog Post: The Sylow Theorems}
+\emph{From \textcite{bib:Calegari}.}
+\begin{itemize}
+    \item \marginnote{11/28:}Sylow I gives a partial converse to Lagrange's theorem.
+    \begin{itemize}
+        \item Lagrange's theorem states, "If $H$ is a subgroup of $G$, then $|H|$ divides $|G|$."
+        \item Sylow I states, "If $|G|$ is divisible by $p^n$, then $G$ has a subgroup said order."
+        \item Recall that the full converse to Lagrange's theorem is not true: For example, $6|12$, but $A_4$ has no subgroup of order 6.
+    \end{itemize}
+    \item In the proof of Sylow I, we define $X$ as such because $G$ acts \textbf{naturally} on $X$.
+    \item Theorem (Sylow Theorems): Let $G$ be a finite group with order divisible by $p$.
+    \begin{enumerate}
+        \item \emph{Sylow I}: Then $G$ has a $p$-Sylow subgroup.
+        \item \emph{Sylow II}: Any two $p$-Sylows of $G$ are conjugate. If $Q\subset G$ is any $p$-group, and $P$ is any $p$-Sylow, then there exists a $g\in G$ such that $g^{-1}Qg\subset P$ and so $Q\subset gPg^{-1}$. Equivalently, some conjugate of $Q$ is contained in $P$, and $Q$ is contained in some conjugate of $P$.
+        \item \emph{Sylow III}: Let $P$ be a $p$-Sylow, and let $n_p$ denote the number of $p$-Sylows of $G$. Then\dots
+        \begin{enumerate}
+            \item $n_p\equiv 1\mod p$;
+            \item If $N:=N_G(P)$ is the normalizer of $P$ in $G$, then $n_p=[G:N]=|G|/|N|$. In particular, $n_p\big||G|$.
+        \end{enumerate}
+    \end{enumerate}
+    \item Example: Take $G=S_4$ and $p=2$.
+    \begin{enumerate}
+        \item An example is $P=D_8$.
+        \item Any two $p$-Sylows act on the square with four vertices; conjugation is equivalent to a relabeling of the vertices. Indeed, there are six 4-cycles in $S_4$, and each $p$-Sylow contains a unique pair $\{g,g^{-1}\}$ of 4-cycles. This leads into\dots
+        \item $N_G(P)=P$, so there are $n_2=[G:P]=3$ such subgroups. Note that $n_2\equiv 1\mod 2$.
+    \end{enumerate}
+    \item Example: Take $G=S_4$ and $p=3$.
+    \begin{enumerate}
+        \item An example is $P=\gen{(1,2,3)}$.
+        \item $P$ acts on four vertices by shuffling three points. Conjugation decides which three points are shuffled.
+        \item Since there are four possible choices of three points, it should not be surprising that $n_3=4\equiv 1\mod 3$. Another way of getting this answer is noticing that there are 8 elements of order 3 and each pair $\{g,g^{-1}\}$ gives a subgroup, so $n_3=8/2=4$. Either way, we end up with the result that $|N_G(P)|=6$ and $N_G(P)=S_3$.
+    \end{enumerate}
+    \item Example: Take $G=S_5$ and $p=5$.
+    \begin{itemize}
+        \item We skip out on the part-by-part conclusion here to focus on something more interesting.
+        \item Here, we have $n_5=24/4=6\equiv 1\mod 5$ by S III. Let $X$ be the set containing the 6 $p$-Sylows. Then the transitive action $G\acts X$ by conjugation yields the exotic transitive map from $S_5\to S_6$.
+    \end{itemize}
+    \item Restatement of the $p,q$ classification theorem:
+    \item Theorem: Let $p,q$ be primes such that $p>q$. Then either\dots
+    \begin{enumerate}
+        \item $p\equiv 1\mod q$, in which case there are two possible groups, one abelian and one not. In either case, the $p$-Sylow subgroup is normal.
+        \item $p\not\equiv 1\mod q$, in which case there is a unique (abelian and cyclic) group of order $pq$.
+    \end{enumerate}
+\end{itemize}
+
+
+
 \section{Symmetries in Three-Space}
 \begin{itemize}
     \item \marginnote{11/18:}Classify the finite subgroups of $\text{SO}(3)$.
