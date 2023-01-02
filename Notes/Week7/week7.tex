@@ -110,5 +110,156 @@
 
 
 
+\section[\texorpdfstring{$p$}{TEXT}-Groups]{\texorpdfstring{$\bm{p}$}{TEXT}-Groups}
+\begin{itemize}
+    \item \marginnote{11/9:}\textbf{$\bm{p}$-group}: A finite group of order $p^m$, where $p$ is prime and $m\geq 1$. \emph{Denoted by} $\bm{P}$.
+    \item Example: If $|P|=p$, then $P\cong\Z/p\Z$.
+    \item \textbf{Fixed point} (of $X$ under $G\acts X$): A point $x\in X$ for which $|\Orb(x)|=1$.
+    \item Proposition: Let $P\acts X$ where $P$ is a $p$-group. Then the number of fixed points is congruent to $|X|\mod p$.
+    \begin{proof}
+        Let $x\in X$ be arbitrary. By the Orbit-Stabilizer theorem,
+        \begin{equation*}
+            p^m = |P| = |\Orb(x)|\cdot|\Stab(x)|
+        \end{equation*}
+        If $x$ is a fixed point, then $|\Orb(x)|=1$. However, if $x$ is not a fixed point, then we have by the above that no nontrivial element has order less than $p$ and hence $|\Orb(x)|\equiv 0\mod p$.\par
+        As we know,
+        \begin{equation*}
+            X = \bigsqcup\text{Orbits}
+            = \{\text{Fixed points}\}\sqcup\{\text{Non-trivial orbits}\}
+        \end{equation*}
+        Therefore, $|X|$ is equal to the number of fixed points plus the sum of the magnitudes of the other orbits. But since the magnitudes of the other orbits are all multiples of $p$ as per the above, we have that $|X|$ is congruent to the number of fixed points mod $p$. The desired result readily follows.
+    \end{proof}
+    \item Corollary: If $|X|\not\equiv 0\mod p$, then there exists at least one fixed point.
+    \item \textbf{Center} (of $G$): The set of elements in $G$ that commute with every element of $G$. \emph{Denoted by} $\bm{Z(G)}$. \emph{Given by}
+    \begin{equation*}
+        Z(G) = \{g\in G\mid gx=xg\ \forall\ x\in G\}
+    \end{equation*}
+    \item Proposition: Let $P$ be a $p$-group, and $Z:=Z(P)$ be the center of $P$. Then $Z$ is a non-trivial normal subgroup.
+    \begin{proof}
+        To prove that $Z$ is normal, it will suffice to show that for all $x\in Z$ and $g\in G$, $gxg^{-1}\in Z$. Let $x\in Z$ and $g\in G$ be arbitrary. Then since $x\in Z$, $gx=xg$, i.e., $gxg^{-1}=x\in Z$, as desired.\par
+        To prove that $Z$ is non-trivial, we make use of the previous proposition. Let $P\acts P$ by conjugation. We first prove that $Z(P)$ is exactly the set of fixed points of $P$. If $x\in P$ is a fixed point, then $pxp^{-1}=x$ for all $p$, so $x\in Z(P)$. In the other direction, if $x\in Z(P)$ normal, then by the definition of the center, $pxp^{-1}=x$ for all $p\in P$. Thus, $|Z(P)|$ is equal to the number of fixed points of $P$, and hence $|Z(P)|\equiv|P|\mod p\equiv 0\mod p$. Thus, we could have $|Z(P)|=0$, but since $e\in Z(P)$, we must instead have $|Z(p)|\geq p$. Therefore, $Z(P)$ is nontrivial.
+    \end{proof}
+    \item We get from this proposition an outline for "classifying" $p$-groups. We will do this inductively on $k$. Here are the steps.
+    \begin{enumerate}
+        \item Understand Abelian $p$-groups.
+        \item Understand all $p$-groups of order $|p^k|$.
+        \item Let $|P|=p^{k+1}$. Then by the above, $Z\triangleleft P$. If $Z=P$, use 1. If $Z\neq P$, then $|Z|$ and $|P/Z|$ divide $p^k$, so we can use 2.
+    \end{enumerate}
+    \item Goal: Knowing $Z$ and $G/Z$, try to find all possible $G$.
+    \item Classification for $k=2$.
+    \begin{enumerate}
+        \item Abelian groups. By Lagrange's theorem, there are two possibilities: There exists $x$ with $|x|=p^2$, and there exists $x$ with $|x|=p$.
+        \begin{enumerate}
+            \item $G$ has an element of order $p^2$, and hence $G\cong\Z/p^2\Z$.
+            \item There exists $x\in G$ such that $|x|=p$. Let $y\in G\setminus\gen{x}$. Then $y^p=e$. Thus, $G=\gen{x,y}$. $x^p=e=y^p$ and $xy=yx$. Thus, $G\cong\Z/p\Z\times\Z/p\Z$.
+        \end{enumerate}
+        \item Suppose $G$ is not abelian. $Z$ still has a nontrivial center, though, and hence any proper nontrivial subgroup of $G$ is necessarily isomorphic to $\Z/p\Z$ for the $k=2$ case. Thus, the only possible pair $(Z,G/Z)$ is $(Z,G/Z)=(\Z/p\Z,\Z/p\Z)$. But then $G/Z\cong\Z/p\Z$ is cyclic, so by HW4 Q5, $G$ is abelian, a contradiction. Therefore, $G\cong\Z/p^2\Z$ or $(\Z/p\Z)^2$, hence abelian.
+    \end{enumerate}
+    \item (Partial) classification for $k=3$.
+    \begin{enumerate}
+        \item Abelian groups: $\Z/p^3\Z$, $\Z/p^2\Z\times\Z/p\Z$, and $(\Z/p\Z)^3$.
+        \item Possible pairs $(Z,G/Z)$:
+        \begin{align*}
+            (\Z_{p^2},\Z_p)^\times&&
+            (\Z_p,\Z_{p^2})^\times&&
+            (\Z_p^2,\Z_p)^\times&&
+            (\Z_p,\Z_p^2)^\times
+        \end{align*}
+        $G/Z$ cyclic implies the same contradiction, so the only possibility is $Z=\Z_p$ and $G/Z=(\Z_p)^2$.
+    \end{enumerate}
+    \item Does the trend of no nonabelian groups continue for higher powers? No --- for $|G|=2^3=8$, both $D_8$ and $Q$ (the Quaternion group) are nonabelian counterexamples.
+    \begin{itemize}
+        \item Case 1: All elements in $G$ have order 2.
+        \begin{itemize}
+            \item $G$ is abelian: If $x,y\in G$ are arbitrary, then
+            \begin{equation*}
+                xy = xey
+                = x(xy)^2y
+                = xxyxyy
+                = x^2yxy^2
+                = eyxe
+                = yx
+            \end{equation*}
+        \end{itemize}
+        \item There are, of course, the other abelian groups as well. We now focus on the other case, and specifically its nonabelian forms.
+        \item Case 2: There exists $g\in G$ with $|g|=4$.
+        \begin{itemize}
+            \item $g^2\neq e$.
+            \item We also assume that $G$ is not abelian.
+            \item $[G:\gen{g}]=2$, so $\gen{g}\triangleleft G$.
+            \item Let $h\in G\setminus\gen{g}$. If $|h|=8$, then $G\cong\Z/8\Z$. But $G$ is not abelian, so this cannot be the case.
+            \item Hence $|h|=2$ or $|h|=4$.
+            \item If $|h|=4$, then $h^2\notin\gen{g}$ implies $G/\gen{g}\cong\Z/2\Z$ (another abelian case we are not interested in). Similarly, $h^2\in\gen{g}$ implies $h^2=g^2$. Thus, either $h^2=e$ or $h^2=g^2$.
+            \item Since $\gen{g}\triangleleft G$, $hgh^{-1}\in\gen{g}$. It follows since the powers of $hgh^{-1}$ are as distinct as the powers of $g$ that $\gen{g}=\gen{hgh^{-1}}$. Thus, we either have $hgh^{-1}=g$ or $hgh^{-1}=g^{-1}$. In the first case, $hg=gh$, so $G=\gen{g,h}$ is abelian, and we are not interested.
+            \item If $g^4=e=h^4$, then $G=Q$ and $hg=g^{-1}h$.
+            \item If $g^4=e=h^2$, then $G=D_8$ and $hg=g^{-1}h$.
+        \end{itemize}
+    \end{itemize}
+    \item We now investigate the case where $p$ is odd and $G=p^3$. Let $Z=\Z/p\Z$ and $G/Z=(\Z/p\Z)^2$.
+    \begin{itemize}
+        \item Consider a surjection $G\twoheadrightarrow G/Z$. Choose $x\mapsto(1,0)$ and $y\mapsto(0,1)$.
+        \item Let $x^p,y^p,xyx^{-1}y^{-1}\in Z$.
+        \item If $xy=yx$, then $G=\gen{x,y,Z}$ is abelian.
+        \item Suppose $xy=yxz$ for some $z\in Z$ nontrivial.
+        \item Case 1: All $g\in G$ have order $p$. Then
+        \begin{equation*}
+            G = \{y^bx^az^c\mid 0\leq a,b,c\leq p-1\}
+        \end{equation*}
+        \item We have that
+        \begin{equation*}
+            y^bx^az^c(y^Bx^Az^C) = y^bx^ay^Bx^Az^{c+C}
+            = y^{b+B}x^{a+A}z^{c+C+aB}
+        \end{equation*}
+        since $xy=yxz$??
+        \item This gets into $\text{GL}_3(\F_p)$, the group of $3\times 3$ invertible matrices over the field of numbers 0 to $p$ under addition mod $p$. In particular,
+        \begin{equation*}
+            \begin{pmatrix}
+                1 & a & c\\
+                0 & 1 & b\\
+                0 & 0 & 1\\
+            \end{pmatrix}
+            \begin{pmatrix}
+                1 & A & C\\
+                0 & 1 & B\\
+                0 & 0 & 1\\
+            \end{pmatrix}
+            =
+            \begin{pmatrix}
+                1 & a+A & c+c+aB\\
+                0 & 1 & b+B\\
+                0 & 0 & 1\\
+            \end{pmatrix}
+        \end{equation*}
+    \end{itemize}
+    \item $p$-groups and their orders for different values of $p,m$.
+    \begin{table}[h!]
+        \centering
+        \small
+        \renewcommand{\arraystretch}{1.2}
+        \begin{tabular}{c|c|c|c|c}
+             & $p$ & $p^2$ & $p^3$ & $p^4$\\
+            \hline
+            2 & 1 & 2 & $3+2$ & 14\\
+            3 & 1 & 2 & $3+2$ & 15\\
+            5 & 1 & 2 & $3+2$ & 15\\
+            7 & 1 & 2 & $3+2$ & 15\\
+        \end{tabular}
+        \caption{$|P|$ for various $p,m$ values.}
+        \label{tab:pGroupOrder}
+    \end{table}
+    \item Another perspective.
+    \begin{itemize}
+        \item Consider $x^p=e=y^p$, $xy=yxz$, $z^p=e$, and $z\in Z(P)$.
+        \item Then
+        \begin{equation*}
+            (xy)^p = y^px^pz^{1+\cdots+p}
+            = z^{p(p+1)/2}
+        \end{equation*}
+        \item If $p$ is odd, then $z^{p(p+1)/2}=e$ implies $(xy)^p=e$ \emph{except} when $p=2$.
+    \end{itemize}
+\end{itemize}
+
+
+
 
 \end{document}
