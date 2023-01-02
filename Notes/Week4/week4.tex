@@ -171,6 +171,43 @@
 
 
 
+\section{Blog Post: Normal Groups, Quotient Groups}
+\emph{From \textcite{bib:Calegari}.}
+\begin{itemize}
+    \item \marginnote{11/12:}Mostly direct review of what was covered in class.
+    \item Outline.
+    \begin{itemize}
+        \item What constraints must we put on $H$ to make $G/H$ a group?
+        \item Defining multiplication on $G/H$ by $xH\cdot yH=xyH$ gives us an identity, inverses, and associativity, but the multiplication is not necessarily well defined, i.e., we do not necessarily have $xh\cdot yh'=xyh''$ for all $x,y\in G$.
+        \item In particular, if $\psi:G\to G/H$ is a group homomorphism, then $h\in\ker\psi=H$ should make $\psi(ghg^{-1})=e$, i.e., $ghg^{-1}\in H$.
+        \item This motivates our definition of \textbf{normal} subgroups as those subgroups having the property that $ghg^{-1}\in H$ for all $h\in H$.
+        \item Indeed, if $H$ is normal, then
+        \begin{equation*}
+            xhyh' = x(yy^{-1})hyh'
+            = xy\underbrace{(y^{-1}hy)h'}_{\in H}
+        \end{equation*}
+        as desired.
+        \item Consequence: $H$ is normal in $G$ iff $gH=Hg$ for all $g\in G$.
+    \end{itemize}
+    \item Example where $G/H$ is not a group: Let $G=S_3$ and $H=\gen{(12)}$. Suppose $G/H$ is a group. Then, for example,
+    \begin{equation*}
+        (13)H = \{(13),(123)\}
+        = (123)H
+    \end{equation*}
+    It follows that
+    \begin{equation*}
+        H = (13)^2H
+        = (13)H\cdot(13)H
+        = (123)H\cdot(123)H
+        = (123)^2H
+        = (132)H
+    \end{equation*}
+    a contradiction. Therefore, $G/H$ is not a group.
+    \item Example where $G/H$ is a group: Let $G=S_4$ and $H=\{e,(12)(34),(13)(24),(14)(23)\}$. Note that $H$ is isomorphic to the Klein 4-group. $H$ is normal since it contains two complete conjugacy classes. We can visualize the homomorphism $\phi:G\to G/H$ as the related homomorphism from the full cube group to the permutations of opposite faces. Note that each element of $H$ when acting on the diagonals does not permute pairs of opposite faces, as expected.
+\end{itemize}
+
+
+
 \section{First Isomorphism Theorem}
 \begin{itemize}
     \item \marginnote{10/19:}Last time:
