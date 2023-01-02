@@ -379,5 +379,197 @@
 
 
 
+\section[Blog Post: Actions of Symmetric Groups and \texorpdfstring{$\Aut(S_6)$}{TEXT}]{Blog Post: Actions of Symmetric Groups and \texorpdfstring{$\bm{\Aut(S_6)}$}{TEXT}}
+\emph{From \textcite{bib:Calegari}.}
+\begin{itemize}
+    \item \marginnote{11/13:}Lemma: $G\acts X$ is transitive iff $G$ has a subgroup of index $n=|X|$.
+    \begin{proof}
+        Suppose first that $G$ acts transitively on some set $X$. Pick an $x\in X$ --- we will prove that $H=\Stab(x)$ is the desired subgroup of index $n$. We know $H$ is a subgroup since it's a stabilizer. Additionally, it has index $n$ since by the Orbit-Stabilizer Theorem and the transitivity of $G\acts X$, we have that
+        \begin{equation*}
+            [G:H] = |G|/|H| 
+            = |\Orb(x)|
+            = |X|
+            = n
+        \end{equation*}
+        Now suppose that $G$ has a subgroup $H$ of index $n$. Choosing $X=G/H$, we have that $G\acts X$ is transitive.
+    \end{proof}
+    \item $S_n$ canonically acts on $[n]$, but it can act on other sets as well.
+    \item Lemma: If $S_n$ acts transitively on a set $X$ of size $m$, then one of the following holds.
+    \begin{enumerate}
+        \item $m=1$.
+        \item $m=2$ and $\Stab(x)=\Stab(y)=A_n$, where $x,y$ are the 2 elements of $X$.
+        \item $n=4$ and $m=3$ or $m=6$.
+        \item $m\geq n$ and the action of $S_n$ is faithful, that is, the map $S_n\to S_m$ is injective.
+    \end{enumerate}
+    \begin{proof}
+        By the Proposition from Lecture 5.2, $S_n\acts X$ corresponds to a homomorphism $\phi:S_n\to S_m$. By the Lemma from Lecture 4.1, $\ker\phi\triangleleft S_n$. Additionally, since $\im\phi$ acts transitively on $X$, $|\im\phi|\geq m$. We now divide into cases.\par
+        If $\ker\phi=S_n$, then all $S_n$ can do is fix elements. Thus, if it is to move every element in $X$ to every other element in $X$, we must have only one element in $X$, i.e., $m=1$. An alternate way of proving this would be by noting that $\ker\phi=S_n$ implies $\Stab(x)=S_n$ for all $x\in X$, implying by the Orbit-Stabilizer Theorem and transitivity that
+        \begin{equation*}
+            1 = |S_n|/|S_n| = |\Orb(x)| = |X| = m
+        \end{equation*}\par
+        If $\ker\phi=A_n$, then we must have
+        \begin{equation*}
+            2 = |S_n|/|A_n| = |\Orb(x)| = |X| = m
+        \end{equation*}
+        As to the other part of the proof, we know that $\Stab(x)\supset\ker\phi=A_n$. However, since $\Stab(x)$ is a subgroup, the only subgroup of $S_n$ larger than $A_n$ is $S_n$ itself, and there exists $\sigma\in S_n$ that takes $\sigma\cdot x=y$ (i.e., $\sigma\notin\Stab(x)$), we know that $\Stab(x)=A_n$, as desired. An analogous result holds for $\Stab(y)$.\par
+        If $n=4$ and $\ker\phi=K$, then we can think of some of the 24 elements of $S_4$ acting on $X$ to shuffle things around differently, but many of the elements doing the same thing. In particular, if we want to look at just the distinct actions, it is probably better to take the perspective of each coset in $S_4/K$ acting on $X$. But $S_4/K\cong\im\phi\cong S_3$, so what we really have here is a case of $S_3$ acting transitively on some number of elements. By the Orbit-Stabilizer Theorem,
+        \begin{equation*}
+            6 = |S_3|
+            = |\Orb(x)|\cdot|\Stab(x)|
+            = |X|\cdot|\Stab(x)|
+            = m\cdot|\Stab(x)|
+        \end{equation*}
+        Thus, $m$ must divide 6. It follows that $m=1,2,3,6$. The cases where $m=1,2$ have already been dealt with, so the only new cases worth mentioning additionally here are $m=3,6$. For some more intuition here, recall that
+        \begin{equation*}
+            S_3 = \{e,(123),(132),(12),(13),(23)\}
+        \end{equation*}
+        and picture Figure \ref{fig:TransitiveS3}.
+        \begin{figure}[H]
+            \centering
+            \footnotesize
+            \tikzset{every node/.style={black}}
+            \begin{subfigure}[b]{0.3\linewidth}
+                \centering
+                \begin{tikzpicture}
+                    \fill [rex] (90:1)   circle (2pt) node[above=1mm]{$A$};
+                    \fill [rex] (-150:1) circle (2pt) node[below=1mm]{$B$};
+                    \fill [rex] (-30:1)  circle (2pt) node[below=1mm]{$C$};
+                \end{tikzpicture}
+                \caption{Three points.}
+                \label{fig:TransitiveS3a}
+            \end{subfigure}
+            \begin{subfigure}[b]{0.3\linewidth}
+                \centering
+                \begin{tikzpicture}
+                    \fill [rex] (120:1)  circle (2pt) node[above=1mm]{$A$};
+                    \fill [rex] (180:1)  circle (2pt) node[left=1mm] {$B$};
+                    \fill [rex] (-120:1) circle (2pt) node[below=1mm]{$C$};
+                    \fill [rex] (-60:1)  circle (2pt) node[below=1mm]{$D$};
+                    \fill [rex] (0:1)    circle (2pt) node[right=1mm]{$E$};
+                    \fill [rex] (60:1)   circle (2pt) node[above=1mm]{$F$};
+                \end{tikzpicture}
+                \caption{Six points.}
+                \label{fig:TransitiveS3b}
+            \end{subfigure}
+            \caption{Transitive actions of $S_3$.}
+            \label{fig:TransitiveS3}
+        \end{figure}
+        The transitive action of $S_3$ on three points is, respectively,
+        \begin{equation*}
+            \{e,(ABC),(ACB),(AB),(AC),(BC)\}
+        \end{equation*}
+        Notice that this action obeys the compatibility property, and sends $A$ (for example) to every element. We represent the elements of $S_3$ as \ang{120} rotations and reflections to move the points around. Essentially, we compare $S_3$ to $D_6$ The transitive action of $S_3$ on six points is, respectively,
+        \begin{equation*}
+            \{e,(ACE)(BDF),(AEC)(BFD),(AB)(CF)(DE),(AD)(BC)(EF),(AF)(BE)(CD)\}
+        \end{equation*}
+        This action also obeys the compatibility property, i.e., we did not choose \ang{60} rotations as we could have if we were dealing with $\Z/6\Z$ but instead chose \ang{120} rotations again, coupled with the three reflections that don't fix any points. Essentially, we compare $S_3$ with $D_6\leq D_{12}$, again.\par
+        The last case is $\ker\phi=\{e\}$. In this case, $\phi$ is injective (and thus the action is faithful) and we must have $m\geq |S_n|=n!$.
+    \end{proof}
+    \item Let's now investigate the case $m\geq n$ more closely.
+    \item Example: $S_n$ acts transitively on the set $X$ of unordered pairs of points from 1 through $n$.
+    \begin{itemize}
+        \item $X$ contains elements like $(1,4)=(4,1)$.
+        \item We have the
+        \begin{equation*}
+            m = |X|
+            = \binom{n}{2}
+            = \frac{n(n-1)}{2}
+        \end{equation*}
+        \item This yields maps from $S_4\to S_6$, $S_5\to S_{10}$, and $S_6\to S_{15}$, for example.
+        \item Still not entirely sure how we define the group action??
+    \end{itemize}
+    \item We now characterize $\Aut(S_n)$ almost completely.
+    \item Lemma: Suppose $n\neq 6$. Let $S_n\acts X$ transitively, where $|X|=n$. Then (after possibly relabeling the set $X$) the action is precisely the "usual" action of $S_n$ on $X=\{1,2,\dots,n\}$.
+    \begin{proof}
+        Relabeling the elements if necessary, we find that the action corresponds to a homomorphism $\phi:S_n\to S_X\cong S_n$. Since $m=n\geq n$, the above Lemma tells us that the action is faithful, implying that $\phi$ is injective. But since $\phi$ maps a set to itself, its bijectivity follows from its injectivity, so $\phi$ is an automorphism. Thus, by HW5-Q1 and the hypothesis that $n\neq 6$, $\phi$ is a conjugation. Since relabeling the elements of $X$ also changes the homomorphism precisely by a conjugation, we may relabel the elements of $X$ to make $\phi$ the identity.
+    \end{proof}
+    \item We now address $\Aut(S_6)$.
+    \item Before we do this, though, we must learn a bit more about $S_5$.
+    \item Lemma: $S_5\acts X$ transitively, where $|X|=6$. The corresponding map $\phi:S_5\to S_6$ realizes $S_5$ as a transitive subgroup of $S_6$.
+    \begin{proof}
+        This proof is constructive.\par
+        Let $X$ be the set of all subgroups of $S_5$ of order 5. Since 5 is prime, every subgroup of order 5 is generated by a 5-cycle. Moreover, every subgroup of order 5 contains four distinct 5-cycles and $e$. Thus, since there are $(5-1)!=24$ 5-cycles in $S_5$ and four distinct 5-cycles per subgroup, there are $24/4=6$ subgroups of order 5 in $X$. As we know, $S_5$ acts on $S_5/X$ by coset conjugation; this combined with the fact that all subgroups in $X$ are conjugate to each other (since all 5-cycles are conjugate to each other) implies that $S_5\acts S_5/X$ transitively, as desired.
+    \end{proof}
+    \item Additional comments on this \textbf{exotic} subgroup of $S_6$.
+    \begin{itemize}
+        \item Every $S_{n-1}\leq S_n$, but this typically involves fixing some $i\in n$ and permuting everything else. The fact that this subgroup doesn't fix anything but is truely transitive makes it somewhat unique and, perhaps, a bit "exotic."
+    \end{itemize}
+    \item An explicit formulation for the exotic subgroup of $S_6$.
+    \begin{itemize}
+        \item We begin by writing down all elements of $X$. To do so, we use the fact that within each subgroup of order 5, there will be a unique element such that $\sigma(1)=2$\footnote{Reason why this is true: Consider $(1,3,5,4,2)$, for example. It sends $1\mapsto 3$. Continuing on, $(1,3,5,4,2)^2$ will send $1\mapsto 3\mapsto 5$, i.e., will send the leftmost element to the one two away. Continuing on, since every number appears once, we will eventually raise $(1,3,5,4,2)$ to a power such that 1 gets sent far enough down the cycle to make it to 2; in this case, $(1,3,5,4,2)^4$ does the trick as it sends $1\mapsto 3\mapsto 5\mapsto 4\mapsto 2$.}.
+        \begin{align*}
+            A &= \gen{(1,2,3,4,5)}\\
+            B &= \gen{(1,2,3,5,4)}\\
+            C &= \gen{(1,2,4,3,5)}\\
+            D &= \gen{(1,2,4,5,3)}\\
+            E &= \gen{(1,2,5,3,4)}\\
+            F &= \gen{(1,2,5,4,3)}
+        \end{align*}
+        \item It follows since $S_5$ is generated by $(1,2,3,4,5)$ and $(1,2)$ and $\phi:S_5\to S_X$ is a homomorphism that the image of these two elements under $\phi$ generates the exotic subgroup of $S_X\cong S_6$. We compute these images presently.
+        \item Compute $\phi((1,2,3,4,5))$. We have that
+        \begin{alignat*}{4}
+            [\phi((1,2,3,4,5))](A) &= (1,2,3,4,5)A(1,2,3,4,5)^{-1}& &= \gen{(2,3,4,5,1)}& &= \gen{(1,2,3,4,5)}& &= A\\
+            [\phi((1,2,3,4,5))](B) &= (1,2,3,4,5)B(1,2,3,4,5)^{-1}& &= \gen{(2,3,4,1,5)}& &= \gen{(1,2,4,5,3)}& &= D\\
+            [\phi((1,2,3,4,5))](C) &= (1,2,3,4,5)C(1,2,3,4,5)^{-1}& &= \gen{(2,3,5,4,1)}& &= \gen{(1,2,3,5,4)}& &= B\\
+            [\phi((1,2,3,4,5))](D) &= (1,2,3,4,5)D(1,2,3,4,5)^{-1}& &= \gen{(2,3,5,1,4)}& &= \gen{(1,2,5,4,3)}& &= F\\
+            [\phi((1,2,3,4,5))](E) &= (1,2,3,4,5)E(1,2,3,4,5)^{-1}& &= \gen{(2,3,1,4,5)}& &= \gen{(1,2,4,3,5)}& &= C\\
+            [\phi((1,2,3,4,5))](F) &= (1,2,3,4,5)F(1,2,3,4,5)^{-1}& &= \gen{(2,3,1,5,4)}& &= \gen{(1,2,5,3,4)}& &= E
+        \end{alignat*}
+        so
+        \begin{equation*}
+            \phi((1,2,3,4,5)) = (B,D,F,E,C)
+        \end{equation*}
+        \item Compute $\phi((1,2))$. We have that
+        \begin{alignat*}{4}
+            [\phi((1,2))](A) &= (1,2)A(1,2)^{-1}& &= \gen{(2,1,3,4,5)}& &= \gen{(1,2,5,4,3)}& &= F\\
+            [\phi((1,2))](B) &= (1,2)B(1,2)^{-1}& &= \gen{(2,1,3,5,4)}& &= \gen{(1,2,4,5,3)}& &= D\\
+            [\phi((1,2))](C) &= (1,2)C(1,2)^{-1}& &= \gen{(2,1,4,3,5)}& &= \gen{(1,2,5,3,4)}& &= E\\
+            [\phi((1,2))](D) &= (1,2)D(1,2)^{-1}& &= \gen{(2,1,4,5,3)}& &= \gen{(1,2,3,5,4)}& &= B\\
+            [\phi((1,2))](E) &= (1,2)E(1,2)^{-1}& &= \gen{(2,1,5,3,4)}& &= \gen{(1,2,4,3,5)}& &= C\\
+            [\phi((1,2))](F) &= (1,2)F(1,2)^{-1}& &= \gen{(2,1,5,4,3)}& &= \gen{(1,2,3,4,5)}& &= A
+        \end{alignat*}
+        so
+        \begin{equation*}
+            \phi((1,2)) = (A,F)(B,D)(C,E)
+        \end{equation*}
+        \item Therefore, the exotic subgroup is given by
+        \begin{equation*}
+            H = \gen{(A,F)(B,D)(C,E),(B,D,F,E,C)} \subset S_6
+        \end{equation*}
+        \item It is highly nonobvious that $H$ is transitive and a subgroup isomorphic to $S_5$, but it is true. However, it can be seen to some extent that it is transitive since the 5-cycle above rotates $B$-$F$ around, and the other one allows $A$ to be brought into the fold.
+    \end{itemize}
+    \item There exists a labeling of the pairs of opposite faces in the dodecahedron such that the action of $\text{Do}$ on said pairs induces a map from $A_5$ to a subgroup of the exotic subgroup of $S_6$ constructed above.
+    \item We are now ready to construct an automorphism on $S_6$ that is not a conjugation, i.e., is not inner.
+    \item Let
+    \begin{equation*}
+        G = \gen{(1,6)(2,4)(3,5),(2,4,6,5,3)} \subset S_6
+    \end{equation*}
+    \begin{itemize}
+        \item Note that $G$ is a relabeling of the exotic subgroup $H$ of $S_6$ with the numbers $1,\dots,6$.
+    \end{itemize}
+    \item Lemma: The map $\psi:S_6\to S_6$ induced by the action of $S_6$ on $S_6/G$ by left multiplication is an automorphism which is not inner. In particular, this automorphism takes the conjugacy class $(xx)$ to the conjugacy class $(xx)(xx)(xx)$ and, as we shall also see, the conjugacy class $(xxxxxx)$ to the conjugacy class $(xxx)(xx)$.
+    \begin{proof}
+        This is a slick proof by contradiction.\par\smallskip
+        By HW5-Q1a, $\psi(\{(xx)\})$ is another conjugacy class. Additionally, since $\psi$ is a homomorphism, the elements of this conjugacy class must also have order 2. Lastly, since $|\{(xx)\}|=15$ and $\psi$ is an isomorphism, we must also have $|\{\psi((xx))\}|=15$. Thus, either $\psi(\{(xx)\})=\{(xx)\}$ or $\psi(\{(xx)\})=\{(xx)(xx)(xx)\}$.\par
+        Suppose for the sake of contradiction that $\psi(\{(xx)\})=\{(xx)\}$. Then by HW5-Q1, $\psi$ is an inner automorphism, and thus is given by conjugation. Let
+        \begin{align*}
+            \Sigma &= \{1,2,3,4,5,6\}&
+            Y = S_6/G &= \{G_1,G_2,G_3,G_4,G_5,G_6\}
+        \end{align*}
+        This makes clear that the true nature of $\psi$ is a map $\psi:S_\Sigma\to S_Y$. WLOG, let $G_1:=G$. Consider $\Stab(G)$ as a subset of $S_Y$: Here, $\Stab(G)$ (which we will call $J$) should be the set of all permutations on $Y$ that don't move $G_1$ (i.e., that fix $G_1$). On the other hand, as a subset of $S_\Sigma$, $\Stab(G)=G$. Since $\psi$ is the map coming from the action, stabilizers should map to stabilizers (why??), so $\psi(G)=J$. It follows that $\psi^{-1}(J)=G$. Since $J$ fixes a point and $\psi$ (hence $\psi^{-1}$) is given by conjugation, $\psi^{-1}(J)=G$ fixes a point, too. But this contradicts the hypothesis that $G\acts\Sigma$ transitively.
+    \end{proof}
+    \begin{proof}
+        This is an explicit construction.\par\smallskip
+        \emph{Return later for the details.}\par
+        We conclude that
+        \begin{align*}
+            \psi((1,2)) &= (a,b)(c,d)(e,f) = (1,2)(3,4)(5,6)\\
+            \psi((1,2,3,4,5,6)) &= (b,f)(c,e,d) = (2,6)(3,5,4)
+        \end{align*}
+    \end{proof}
+\end{itemize}
+
+
+
 
 \end{document}
