@@ -597,5 +597,74 @@
 
 
 
+\section[Blog Post: Normal Subgroups of \texorpdfstring{$S_n$}{TEXT}]{Blog Post: Normal Subgroups of \texorpdfstring{$\bm{S_n}$}{TEXT}}
+\begin{itemize}
+    \item \marginnote{11/13:}Lemma: If $K$ is a proper normal subgroup of $S_n$ and $n\geq 5$, then $K=A_n$.
+    \begin{proof}
+        Let $K$ be a proper normal subgroup of $S_n$ for $n\geq 5$. To prove that $K=A_n$, it will suffice to show that $K$ contains all 3-cycles since the 3-cycles generate $A_n$. Technically, this will only prove that $A_n\triangleleft K$, but since $[S_n:A_n]=2$, if $K$ a subgroup is larger than $A_n$, then Lagrange's theorem implies that $K$ necessarily equals $S_n$ and is thus no longer proper. Consequently, proving that every proper normal subgroup of $S_n$ contains \emph{at least} $A_n$ will suffice to show that every proper normal subgroup of $S_n$ is \emph{at most} $A_n$.\par
+        To show that $K$ contains \emph{all} 3-cycles, it will suffice to show that $K$ contains \emph{one} 3-cycle since as a normal subgroup of $S_n$, all conjugates of this 3-cycle will be 3-cycles as well and will be in the subgroup. Let's begin. Since $K$ is proper, we know that $\{e\}\neq K\neq S_n$. Thus, there exists a nontrivial element $\sigma\in K$. We now divide into four cases, as follows.\par
+        \underline{The cycle decomposition of $\sigma$ contains at least one $k$-cycle where $k\geq 3$}: Let
+        \begin{equation*}
+            \sigma = (a_1,a_2,a_3,\dots,a_k)(b_1,b_2,\dots)(c_1,c_2,\dots)\cdots
+        \end{equation*}
+        Being normal, $K$ contains all conjugates of $\sigma$, notably including
+        \begin{equation*}
+            \sigma' = (a_2,a_1,a_3,\dots,a_k)(b_1,b_2,\dots)(c_1,c_2,\dots)\cdots
+        \end{equation*}
+        It follows that
+        \begin{equation*}
+            \sigma'\sigma^{-1} = (a_1,a_2,a_3)
+        \end{equation*}
+        as desired.\par
+        \underline{$\sigma$ is a 2-cycle}: Then all 2-cycles are present, and $K=S_n$, so we neglect this case.\par
+        \underline{$\sigma$ contains exactly two 2-cycles}: Let
+        \begin{equation*}
+            \sigma = (a_1,a_2)(a_3,a_4)
+        \end{equation*}
+        Since $n\geq 5$, we may define
+        \begin{equation*}
+            \sigma' = (a_1,a_5)(a_3,a_4)
+        \end{equation*}
+        Then
+        \begin{equation*}
+            \sigma'\sigma^{-1} = (a_1,a_2,a_5)
+        \end{equation*}
+        as desired.\par
+        \underline{$\sigma$ contains three or more 2-cycles}: Let
+        \begin{equation*}
+            \sigma = (a_1,a_2)(a_3,a_4)(a_5,a_6)\cdots
+        \end{equation*}
+        Choose
+        \begin{equation*}
+            \sigma' = (a_1,a_3)(a_2,a_5)(a_4,a_6)\cdots
+        \end{equation*}
+        Then
+        \begin{equation*}
+            \sigma'\sigma^{-1} = (a_1,a_5,a_4)(a_2,a_3,a_6)\cdots
+        \end{equation*}
+        and we have reduced to case 1. This yields the desired result.
+    \end{proof}
+    \item \marginnote{11/13:}Corollary: If $n>m$ and $\psi:S_n\to S_m$ is a homomorphism, then either\dots
+    \begin{enumerate}
+        \item The image is trivial.
+        \item The image has order two.
+        \item $n=4$, $m=3$, and the kernel is the Klein four group.
+    \end{enumerate}
+    \begin{proof}
+        By the FIT, $\psi$ induces an isomorphism $\phi:S_n/\ker\psi\to\im\psi$. By the lemma from lecture 4.1, $\ker\psi$ is normal. Thus, by the above Lemma, either $\ker\psi=S_n$, $\ker\psi=A_n$, or $\ker\psi=\{e\}$ for $n\geq 5$. We can eliminate the last case immediately since $|S_m|<|S_n|$, meaning that $\psi$ must have nontrivial kernel. As to the other two cases, the first one gives trivial image and the second one gives image of order two. If $n<5$, then $n=4,3,2,1$. If $n=4$ and $m=3$, we can get to the first two cases, but we do also have the additional third case. If $m\leq 2$, then naturally only the first two cases are possible since $|S_m|\leq 2$ at that point.
+    \end{proof}
+    \item Examples:
+    \begin{itemize}
+        \item Prove that $\text{Te}\cong A_4$: We know that $\text{Te}\subset\text{Cu}=S_4$. Since $[\text{Cu}:\text{Te}]=2$, $\text{Te}$ is normal. Thus, by the lemma, $\text{Te}\cong A_4$.
+        \item Prove that $\text{Do}\cong A_5$: Same argument that $\text{Do}$ has index 2 in $S_5$.
+    \end{itemize}
+    \item Reminder that conjugacy classes in $A_n$ are not necessarily as nice as those in $S_n$.
+    \begin{itemize}
+        \item Example: When $n=3$, $\{e,(123),(132)\}=A_3\cong\Z/3\Z$. $\{(123)\}$ in $S_n$ includes $(132)$ as well, but $\{(123)\}$ is a singleton set in $A_5$ since $A_5$ is abelian.
+    \end{itemize}
+\end{itemize}
+
+
+
 
 \end{document}
