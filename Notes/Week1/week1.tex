@@ -551,5 +551,133 @@
 
 
 
+\section{Chapter 1: Introduction to Groups}
+\emph{From \textcite{bib:DummitFoote}.}
+\subsection*{A Word on Group Theory}
+\begin{itemize}
+    \item \marginnote{12/5:}History of and motivation for group theory and abstract algebra in general.
+    \item Power of the abstract approach:
+    \begin{itemize}
+        \item Results for a number of examples are obtained from a single result for the abstraction.
+        \item General theorems allow specific theorems of interest to be recovered as a special case, while more broadly illustrating the connections between related results.
+    \end{itemize}
+    \item \textbf{Groups} were abstracted from extremely old problems in algebraic equations, number theory, and geometry, all of which were found to have related solutions.
+    \begin{itemize}
+        \item Examples given.
+    \end{itemize}
+    \item "One of the essential characteristics of mathematics is that after applying a certain algorithm or method of proof, one then considers the scope and limits of the method. As a result, properties possessed by a number of interesting objects are frequently abstracted and the question raised; can one determine \emph{all} the objects possessing these properties? Attempting to answer such a question also frequently adds considerable understanding of the original objects under consideration" \parencite[13]{bib:DummitFoote}.
+    \item "It is important to realize, with or without the historical context, that the reason the abstract definitions are made is because it is useful to isolate specific characteristics and consider what structure is imposed on an object having these characteristics" \parencite[15]{bib:DummitFoote}.
+    \begin{itemize}
+        \item Structure of algebraic objects is a major and recurring theme throughout the text.
+    \end{itemize}
+\end{itemize}
+
+
+\subsection*{Basic Axioms and Examples}
+\begin{itemize}
+    \item Goal: Introduce the algebraic structure studied in Part I and give some examples.
+    \item \textbf{Binary operation} (on a set $G$): A function from $G\times G$ to $G$. \emph{Denoted by} $\bm{\star}$.
+    \begin{itemize}
+        \item Additional binary operation-adjacent definitions: \textbf{Associative}, \textbf{commutative} (binary operation).
+    \end{itemize}
+    \item Examples of commutative/noncommutative and associative/nonassociative operations given.
+    \item \textbf{Closed} (subset $H\subset G$ under $\star$): A subset $H\subset G$ such that $a\star b\in H$ for all $a,b\in H$, where $\star$ is a binary operation on $G$.
+    \begin{itemize}
+        \item Alternatively, we can require that $\star|_H$ be a binary operation on $H$.
+        \item $\star$ associative/commutative on $G$ implies $\star|_H$ associative/commutative on $H$.
+    \end{itemize}
+    \item If $\star$ is an associative (respectively, commutative) binary operation on $G$ and $\star|_H$ is a binary operation on $H\subset G$, then $\star$ is associative (respectively, commutative) on $H$ as well.
+    \item \textbf{Group}: An ordered pair $(G,\star)$ where $G$ is a set and $\star$ is a binary operation on $G$ satisfying the following axioms:
+    \begin{enumerate}[label={(\roman*)}]
+        \item \emph{Associativity}: $(a\star b)\star c=a\star(b\star c)$ for all $a,b,c\in G$.
+        \item \emph{Identity}: There exists an element $e\in G$ such that for all $a\in G$, $a\star e=e\star a=a$.
+        \item \emph{Inverses}: For all $a\in G$, there exists an element $a^{-1}\in G$ such that $a\star a^{-1}=a^{-1}\star a=e$.
+    \end{enumerate}
+    \item \textbf{Abelian} (group): A group $(G,\star)$ such that for all $a,b\in G$, $a\star b=b\star a$. \emph{Also known as} \textbf{commutative}.
+    \item Informally, we may call $G$ a group under $\star$ or, if $\star$ is clear from context, $G$ alone a group.
+    \item \textbf{Finite group}: A group $G$ for which $G$ is a finite set.
+    \item Axiom (ii) implies that $G$ is nonempty.
+    \item Examples of groups given (and justified).
+    \begin{enumerate}
+        \item $\Z$, $\Q$, $\R$, $\C$.
+        \item $(\Q\setminus\{0\})^\times$, $(\R\setminus\{0\})^\times$, $(\C\setminus\{0\})^\times$, $(\Q^+)^\times$, $(\R^+)^\times$.
+        \item A vector space under vector addition.
+        \item $\Z/n\Z$.
+        \item $(\Z/n\Z)^\times$.
+        \item \textbf{Direct product} of groups $(A,\star)$ and $(B,\diamond)$.
+    \end{enumerate}
+    \item \textbf{Direct product} (of $(A,\star)$ and $(B,\diamond)$): The group $A\times B$ whose elements are those in the Cartesian product
+    \begin{equation*}
+        A\times B = \{(a,b)\mid a\in A,\ b\in B\}
+    \end{equation*}
+    and whose operation is defined component-wise by
+    \begin{equation*}
+        (a_1,b_1)(a_2,b_2) = (a_1\star a_2,b_1\diamond b_2)
+    \end{equation*}
+    \item Basic properties of groups.
+    \begin{proposition}\label{prp:1.1}
+        Let $G$ be a group under the operation $\star$.
+        \begin{enumerate}
+            \item The identity of $G$ is unique.
+            \item For each $a\in G$, $a^{-1}$ is uniquely determined.
+            \item $(a^{-1})^{-1}=a$ for all $a\in G$.
+            \item $(a\star b)^{-1}=(b^{-1})\star(a^{-1})$.
+            \item \textbf{Generalized associative law}: For any $a_1,\dots,a_n\in G$, the value of $a_1\star\cdots\star a_n$ is independent of how the expression is bracketed.
+        \end{enumerate}
+        \begin{proof}
+            Given.
+        \end{proof}
+    \end{proposition}
+    \item Further notational simplification:
+    \begin{align*}
+        \star &\mapsto \cdot&
+        a\cdot b &\mapsto ab&
+        (ab)c &\mapsto abc&
+        e &\mapsto 1&
+        \underbrace{xx\cdot x}_{n\text{ times}} &\mapsto x^n&
+        (x^{-1})^n &\mapsto x^{-n}&
+        x^0 &\mapsto 1
+    \end{align*}
+    \begin{itemize}
+        \item Note that the operation we're using for a given group can alter the above.
+        \item For example, when the operation is $+$, we let $e\mapsto 0$, $x+\cdots+x$ ($n$ times) be written as $nx$, $-a-a-\cdots-a$ ($n$ times) be written as $-nx$, and $0x=0$.
+    \end{itemize}
+    \item Cancellation lemma.
+    \begin{proposition}
+        Let $G$ be a group and let $a,b\in G$. The equations $ax=b$ and $ya=b$ have unique solutions for $x,y\in G$. In particular, the left and right cancellation laws hold in $G$, i.e.,
+        \begin{enumerate}
+            \item If $au=av$, then $u=v$;
+            \item If $ub=vb$, then $u=v$.
+        \end{enumerate}
+        \begin{proof}
+            Given.
+        \end{proof}
+    \end{proposition}
+    \item Corollary: Either $ab=e$ or $ba=e$ implies $b=a^{-1}$ directly; we don't have to verify the other if we only know one.
+    \item Corollary: Either $ab=a$ or $ba=a$ implies $b=e$.
+    \begin{itemize}
+        \item Related to the previous one.
+    \end{itemize}
+    \item \textbf{Order} (of $x$): The smallest positive integer $n$ such that $x^n=1$. \emph{Denoted by} $\bm{|x|}$.
+    \begin{itemize}
+        \item We say $x$ is of order $n$.
+        \item If no such $n$ exists, the order of $x$ is defined to be infinity and $x$ is said to be of infinite order.
+        \item Note that $|\cdot|$ means different things in the contexts $|g|$ and $|G|$ (so be careful), but the uses are naturally related since the order of $g$ is equal to the cardinality of the set of all its (distinct) powers (see Proposition \ref{prp:2.2}).
+    \end{itemize}
+    \item Examples.
+    \begin{itemize}
+        \item $|g|=1$ iff $g=e$.
+        \item Others given.
+    \end{itemize}
+    \item \textbf{Multiplication table} (of a finite group): The $n\times n$ matrix whose $i,j$ entry is the group element $g_ig_j$, where $G=\{g_1,\dots,g_n\}$ and $g_1=e$. \emph{Also known as} \textbf{group table}.
+    \begin{itemize}
+        \item Contains all group information, but is a computationally and visually unwieldy object. Does not easily reveal deeper relations.
+        \item Analogy: A multiplication table is like having a list of the distances between every US city; what would be far more useful is a map with such distances labeled on it.
+    \end{itemize}
+    \item A goal going forward: Develop a better visualization of the internal structure of groups.
+\end{itemize}
+
+
+
 
 \end{document}

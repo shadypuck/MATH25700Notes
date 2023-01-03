@@ -650,5 +650,519 @@
 
 
 
+\section{Chapter 1: Introduction to Groups}
+\emph{From \textcite{bib:DummitFoote}.}
+\subsection*{Matrix Groups}
+\begin{itemize}
+    \item \marginnote{12/5:}Used for illustrative purposes in Part I, and studied in detail with vector spaces later on.
+    \item \textbf{Field}: A set $F$ together with two binary operations $+$ and $\cdot$ on $F$ such that $(F,+)$ is an abelian group with identity 0, $(F-\{0\},\cdot)$ is an abelian group, and the following \textbf{distributive law} holds:
+    \begin{equation*}
+        a\cdot(b+c) = (a\cdot b)+(a\cdot c)
+    \end{equation*}
+    for all $a,b,c\in F$.
+    \begin{itemize}
+        \item The "smallest" mathematical structure in which we can perform all the arithmetic operations $+$, $-$, $\times$, and $\divisionsymbol$ (division by nonzero elements).
+        \item Fields will be studied more thoroughly later; for now, it suffices to know $\Q$, $\R$, and the finite fields $\F_p=\Z/p\Z$ for $p$ prime.
+    \end{itemize}
+    \item $\bm{F^\times}$: The set $F-\{0\}$ where $F$ is a field.
+    \item Linear algebra (vector space theory, matrices and linear transformations, and determinants) over $\R$ is true \emph{mutatis mutandis}\footnote{Def: Making the necessary adjustments while not affecting the main point.} over an arbitrary field $F$.
+    \item \textbf{General linear group of degree $\bm{n}$}: The set of all $n\times n$ matrices, where $n\in\Z^+$, whose entities come from the field $F$ and whose determinant is nonzero. \emph{Denoted by} $\bm{GL_n(F)}$.
+    \begin{itemize}
+        \item We can compute the determinant $\det(A)$ of a matrix $A$ with entries in $F$ using the same formulas applied when $F=\R$.
+        \item The product of two matrices $A,B$ with entries in $F$ is also computed by using the familiar formula.
+        \item $\det(AB)=\det(A)\cdot\det(B)$ implies that for $A,B\in GL_n(F)$ (i.e., $\det(A)\neq 0\neq\det(B)$), $AB$ will also have nonzero determinant and hence $AB\in GL_n(F)$ as well. Thus, $GL_n(F)$ is closed under matrix multiplication.
+        \item $\det(A)\neq 0$ still implies the existence of $A^{-1}$.
+        \item Compute inverses can be done with the same familiar adjoint formula.
+    \end{itemize}
+    \item Useful results (proven in Part III).
+    \begin{itemize}
+        \item If $F$ is a field and $|F|<\infty$, then $|F|=p^m$ for some prime $p$ and integer $m$.
+        \item If $|F|=q<\infty$, then $|GL_n(F)|=(q^n-1)(q^n-q)(q^n-q^2)\cdots(q^n-q^{n-1})$.
+    \end{itemize}
+\end{itemize}
+
+\subsubsection*{Exercises}
+The next exercise introduces the \textbf{Heisenberg group} over the field $F$ and develops some of its basic properties. When $F=\R$, this group plays an important role in quantum mechanics and signal theory by giving a group theoretic interpretation (due to H. Weyl) of Heisenberg's Uncertainty Principle. Note also that the Heisenberg group may be defined more generally, for example, with entries in $\Z$.
+\begin{enumerate}[label={\textbf{\arabic*.}},ref={1.4.\arabic*}]
+    \setcounter{enumi}{10}
+    \item \label{exr:1.4.11}Let
+    \begin{equation*}
+        H(F) = \left\{
+            \begin{pmatrix}
+                1 & a & b\\
+                0 & 1 & c\\
+                0 & 0 & 1\\
+            \end{pmatrix}
+            \,\middle|\, a,b,c\in F
+        \right\}
+    \end{equation*}
+    be the \textbf{Heisenberg group} over $F$. Let
+    \begin{align*}
+        X &=
+        \begin{pmatrix}
+            1 & a & b\\
+            0 & 1 & c\\
+            0 & 0 & 1\\
+        \end{pmatrix}&
+        Y &=
+        \begin{pmatrix}
+            1 & d & e\\
+            0 & 1 & f\\
+            0 & 0 & 1\\
+        \end{pmatrix}
+    \end{align*}
+    be elements of $H(F)$.
+    \begin{enumerate}[label={\textbf{(\alph*)}},ref={1.4.11\alph*}]
+        \item \label{exr:1.4.11a}Compute the matrix product $XY$ and deduce that $H(F)$ is closed under matrix multiplication. Exhibit explicit matrices such that $XY\neq YX$ (so that $H(F)$ is always non-abelian).
+        \item \label{exr:1.4.11b}Find an explicit formula for the matrix inverse $X^{-1}$ and deduce that $H(F)$ is closed under inverses.
+        \item \label{exr:1.4.11c}Prove the associative law for $H(F)$ and deduce that $H(F)$ is a group of order $|F|^3$. (Do not assume that matrix multiplication is associative.)
+        \item \label{exr:1.4.11d}Find the order of each element of the finite group $H(\Z/2\Z)$.
+        \item \label{exr:1.4.11e}Prove that every nonidentity element of the group $H(\R)$ has infinite order.
+    \end{enumerate}
+\end{enumerate}
+
+
+\subsection*{The Quaternion Group}
+\begin{itemize}
+    \item \textbf{Quaternion group}: The group defined as follows. \emph{Denoted by} $\bm{Q_8}$. \emph{Given by}
+    \begin{equation*}
+        Q_8 = \{1,-1,i,-i,j,-j,k,-k\}
+    \end{equation*}
+    where the product $\cdot$ is described by
+    \begin{gather*}
+        1\cdot a = a\cdot 1 = a\tag*{for all $a\in Q_8$}\\
+        (-1)\cdot(-1) = 1\\
+        (-1)\cdot a = a\cdot(-1) = -a\tag*{for all $a\in Q_8$}
+    \end{gather*}
+    \begin{align*}
+        &&
+            i\cdot i = j\cdot j &= k\cdot k = -1\\
+        i\cdot j &= k&
+            j\cdot k &= i&
+                k\cdot i &= j\\
+        j\cdot i &= -k&
+            k\cdot j &= -i&
+                i\cdot k &= -j
+    \end{align*}
+    \item Associativity can be tediously checked by explicit computation, or by less computational means later on.
+    \item $Q_8$ is a non-abelian group of order 8.
+\end{itemize}
+
+
+\subsection*{Homomorphisms and Isomorphisms}
+\begin{itemize}
+    \item Goal: Quantify when two groups "look the same."
+    \begin{itemize}
+        \item We say this happens when there exists an \textbf{isomorphism} between them. We'll first define a \textbf{homomorphism}, though. This latter concept we'll discuss in much greater detail later.
+    \end{itemize}
+    \item \textbf{Homomorphism}: A map $\varphi:G\to H$ such that the following equality holds for all $x,y\in G$, where $(G,\star)$ and $(H,\diamond)$ are groups.
+    \begin{equation*}
+        \varphi(x\star y) = \varphi(x)\diamond\varphi(y)
+    \end{equation*}
+    \begin{itemize}
+        \item Without explicit group operations, we have the form $\varphi(xy)=\varphi(x)\varphi(y)$. This form will commonly show up, but it is important to remember the distinction between group operations.
+        \item Intuitively, a map is a homomorphism if it "respects the group structures of its domain and codomain" \parencite[37]{bib:DummitFoote}.
+    \end{itemize}
+    \item \textbf{Isomorphism}: A bijective homomorphism.
+    \begin{itemize}
+        \item If an isomorphism exists from $G$ to $H$, we write that $G$ and $H$ are \textbf{isomorphic}, are of the same \textbf{isomorphism type}, and that $\bm{G\cong H}$.
+        \item Intuitively, such a map implies that $G$ and $H$ are the same group; the elements have simply been relabeled from one to the other.
+    \end{itemize}
+    \item The existence of an isomorphism between two groups implies that any property of $G$ that can be derived from the group axioms also holds for $H$, and vice versa.
+    \item Isomorphisms formally justify writing all group actions as $\cdot$ since groups $(G,\star)$ and $(G,\cdot)$ where $\star,\cdot$ are defined the same are isomorphic.
+    \item $\cong$ is an equivalence relation.
+    \item \textbf{Isomorphism class}: An equivalence class of a nonempty collection $\mathcal{G}$ of groups under $\cong$.
+    \item $\exp:\R\to\R^+$ defined by $\exp(x)=\e[x]$ is an isomorphism from $(\R,+)$ to $(\R^+,\times)$.
+    \begin{itemize}
+        \item $\e[x+y]=\e[x]\e[y]$.
+    \end{itemize}
+    \item $|\triangle|=|\Omega|\Longleftrightarrow S_\triangle\cong S_\Omega\Longleftrightarrow|S_\triangle|=|S_\Omega|$.
+    \item We will define new notions of isomorphisms for other algebraic structures (e.g., rings, fields, vector spaces, etc.).
+    \item \textbf{Classification theorem}: A theorem stating what properties of a structure specify its isomorphism type.
+    \begin{itemize}
+        \item Finding classification theorems is a central problem in mathematics.
+        \item A general classification theorem would assert that if $G$ is an object with some structure (such as a group) and $G$ has property $\mathcal{P}$, then any other similarly structured object (group) $X$ with property $\mathcal{P}$ is isomorphic to $G$.
+    \end{itemize}
+    \item Example: Any non-abelian group of order 6 is isomorphic to $S_3$.
+    \begin{itemize}
+        \item Utility: Allows us to obtain $D\cong S_3$ and $GL_2(\F_2)\cong S_3$ without having to find explicit maps between said groups.
+    \end{itemize}
+    \item \textbf{Classification}: A theorem stating what properties of a structure specify that it is isomorphic to one of more than one distinct objects.
+    \begin{itemize}
+        \item Less specific conclusions, but simpler property $\mathcal{P}$ to check compared to a classification theorem.
+    \end{itemize}
+    \item Example: Any group of order 6 is isomorphic to $S_3$ or $\Z/6\Z$.
+    \begin{itemize}
+        \item We don't get an isomorphism type, but we can check "$|G|=6$" more easily than "$|G|=6$ and non-abelian."
+    \end{itemize}
+    \item Conditions that allow us to rule out two groups $G,H$ being isomorphic: If $\varphi:G\to H$ is an isomorphism, then
+    \begin{enumerate}
+        \item $|G|=|H|$.
+        \item $G$ is abelian iff $H$ is abelian.
+        \item For all $x\in G$, $|x|=|\varphi(x)|$.
+    \end{enumerate}
+    \item "Let $G$ be a finite group of order $n$ for which we have a presentation and let $S=\{s_1,\dots,s_m\}$ be the generators. Let $H$ be another group and $\{r_1,\dots,r_m\}$ be elements of $H$. Suppose that any relation satisfied in $G$ by the $s_i$ is also satisfied in $H$ when each $s_i$ is replaced by $r_i$. Then there is a unique homomorphism $\varphi:G\to H$ which sends $s_i\mapsto r_i$" \parencite[38-39]{bib:DummitFoote}.
+    \begin{itemize}
+        \item If $\{r_1,\dots,r_m\}$ generate $H$, then $\varphi$ is surjective. If in addition $|G|=|H|<\infty$, then $\varphi$ is injective, and $\varphi$ is an isomorphism.
+        \item Intuitively, we can map the generators of $G$ to any elements of $H$ and obtain a homomorphism provided that the relations in $G$ are still satisfied.
+    \end{itemize}
+    \item Examples:
+    \begin{itemize}
+        \item Let $k\geq 3$ be such that $k\mid n$. Then since $a^k=1$ implies $a^n=1$, and we can obtain a homomorphism $\varphi:D_{2n}\to D_{2k}$.
+        \item Mapping $r\in D_6$ to $(1\ 2\ 3)\in S_3$ and $s\in D_6$ to $(1\ 2)\in S_3$ yields an isomorphism.
+    \end{itemize}
+    \item Corresponding statement from vector spaces: Let $V,W$ be vector spaces and $S$ a basis for $V$. Then we can specify $T:V\to W$ a linear transformation by its action on $S$. If $\dim W=\dim V$ and $T(S)$ spans $W$, then $T$ is a vector space isomorphism.
+\end{itemize}
+
+
+\subsection*{Group Actions}
+\begin{itemize}
+    \item \textbf{Group action} (of a group $G$ on a set $A$): A map $\cdot:G\times A\to A$ such that $g_1\cdot(g_2\cdot a)=(g_1g_2)\cdot a$ for all $g_1,g_2\in G$ and $a\in A$, and such that $1\cdot a=a$ for all $a\in A$.
+    \item Let $G$ act on $A$, and for each $g\in G$, define $\sigma_g:A\to A$ by $\sigma_g(a)=g\cdot a$. Then
+    \begin{enumerate}
+        \item For each fixed $g\in G$, $\sigma_g$ is a permutation of $A$;
+        \begin{proof}
+            We prove that $\sigma_g$ has a two-sided inverse; it follows that $\sigma_g$ is a permutation by Proposition \ref{prp:0.1}. Let $g\in G$ be arbitrary. Then by Axiom (iii), there exists $g^{-1}$. Therefore,
+            \begin{align*}
+                (\sigma_{g^{-1}}\circ\sigma_g)(a) &= \sigma_{g^{-1}}(\sigma_g(a))\\
+                &= g^{-1}\cdot(g\cdot a)\\
+                &= (g^{-1}\cdot g)\cdot a\\
+                &= 1\cdot a\\
+                &= a
+            \end{align*}
+            We can prove something similar in the other direction.
+        \end{proof}
+        \item The map from $G$ to $S_A$ defined by $g\mapsto\sigma_g$ is a homomorphism.
+        \begin{proof}
+            Let $\varphi:G\to S_A$ be defined by $\varphi(g)=\sigma_g$ for all $g\in G$. To prove that $\varphi$ is a homomorphism, it will suffice to show that $\varphi(g_1\cdot g_2)=\varphi(g_1)\circ\varphi(g_2)$ for all $g_1,g_2\in G$. To verify the equality of functions, we must show that for all $a\in A$, $\varphi(g_1\cdot g_2)(a)=(\varphi(g_1)\circ\varphi(g_2))(a)$. Let $a$ be an arbitrary element of $A$. Then
+            \begin{align*}
+                \varphi(g_1\cdot g_2)(a) &= \sigma_{g_1\cdot g_2}(a)\\
+                &= (g_1\cdot g_2)\cdot a\\
+                &= g_1\cdot(g_2\cdot a)\\
+                &= g_1\cdot\sigma_{g_2}(a)\\
+                &= \sigma_{g_1}(\sigma_{g_2}(a))\\
+                &= (\sigma_{g_1}\circ\sigma_{g_2})(a)\\
+                &= (\varphi(g_1)\circ\varphi(g_2))(a)
+            \end{align*}
+        \end{proof}
+    \end{enumerate}
+    \item Intuitively, a group action of $G$ on $A$ means that every element $g\in G$ acts as a permutation on $A$ in a manner consistent with the group operations in $G$.
+    \item \textbf{Permutation representation} (associated to the group action $\cdot$): The homomorphism $\varphi:G\to S_A$ defined by $\varphi(g)(a)=\sigma_g(a)=g\cdot a$ for all $g\in G$, $a\in A$.
+    \item \textbf{Left} (action): A group action where the elements of $G$ act on the elements of $A$ from the left.
+    \begin{itemize}
+        \item Group actions, as we have defined them, are left actions.
+    \end{itemize}
+    \item \textbf{Right} (action): A group action where the elements of $G$ act on the elements of $A$ from the right.
+    \item \textbf{Trivial action}: The group action defined by $g\cdot a=a$ for all $g\in G$, $a\in A$.
+    \begin{itemize}
+        \item $G$ is said to \textbf{act trivially} on $A$.
+        \item The associated permutation representation is the \textbf{trivial homomorphism}.
+    \end{itemize}
+    \item \textbf{Trivial homomorphism}: The homomorphism $\varphi:G\to H$ sending all $g\in G$ to $1\in H$.
+    \item \textbf{Faithful} (group action): A group action for which distinct elements of $G$ induce distinct permutations of $A$.
+    \begin{itemize}
+        \item The associated permutation representation is injective.
+    \end{itemize}
+    \item \textbf{Kernel} (of a group action): The set of $g\in G$ that fix all elements of $A$.
+    \item Examples:
+    \begin{itemize}
+        \item If $V$ is a vector field taken over $F$, then scalar multiplication can be described as the action of $F^\times$ on $V$.
+        \item $S_A$ acts on $A$ by $\sigma\cdot a=\sigma(a)$; the associated permutation representation is the identity map from $S_A$ to itself.
+        \item $D_{2n}$ acts on $[n]$ in a manner consistent with the geometric picture. This action is faithful (since, geometrically, distinct symmetries induce distinct permutations of the vertices).
+        \item The \textbf{left regular action} of $G$ on itself. This action is faithful (by the cancellation lemma).
+        \item Further examples appear in the exercises.
+    \end{itemize}
+    \item \textbf{Left regular action} (of $G$ on itself): The group action where $A=G$ defined by $g\cdot a=ga$, i.e., where the group operation is left multiplication within the group. \emph{Also known as} \textbf{left translation} [when $G$ is additive and thus $a\mapsto g+a$].
+\end{itemize}
+
+
+
+\section{Chapter 2: Subgroups}
+\emph{From \textcite{bib:DummitFoote}.}
+\subsection*{Definition and Examples}
+\begin{itemize}
+    \item Two way of unraveling the structure of an axiomatically defined mathematical object are to study subsets of the object that satisfy the same axioms, and to study quotients (which, roughly speaking, collapse one group onto a smaller one).
+    \begin{itemize}
+        \item Here, we study subgroups and quotient groups. Later, we will study subrings and quotient rings of a ring, subspaces and quotient spaces of a vector space, etc.
+    \end{itemize}
+    \item \textbf{Subgroup} (of $G$): A nonempty subset $H\subset G$ that is closed under products and inverses. \emph{Denoted by} $\bm{H\leq G}$.
+    \begin{itemize}
+        \item In other words, we require that $x^{-1}\in H$ for all $x\in H$, and $xy\in H$ for all $x,y\in H$.
+        \item Alternatively, a subgroup of $(G,\cdot)$ is a subset of $G$ that is a group in its own right under $\cdot$.
+        \item It is possible for a subset $H\subset G$ to have the structure of a group with respect to some operation other than the one on $G$ (e.g., $(\Q,+)$ and $(\Q\setminus\{0\},\times)$), but we do not refer to this subset as a \emph{subgroup}.
+        \item Any equation in the elements of $H$ may be viewed as an equation in the elements of $G$. Consequences:
+        \begin{itemize}
+            \item Every subgroup must contain 1, the identity of $G$.
+            \item The inverse of $x\in G$ is the same as the inverse of $x\in H$, i.e., $x^{-1}$ is indeed unambiguous notation.
+        \end{itemize}
+    \end{itemize}
+    \item $H\leq G$ and $H\neq G$ imply $H<G$.
+    \item Examples of groups and some of their subgroups given.
+    \item \textbf{Trivial subgroup}: The subgroup $H=\{1\}$. \emph{Denoted by} $\bm{1}$.
+    \item $\leq$ is transitive: $K\leq H\leq G\Longrightarrow K\leq G$.
+    \item Let $G$ be a group.
+    \begin{proposition}[The Subgroup Criterion]\label{prp:2.1}
+        A subset $H\subset G$ is a subgroup iff
+        \begin{enumerate}
+            \item $H\neq\emptyset$;
+            \item For all $x,y\in H$, $xy^{-1}\in H$.
+        \end{enumerate}
+        Furthermore, if $H$ is finite, then it suffices to check that $H$ is nonempty and closed under multiplication.
+        \begin{proof}
+            Given.
+        \end{proof}
+    \end{proposition}
+\end{itemize}
+
+
+\subsection*{Centralizers and Normalizers, Stabilizers and Kernels}
+\begin{itemize}
+    \item Goal: Introduce important families of subgroups for an arbitrary group $G$.
+    \item Let $A$ be a nonempty subset of $G$.
+    \item \textbf{Centralizer} (of $A$ in $G$): The set defined as follows. \emph{Denoted by} $\bm{C_G(A)}$. \emph{Given by}
+    \begin{equation*}
+        C_G(A) = \{g\in G\mid gag^{-1}=a\ \forall\ a\in A\}
+    \end{equation*}
+    \begin{itemize}
+        \item $C_G(A)$ is the set of all elements in $G$ which commute with every element of $A$, since $gag^{-1}=a$ is an equivalent condition to $ga=ag$.
+        \item If $A=\{a\}$, we write $C_G(a)$ instead of $C_G(\{a\})$.
+        \begin{itemize}
+            \item In this case, $a^n\in C_G(a)$ for all $n\in\Z$.
+        \end{itemize}
+    \end{itemize}
+    \item $C_G(A)\leq G$.
+    \begin{proof}
+        Use the subgroup criterion (Proposition \ref{prp:2.1}).\par
+        Criterion 1: Since $1a1^{-1}=1a1=a$ for all $a\in A$, $1\in C_G(A)$. Thus, $C_G(A)$ is nonempty.\par
+        Criterion 2: Let $x,y\in C_G(A)$ be arbitrary. To prove that $xy^{-1}\in C_G(A)$, it will suffice to show that for all $a\in A$, $(xy^{-1})a(xy^{-1})^{-1}=a$. Let $a$ be an arbitrary element of $A$. Since $x,y\in C_G(A)$, we know that $xax^{-1}=a$ and $yay^{-1}=a$. It follows from the latter condition via multiplication on the left by $y^{-1}$ and multiplication on the right by $y$ that $a=y^{-1}ay$. Combining the last two results, we have that
+        \begin{align*}
+            (xy^{-1})a(xy^{-1})^{-1} &= x(y^{-1}ay)x^{-1}\\
+            &= xax^{-1}\\
+            &= a
+        \end{align*}
+        as desired.
+    \end{proof}
+    \item Examples.
+    \begin{itemize}
+        \item $C_{Q_8}(i)=\{\pm 1,\pm i\}$.
+    \end{itemize}
+    \item \textbf{Center} (of $G$): The set defined as follows. \emph{Denoted by} $\bm{Z(G)}$. \emph{Given by}
+    \begin{equation*}
+        Z(G) = \{g\in G\mid gx=xg\ \forall\ x\in G\}
+    \end{equation*}
+    \begin{itemize}
+        \item Observe that $Z(G)=C_G(G)$.
+        \item Thus, $Z(G)\leq G$ by the above argument.
+    \end{itemize}
+    \item \textbf{Normalizer} (of $A$ in $G$): The set defined as follows, where $gAg^{-1}=\{gag^{-1}\mid a\in A\}$. \emph{Denoted by} $\bm{N_G(A)}$. \emph{Given by}
+    \begin{equation*}
+        N_G(A) = \{g\in G\mid gAg^{-1}=A\}
+    \end{equation*}
+    \begin{itemize}
+        \item $g\in C_G(A)$ implies $g\in N_G(A)$.
+        \item Thus, $C_G(A)\leq N_G(A)$.
+        \item We can prove $N_G(A)\leq G$ analogously to how we proved $C_G(A)\leq G$.
+    \end{itemize}
+    \item Examples.
+    \begin{itemize}
+        \item $G$ abelian implies $C_G(A)=Z(G)=N_G(A)=G$ for all $A\subset G$.
+        \item Let $A=\{1,r,r^2,r^3\}$ be the rotational subgroup of $D_8$. Then $C_{D_8}(A)=A$, $N_{D_8}(A)=D_8$, and $Z(D_8)=\{1,r^2\}$.
+        \item Let $A=\{1,(1\ 2)\}$ be a subgroup of $S_3$. Then $C_{S_3}(A)=N_{S_3}(A)=A$ and $Z(S_3)=1$.
+    \end{itemize}
+    \item We deduce that the fact that the normalizer, centralizer, and center are subgroups is a special case of a more general result about group actions (this will be discussed further in Chapter 4).
+    \item Define the following two subgroups of $G$ for an arbitrary group action.
+    \item \textbf{Stabilizer} (of $s$ in $G$): The set defined as follows. \emph{Denoted by} $\bm{G_s}$. \emph{Given by}
+    \begin{equation*}
+        G_s = \{g\in G\mid g\cdot s=s\}
+    \end{equation*}
+    \begin{itemize}
+        \item $G_s\leq G$. \textcite{bib:DummitFoote} proves this.
+        \item "Notice how the steps take to prove $G_s$ is a subgroup are the same as those to prove $C_G(A)\leq G$ with axiom (1) of an action taking the place of the associative law" \parencite[51]{bib:DummitFoote}.
+    \end{itemize}
+    \item \textbf{Kernel} (of the action of $G$ on $S$): The set defined as follows. \emph{Given by}
+    \begin{equation*}
+        \{g\in G\mid g\cdot s=s\ \forall\ s\in S\}
+    \end{equation*}
+    \begin{itemize}
+        \item The kernel is a subgroup of $G$ as well.
+    \end{itemize}
+    \item \textbf{Power set} (of $A$): The set of all subsets of $A$, where $A$ is any set. \emph{Denoted by} $\bm{\mathcal{P}(G)}$.
+    \item Consider the action of $G$ on $S=\mathcal{P}(G)$ by conjugation, i.e., $g\cdot B=gBg^{-1}$.
+    \begin{itemize}
+        \item By definition, $N_G(A)=G_s$ where $s=A\in S$. Thus, the stabilizer being a subgroup implies that the normalizer is a subgroup of $G$.
+    \end{itemize}
+    \item Consider the action of $N_G(A)$ on $A$ by conjugation, i.e., $g\cdot a=gag^{-1}$.
+    \begin{itemize}
+        \item By definition, $C_G(A)$ is the kernel of this action. Thus, the kernel being a subgroup implies that the centralizer is a subgroup of the normalizer, which in turn is a subgroup of $G$.
+    \end{itemize}
+    \item Consider the action of $G$ on $S=G$ by conjugation, i.e., $g\cdot s=gsg^{-1}$.
+    \begin{itemize}
+        \item By definition, $Z(G)$ is the kernel of this action. Thus, the kernel being a subgroup implies that the center is a subgroup of $G$.
+    \end{itemize}
+\end{itemize}
+
+
+\subsection*{Cyclic Groups and Cyclic Subgroups}
+\begin{itemize}
+    \item One type of subgroup of $G$ is to pick $x\in G$ and let $H$ be the set of all integer powers of $x$, guaranteeing closure under inverses and products. We study groups like $H$ in this section.
+    \item \textbf{Cyclic} (group): A group $H$ that can be generated by a single element, i.e., there is some element $x\in H$ such that $H=\{x^n\mid n\in\Z\}$ (where, as usual, the operation is multiplication).
+    \begin{itemize}
+        \item Additive notation: $H=\{nx\mid n\in\Z\}$.
+        \item We write $H=\gen{x}$ and say "$H$ is \textbf{generated} by $x$ (and $x$ is a \textbf{generator} of $H$)."
+        \item A cyclic group may have more than one generator (e.g., we have $H=\gen{x}=\gen{x^{-1}}$ since $(x^{-1})^n=x^{-n}$ and as $n$ runs over all integers so does $-n$).
+        \item Cyclic groups are abelian.
+    \end{itemize}
+    \item Examples:
+    \begin{itemize}
+        \item Rotational subgroup of $D_{2n}$.
+        \item $(\Z,+)$.
+    \end{itemize}
+    \item Relating the order of $H$ and its generator $x$.
+    \begin{proposition}\label{prp:2.2}
+        If $H=\gen{x}$, then $|H|=|x|$ (where if one side of this equality is infinite, so is the other). More specifically,
+        \begin{enumerate}
+            \item If $|H|=n<\infty$, then $x^n=1$ and $1,x,x^2,\dots,x^{n-1}$ are all the distinct elements of $H$;
+            \item If $|H|=\infty$, then $x^n\neq 1$ for all $n\neq 0$ and $x^a\neq x^b$ for all $a\neq b\in\Z$.
+        \end{enumerate}
+        \begin{proof}
+            Given.
+        \end{proof}
+    \end{proposition}
+    \item Important note on the above proof: The Division Algorithm is used to reduce arbitrary powers of a generator in a finite cyclic group to the "least residue" powers.
+    \begin{itemize}
+        \item The use of this algorithm suggests a similarity between finite cyclic groups and groups of the form $\Z/n\Z$. Theorem \ref{trm:2.4} will formalize this notion, noting that a finite cyclic group $H$ and $\Z/n\Z$ are the same up to isomorphism as long as $n=|H|$.
+        \item Before we can prove this, though, we need another proposition.
+    \end{itemize}
+    \item Properties of $|x|$ given that $x^n=x^m=1$.
+    \begin{proposition}\label{prp:2.3}
+        Let $G$ be an arbitrary group, let $x\in G$, and let $m,n\in\Z$. If $x^n=1$ and $x^m=1$, then $x^d=1$ where $d=(m,n)$. In particular, if $x^m=1$ for some $m\in\Z$, then $|x|$ divides $m$.
+        \begin{proof}
+            If $d=(m,n)$, then by the Euclidean Algorithm, there exist integers $r,s$ such that $d=mr+ns$. Thus,
+            \begin{equation*}
+                x^d = x^{mr+ns}
+                = (x^m)^r(x^n)^s
+                = 1^r1^s
+                = 1
+            \end{equation*}
+            as desired.\par
+            We divide into two cases for the second assertion ($m=0$ and $m\neq 0$). If $m=0$, then clearly $|x|$ divides $0=m$, as desired. On the other hand, if $m\neq 0$, then we continue. Let $d=(m,|x|)$. By the first part, $x^d=1$. By definition, $0<d\leq |x|$. But since $|x|$ is the smallest positive integer such that $x^{|x|}=1$, we must have $d=|x|$. Thus, by the definition of $d$, $d\mid m$ so $|x|\mid m$.
+        \end{proof}
+    \end{proposition}
+    \item Cyclic group structure.
+    \begin{theorem}\label{trm:2.4}
+        Any two cyclic groups of the same order are isomorphic. More specifically,
+        \begin{enumerate}
+            \item If $n\in\Z$ and $\gen{x}$ and $\langle y\rangle$ are both cyclic groups of order $n$, then the map
+            \begin{align*}
+                \varphi:\gen{x} &\to \langle y\rangle\\
+                x^k &\mapsto y^k
+            \end{align*}
+            is well defined and is an isomorphism.
+            \begin{proof}
+                To prove that $\varphi$ is well defined, it will suffice to show that if $x^r=x^s$, then $\varphi(x^r)=\varphi(x^s)$. Let $x^r=x^s$. Then $x^{r-s}=1$. Thus, by Proposition \ref{prp:2.3}, $n\mid r-s$. It follows that $r-s=nt$, i.e., that $r=nt+s$ for some $t\in\Z$. Consequently,
+                \begin{equation*}
+                    \varphi(x^r) = \varphi(x^{tn+s})
+                    = y^{tn+s}
+                    = (y^n)^ty^s
+                    = y^s
+                    = \varphi(x^s)
+                \end{equation*}
+                as desired.\par
+                To prove that $\varphi$ is an isomorphism, it will suffice to show that it is a homomorphism and a bijection. The following shows that $\varphi$ is a homomorphism.
+                \begin{equation*}
+                    \varphi(x^ax^b) = \varphi(x^{a+b})
+                    = y^{a+b}
+                    = y^ay^b
+                    = \varphi(x^a)\varphi(x^b)
+                \end{equation*}
+                As to proving that $\varphi$ is a bijection, we have by hypothesis that $\gen{x}$ and $\langle y\rangle$ are finite groups of the same order, and we know that $\varphi$ is a surjection since each $y^k$ is the image of an $x^k$. These two facts prove that it is a bijection by Proposition \ref{prp:0.1}.
+            \end{proof}
+            \item If $\gen{x}$ is an infinite cyclic group, the map
+            \begin{align*}
+                \varphi:\Z &\to \gen{x}\\
+                k &\mapsto x^k
+            \end{align*}
+            is well defined and is an isomorphism.
+            \begin{proof}
+                $\varphi$ is automatically well-defined since $\Z$ is well-defined (i.e., there is no ambiguity in the representation of elements in the domain).\par
+                By Proposition \ref{prp:2.2}, $a\neq b$ implies $x^a\neq x^b$ for all distinct $a,b\in\Z$. Thus, $\varphi$ is injective. By the definition of a cyclic group, $\varphi$ is surjective. Thus, it is bijective. Additionally, laws of exponents prove that it is a homomorphism, as above.
+            \end{proof}
+        \end{enumerate}
+    \end{theorem}
+    \item \textbf{Cyclic group of order $\bm{n}$}: The cyclic group of order $n$ written multiplicatively. \emph{Denoted by} $\bm{Z_n}$.
+    \begin{itemize}
+        \item We liken $Z_n$ more to $\gen{r}\leq D_{2n}$ than $\Z/n\Z$ so that we can use multiplication as the group operation.
+        \item Up to isomorphism, $Z_n$ is the unique cyclic group of order $n$.
+        \item We will occasionally say "let $\gen{x}$ be the infinite cyclic group written multiplicatively," but we do not introduce any special notation for this; indeed, we always use $\Z$ (additively) to \emph{represent} the infinite cyclic group.
+    \end{itemize}
+    \item How to determine all generators for a given cyclic group $H$.
+    \begin{proposition}\label{prp:2.5}
+        Let $G$ be a group, let $x\in G$, and let $a\in\Z\setminus\{0\}$.
+        \begin{enumerate}
+            \item If $|x|=\infty$, then $|x^a|=\infty$.
+            \begin{proof}
+                Suppose for the sake of contradiction that $|x^a|=m<\infty$. Then $x^{am}=(x^a)^m=1$ and $x^{-am}=((x^a)^m)^{-1}=1^{-1}=1$. Thus, since either $am$ or $-am$ is a positive integer (neither are 0 since $a\neq 0\neq m$), $|x|=\pm am<\infty$, a contradiction.
+            \end{proof}
+            \item If $|x|=n<\infty$, then $|x^a|=\frac{n}{(n,a)}$.
+            \begin{proof}
+                Given.
+            \end{proof}
+            \item In particular, if $|x|=n<\infty$, and $a$ is a positive integer dividing $n$, then $|x^a|=\frac{n}{a}$.
+            \begin{proof}
+                Given.
+            \end{proof}
+        \end{enumerate}
+    \end{proposition}
+    \begin{proposition}\label{prp:2.6}
+        Let $H=\gen{x}$.
+        \begin{enumerate}
+            \item Assume $|x|=\infty$. Then $H=\gen{x^a}$ iff $a=\pm 1$.
+            \item Assume $|x|=n<\infty$. Then $H=\gen{x^a}$ iff $(a,n)=1$. In particular, the number of generators of $H$ is $\varphi(n)$ (where $\varphi$ is Euler's $\varphi$-function).
+        \end{enumerate}
+        \begin{proof}
+            Given.
+        \end{proof}
+    \end{proposition}
+    \item Example of applying Proposition \ref{prp:2.6}.
+    \begin{itemize}
+        \item $\varphi(12)=4$, so we should not be surprised to find that there are four residue classes $\bar{a}$ mod $n$ with $(a,n)=1$: Namely, these are $\bar{1}$, $\bar{5}$, $\bar{7}$, and $\bar{11}$. Thus, these four residue classes are the generators of $\Z/12\Z$.
+    \end{itemize}
+    \item Complete subgroup structure of a cyclic group.
+    \begin{theorem}\label{trm:2.7}
+        Let $H=\gen{x}$ be a cyclic group.
+        \begin{enumerate}
+            \item Every subgroup of $H$ is cyclic. More precisely, if $K\leq H$, then either $K=1$ or $K=\gen{x^d}$, where $d$ is the smallest positive integer such that $x^d\in K$.
+            \item If $|H|=\infty$, then for any distinct nonnegative integers $a,b$, $\gen{x^a}\neq\gen{x^b}$. Furthermore, for every integer $m$, $\gen{x^m}=\gen{x^{|m|}}$, where $|m|$ denotes the absolute value of $m$, so that the nontrivial subgroups of $H$ corresponds bijectively with the integers in $\Z^+$.
+            \item If $|H|=n<\infty$, then for each positive integer $a$ dividing $n$, there is a unique subgroup $H$ of order $a$. This subgroup is the cyclic group $\gen{x^d}$, where $d=n/a$. Furthermore, for every integer $m$, $\gen{x^m}=\gen{x^{(n,m)}}$, so that the subgroups of $H$ correspond bijectively with the positive divisors of $n$.
+        \end{enumerate}
+        \begin{proof}
+            Given.
+        \end{proof}
+    \end{theorem}
+    \item Example:
+    \begin{itemize}
+        \item We can use Proposition \ref{prp:2.6} and Theorem \ref{trm:2.7} to list all the subgroups of $\Z/n\Z$ for any given $n$. Continuing with $n=12$, for instance, we have
+        \begin{itemize}
+            \item $\Z/12\Z=\gen{\bar{1}}=\gen{\bar{5}}=\gen{\bar{7}}=\gen{\overline{7}}$ (order 12).
+            \item $\gen{\bar{2}}=\gen{\overline{10}}$ (order 6).
+            \item $\gen{\bar{3}}=\gen{\bar{9}}$ (order 4).
+            \item $\gen{\bar{4}}=\gen{\bar{8}}$ (order 3).
+            \item $\gen{\bar{6}}$ (order 2).
+            \item $\gen{\bar{0}}$ (order 1).
+        \end{itemize}
+        \item The inclusions between the subgroups are given by
+        \begin{equation*}
+            \gen{\bar{a}} \leq \gen{\bar{b}}
+            \quad\Longleftrightarrow\quad
+            (b,12)\mid(a,12)
+            ,\quad
+            1\leq a,b\leq 12
+        \end{equation*}
+    \end{itemize}
+    \item Example: Centralizers and normalizers of cyclic groups.
+\end{itemize}
+
+
+
 
 \end{document}
