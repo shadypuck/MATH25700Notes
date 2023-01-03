@@ -200,5 +200,102 @@
 
 
 
+\section{Simple Groups III}
+\begin{itemize}
+    \item \marginnote{12/2:}Proposition: Let $G$ be a simple group of order $|G|\leq 200$. Then either $|G|$ is prime (in which case we know there is a unique simple group of said order) or $|G|\in\{72,112,60,90,120,144,180,168\}$.
+    \begin{itemize}
+        \item These numbers are not in increasing order; they are more or less in order of increasing difficulty.
+    \end{itemize}
+    \item Case: $|G|=72=3^2\cdot 2^3$.
+    \begin{proof}
+        $n_3\equiv 1\mod 3$ and $n_3\mid 8$, so either $n_3=1,4$. $n_3=1$ implies normal 3-Sylow; $n_3=4$ implies invoke Lemma 4. Therefore, $G$ is not simple.
+    \end{proof}
+    \item Reminder: If $G$ is simple, then any homomorphism from it to another group must be either trivial or injective.
+    \item Lemma 11: Let $G$ be a simple group with a transitive action on a set of $n\geq 2$ points. Then $G\hookrightarrow A_n$ or $|G|=2$.
+    \begin{proof}
+        The action induces a homomorphism $G\to S_n$ which is nontrivial. Therefore, $G\hookrightarrow S_n$. Now we want to upgrade this map and restrict the range. Now suppose that the image is not in $A_n$. Then the composite map $G\to S_n\to S_n/A_n\cong\Z/2\Z$ is nontrivial. If $g\in A_n$, then $g\mapsto eA_n=A_n$. If $g\notin A_n$, then $g\mapsto gA_n$. This nontrivial map into $\Z/2\Z$ implies, since $G$ is simple, that $G\hookrightarrow\Z/2\Z$, so $|G|=2$.
+    \end{proof}
+    \item Lemma 12: If $|G|=112$, then $G$ is not simple.
+    \begin{proof}
+        $112=7\cdot 2^4$. We can deduce that $n_7\equiv 1\mod 7$ and $n_7\mid 16$, so $n_7=1,8$. If $n_7=1$, we win, so let's consider $n_7=8$. 8 is pretty big, but not too big. It's in this annoying intermediate range. We deduce from this that there are $n_7(7-1)=8\cdot 6=48$ elements of order 7, which doesn't help much. Here, it's better to look at $n_2=1,7$. If $n_2=1$, we win, so consider $n_2=7$. Then by Lemma 11, $G\hookrightarrow A_7$. $|G|=112$ and $|A_7|=2520$. But $|G|\nmid |A_7|$, contradicting Lagrange's Theorem.
+    \end{proof}
+    \item Next up: 60, 90, 120, which we will consider all at once because they're all a bit similar. One preliminary lemma first, though.
+    \item Lemma 13: Let $n\geq 5$ and $H\leq A_n$ of index $d>1$. Then $d\geq n$ and if $d=n$, then $H\cong A_{n-1}$. In other words, there are no small-index subgroups and the smallest one is isomorphic to $A_{n-1}$.
+    \begin{proof}
+        $A_n$ acts transitively on the cosets $A_n/H$ (by left multiplication??), inducing a nontrivial map from $A_n\to S_d=S_{\{\text{cosets}\}}$. Since $A_n$ is simple for $n\geq 5$, we get that $A_n\hookrightarrow A_d=A_{\{\text{cosets}\}}$ (by Lemma 11). The injection implies that $d\geq n$. Now assume that $d=n$. Then we have an isomorphism from $A_n$ to $A_{\{\text{cosets}\}}$. What is $H\leq A_n$? How does $H$ act on $A_{\{\text{cosets}\}}$? Well $H$ stabilizes the coset $H$, so $H\hookrightarrow\Stab(H)$. But the stabilizer of a point in the symmetric group is isomorphic to the symmetric group of one smaller size, and the same holds true in the alternating group, so $\Stab(H)\cong A_{n-1}$. $[A_n:H]=n$ by hypothesis, so $|H|=(n!/2)/n=(n-1)!/2$. But since this is also $|A_{n-1}|$, we have an injection from $H$ into a group of the same order, meaning that we have a bijection. In particular, $H\cong A_{n-1}$, as desired.
+    \end{proof}
+    \item Comments on Lemma 13: ...
+    \item Lemma 14: If $G$ is simple and $|G|\in\{60,90,120\}$, then $G\cong A_5$. In particular, we rule out 90,120 and know that 60 must be the last number standing.
+    \begin{proof}
+        $60=5\cdot 12$, $90=5\cdot 18$, $120=5\cdot 24$. $n_5\equiv 1\mod 5$ and $n_5\mid 12,18,24$ implies $n_5=1,6$ (we can confirm that 11,16,21 are not factors). If $n_5=1$, we're done, so assume $n_5=6$. $G$ acts on the 6 5-Sylow subgroups transitively, giving us $G\hookrightarrow A_6$ by Lemma 13. $[A_6:G]=6,4,3$ for 60,90,120. But by Lemma 13, $d\geq 6$, so contradiction for 90,120, and the latter part of the Lemma proves that $G\cong A_5$.
+    \end{proof}
+    \item We have our first genuine simple group of nonprime order at this point, and we know that that group is unique and equal to $A_5$.
+    \item Lemma 15: There is no simple group of order 144.
+    \begin{proof}
+        Many of the arguments we've used thus far will play in, but in new and unexpected ways. We have $144=2^43^2$. $n_3\equiv 1\mod 3$ and $n_3\mid 16$, so $n_3=1,4,16$. If $n_3=1$, we're done (normal 3-Sylow). If $n_3=4$, we apply Lemma 4. Thus, $n_3=16$. Number of elements of order 3: Issue --- we no longer know that the intersections of the $p$-Sylows are trivial since $p^2=9$; we could have a subgroup of order 3 as the intersection.\par
+        Case 1: $P\neq Q$ are 3-Sylows, WTS: $P\cap Q=\{e\}$. Number of elements of order 3 or 9 is $n_3\cdot 8=16\cdot 8=128$. This leaves $144-128=16$ elements. But since $G$ has a 2-Sylow $P_2$ of order 16, so $G=P_2\cup\{|g|=3,9\}$. Thus, $n_2=1$, so we have a normal subgroup, which is a contradiction.\par
+        Case 2: There exist 3-Sylows $P,Q$ such that $C=P\cap Q$ has $|C|=3$. We can still gain some advantage since it's $3^2$, not $3^n$. Remark: If $|P|=9$, then $P$ is abelian. Recall that $p$-groups of order $p^2$ are abelian. What other constructions do we have for subgroups besides Sylows? Consider $N=N_G(C)$, where $C=P\cap Q$. $C\leq P$ and $C\leq Q$. But since $P$ is abelian, then $P\subset N_G(C)$. Lagrange: $9\mid N\mid 144$, so $N=18,36,72,144$. So we need 4 contradictions to finish this off. If $|N|=144$, then $N=G$. But since $C\triangleleft N$, this means that $C\triangleleft G$, i.e., $G$ has a normal subgroup and is not simple, a contradiction. If $N=72,36$, then $[G:N]=2,4$. Thus, $G$ acts transitively on a set of size 2,4, so Lemma 4 eliminates these. Only possibility: $|N|=18$. We know that $Q\subset N$ and $P\subset N$. By applying the Sylow theorems to $N$, we get that $n_3\equiv 1\mod 3$, $n_3\mid 2$, so $n_3=1$, but $N$ contains 2 distinct $p$-Sylows, a contradiction.
+    \end{proof}
+    \item The case of 180 is quite similar.
+    \item Lemma 16: There is no simple group of order 180.
+    \begin{proof}
+        $180=5\cdot 3^2\cdot 2^2$. $n_5\equiv 1\mod 5$, so $n_5=1,6,36$. $n_5\neq 1$. If $n_5=6$, then $G\hookrightarrow A_6$ and we get index 2, which is a contradiction by Lemma 13 (same contradiction as with 90,120). If $n_5=36$, then we get a number of elements of order 5 equal to $n_5(5-1)=144$, leaving $180-144=36$ elements left to contain the 2-Sylows and 3-Sylows. But we get the same annoyance about whether or not they overlap.\par
+        $n_3\mid 20$ and $n_3\equiv 1\mod 3$ yields $n_3=1,4,20$. $n_3=1$ is normal, 4 invokes lemma 4, so $n_3=20$.\par
+        Case 1: $P\cap Q=\{e\}$. Then the number of elements of order 3 or 9 is $n_3(9-1)=160$. Contradiction (too many elements).\par
+        Case 2: $P\cap Q=C$, $|C|=3$. Take $N=N_G(C)$. So once again, we have $9\mid|N|\mid 180$ and $|N|>9$. Thus, $|N|=18,36,45,90,180$. $|N|=180$ gives us $C\triangleleft G$ again. $|N|=90,45$ yields $[G:N]=2,4$ again. This leaves us with 18,36. We can't have 2 3-Sylows, so $|N|=36$. Thus, $[G:N]=5$. This induces $G\hookrightarrow A_5$, but $G$ is too big; $G\nleq A_5$, a contradiction.
+    \end{proof}
+    \item Summary of what we've proven so far.
+    \item Theorem: Let $G$ be a simple group of order at most 200. Then either\dots
+    \begin{enumerate}
+        \item $|G|=\text{prime}$;
+        \item $G\cong A_5$;
+        \item $|G|=168$ and $G\cong\text{GL}_3(\F^2)\cong\text{PSL}_2(\F_7)$.
+    \end{enumerate}
+    \item This is the limit of what we'll do; Calegari doesn't think it's worth the hour it'd take to do a full analysis of 168.
+    \item A word on 168, though.
+    \begin{itemize}
+        \item $168=2^3\cdot 3\cdot 7$.
+        \item Deduce that $n_7=8$. $n_2=1,3,7,21$ so $n_2=7,21$. $n_3=1,2,4,7,8,14,28,56$ so $n_3=7,28$ by Lemma 4 and the $1\mod 3$ rule. But none of the remaining numbers are super easy to work with; we need normalizers and such.
+        \item Start with $n_7$ to learn that $G\hookrightarrow A_8$. We also know that $n_7=[G:N]$, so $|N|=21$. Let $P$ be a 7-Sylow. Up to conjugation, we may as well take $P=\gen{(1,2,3,4,5,6,7)}\subset A_6$. Additionally, $N\subset N_{A_8}(\gen{(1,2,3,4,5,6,7)})$ which has order 21.
+        \item More and more elaborate facts lead you to write down parts of the group in terms of elements of $A_8$.
+        \item The contradictions and computations we eventually get do get messy eventually.
+        \item The reason for this is because there \emph{does} exist a simple group of order 168: We know that $\text{SL}_2(\F_7)$ has an action on 8 points. The quotient $G=\text{PSL}_2(\F_7)$ is a simple group of order 168.
+        \item There's another group $|\text{GL}_3(\F^2)|=(2^3-1)(2^3-2)(2^3-2^2)=168$. These two groups are isomorphic (this is completely opaque from the description, but it is true; there is an exotic isomorphism; it's like the story between the cube group and $S_4$?? This is a recurring theme in finite group theory).
+        \item Indeed, these two groups are the only one of 168.
+    \end{itemize}
+    \item On the blog, Calegari will continue from 200 all the way up to 300.
+    \item Particularly bad cases include more and more powers of 2 and 3.
+    \item Theorem (Burnside's $pq$ theorem): If $|G|=p^nq^m$, then $G$ is not simple.
+    \begin{itemize}
+        \item In other words, once you remove the cyclic group, any simple group has at least 3 prime factors dividing its factorization.
+        \item This theorem is beyond the scope of this course, but it could come up in an intro grad course on representations of groups.
+    \end{itemize}
+    \item In our course, we've really been studying actions of $G$ on finite sets, i.e., maps to symmetric groups.
+    \begin{itemize}
+        \item Another natural thing we can do is consider the actions on vector spaces (specifically the basis of a vector space). This corresponds to a map from $G\to\text{GL}_n(V)$. This is a rich theory and allows us to write out all the possible representations. Proving Burnside's $pq$ theorem involves all of this plus algebraic number theory.
+    \end{itemize}
+    \item Burnside's $pq$ theorem came to prominence around 1900, so about 120 years back.
+    \item Theorem (Feit-Thompson): If $G$ is a simple group and $|G|$ is odd, then $|G|=\text{prime}$.
+    \begin{itemize}
+        \item From the 1960s.
+        \item This is the start of modern group theory.
+        \item It follows by the Sylow theorems that our group has an element of order 2. From here, we can start to think about the classification of all finite simple groups.
+    \end{itemize}
+    \item Thus, not only do simple groups have to have at least 3 prime factors, they also have to have even order.
+    \item The classification of finite simple groups was achieved 20-30 years after Feit-Thompson.
+    \begin{itemize}
+        \item Thus, we now really understand all finite simple order.
+        \item This means that we can describe them by various lists that we know how to construct.
+        \item Examples: Cyclic groups of prime order, $A_n$ ($n\geq 5$), $\text{PSL}_n(\F_p)$ ($n\geq 3$ or $n=2$ and $p\geq 5$).
+        \item Calegari goes over several more groups of Lie type. There are also 26 sporadic group types that don't really fit in any other category. One class called the Mathieu group. Simplest weird group: $M_{11}$ of order $11\cdot 10\cdot 9\cdot 8=7920$. There's also $M_{12},M_{23},M_{24}$. There are 26 of these leading up to a group $M$ called the \textbf{monster group} (of order $\approx\num{8e53}$).
+        \item We have to be careful in saying that the monster group is scary just because it's so big; indeed, $S_{52}$ is bigger. But the latter is understandable by its action on a relatively small set. $S_{52}$ acts on a vector space of dimension 52. If you try to let $M$ act on a vector space, the dimension is 196883.
+        \item Something better than this type of description is infinite groups. The most interesting infinite groups arise when you have topological considerations as well (e.g., continuity). This is why $S_\infty$ is not the most interesting. We have orthogonal and unitary groups (these arise in physics often as infinite symmetry groups). Pure topology and spaces and symmetries are potential applications, too. We don't consider these in this course because these topics are so intertwined.
+    \end{itemize}
+    \item Next quarter is ring theory, and last quarter is Galois theory.
+    \item In group theory, you want to understand all finite groups. In ring theory, you don't want to classify rings; rather, you want to consider a bunch of simple rings that come up all the time, and you want to understand those very well.
+\end{itemize}
+
+
+
 
 \end{document}
