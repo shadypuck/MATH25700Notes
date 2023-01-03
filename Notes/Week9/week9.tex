@@ -119,5 +119,86 @@
 
 
 
+\section{Simple Groups II}
+\begin{itemize}
+    \item \marginnote{11/30:}Lemma 5: Assume $|G|=2p^n,3p^n,4p^n$. $p$ is a prime, and for $mp^n$, $m\neq p$. Then $G$ is not simple.
+    \begin{proof}
+        We again look at $p$-Sylows and how many are there. $n_p$ must divide the order of the group and not divide $p$ in these cases. Therefore, $n_p=1,2,3,4$, so as in Lemma 4, we have a very small set for $G$ to act on. Thus, by Lemma 4, $G$ is not simple.
+    \end{proof}
+    \item Beefing this up a bit.
+    \item Lemma 6: Assume $|G|=5p^n$. Then $G$ is not simple.
+    \begin{proof}
+        Only interesting case: $n_p=5$. In this case, we get an action of $G$ on 5 points, namely the transitive action of $G$ on the 5 $p$-Sylows by conjugation. Thus, we get an injective map $G\to S_5$, so $G\leq 5$ and has order $5p^n$.
+        Additionally, since $n_p=5\equiv 1\pmod p$, we know that $p=2$.
+        What else can we say? We now look at $n_5$. We know from Sylow III that $n_5\equiv 1\mod 5$ and $n_5\mid(p^n=2^n)$, so $2^n\geq 16$ (since $16\equiv 1\mod 5$ and $16$ divides a power of 2). Thus, $|G|$ divides 16, but $|S_5|=120$ which is not divisible by 16, a contradiction.
+    \end{proof}
+    \item See again the procedure of "assume it's simple; derive a contradiction."
+    \item Lemma 7: Assume $|G|=6p^n$. Then $G$ is not simple.
+    \begin{proof}
+        We know that $n_p\mid 6$, so $n_p=1,2,3,6$. Lemma 4: $n_p=6$. Sylow III: $n_p\equiv 1\mod p$. Thus, $p=5$. $G$ acts on 6 $p$-Sylows, so we get an injective map from $G\hookrightarrow S_6$. How many powers of 5 can divide $|S_6|$? Only $5^1$, so we must have $n=1$. Thus, $|G|=6\cdot 5=30=5\cdot 3\cdot 2$. Applying Lemma 2 (3 distinct primes) finishes us off.
+    \end{proof}
+    \item Lemma 8: Assume $|G|=8p,9p$. Then $G$ is not simple.
+    \begin{proof}
+        Look at $n_p$. $n_p=1,2,4,8$ in the first case; $n_p=1,3,9$ in the second case. Lemma 4: Rule out $1,2,4$ and $1,3$. Thus, $n_p=8$ in the first case and $n_p=9$ in the second case.\par
+        First case: $n_p=8$ and $n_p\equiv 1\mod p$. We must have $p=7$. Thus $|G|=8\cdot 7=56$. That's all we can get from the $p$-Sylow; now let's look at the 2-Sylow ($2^3=8$). $n_2=1,7$. We apply the $pqr$ too-many-elements style again. Number of elements of order 7 is $n_7(7-1)=8\cdot 6=48$. We have a group of 56 elements and 48 of them have order 7. So what's left? There are 8 elements left. But we know that the 2-Sylow has order 8, so let $P=G\setminus\{g\in G\mid |g|=7\}$. Then $|P|=8$. This implies that there is only one 2-Sylow, so $n_2=1$, meaning that the 2-Sylow is normal and giving us a contradiction.
+    \end{proof}
+    \item Again, we only have a contradiction because we are assuming $G$ is simple. If we don't assume $G$ is simple, we have a perfectly valid mathematical derivation of the properties of a group of order $8p$.
+    \item Example: Let $G=A_4$. Then $|G|=12=3\cdot 2^2$, so $n_3=1,2,4$ and $n_3\equiv 1\mod 3$. The 3-Sylow in $A_4$ is not normal, so $n_p\neq 1$. $n_p\neq 2$ because $2\not\equiv 1\mod 3$. Thus, $n_3=4$ and therefore the number of elements of order 3 is $n_3(3-1)=4\cdot 2=8$. Thus, there are 12 elements $A_4$ minus 8 elements of order 3, so there are 4 elements left. These 4 elements compose the 2-Sylow, meaning that the 2-Sylow is normal. And here (where we're not assuming $G$ is simple), that's fine!
+    \item So far: Continuing to build up and rule out groups of certain (mostly prime) factorizations.
+    \item This will not classify all simple groups, but if we start taking $n$ to be small, we know the factorizations of small numbers tend to have a small number of prime factors. So can we classify all groups of small order? That's our task now.
+    \item Lemma 9: If $|G|=84,126,140,156,175,189,198,200$, then $G$ is not simple.
+    \begin{proof}
+        $84=7\cdot 3\cdot 2^2$. Sylow III: $n_7\equiv 1\mod 7$ and $n_7\mid 12$, so $n_7=1$.\par
+        $126=7\cdot 18$. Sylow III: $n_7\equiv 1\mod 7$, $n_7\mid 18$ implies $n_7=1$.\par
+        $140=7\cdot 20$. Sylow III: $n_7\equiv 1\mod 7$, $n_7\mid 20$ implies $n_7=1$.\par
+        $189=7\cdot 27$. Sylow III: $n_7\equiv 1\mod 7$, $n_7\mid 27$ implies $n_7=1$.\par\smallskip
+        $176=11\cdot 16$. Sylow III: $n_{11}\equiv 1\mod 11$, $n_{11}\mid 16$ implies $n_{11}=1$.\par
+        $176=11\cdot 18$. Sylow III: $n_{11}\equiv 1\mod 11$, $n_{11}\mid 18$ implies $n_{11}=1$.\par\smallskip
+        $175=5^2\cdot 7$. Sylow III: $n_5\equiv 1\mod 5$, $n_5\mid 7$ implies $n_5=1$.\par
+        $200=5^2\cdot 8$. Sylow III: $n_5\equiv 1\mod 5$, $n_5\mid 8$ implies $n_5=1$.\par\smallskip
+        $156=13\cdot 12$. Sylow III: $n_{13}\equiv 1\mod 13$, $n_{13}\mid 12$ implies $n_{13}=1$.
+    \end{proof}
+    \item A bit messy and \emph{ad hoc}, but this covers the simple groups of certain orders we haven't covered so far.
+    \begin{itemize}
+        \item If you do a random case for a small number, often it will be a bit like this.
+    \end{itemize}
+    \item For a bunch of small numbers, we immediately get without any work from the Sylow theorems a normal $p$-Sylow.
+    \begin{itemize}
+        \item We actually get these conclusions for any groups of these orders??
+    \end{itemize}
+    \item This way of thinking lends itself to you generating your own problem; you basically choose a random number and look for a prime with $n_p=1$.
+    \item Two more exceptional cases.
+    \item Lemma 10: If $|G|=132$, then $G$ is not simple.
+    \begin{proof}
+        $132=11\cdot 12$, so $n_{11}=1,12$. If 1, we're done. If very large, we get that contradiction. The number of elements of order 11 is $n_{11}(11-1)=12\cdot 10=120$, so only 12 elements left. We now consider other primes. $11\cdot 12=11\cdot 3\cdot 2^2$. $n_3\equiv 1\mod 3$, $n_3\mid 44$. Thus, $n_3=1,2,4,11,22,44$. If 1, we're done. 2,11,44 can't happen because of the congruence law. If $n_3=4$, apply Lemma 4. Thus, $n_3=22$, so the number of elements of order 3 is $n_3(3-1)=22\cdot 2=44$. $120+44>132$, so we win.
+    \end{proof}
+    \item At this point, we've considered a bunch of easy general and special cases. At this point, let's look at the numbers under 200 we can rule out.
+    \begin{itemize}
+        \item Calegari writes out all numbers from 1-200.
+        \item For the prime numbers, there is a simple group of that order.
+        \item Powers of primes, there is no simple group, so we can cross those off ($4=2^2,8=2^3,9=3^2,16=2^4,25=5^2,27=3^3,32=2^5,\dots$).
+        \item Products of two primes, there is no simple group ($6=2\cdot 3,10=2\cdot 5,15=3\cdot 5,\dots$).
+        \item Products of three distinct primes, there is no simple group ($30=2\cdot 3\cdot 5,42=2\cdot 3\cdot 7,\dots$).
+        \item Everything that's $2p^n,3p^n,4p^n$, there is no simple group ($12=3\cdot 2^2,18=2\cdot 3^2,\dots$).
+        \item Everything that's $5p^n$, there is no simple group ($20=5\cdot 2^2,40=5\cdot 2^3,\dots$).
+        \item Everything that's $6p^n$, there is no simple group (just $150=6\cdot 5^2$). Only got one number with Lemma 7 :(
+        \item Everything that's $8p,9p$, there is no simple group ($56=8\cdot 7,63=9\cdot 7,88=8\cdot 11,99=9\cdot 11,\dots$).
+        \item Exceptional numbers done by hand: $84,126,132,140,156,175,189,198,200$.
+    \end{itemize}
+    \item There are no simple groups of order 1 by definition, so the trivial group is not a simple group much the same way 1 is not a prime number.
+    \item At this point, we have to acknowledge that this list left out numbers, so we have to see what's left and then work with it.
+    \item First numbers up: 60 (there does happen to be a simple group of this order here --- $A_5$), 72, 90.
+    \begin{itemize}
+        \item Thus, if we have a simple group of order less than 100, it is of prime order or of order 60, 72, or 90 (note that we can still eliminate 72 and 90, but we haven't investigated them yet, so it's fair to include them here; not the most restrictive theorem, but a valid one all the same).
+    \end{itemize}
+    \item Next numbers up: 112, 120, 144, 168, 180.
+    \begin{itemize}
+        \item Calegari really does have quite a fast mind as he's doing prime factorizations by memory.
+    \end{itemize}
+    \item Thus, using the lemmas, we've proven the following: A simple group of order at most 200 either has prime order, or order 60, 72, 90, 112, 120, 144, 168, or 180.
+\end{itemize}
+
+
+
 
 \end{document}
