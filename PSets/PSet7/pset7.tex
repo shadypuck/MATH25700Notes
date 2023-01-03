@@ -12,6 +12,14 @@
 \section{Broader Classes of Groups}
 \begin{enumerate}
     \item \marginnote{11/28:}Suppose that $\Z/m\Z$ is a subgroup of $S_n$ for some $n,m>2$. Prove that $D_{2m}$ is also a subgroup of $S_n$.
+    \begin{proof}
+        $m$ divides $n!$. $n!/m$ is still divisible by 2? $1\in\Z/m\Z$ functions as $r$; we just need to prove the existence of an order 2 element in $S_n\setminus\Z/m\Z$.
+
+        Take a 2-Sylow of $S_n$? Characterize that.
+
+
+        Since $n>2$ and $|S_n|=n!$, $2\big||S_n|$. Thus, by Sylow I, there exists a 2-Sylow $P\in S_n$. Suppose $P=\gen{x}$.
+    \end{proof}
     \item Let $G=\text{SL}_2(\F_3)$. Prove that the subgroup
     \begin{equation*}
         H = \gen{
@@ -30,23 +38,258 @@
         }
     \end{equation*}
     is isomorphic to the quaternion group $Q$ (where $i,j,k$ map to the given matrices). Deduce that $\text{SL}_2(\F_3)$ and $S_4$ are not isomorphic.
+    \begin{proof}
+        Define $\phi:Q\to H$ by
+        \begin{align*}
+            i &\mapsto
+            \begin{pmatrix}
+                1 & -1\\
+                -1 & -1\\
+            \end{pmatrix}&
+            j &\mapsto
+            \begin{pmatrix}
+                1 & 1\\
+                1 & -1\\
+            \end{pmatrix}&
+            k &\mapsto
+            \begin{pmatrix}
+                0 & -1\\
+                1 & 0\\
+            \end{pmatrix}
+        \end{align*}
+        We need not explicitly define matrix images for entries beyond $i,j,k$ since these three elements generate $Q$. Thus, $\phi$ is bijective; it only remains to be seen that it is a homomorphism. Fortunately, we can verify the multiplication table as follows (remember that addition everything is mod 2 here in a sense!).
+        \begin{gather*}
+            \underbrace{
+                \begin{pmatrix}
+                    1 & -1\\
+                    -1 & -1\\
+                \end{pmatrix}
+            }_{\phi(i)}
+            \underbrace{
+                \begin{pmatrix}
+                    1 & 1\\
+                    1 & -1\\
+                \end{pmatrix}
+            }_{\phi(j)}
+            =
+            -\underbrace{
+                \begin{pmatrix}
+                    1 & 1\\
+                    1 & -1\\
+                \end{pmatrix}
+            }_{\phi(j)}
+            \underbrace{
+                \begin{pmatrix}
+                    1 & -1\\
+                    -1 & -1\\
+                \end{pmatrix}
+            }_{\phi(i)}
+            =
+            \underbrace{
+                \begin{pmatrix}
+                    0 & -1\\
+                    1 & 0\\
+                \end{pmatrix}
+            }_{\phi(k)}\\
+            % 
+            \underbrace{
+                \begin{pmatrix}
+                    1 & 1\\
+                    1 & -1\\
+                \end{pmatrix}
+            }_{\phi(j)}
+            \underbrace{
+                \begin{pmatrix}
+                    0 & -1\\
+                    1 & 0\\
+                \end{pmatrix}
+            }_{\phi(k)}
+            =
+            -\underbrace{
+                \begin{pmatrix}
+                    0 & -1\\
+                    1 & 0\\
+                \end{pmatrix}
+            }_{\phi(k)}
+            \underbrace{
+                \begin{pmatrix}
+                    1 & 1\\
+                    1 & -1\\
+                \end{pmatrix}
+            }_{\phi(j)}
+            =
+            \underbrace{
+                \begin{pmatrix}
+                    1 & -1\\
+                    -1 & -1\\
+                \end{pmatrix}
+            }_{\phi(i)}\\
+            % 
+            \underbrace{
+                \begin{pmatrix}
+                    0 & -1\\
+                    1 & 0\\
+                \end{pmatrix}
+            }_{\phi(k)}
+            \underbrace{
+                \begin{pmatrix}
+                    1 & -1\\
+                    -1 & -1\\
+                \end{pmatrix}
+            }_{\phi(i)}
+            =
+            -\underbrace{
+                \begin{pmatrix}
+                    1 & -1\\
+                    -1 & -1\\
+                \end{pmatrix}
+            }_{\phi(i)}
+            \underbrace{
+                \begin{pmatrix}
+                    0 & -1\\
+                    1 & 0\\
+                \end{pmatrix}
+            }_{\phi(k)}
+            =
+            \underbrace{
+                \begin{pmatrix}
+                    1 & 1\\
+                    1 & -1\\
+                \end{pmatrix}
+            }_{\phi(j)}\\
+            % 
+            \underbrace{
+                \begin{pmatrix}
+                    1 & -1\\
+                    -1 & -1\\
+                \end{pmatrix}^2
+            }_{\phi(i)^2}
+            =
+            \underbrace{
+                \begin{pmatrix}
+                    1 & 1\\
+                    1 & -1\\
+                \end{pmatrix}^2
+            }_{\phi(j)^2}
+            =
+            \underbrace{
+                \begin{pmatrix}
+                    0 & -1\\
+                    1 & 0\\
+                \end{pmatrix}^2
+            }_{\phi(k)^2}
+            =
+            -\underbrace{
+                \begin{pmatrix}
+                    1 & 0\\
+                    0 & 1\\
+                \end{pmatrix}
+            }_{\phi(e)}
+        \end{gather*}
+        Suppose for the sake of contradiction that $S_4\cong\text{SL}_2(\F_3)$ with isomorphism $\psi:S_4\to\text{SL}_2(\F_3)$. $D_8\leq S_4$ and $H\leq\text{SL}_2(\F_3)$ are both 2-Sylows in their respective groups. Thus, by Sylow II, $\psi(D_8)$ and $H$ are conjugate to each other. But as discussed in class, the $Q\nsim D_8$, a contradiction.
+    \end{proof}
     \item Let $G$ be a group, and let $N\subset G$ be the subgroup generated by the elements $xyx^{-1}y^{-1}$ for all pairs $x,y\in G$. Prove that $N$ is a normal subgroup, and that $G/N$ is abelian.
+    \begin{proof}
+        % WTS: $gNg^{-1}=N$ for all $g\in G$. Let $G\acts N$ by conjugation. If we can prove that $N$ is a fixed point, that will be helpful.
+
+        % Or $G\acts G/N$ by left multiplication. Then $\Stab(gN)=gNg^{-1}$. $xyx^{-1}y^{-1}gaba^{-1}b^{-1}$
+
+
+        To prove that $N$ is normal, it will suffice to show that for all $z\in N$ and $g\in G$, $gzg^{-1}\in N$. Let $x^{-1}y^{-1}xy\in N$ and $g\in G$ be arbitrary. Then
+        \begin{align*}
+            gx^{-1}y^{-1}xyg^{-1} &= gx^{-1}(g^{-1}g)y^{-1}(g^{-1}g)x(g^{-1}g)yg^{-1}\\
+            &= (gx^{-1}g^{-1})(gy^{-1}g^{-1})(gxg^{-1})(gyg^{-1})\\
+            &= (gxg^{-1})^{-1}(gyg^{-1})^{-1}(gxg^{-1})(gyg^{-1})\\
+            &\in N
+        \end{align*}
+        as desired.\par
+        To prove that $G/N$ is abelian, it will suffice to show that $gN*hN=hN*gN$ for all $g,h\in G$. To do so, we can show that $ghN=hgN$, or that $g^{-1}h^{-1}ghN=N$. But since an element of the form $g^{-1}h^{-1}gh\in N$ by definition, we have the desired result.
+    \end{proof}
     \item Compute the order of the following groups as well as a set of generators.
     \begin{enumerate}
         \item The centralizer of $(12345)$ in $A_7$.
         \item The centralizer of $((12),(123))$ in $S_5\times S_5$.
+        \begin{proof}
+            \underline{Order:} We have that $|\{(12)\}|=10$ in $S_5$ and $|\{(123)\}|=20$ in $S_5$. Thus, $|\{(12),(123)\}|=10\cdot 20=200$ in $S_5^2$. It follows that
+            \begin{align*}
+                |S_5^2| &= |\{(12),(123)\}|\cdot|C_G(((12),(123)))|\\
+                5!^2 &= 200|C_G(((12),(123)))|\\
+                \Aboxed{|C_G(((12),(123)))| &= 72}
+            \end{align*}
+        \end{proof}
         \item The normalizer of $H=\gen{(12),(34),(56),(78)}$ in $S_8$.
+        \begin{proof}
+            We observe: Image of $(12)$ under conjugation by an element of $N_{S_8}(H)$ must be $(12)$, $(34)$, $(56)$, or $(78)$. Conjugation preserves cycle structure. These are the only 2-cycles in $H$, so conjugation on $H$ needs to take them to each other. Main point: The set of generators needs to go to the set of generators. Think about what sorts of relabelings will do these kinds of things and which will be possible in the normalizer.
+        \end{proof}
     \end{enumerate}
     \item \textbf{Projective Linear Groups Over Finite Fields.} Let $p$ be prime, and let $\F_p=\Z/p\Z$. Note that one can add and multiply elements of $\F_p$. Let $\text{GL}_2(\F_p)$ be the group of $2\times 2$ invertible matrices over $\F_p$, and let $\text{SL}_2(\F_p)\subset\text{GL}_2(\F_p)$ denote the subgroup of matrices of determinant one.
     \begin{enumerate}
         \item There are $p^2-1$ non-zero vectors $v\in\F_p^2$. Let a "line" $\ell=[v]\subset\F_p^2$ denote the scalar multiples $\lambda v$ of a non-zero vector $v$. Prove that the set $X$ of lines has cardinality $|X|=p+1$.
+        \begin{proof}
+            Let $\F_p\acts\F_p^2$.
+        \end{proof}
         \item Prove that $\text{SL}_2(\F_p)$ and $\text{GL}_2(\F_p)$ act naturally on $X$ by $g\cdot[v]=[g\cdot v]$.
+        \begin{proof}
+            % Let $g\in\text{GL}_2(\F_p)$ and $[v]$ a line be arbitrary. Let $\lambda v\in[v]$ be arbitrary. Then since $g$ is linear,
+            % \begin{equation*}
+            %     g\cdot\lambda v = \lambda g\cdot v
+            % \end{equation*}
+
+
+            Let $G=\text{GL}_2(\F_p)$. Define $G\acts X$ by left multiplication. To confirm that this is a group action, it will suffice to show that for all $g,h\in G$ and $[v]\in X$, $g\cdot(h\cdot[v])=gh\cdot[v]$ and for all $[v]\in X$, $e\cdot[v]=[v]$. With respect to the first statement, we have since $g,h$ are linear that
+            \begin{equation*}
+                g\cdot(h\cdot[v]) = g\cdot[hv]
+                = [ghv]
+                = gh\cdot[v]
+            \end{equation*}
+            With respect to the latter statement,
+            \begin{equation*}
+                e\cdot[v] = [ev]
+                = [v]
+            \end{equation*}
+            as desired.\par
+            An analogous argument can treat the $\text{SL}_2(\F_p)$ case.
+        \end{proof}
         \item Prove that this action is transitive for both $\text{GL}_2(\F_p)$ and $\text{SL}_2(\F_p)$.
+        \begin{proof}
+            Suppose $gu=v$, then $g=vu^{-1}$.
+        \end{proof}
         \item Prove that the kernel of the action consists precisely of the scalar matrices $\lambda I$ in either $\text{SL}_2(\F_p)$ or $\text{GL}_2(\F_p)$.
+        \begin{proof}
+            Let $\lambda I$ be a scalar matrix. Then
+            \begin{equation*}
+                \lambda I\cdot[v] = [\lambda v] = [v]
+            \end{equation*}
+            Similarly, if $g\cdot[v]=[v]$ and $g\cdot[u]=[u]$ for $u\neq v\in\F_p$, then $gv=\lambda v$ for some $\lambda$ and $gu=\lambda u$ as well, i.e., $g=\lambda I$.
+        \end{proof}
         \item Let $\text{PGL}_2(\F_p)$ and $\text{PSL}_2(\F_p)$ denote the quotient of $G$ and $H$ by the subgroup of scalar matrices. Prove that $|\text{PGL}_2(\F_p)|=(p^2-1)p$ and $|\text{PSL}_2(\F_p)|=6$ if $p=2$ and $\frac{1}{2}(p^2-1)p$ otherwise.
+        \begin{proof}
+            We know from HW3 Q6 that $|G|=(p^2-1)(p^2-p)$. Additionally, since there are $p-1$ scalar matrices ($\lambda I$ for $\lambda=1,\dots,p-1$), we have by the corollary from Lecture 3.3 that
+            \begin{equation*}
+                |\text{PGL}_2(\F_p)| = \frac{|G|}{|\lambda I|}
+                = \frac{(p^2-1)p(p-1)}{p-1}
+                = (p^2-1)p
+            \end{equation*}
+        \end{proof}
         \item Prove that $\text{PGL}_2(\F_2)=\text{PSL}_2(\F_2)=S_3$.
         \item Prove that $\text{PGL}_2(\F_3)=S_4$ and $\text{PSL}_2(\F_3)=A_4$. (Compare with Question 2.)
         \item Prove that $\text{PSL}_2(\F_5)=A_5$ and $\text{PGL}_2(\F_5)=S_5$. (Hint: Using that $A_6$ is simple, prove that any index 6 subgroup of $A_6$ or $S_6$ is $A_5$ or $S_5$, respectively.)
+        \begin{proof}
+            Any index 6 subgroup of $A_6$ or $S_6$ is $A_5$ or $S_5$, respectively.
+            Let $H\subset A_6$ be such that $[A_6:H]=6$. Then $A_6/H$ has 6 elements. Let $H\acts A_6/H$ by left multiplication. This is transitive because we can always sent the identity coset $H$ to any other coset. Recall that any group action on $n$ elements induces a homomorphism from the group to $S_n$. Thus, we have a homomorphism from $A_6$ to $S_6$ (since $A_6/H$ has 6 elements). This is not necessarily the usual injection; it could be very different. Let's call this map $\varphi:A_6\to S_6$. A priori, $\varphi$ need not be injective. Injectivity iff $A_6\acts A_6/H$ is faithful. But in this case, $\varphi$ is injective! Since $A_6$ is simple, $\ker\varphi=A_6$ or $\ker\varphi=\{e\}$. But it's not $A_6$ (stuff is being moved around??), so it's $e$. Therefore, $A_6\acts A_6/H$ is faithful and $\varphi$ gives an injection of $A_6$ in $S_6$. Restrict attention to $h\subset A_6$. $\varphi|_H:H\to S_6$ is injective. $H\acts A_6/H$, $H$ fixes the identity coset. Therefore, $H$ permutes the other five (nonidentity) cosets. But this gives an action of $H$ on \emph{five} elements. Indeed, the image $\varphi|_H(H)=S_5$. $\varphi|_H:H\to S_5$ is injective. Recap: $H$ acts on 6 elements, but since every element of $H$ fixes one of the six elements, then its really permuting five elements. The action $H\acts A_6/H\setminus\{H\}$ is faithful (fixes non-identity cosets implies fixes all cosets).
+            When did we argue that $H\acts A_6/H$ faithfully? Recall that $A_6\acts A_6/H$ faithfully because of simplicity. Now we look at the restriction $H\acts A_6/H$ to the subgroup $H\leq A_6$. This will also naturally be faithful. Lastly, $H\acts A_6/H\setminus\{H\}$ is faithful since if $h\in H$ fixes all five nonidentity cosets, then we already know $h$ fixes $H$ (identity coset), so $h$ fixes all six cosets $A_6/H$ since $H\acts A_6/H$ is faithful.
+            So since $\psi:H\to S_5$ is injective, we have
+            \begin{equation*}
+                |H| = \frac{|A_6|}{6}
+                = \frac{6!/2}{6}
+                = \frac{360}{6}
+                = 60
+            \end{equation*}
+            Then $[S_5:\psi(H)]=2$, so $\psi(H)=A_5$ and $H\cong A_5$.
+            What about $S_5\subset S_6$? Idea: Can do a similar strategy, except "kernel is $e$ or $A_6$" should be replaced with "kernel is $e$, $A_6$, or $S_6$." What Abhijit means by similar strategy: Suppose $[S_6:H]=6$. Then $S_6\acts S_6/H$. Use the simplicity of $A_6$ even in the $S_6$ case.
+
+            Look at the action on the lines faithfully. Something with a group action and counting can help. Prove something is always a normal subgroup. Circumvents the hint.
+        \end{proof}
     \end{enumerate}
 \end{enumerate}
 
