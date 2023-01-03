@@ -271,5 +271,285 @@
 
 
 
+\section{Chapter 0: Preliminaries}
+\emph{From \textcite{bib:DummitFoote}.}
+\subsection*{Basics}
+\begin{itemize}
+    \item \marginnote{12/4:}Frequently used notation defined at the beginning of the textbook.
+    \item Know the basics of set theory.
+    \begin{itemize}
+        \item Definitions given for: \textbf{Subset}, \textbf{Cartesian product}, $\pmb{\Z}$\footnote{The German word for numbers is "Zahlen."}, $\pmb{\Q}$, $\pmb{\R}$, and $\pmb{\C}$.
+        \item Additional important terms are defined below.
+    \end{itemize}
+    \item \textbf{Order} (of a set $A$): The number of elements of $A$ (provided $A$ is a finite set). \emph{Also known as} \textbf{cardinality}. \emph{Denoted by} $\bm{|A|}$.
+    \item $\Z^+,\Q^+,\R^+$ denote the positive nonzero elements of $\Z,\Q,\R$, respectively.
+    \item \textbf{Function} (from $A$ to $B$). \emph{Also known as} \textbf{map}. \emph{Denoted by} $\bm{f:A\to B}$, $\bm{A\xrightarrow{f}{B}}$.
+    \begin{itemize}
+        \item Additional function-adjacent definitions not defined below: \textbf{Domain}, \textbf{codomain}, \textbf{composition}, \textbf{injection}, \textbf{surjection}, \textbf{bijection}, \textbf{bijective correspondence}, and \textbf{restriction}.
+    \end{itemize}
+    \item \textbf{Value} (of $f$ at $a$): \emph{Denoted by} $\bm{f(a)}$.
+    \begin{itemize}
+        \item Implication: We apply functions on the left throughout the book.
+    \end{itemize}
+    \item $\bm{f:a\mapsto b}$, $\bm{a\mapsto b}$, $\bm{f(a)=b}$ are all used interchangeably to describe the action of $f$ on \textbf{elements}.
+    \begin{itemize}
+        \item The middle one is used only when $f$ is understood from the context.
+    \end{itemize}
+    \item If $f$ is not specified on elements but defined by a rule, we must check that it is \textbf{well-defined} for each element in its domain.
+    \item \textbf{Image} (of $A$ under $f$): The following subset of $B$ (the codomain of $f$). \emph{Also known as} \textbf{range}. \emph{Denoted by} $\bm{f(A)}$. \emph{Given by}
+    \begin{equation*}
+        f(A) = \{b\in B\mid b=f(a),\ a\in A\}
+    \end{equation*}
+    \item \textbf{Preimage} (of $C\subset B$ under $f$): The following subset of $A$ (the domain of $f$). \emph{Also known as} \textbf{inverse image}. \emph{Denoted by} $\bm{f^{-1}(C)}$. \emph{Given by}
+    \begin{equation*}
+        f^{-1}(C) = \{a\in A\mid f(a)\in C\}
+    \end{equation*}
+    \item \textbf{Fiber} (of $f$ over $b$): The preimage of $\{b\}$ under $f$.
+    \begin{itemize}
+        \item $f^{-1}$ is not, in general, a function since the fibers of $f$ generally contain many elements, i.e., many elements of $A$ in general map to the same $B$.
+    \end{itemize}
+    \item \textbf{Left inverse} (of $f$): A function $g:B\to A$ such that $g\circ f:A\to A$ is the identity map on $A$.
+    \item \textbf{Right inverse} (of $f$): A function $h:B\to A$ such that $f\circ h:B\to B$ is the identity map on $B$.
+    \item \textbf{2-sided inverse} (of $f$): A function $g:B\to A$ such that $f\circ g$ is the identity map on $B$ and $g\circ f$ is the identity map on $A$. \emph{Also known as} \textbf{inverse}.
+    \begin{itemize}
+        \item Implied to be unique by part (3) of Proposition \ref{prp:0.1}.
+    \end{itemize}
+    \item Relating properties of functions.
+    \begin{proposition}\label{prp:0.1}
+        Let $f:A\to B$.
+        \begin{enumerate}
+            \item $f$ is injective iff $f$ has a left inverse.
+            \item $f$ is surjective iff $f$ has a right inverse.
+            \item $f$ is a bijection iff $f$ has a 2-sided inverse.
+            \item If $A,B$ satisfy $|A|=|B|$, then $f:A\to B$ is bijective iff $f$ is injective iff $f$ is surjective.
+        \end{enumerate}
+    \end{proposition}
+    \item \textbf{Permutation} (of a set $A$): A bijection from $A$ to itself.
+    \item \textbf{Extension} (of $g$ to $B$): The function $f:B\to C$ where $A\subset B$, $g:A\to C$, and $f|_A=g$.
+    \begin{itemize}
+        \item Extensions need not exist nor be unique.
+    \end{itemize}
+    \item \textbf{Representative} (of an equivalence class): Any element of the equivalence class.
+    \begin{itemize}
+        \item Additional relation-adjacent terms: \textbf{Binary relation}, \textbf{reflexive}, \textbf{symmetric}, \textbf{transitive}, \textbf{equivalence relation}, \textbf{equivalence class}, \textbf{equivalent} (elements), and \textbf{partition}.
+    \end{itemize}
+    \item The notions of an equivalence relation and a partition of $A$ are the same.
+    \begin{proposition}\label{prp:0.2}
+        Let $A$ be a nonempty set.
+        \begin{enumerate}
+            \item If $\sim$ defines an equivalence relation on $A$, then the set of equivalence classes of $\sim$ form a partition of $A$.
+            \item If $\{A_i\mid i\in I\}$ is a partition of $A$, then there is an equivalence relation on $A$ whose equivalence classes are precisely the sets $A_i$, $i\in I$.
+        \end{enumerate}
+    \end{proposition}
+    \item Assumed familiarity with induction proofs.
+\end{itemize}
+
+
+\subsection*{Properties of the Integers}
+\begin{itemize}
+    \item Many of the properties stated herein will be familiar from elementary arithmetic.
+    \begin{itemize}
+        \item We state them now because we will need them in Part I (Group Theory).
+        \item However, we delay proofs until Chapter 8, when we prove them in the more general context of ring theory.
+        \item To avoid circular reasoning, the proofs in Chapter 8 will not rely on any result from Part I, so the full logical structure of this book is Ring Theory and then Group Theory, but it is presented the other way around for pedagogical purposes.
+    \end{itemize}
+    \item \textbf{Well Ordering} (of $\Z$): Any nonempty subset $A\subset\Z^+$ contains a \textbf{minimal element} $m$ satisfying $m\leq a$ for all $a\in A$.
+    \item \textbf{$\bm{a}$ divides $\bm{b}$}: Two numbers $a,b\in\Z$ with $a\neq 0$ such that $b=ac$ for some $c\in\Z$. \emph{Denoted by} $\bm{a\mid b}$.
+    \begin{itemize}
+        \item If $a$ doesn't divide $b$, then we write $\bm{a\nmid b}$.
+    \end{itemize}
+    \item \textbf{Greatest common divisor} (of $a,b\in\Z\setminus\{0\}$\footnote{\textcite{bib:DummitFoote} prefers the notation $\Z-\{0\}$ for set differences, but I will stick with what I know.}): The unique positive integer $d$ satisfying
+    \begin{enumerate}
+        \item $d\mid a$ and $d\mid b$. ($d$ is a \emph{common} divisor of $a,b$.)
+        \item If $e\mid a$ and $e\mid b$, then $e\mid d$. ($d$ is the \emph{greatest} common divisor of $a,b$.)
+    \end{enumerate}
+    \emph{Also known as} \textbf{g.c.d.} \emph{Denoted by} $\bm{(a,b)}$.
+    \item \textbf{Relatively prime} (numbers): Two numbers $a,b\in\Z\setminus\{0\}$ for which $(a,b)=1$.
+    \item \textbf{Least common multiple} (of $a,b\in\Z\setminus\{0\}$): The unique positive integer $l$ satisfying
+    \begin{enumerate}
+        \item $a\mid l$ and $b\mid l$. ($l$ is a \emph{common} multiple of $a,b$.)
+        \item If $a\mid m$ and $b\mid m$, then $l\mid m$. ($l$ is the \emph{least} common multiple of $a,b$.)
+    \end{enumerate}
+    \emph{Also known as} \textbf{l.c.m.}
+    \item "The connection between the greatest common divisor $d$ and the least common multiple $l$ of two integers $a$ and $b$ is given by $dl=ab$" \parencite[4]{bib:DummitFoote}.
+    \item \textbf{Division Algorithm}: If $a,b\in\Z\setminus 0$, then there exist unique $q,r\in\Z$ such that
+    \begin{align*}
+        a &= qb+r&
+        0 &\leq r < |b|
+    \end{align*}
+    \item \textbf{Quotient}: The number $q$ in the above definition.
+    \item \textbf{Remainder}: The number $r$ in the above definition.
+    \item \textbf{Euclidean Algorithm}: A procedure for finding the greatest common divisor of two integers $a$ and $b$ by iterating the Division Algorithm. \emph{Given by}
+    \begin{align*}
+        a &= q_0b+r_0\\
+        b &= q_1r_0+r_1\\
+        r_0 &= q_2r_1+r_2\\
+        r_1 &= q_3r_2+r_3\\
+        &\vdots\\
+        r_{n-2} &= q_nr_{n-1}+r_n\\
+        r_{n-1} &= q_{n+1}r_n
+    \end{align*}
+    This yields $(a,b)=r_n$.
+    \begin{proof}
+        Existence of $r_n$: $|b|>|r_0|>|r_1|>\cdots|r_n|$ is a decreasing sequence of strictly positive integers and such a sequence cannot continue indefinitely.\par
+        The rest of the proof comes later.
+    \end{proof}
+    \item Example of applying the Euclidean Algorithm given.
+    \item $(a,b)$ is a $\Z$-linear combination of $a,b$: In particular, there exist $x,y\in\Z$ such that
+    \begin{equation*}
+        (a,b) = ax+by
+    \end{equation*}
+    \begin{proof}
+        Exploit the Euclidean Algorithm. Use the second-to-last line to write $(a,b)$ in terms of $r_{n-1},r_{n-2}$:
+        \begin{equation*}
+            r_n = r_{n-2}-q_nr_{n-1}
+        \end{equation*}
+        Then use $r_{n-1}=r_{n-3}-q_{n-1}r_{n-2}$ to express $r_n$ in terms of $r_{n-2},r_{n-3}$. Go back and back until we express $r_n$ in terms of $a,b$, and then combine terms.
+    \end{proof}
+    \item Notes on the above result.
+    \begin{itemize}
+        \item Previous example expanded to apply here.
+        \item Either $x$ or $y$ will be negative.
+        \item $x$ and $y$ are not unique. The general solution is known, though (see Exercise \ref{exr:0.2.4} and Chapter 8).
+    \end{itemize}
+    \item \textbf{Prime} (number $p\in\Z^+$): A number $p\in\Z^+$ for which $p>1$ and the only positive divisors of $p$ are 1 and $p$.
+    \item \textbf{Composite} (number $n\in\Z^+$): A number $n\in\Z^+$ for which $n>1$ and $n$ is not prime.
+    \item Examples given.
+    \item If $p$ is a prime and $p\mid ab$ for some $a,b\in\Z$, then $p\mid a$ or $p\mid b$.
+    \begin{itemize}
+        \item This property can be used to define the primes (see Exercise \ref{exr:0.2.3}).
+    \end{itemize}
+    \item \textbf{Fundamental Theorem of Arithmetic}: If $n\in\Z$ and $n>1$, then $n$ can be factored uniquely into the product of primes, i.e., there are distinct primes $p_1,p_2,\dots,p_s$ and positive integers $\alpha_1,\alpha_2,\dots,\alpha_s$ such that
+    \begin{equation*}
+        n = p_1^{\alpha_1}p_2^{\alpha_2}\cdots p_s^{\alpha_s}
+    \end{equation*}
+    \begin{itemize}
+        \item This decomposition is unique.
+    \end{itemize}
+    \item Let $a,b$ be positive integers such that
+    \begin{align*}
+        a &= p_1^{\alpha_1}p_2^{\alpha_2}\cdots p_s^{\alpha_s}&
+        b &= p_1^{\beta_1}p_2^{\beta_2}\cdots p_s^{\beta_s}
+    \end{align*}
+    are their prime factorizations (we let $\alpha_i,\beta_j\geq 0$ so that we can express both as the product of the same primes). Then
+    \begin{align*}
+        \gcd(a,b) &= p_1^{\min(\alpha_1,\beta_1)}p_2^{\min(\alpha_2,\beta_2)}\cdots p_s^{\min(\alpha_s,\beta_s)}\\
+        \lcm(a,b) &= p_1^{\max(\alpha_1,\beta_1)}p_2^{\max(\alpha_2,\beta_2)}\cdots p_s^{\max(\alpha_s,\beta_s)}
+    \end{align*}
+    \item \textbf{Euler $\bm{\varphi}$-function}: The function $\varphi:\Z^+\to\Z^+$ where $\varphi(n)$ is defined to be the number of positive integers $a\leq n$ such that $(a,n)=1$.
+    \begin{itemize}
+        \item If $p$ prime, then $\varphi(p)=p-1$.
+        \item If $p$ prime and $a\geq 1$, then $\varphi(p^a)=p^a-p^{a-1}=p^{a-1}(p-1)$.
+        \item If $(a,b)=1$, then $\varphi(ab)=\varphi(a)\varphi(b)$.
+        \item If $n=p_1^{\alpha_1}p_2^{\alpha_2}\cdots p_s^{\alpha_s}$, then
+        \begin{align*}
+            \varphi(n) &= \varphi(p_1^{\alpha_1})\varphi(p_2^{\alpha_2})\cdots\varphi(p_s^{\alpha_s})\\
+            &= p_1^{\alpha_1-1}(p_1-1)p_2^{\alpha_2-1}(p_2-1)\cdots p_s^{\alpha_s-1}(p_s-1)
+        \end{align*}
+        \item $\varphi$ is used for many functions throughout the text, so when we wish to indicate the Euler $\varphi$-function, we do so explicitly.
+    \end{itemize}
+\end{itemize}
+
+\subsubsection*{Exercises}
+\begin{enumerate}[label={\textbf{\arabic*.}},ref={0.2.\arabic*}]
+    \setcounter{enumi}{2}
+    \item \label{exr:0.2.3}Prove that if $n$ is composite, then there are integers $a,b$ such that $n\mid ab$ but $n\nmid a$ and $n\nmid b$.
+    \item \label{exr:0.2.4}Let $a,b,N$ be fixed integers with $a,b$ nonzero, and let $d=(a,b)$. Suppose $x_0,y_0$ are particular solutions to $ax+by=N$ (i.e., $ax_0+by_0=N$). Prove that for any integer $t$, the integers
+    \begin{align*}
+        x &= x_0+\frac{b}{d}t&
+        y &= y_0-\frac{a}{d}t
+    \end{align*}
+    are also solutions to $ax+by=N$ (this is, in fact, the general solution).
+\end{enumerate}
+
+
+\subsection*{\texorpdfstring{$\bm{\pmb{\Z}/n\pmb{\Z}}$}{TEXT}: The Integers Modulo \texorpdfstring{$\bm{n}$}{TEXT}}
+\begin{itemize}
+    \item Fix $n\in\Z^+$.
+    \item Define $\sim$ on $\Z$ by $a\sim b\Longleftrightarrow n\mid(b-a)$.
+    \begin{itemize}
+        \item We can prove that $\sim$ is an equivalence relation.
+        \item If $a\sim b$, we write $a\equiv b\pmod n$\footnote{"$a$ is congruent to $b\bmod n$."}.
+    \end{itemize}
+    \item \textbf{Congruence class} (of $a\bmod n$): The equivalence class of $a\bmod n$. \emph{Also known as} \textbf{residue class}. \emph{Denoted by} $\bm{\bar{a}}$. \emph{Given by}
+    \begin{align*}
+        \bar{a} &= \{a+kn\mid k\in\Z\}\\
+        &= \{a,a\pm n,a\pm 2n,a\pm 3n,\dots\}
+    \end{align*}
+    \begin{itemize}
+        \item There are $n$ distinct equivalence classes mod $n$, namely $\bar{0},\bar{1},\dots,\overline{n-1}$, and collectively referred to as the \textbf{integers modulo $\bm{n}$}.
+        \item The congruence classes differ for different $n$, so always be sure to fix $n$ before discussing them.
+    \end{itemize}
+    \item \textbf{Integers modulo $\bm{n}$}: The set of equivalence classes under this equivalence relation. \emph{Also known as} \textbf{integers mod $\bm{n}$}. \emph{Denoted by} $\bm{\pmb{\Z}/n\pmb{\Z}}$\footnote{The motivation for this notation will become clear in the discussion of quotient groups and quotient rings.}
+    \item \textbf{Reducing $\bm{a\bmod\, n}$}: The process of finding the equivalence class mod $n$ of some integer $a$.
+    \begin{itemize}
+        \item Also frequently refers to finding the \textbf{least residue} of $a\bmod n$.
+    \end{itemize}
+    \item \textbf{Least residue} (of $a\bmod n$): The smallest nonnegative number congruent to $a\bmod n$.
+    \item \textbf{Modular arithmetic} (on $\Z/n\Z$): The addition and multiplication operations defined by
+    \begin{align*}
+        \bar{a}+\bar{b} &= \overline{a+b}&
+        \bar{a}\cdot\bar{b} &= \overline{ab}
+    \end{align*}
+    for all $\bar{a},\bar{b}\in\Z/n\Z$.
+    \begin{itemize}
+        \item In other words, take a representative element of both residue classes, add or multiply them, and then take the class containing the product to be the sum (resp. product).
+    \end{itemize}
+    \item Example given to hint at the well-definedness of modular arithmetic.
+    \item Proof that modular arithmetic is well-defined.
+    \begin{theorem}\label{trm:0.3}
+        The operations of addition and multiplication on $\Z/n\Z$ defined above are both well-defined, that is, they do not depend on the choices of representatives for the classes involved. More precisely, if $a_1,a_2\in\Z$ and $b_1,b_2\in\Z$ with $\overline{a_1}=\overline{b_1}$ and $\overline{a_2}=\overline{b_2}$, then $\overline{a_1+a_2}=\overline{b_1+b_2}$ and $\overline{a_1a_2}=\overline{b_1b_2}$, i.e., if
+        \begin{align*}
+            a_1 &\equiv b_1\pmod n&
+            a_2 &\equiv b_2\pmod n
+        \end{align*}
+        then
+        \begin{align*}
+            a_1+a_2 &\equiv b_1+b_2\pmod n&
+            a_1a_2 &\equiv b_1b_2\pmod n
+        \end{align*}
+        \begin{proof}
+            Given.
+        \end{proof}
+    \end{theorem}
+    \item Further comments on equivalence classes and the integers mod $n$.
+    \begin{itemize}
+        \item Preview: Adding equivalence classes by their representatives is a special case of a more general construction (that of a \textbf{quotient}).
+        \item We should be familiar with manipulating equivalence classes from studying $\Q$ rigorously.
+        \item We should be familiar with modular arithmetic from timekeeping: 8 hours after 5:00 AM? Must be 13h00, but $13\equiv 1\pmod 12$ so 1:00 PM.
+        \item We do need to be able to think of equivalence classes as elements that can be manipulated in their own right. But it is important to remember that these \emph{are} still equivalence classes at the end of the day.
+        \item Useful application of modular arithmetic: Computing the last two digits of $2^{1000}$ using the integers modulo 100.
+    \end{itemize}
+    \item $\bm{(\pmb{\Z}/n\pmb{\Z})^\times}$: The collection of residue classes which have a multiplicative inverse in $\Z/n\Z$. \emph{Given by}
+    \begin{equation*}
+        (\Z/n\Z)^\times = \{\bar{a}\in\Z/n\Z\mid \exists\ \bar{c}\in\Z/n\Z:\bar{a}\cdot\bar{c}=\bar{1}\}
+    \end{equation*}
+    \item An alternate form for $(\Z/n\Z)^\times$.
+    \begin{proposition}\label{prp:0.4}
+        $(\Z/n\Z)^\times=\{\bar{a}\in\Z/n\Z\mid(a,n)=1\}$.
+        \begin{proof}
+            See Exercises \ref{exr:0.3.10}-\ref{exr:0.3.14}.
+        \end{proof}
+    \end{proposition}
+    \item Further comments on $(\Z/n\Z)^\times$.
+    \begin{itemize}
+        \item The set given in Proposition \ref{prp:0.4} is well-defined since if $(a,n)=1$, then we clearly have $(a+qn,n)=1$ as well.
+        \item Explicit example given: $(\Z/9\Z)^\times$.
+        \item Computing the multiplicative inverse of $\bar{a}$: Let $(a,n)=1$. Then the Euclidean algorithm generates integers $x,y$ such that $ax+ny=1$. But this implies that $ax=1+(-y)n$, i.e., $ax\equiv 1\bmod n$. Therefore, $\bar{a}\cdot\bar{x}=\bar{1}$, so $\bar{x}$ is the multiplicative inverse of $\bar{a}$.
+    \end{itemize}
+\end{itemize}
+
+\subsubsection*{Exercises}
+\begin{enumerate}[label={\textbf{\arabic*.}},ref={0.3.\arabic*}]
+    \setcounter{enumi}{9}
+    \item \label{exr:0.3.10}Prove that the number of elements of $(\Z/n\Z)^\times$ is $\varphi(n)$ where $\varphi$ denotes the Euler $\varphi$-function.
+    \item \label{exr:0.3.11}Prove that if $\bar{a},\bar{b}\in(\Z/n\Z)^\times$, then $\bar{a}\cdot\bar{b}\in(\Z/n\Z)^\times$.
+    \item \label{exr:0.3.12}Let $n\in\Z$, $n>1$, and let $a\in\Z$, $1\leq a\leq n$. Prove that if $a,n$ are not relatively prime, then there exists an integer $b$ with $1\leq b<n$ such that $ab\equiv 0\pmod n$ and deduce that there cannot be an integer $c$ such that $ac\equiv 1\pmod n$.
+    \item \label{exr:0.3.13}Let $n\in\Z$, $n>1$, and let $a\in\Z$, $1\leq a\leq n$. Prove that if $a,n$ are relatively prime, then there exists an integer $c$ with such that $ac\equiv 1\pmod n$ [use the fact that the g.c.d. of two integers is a $\Z$-linear combination of the integers].
+    \item \label{exr:0.3.14}Conclude from the previous two exercises that $(\Z/n\Z)^\times$ is the set of elements $\bar{a}$ of $\Z/n\Z$ with $(a,n)=1$ and hence probe Proposition \ref{prp:0.4}. Verify this directly in the case $n=12$.
+\end{enumerate}
+
+
+
 
 \end{document}
