@@ -15,6 +15,7 @@
 \usepackage{amsmath,amssymb,amsthm,amsbsy}
 \usepackage{bm,physics,nicematrix,empheq}
 \usepackage[hidelinks]{hyperref}
+\usepackage{subfiles}
 
 \MakeOuterQuote{"}
 
@@ -37,7 +38,7 @@
     \fill (1.2,0) -- (0,-1) -- (3.5,0);
 }}}
 
-\addbibresource{../main.bib}
+\addbibresource{\subfix{../main.bib}}
 \DefineBibliographyStrings{english}{bibliography={References}}
 
 \deffootnotemark{\textsuperscript{\textup{[}\thefootnotemark\textup{]}}}
@@ -98,5 +99,3 @@
 \newcommand{\inp}[2]{\left\langle{#1},{#2}\right\rangle}
 \newcommand{\gen}[1]{\left\langle{#1}\right\rangle}
 \newcommand{\e}[1][]{\text{e}^{#1}}
-
-\usepackage{subfiles}
